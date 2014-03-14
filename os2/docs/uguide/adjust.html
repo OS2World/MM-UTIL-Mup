@@ -1,0 +1,92 @@
+<HTML>
+<HEAD><TITLE>
+Adjusting Mup output
+</TITLE></HEAD>
+<BODY>
+<P>
+&nbsp;&nbsp;&nbsp;<A HREF="debug.html">&lt;-- previous page</A>
+
+&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="index.html">Table of Contents</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="mupindex.html">Index</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="invisbar.html">next page --&gt;</A>
+</P>
+         
+<H2>
+Adjusting Output
+</H2>
+<P>
+
+Mup does its best to lay out the music in an aesthetically pleasing way.
+Often, however, you may want to make adjustments. Perhaps the last part of
+a piece spilled over onto a third page and you'd like to squeeze it all on
+two pages, or a page turn falls at an awkward spot. There are several
+mechanisms available for making adjustments. They have already been discussed
+individually in various sections of this document, but this section tries to
+pull things together.
+</P>
+<P>
+<A HREF="newscore.html">The "newscore" or "newpage" commands</A>
+
+
+can be used to force where breaks occur.
+This may be useful for ensuring a section ends at the end of a score or page.
+</P>
+<P>
+If you want to get a little more or less on each page, it is usually best
+to start with changing the
+<A HREF="param.html#scale">scale,</A>
+<A HREF="param.html#stscale">staffscale,</A>
+
+<A HREF="param.html#packfact">packfact,</A>
+
+and/or
+<A HREF="param.html#packexp">packexp</A>
+
+parameters.
+
+You may want to experiment with changing these individually first, to get
+a feel for how they work, as trying to change all of them at once may lead to
+interactions that change things more radically than you might expect.
+Changing staffscale in score context lets you adjust the size of the
+music without affecting the size of the text in headers and footers.
+Adjusting the margins is sometimes helpful as well. Other parameters which
+
+might be useful in some situations are:
+<A HREF="param.html#maxscore">maxscores,</A>
+<A HREF="param.html#scorepad">scorepad,</A>
+
+<A HREF="param.html#scoresep">scoresep,</A>
+
+<A HREF="param.html#staffpad">staffpad,</A>
+and
+<A HREF="param.html#staffsep">staffsep.</A>
+
+</P>
+<P>
+The
+<A HREF="param.html#dist">dist,</A>
+
+<A HREF="param.html#dyndist">dyndist,</A>
+and
+<A HREF="param.html#chdist">chorddist</A>
+
+parameters are useful if
+you want items to line up vertically.
+The &quot;align&quot; and &quot;dist&quot; option can be used
+on rom, bold, ital, boldital, octave, mussym, crescendo and decrescendo
+statements, to force something where you want it.
+(The &quot;dist&quot; option can be used on rehearsal marks as well.)
+</P>
+<P>
+The appearance of lyrics can be adjusted using the
+<A HREF="param.html#lyrdist">lyricsdist,</A>
+
+<A HREF="param.html#lyrfont">lyricsfont,</A>
+<A HREF="param.html#lyrfam">lyricsfontfamily,</A>
+<A HREF="param.html#lyrsize">lyricssize,</A>
+and
+<A HREF="param.html#lyralign">lyricsalign</A>
+parameters.
+</P>
+<HR><P>
+&nbsp;&nbsp;&nbsp;<A HREF="debug.html">&lt;-- previous page</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="index.html">Table of Contents</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="mupindex.html">Index</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="invisbar.html">next page --&gt;</A>
+</P>
+</BODY></HTML>

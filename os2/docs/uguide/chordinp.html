@@ -1,0 +1,430 @@
+<HTML>
+<HEAD><TITLE>
+Specifying chords
+</TITLE></HEAD>
+<BODY>
+<P>
+&nbsp;&nbsp;&nbsp;<A HREF="music.html">&lt;-- previous page</A>
+
+&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="index.html">Table of Contents</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="mupindex.html">Index</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="noteattr.html">next page --&gt;</A>
+</P>
+         
+<H2>
+Specifying chords
+</H2>
+
+<H3>
+Staff and voice
+</H3>
+<P>
+The description of the music for one voice begins with the staff and voice
+
+
+number, followed by a colon. For example:
+<BR><PRE>
+3 1:
+</PRE><BR>
+indicates that the remainder of the line contains musical information for voice
+1 of staff 3. If the &quot;voice&quot; number is omitted, voice 1 is assumed. Thus
+<BR><PRE>
+3:
+</PRE><BR>
+is equivalent to the previous example.
+Both the staff and voice can be given as a list. This may be useful if
+several staffs have the same notes, or multiple voices on a staff have the
+same notes. For example:
+<BR><PRE>
+1-4 2:		// voice 2 of staffs 1, 2, 3, and 4
+1,2,4:		// voice 1 of staffs 1, 2, and 4,
+1,3,6-7 1-2:	// voices 1 and 2 on staffs 1, 3, 6 and 7
+5-8 1,2:	// voices 1 and 2 on staffs 5, 6, 7, and 8
+</PRE><BR>
+</P>
+<P>
+If you want notes to go to one voice on some staffs
+and a different voice on others,
+this can be specified using an ampersand. For example:
+<BR><PRE>
+1 1 &amp; 3 2:
+</PRE><BR>
+will cause the music to go to voice 1 of staff 1 as well as to voice
+2 of staff 3. Various styles can be combined:
+<BR><PRE>
+// Voices 1 and 2 on staff 2,
+// as well as voice 2 on staff 4
+// and voice 1 on staffs 6, 7, and 9
+2 1-2 &amp; 4 2 &amp; 6-7,9 1:
+</PRE><BR>
+</P>
+<P>
+It is possible to have up to
+40
+<A HREF="param.html#staffs">staffs</A>
+and up to
+<A HREF="param.html#vscheme">three voices per staff.</A>
+While there can be voice crossings, in general voice 1 should be the &quot;top&quot;
+voice, voice 2 the &quot;bottom&quot; voice, and voice 3 the &quot;middle&quot; or &quot;extra&quot; voice.
+With the first two voices, Mup tries hard to avoid any &quot;collisions&quot;
+between notes, rests, and other things. Since voice 3 is an extra voice,
+there are some cases when overlap with the other voices
+is basically unavoidable, but there are some techniques
+discussed later that let you
+<A HREF="chrdattr.html">tweak placement</A>
+when necessary.
+</P>
+<P>
+As an alternative to this voice-at-a-time input style, there is
+also a chord-at-a-time input style, which will be covered
+<A HREF="altinp.html">later.</A>
+</P>
+<H3>
+Chord duration information
+</H3>
+
+<P>
+The rest of the line contains a list of chords, with a semicolon at the
+
+end of each chord. Each chord has a
+<A NAME="duration">time value.</A>
+The time values of all
+
+the chords in the line must add up to no more than the
+<A HREF="param.html#time">time signature.</A>
+
+Time values are given as follows:
+<TABLE BORDER=4>
+<TR>
+<TD><B>Input</B></TD>	<TD><B>Meaning</B></TD>
+</TR>
+<TR>
+<TD>1/4</TD>	<TD>quadruple whole (not valid for notes)</TD>
+</TR>
+<TR>
+<TD>1/2</TD>	<TD>double whole</TD>
+</TR>
+<TR>
+<TD>1</TD>	<TD>whole</TD>
+</TR>
+<TR>
+<TD>2</TD>	<TD>half</TD>
+</TR>
+<TR>
+<TD>4</TD>	<TD>quarter</TD>
+</TR>
+<TR>
+<TD>8</TD>	<TD>eighth</TD>
+</TR>
+<TR>
+<TD>16</TD>	<TD>sixteenth</TD>
+</TR>
+<TR>
+<TD>32</TD>	<TD>thirty-second</TD>
+</TR>
+<TR>
+<TD>64</TD>	<TD>sixty-fourth</TD>
+</TR>
+<TR>
+<TD>128</TD>	<TD>128th</TD>
+</TR>
+<TR>
+<TD>256</TD>	<TD>256th</TD>
+</TR>
+</TABLE>
+
+</P>
+<P>
+Any of these time values can be followed by one or more dots, to indicate
+
+
+a dotted note. Each dot increases the time value by 50% of the preceding
+note or dot.
+</P>
+<P>
+It is also possible to specify time as two or more times to be added together.
+For example, 2+8 would indicate the time of a half note plus the time of
+an eighth note, or in other words, a half note tied to an eighth note.
+The expression can also include subtractions, like 2.-16. When subtractions
+are present, it isn't clear what time values you want Mup to use,
+so it will start with the largest possible time value and add enough
+additional chords to add up to the total. For example, if you were to use
+1-4, indicating a whole note minus a quarter note,
+Mup will use a dotted half note, even though there are a number of
+other ways to represent that total time, such as a half note tied to a
+quarter note.
+</P>
+<P>
+If a time value is not specified for the first chord in a measure for a
+given voice, the default timeunit value
+
+is used. You can set the default value using the
+<A HREF="param.html#timeunit">"timeunit" parameter</A>
+as described in the
+<A HREF="param.html">"Parameters" section.</A>
+If that parameter is not set, the default is the denominator (bottom
+number) of the
+
+<A HREF="param.html#time">time signature.</A>
+For chords after the first, if a time value is not specified, the time
+value for the previous chord is used.
+</P>
+<H3>
+Notes, rests, or spaces
+</H3>
+<P>
+<A NAME="letter">There are three kinds of "chords."</A>
+The first type consists of one or more
+pitches, given by the letters &quot;a&quot; through &quot;g&quot;.
+<A NAME="pitchpar">Parentheses</A>
+
+can be placed around the pitch if you want
+the note to be printed in parentheses.
+(If the pitch is modified by an
+<A HREF="chordinp.html#acc">accidental</A>
+or
+<A HREF="chordinp.html#oct">octave,</A>
+which will be
+discussed later, those must also be included inside the parentheses.)
+
+
+<A NAME="restspc">The second is a rest, which</A>
+is designated by the letter r. The third type is a &quot;space,&quot; designated
+
+by the letter s. Space is basically
+a placeholder that takes up time, but doesn't print anything. It is useful
+when a certain voice only has notes during part of the measure. It can also
+be useful for specifying &quot;pickup&quot; measures to account for the time before
+
+the first note in the measure. For example:
+<BR><PRE>
+// a pickup measure
+1: 2.s;8.c;16d;
+bar
+1: e;g;e;c;
+endbar
+</PRE><BR>
+<IMG SRC="mugex9.gif" ALT="Picture of Mup output"><BR>
+</P>
+<P>
+If all voices contain spaces, no space is actually taken up on output.
+Most of the time, this will be what you want. For example,
+when you are using space for a pickup, the
+space is just to add up to a measure, and you don't want any actual blank space
+at the beginning of the piece. Once in a while, however, you
+may want space to actually be allocated on output, perhaps
+to be able to allow space for some special notation. In that case,
+
+you prefix the &quot;s&quot; with a &quot;u&quot; to indicate an uncollapseable space.
+</P>
+<P>
+If a given voice is omitted for a particular measure,
+Mup normally defaults to a measure of space,
+but you can make it default to something else (most commonly a measure
+of rest) by setting the
+<A HREF="param.html#emptym">emptymeas parameter.</A>
+</P>
+<H4>
+Measure duration
+</H4>
+<P>
+
+<A NAME="measdur">There is a special duration of "m," which means an entire measure.</A>
+It can only be used with a rest, space, or &quot;rpt&quot; (repeat). For example:
+<BR><PRE>
+1 1: mr;
+1 2: ms;
+</PRE><BR>
+</P>
+<P>
+A measure rest looks like a whole rest, but is centered in the measure.
+
+It should be used when a whole measure is a rest, regardless of the time
+signature.
+
+However, if you want to force use of a symbol other than the whole rest
+symbol, you can specify a duration before the mr, and the rest symbol for that
+duration will be drawn instead.
+<BR><PRE>
+4mr;   // use a quarter rest symbol
+1/4mr;  // use a quadruple whole rest symbol
+2.. mr;  // use a double-dotted half rest
+</PRE><BR>
+</P>
+<P>
+Using &quot;m rpt&quot; will cause the
+
+measure repeat symbol to be printed, indicating
+the measure is just like the previous measure. Measures repeats
+will automatically be numbered, unless the
+<A HREF="param.html#nummrpt">numbermrpt parameter</A>
+is set to n. If there is more than one voice, you only need to
+specify the mrpt on voice 1. If you do specify other voices as well,
+they must be either a mrpt or ms.
+<BR><PRE>
+1: c;d;e;f;
+bar
+
+// another measure just like the first
+1: m rpt;
+bar
+
+// the space between m and rpt is optional
+1: mrpt;
+bar
+</PRE><BR>
+<IMG SRC="mugex10.gif" ALT="Picture of Mup output"><BR>
+</P>
+<H4>
+Accidentals
+</H4>
+<P>
+<A NAME="acc">Each pitch letter in a chord may be followed by an accidental.</A>
+
+
+Valid accidentals are:
+<TABLE BORDER=4>
+<TR>
+<TD><B>Input</B></TD>	<TD><B>Meaning</B></TD>
+</TR>
+<TR>
+<TD><TT>#</TT></TD>	<TD>sharp</TD>
+</TR>
+<TR>
+<TD><TT>&amp;</TT></TD>	<TD>flat</TD>
+</TR>
+<TR>
+<TD><TT>x</TT></TD>	<TD>double sharp</TD>
+</TR>
+<TR>
+<TD><TT>&amp;&amp;</TT></TD>	<TD>double flat</TD>
+</TR>
+<TR>
+<TD><TT>n</TT></TD>	<TD>natural</TD>
+</TR>
+</TABLE>
+
+</P>
+<P>
+The accidental can be placed inside
+
+parentheses if you want it to be printed
+within parentheses.
+</P>
+<H4>
+Octave
+</H4>
+<P>
+<A NAME="oct">An octave indicator may be specified after the pitch letter</A>
+or optional accidental.
+
+The octave can be specified in either of two ways:
+absolute or relative. A number from 0 to 9 is
+used to specify an absolute octave. Octaves run from C up to B. Octave 4 is
+the octave starting on middle C. Octave 3 is the octave below that, etc.
+
+A relative octave is specified by one or more plus or minus signs, and
+indicates that number of octaves above or below the default octave. For
+example:
+<BR><PRE>
+c	// c in the default octave
+e++	// e two octaves above default octave
+f#---	// f# three octaves below default octave
+b&amp;6	// b flat in octave 6
+</PRE><BR>
+</P>
+<P>
+The default octave can be set using the
+<A HREF="param.html#defoct">"defoct" parameter,</A>
+
+which is described in the
+<A HREF="param.html">"Parameters" section.</A>
+If that parameter is not
+set, the default octave is the octave containing the note associated with
+the middle line of the staff, based on the current
+<A HREF="param.html#clef">clef.</A>
+
+In other words, the default octaves are:
+<TABLE BORDER=4>
+<TR>
+<TD><B>Clef</B></TD>	<TD><B>Octave</B></TD>
+</TR>
+<TR>
+<TD>frenchviolin</TD>	<TD>5</TD>
+</TR>
+<TR>
+<TD>8treble</TD>	<TD>5</TD>
+</TR>
+<TR>
+<TD>treble</TD>	<TD>4</TD>
+</TR>
+<TR>
+<TD>soprano</TD>	<TD>4</TD>
+</TR>
+<TR>
+<TD>mezzosoprano</TD>	<TD>4</TD>
+</TR>
+<TR>
+<TD>alto</TD>	<TD>4</TD>
+</TR>
+<TR>
+<TD>treble8</TD>	<TD>3</TD>
+</TR>
+<TR>
+<TD>tenor</TD>	<TD>3</TD>
+</TR>
+<TR>
+<TD>baritone</TD>	<TD>3</TD>
+</TR>
+<TR>
+<TD>bass</TD>	<TD>3</TD>
+</TR>
+</TABLE>
+
+</P>
+<H3>
+Shorthand notations
+</H3>
+<P>
+<A NAME="shorthnd">If a chord is omitted, the values for the previous chord are reused. This</A>
+works for pitches, rests, and spaces. For normal,
+
+
+
+<A HREF="param.html#stlines">5-line staffs,</A>
+the pitches for the first chord of every measure
+
+must always be specified, since there is no previous chord.
+</P>
+<P>
+Putting all these things together, here are some examples:
+<BR><PRE>
+// Two eighth notes, each b#, followed by an eighth
+// note d, eighth note e, and half note e, with the
+// last 3 notes being in the next higher octave.
+1 1: 8b#; ; d+; e+; 2;
+
+// Whole note C-E-G chord in default octave
+// for voice 2 of staff 1
+1 2: 1ceg;
+
+// Four quarter notes on staff 2, voice 1.
+// The last is in the octave above the default octave.
+2: 4g; a; b; c+;
+</PRE><BR>
+<IMG SRC="mugex11.gif" ALT="Picture of Mup output"><BR>
+</P>
+<P>
+For
+<A HREF="param.html#stlines">1-line staffs,</A>
+it is never necessary to specify a pitch, since all notes
+
+go on the single staff line. You can, however, specify a pitch if you wish.
+The pitch will be ignored for the purposes of printing, but will be
+used for
+<A HREF="midi.html">MIDI output.</A>
+
+If you don't specify a pitch, it is arbitrarily set to middle C.
+</P>
+<HR><P>
+&nbsp;&nbsp;&nbsp;<A HREF="music.html">&lt;-- previous page</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="index.html">Table of Contents</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="mupindex.html">Index</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="noteattr.html">next page --&gt;</A>
+</P>
+</BODY></HTML>

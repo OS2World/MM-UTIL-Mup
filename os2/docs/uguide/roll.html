@@ -1,0 +1,88 @@
+<HTML>
+<HEAD><TITLE>
+Rolls
+</TITLE></HEAD>
+<BODY>
+<P>
+&nbsp;&nbsp;&nbsp;<A HREF="pedal.html">&lt;-- previous page</A>
+
+&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="index.html">Table of Contents</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="mupindex.html">Index</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="tags.html">next page --&gt;</A>
+</P>
+             
+<H2>
+Rolls
+</H2>
+<P>
+
+Rolls can be specified with the &quot;roll&quot; statement, which has a format:
+<BR><PRE>
+<B>roll</B> <I>staff voice</I> <B>:</B> <I>timeval</I><B>;</B>
+</PRE><BR>
+
+</P>
+<P>
+A simple example would be:
+<BR><PRE>
+roll 2 1: 3;
+</PRE><BR>
+which indicates that a roll is to be placed on the chord at count 3 of
+
+staff 2 voice 1.
+As usual, if the <I>voice</I> is omitted, voice 1 is assumed.
+</P>
+<P>
+Multiple rolls in a measure can be listed on a single statement if they are
+
+associated with the same voice. For example:
+<BR><PRE>
+1: ceg;dfa;egb;fac+;
+// rolls on 3 chords: on the first,
+// second, and third beats of the measure
+roll 1: 1;2;3;
+bar
+</PRE><BR>
+<IMG SRC="mugex79.gif" ALT="Picture of Mup output"><BR>
+would produce rolls on the chords on counts 1, 2, and 3.
+</P>
+<P>
+A roll can extend over several chords on different voices, or even
+different staffs. This is specified
+
+by giving the top and bottom staffs and voices, with the keyword &quot;to&quot;
+
+
+between them. For example:
+<BR><PRE>
+1: 4.r;8g+b+d++ tie;2;
+2-3: 4.ceg;8gbd+ tie;2;
+roll 1 1 to 3 1: 2.5;
+bar
+</PRE><BR>
+<IMG SRC="mugex80.gif" ALT="Picture of Mup output"><BR>
+The roll would extend from voice 1 of staff 1 to voice 1 of staff 3.
+</P>
+<P>
+If you wish the roll to be downward, the keyword &quot;down&quot; can be placed
+after &quot;roll.&quot; This will result in a downward arrow being drawn on the
+bottom end of the roll.
+<BR><PRE>
+score
+  vscheme=2o
+music
+1 1: c+e+g+;;;;
+1 2: ceg;;;;
+// downward roll on staff 1
+// on beats 2 and 4
+roll down 1 1 to 1 2: 2; 4;
+bar
+</PRE><BR>
+<IMG SRC="mugex81.gif" ALT="Picture of Mup output"><BR>
+</P>
+<P>
+You can also explicitly say &quot;up&quot; which will cause an upward arrow to be
+drawn at the top of the roll. If no direction is specified, no arrow is drawn.
+</P>
+<HR><P>
+&nbsp;&nbsp;&nbsp;<A HREF="pedal.html">&lt;-- previous page</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="index.html">Table of Contents</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="mupindex.html">Index</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="tags.html">next page --&gt;</A>
+</P>
+</BODY></HTML>

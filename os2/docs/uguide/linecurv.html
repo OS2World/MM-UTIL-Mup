@@ -1,0 +1,145 @@
+<HTML>
+<HEAD><TITLE>
+Lines and curves
+</TITLE></HEAD>
+<BODY>
+<P>
+&nbsp;&nbsp;&nbsp;<A HREF="prnttext.html">&lt;-- previous page</A>
+
+&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="index.html">Table of Contents</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="mupindex.html">Index</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="newscore.html">next page --&gt;</A>
+</P>
+         
+<H2>
+Lines and curves
+</H2>
+<P>
+The &quot;line&quot; statement is used for drawing lines. Its format is:
+
+<BR><PRE>
+<I>linetype</I> <B>line (</B><I>X1, Y1</I><B>) to (</B><I>X2, Y2</I><B>)</B>
+</PRE><BR>
+The <I>linetype</I> can be &quot;wide,&quot; &quot;medium,&quot; &quot;wavy,&quot; &quot;dotted,&quot; &quot;dashed,&quot;
+
+
+or it can be omitted, which means narrow.
+
+The wavy line could be used for glissandos. It could also be used
+for manually drawing rolls and trills, although it should rarely if ever
+
+
+be necessary to resort to this, since the
+<A HREF="roll.html">roll</A>
+
+and
+<A HREF="mussym.html">mussym</A>
+
+statements will usually suffice and are much easier to use.
+Narrow, dashed, or dotted lines would typically be used for voice crossings.
+
+
+The medium line is about twice as wide as a
+narrow line, and a wide line is about twice as wide as a medium line.
+</P>
+<P>
+The X and Y coordinates are specified as was described
+in the section on
+<A HREF="tags.html">"Location tags."</A>
+<BR><PRE>
+score
+  vscheme=2f
+  staff2 clef=bass
+
+music
+1 1: c+ =c;e =e;g;c+;
+1 2: e =_e;g =_g;c =_c;s;
+2 1: 2.s;4g =_gg;
+2 2: 1ce;
+line (c.e + 2, c.y) to (e.w - 2, e.y)
+line (_e.e + 2, _e.y) to (_g.w - 2, _g.y)
+dashed line (_c.e + 1, _c.y) to (_gg.w - 1, _gg.y)
+bar
+</PRE><BR>
+<IMG SRC="mugex85.gif" ALT="Picture of Mup output"><BR>
+</P>
+<P>
+It is possible to print a text string by the line by adding
+<BR><PRE>
+<B>with </B><I>fontfamily font </I><B>(</B><I>size</I><B>) &quot;</B><I>string</I><B>&quot;</B>
+</PRE><BR>
+at the end of the &quot;line&quot; statement. Only the keyword &quot;with&quot; and the
+text string itself are required; the font and size information is optional.
+As usual, the
+<A HREF="param.html#fontfam">fontfamily,</A>
+<A HREF="param.html#font">font,</A>
+and
+<A HREF="param.html#size">size</A>
+parameter values are used to get values if the optional items are
+omitted. The most common usage for printing a string with a line is probably
+for glissandos.
+<BR><PRE>
+1: 2d =n; g+ =m;
+wavy line (n.e + 1.5, n.y) to (m.w - 1.5, m.y) with ital (9) &quot;gliss.&quot;
+bar
+</PRE><BR>
+<IMG SRC="mugex86.gif" ALT="Picture of Mup output"><BR>
+</P>
+<P>
+Arbitrary curves can be drawn using the &quot;curve&quot; statement:
+
+<BR><PRE>
+<I>linetype</I> <B>curve (</B><I>X1,Y1</I><B>) to (</B><I>X2,Y2</I><B>) to (</B><I>X3,Y3</I><B>)</B> <I>...</I>
+</PRE><BR>
+When using this form of the &quot;curve&quot; statement,
+at least three coordinates must be specified; more are permitted.
+The <I>linetype</I> can be &quot;medium,&quot; &quot;wide,&quot; &quot;dashed,&quot;
+or &quot;dotted,&quot; or omitted.
+A curve will be drawn through the specified points in the specified order.
+<BR><PRE>
+score
+staffs=2
+
+staff 2
+  clef=bass
+
+music
+1: 4.s;[=c] 8e; [=d] g; [=e] e;4s;
+2: [=a] 8c;g; [=b] c+;4.s; [=f] 8c+; [=g] c;
+medium curve (a.x, a.n+1) to (b.x, b.n+15) to (c.x, c.n+4) \
+		to (d.x, d.n+3) to (e.x, e.n+3) \
+		to (f.x, f.n+11) to (g.x, g.n+1)
+bar
+</PRE><BR>
+<IMG SRC="mugex87.gif" ALT="Picture of Mup output"><BR>
+</P>
+<P>
+An alternative way to specify a curve is to only specify the two endpoints,
+along one or more &quot;bulge&quot; values, given in stepsizes.
+Suppose a single bulge value <I>n</I> is given. To find the midpoint of
+the resulting curve, imagine a line is drawn between the two endpoints,
+then from the midpoint of that line, move perpendicular to the line for 
+<I>n</I> stepsizes.
+A positive <I>n</I> will cause the curve to bulge
+to the left as you move from the start point to the end point,
+while a negative <I>n</I> will make it bulge to the right.
+If two bulge values are given, bulges are calculated from the 1/3 and
+2/3 point of the line between the endpoints; with three points, at 1/4,
+1/2, and 3/4, and so forth. Multiple bulge values are separated by commas.
+<BR><PRE>
+1: c =_c1; f; f; d =_d1;
+medium curve (_c1.x, _c1.y + 8) to (_d1.x, _d1.y + 10) bulge 3
+bar
+
+1: g =_g1; e+; d+; a =_a1;
+dotted curve (_g1.x, _g1.y - 2) to (_a1.x, _a1.y - 2) bulge -4.3
+bar
+
+1: g =_g2; a; d+; c+ =_c2;
+curve  (_g2.x, _g2.y - 2) to (_c2.x, _c2.y + 2) bulge -2.5, 4
+bar
+</PRE><BR>
+<IMG SRC="mugex88.gif" ALT="Picture of Mup output"><BR>
+</P>
+<HR><P>
+&nbsp;&nbsp;&nbsp;<A HREF="prnttext.html">&lt;-- previous page</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="index.html">Table of Contents</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="mupindex.html">Index</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="newscore.html">next page --&gt;</A>
+</P>
+</BODY></HTML>

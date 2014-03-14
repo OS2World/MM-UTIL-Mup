@@ -1,0 +1,107 @@
+<HTML>
+<HEAD><TITLE>
+Running Mup
+</TITLE></HEAD>
+<BODY>
+<P>
+&nbsp;&nbsp;&nbsp;<A HREF="basics.html">&lt;-- previous page</A>
+
+&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="index.html">Table of Contents</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="mupindex.html">Index</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="cmdargs.html">next page --&gt;</A>
+</P>
+          
+<H1>
+RUNNING MUP
+</H1>
+<P>
+There are two basic ways to run Mup: directly from a command line or via
+the Mupmate program. You can use either approach, or switch between them
+as you wish. The Mupmate program just
+provides a more menu-driven environment on top of the Mup program itself.
+</P>
+<P>
+You can create a Mup file using any ordinary text editor,
+and then run the Mup program on the file you created.
+On Windows, Notepad is a typical editor choice, and on Linux, editors like
+vim and emacs are commonly used, but pretty much any text editor (not
+word processor) can be used. Many people, however, prefer to be able to
+edit, display, and play from a single integrated and more graphical
+interface, and for them, a helper program called &quot;Mupmate&quot; is provided.
+The Mupmate program helps lead you through some of the steps,
+and you can easily access this User's Guide from its Help menu.
+</P>
+<H2>
+Mupmate
+</H2>
+<P>
+Mupmate is currently only supported on Microsoft Windows, Apple Mac OS X, and Linux.
+Since the source code is
+available, and it is based on the cross-platform FLTK toolkit, it
+would probably be fairly easy to make it run on any system supported by FLTK.
+</P>
+<P>
+Once you have installed Mup and Mupmate on Windows, double clicking
+a .mup file in Windows Explorer will run Mupmate on that file.
+Or, you can run Mupmate by going to the Start menu, and choosing
+Programs, then Arkkra, and then Mupmate.  If you would like an icon
+on the desktop, you can create one by right clicking the Mupmate choice
+in the Arkkra menu, choosing &quot;copy&quot;,
+right clicking somewhere on the desktop, and choosing &quot;paste&quot;.
+</P>
+<P>
+On Linux, you can just type the mupmate command in a terminal window,
+optionally followed by the name of a Mup input file. 
+Or you can add mupmate to your favorite window manager's menus.
+</P>
+<P>
+On Mac OS X, you can double-click on the MupMate.app in Finder.
+You should also be able to double-click any file with a .mup suffix,
+which should then run Mupmate on that file.
+For setting paths in the Preferences, several &quot;magic&quot; variables are set
+automatically, if you have not already set them to something else.
+$APPL is set to the top of the application directory hierarchy.
+$RSRC is effectively set to $APPL/MupMate.app/Contents/Resources. 
+$HOME is set to your home directory.
+$SUPP is set to your applications support folder
+(which is typically $HOME/Library/Application Support).
+$DOCS is set to your document folder (which is typically $HOME/Documents).
+</P>
+<P>
+Mupmate provides five top level menus: File, Edit, Run, Config, and Help.
+The File menu provides commands for opening new files and saving the
+file you are working on, as well as exiting the program. The Edit menu
+provides the kinds of things you would expect in a editor: commands to find
+a pattern, or find and replace; to select text; to copy, cut, and paste;
+to go to a specific line; and to undo the previous operation, if you make
+a mistake or change your mind.
+The Run menu lets you set runtime options,
+and then run the Mup program on your input in various
+ways. You can either just generate a PostScript or MIDI file,
+or display the PostScript or play the MIDI.
+The Config menu lets you specify what application program you want
+to use to view PostScript files and which you want to use to play MIDI files,
+and well as specify locations for other Mup files. Mupmate will try to
+find reasonable default values, but you may want to check that they are
+what you want, and tweak them if they aren't.
+For paths, you can include environment variables to be expanded,
+by giving their name preceeding by a dollar sign.
+A tilde by itself will be expanded to your home directory, whereas a tilde
+followed by the name of a user will be expanded to that user's home directory.
+The Config menu also provides a way for you to fill in the Mup registration
+form if you wish to send in a paper form rather than registering online
+via credit card, as well as a place to entry the registration key you
+will receive once you have paid.
+The Help menu lets you browse this User's Guide, view some startup hints,
+or see the current version number of Mup and Mupmate.
+</P>
+<P>
+Mupmate does not directly provide a print facility. Almost any PostScript
+viewer already provides this ability, so you can simply select &quot;Display&quot;
+from the Run menu and use the viewer's print capabilities.
+Alternately you can use &quot;Write PostScript File&quot; from the Run menu
+to create a PostScript file that you can print as you would any other
+PostScript file.
+</P>
+<HR><P>
+&nbsp;&nbsp;&nbsp;<A HREF="basics.html">&lt;-- previous page</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="index.html">Table of Contents</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="mupindex.html">Index</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="cmdargs.html">next page --&gt;</A>
+</P>
+</BODY></HTML>

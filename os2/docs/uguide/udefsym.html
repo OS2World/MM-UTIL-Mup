@@ -1,0 +1,227 @@
+<HTML>
+<HEAD><TITLE>
+User defined symbols
+</TITLE></HEAD>
+<BODY>
+<P>
+&nbsp;&nbsp;&nbsp;<A HREF="include.html">&lt;-- previous page</A>
+
+&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="index.html">Table of Contents</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="mupindex.html">Index</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="fontfile.html">next page --&gt;</A>
+</P>
+         
+<H2>
+User defined symbols
+</H2>
+<P>
+Mup provides the most common musical symbols, but there are various other
+symbols that have been used over the centuries. If Mup doesn't provide
+some specific symbol that you would like, you can define up to 160
+of your own symbols, as well as override any of the
+<A HREF="textstr.html#symlist">builtin music symbols</A>
+with your own versions. Most people will never need this facility,
+so feel free to skip past this section unless you feel you do need it.
+</P>
+<P>
+To define your own symbols, the description of how to draw those symbols
+must be provided as PostScript code.
+On the one hand, that means that unless you can find someone else's
+definition of just what you want, you will need to understand PostScript
+at least well enough to define your own. On the other hand, this gives
+access to the full power of the PostScript language, which lets you define
+essentially any kind of symbol you want. The PostScript language is beyond
+the scope of this User's Guide, but there are many books and Internet
+resources to help you learn, if you are interested. You can also look at
+the output that Mup generates for examples. If you want something
+similar to an existing Mup symbol, looking at its definition is probably
+the best place to start.
+</P>
+<P>
+A user defined symbol or override is put in &quot;symbol&quot; context.
+The general format of this context is as follows:
+<BR><PRE>
+<B>symbol &quot;</B><I>name</I><B>&quot;
+	postscript = &quot;</B><I>PostScript code to draw the symbol</I><B>&quot;
+	bbox = </B><I>llx, lly, urx, ury</I>
+	<B>ystemoffset = </B><I>up, down</I>
+</PRE><BR>
+The three parameters can be supplied in any order,
+but only once each per symbol. The ystemoffset parameter is optional,
+and only used for symbols that will be used as note heads.
+This is described in more detail
+<A HREF="udefsym.html#notehead">later.</A>
+The name and the postscript and bbox parameters are mandatory.
+</P>
+<P>
+The name for a user-defined symbol must include at least one letter,
+and can include letters, numbers, and underscores. It must be
+different than existing names for
+<A HREF="textstr.html#special">non-ASCII characters.</A>
+</P>
+<P>
+You can refer to user defined symbols just like the builtin symbols,
+using their name in a
+<A HREF="mussym.html">mussym statement, or in a</A>
+<A HREF="textstr.html#symlist">text string</A>
+using the name inside \(  ).
+Adding an &quot;sm&quot; prefix to a name will result in a &quot;small&quot; version,
+just like with the builtin symbols.
+</P>
+<P>
+In addition to naming and defining your own symbols, you can also
+override the definitions of existing music symbols. Suppose, for example.
+you want a different style of C clef. You can then supply a symbol
+context for &quot;cclef&quot; and provide your own PostScript.
+</P>
+<P>
+A symbol definition applies to the entire file, no matter where in the file
+it is defined. If you try to define the same symbol more than once, a warning
+will be issued, and the last definition will be used.
+A user defined symbol must have its &quot;symbol&quot; context before it is
+referenced.
+</P>
+<P>
+The symbols you define will become part of a PostScript Type 3 font.
+Symbols must be defined in a 1000 unit scale coordinate space,
+where 300 units equals one stepsize,
+with the symbol's &quot;logical center&quot; at (0, 0).
+Limitations of Type 3 fonts apply. For example.
+since PostScript does not allow using setrgbcolor or
+sethsbcolor after a setcachedevice operation in a BuildChar procedure,
+it is not possible to change the color of a symbol.
+The PostScript code will be written to the output exactly as it is,
+so you will have to provide any escaping needed by PostScript.
+The normal Mup text string escape rule of needing to put a backslash
+before a double quote inside a text string also applies.
+So, for example, suppose you wanted to output a PostScript
+style string containing a parenthesis inside double quotes. Since PostScript
+requires a parenthesis inside a string to be preceded by a backslash,
+the Mup input would require the backslash as well,
+and since Mup requires double quotes to be backslashed,
+that would need to be done. So Mup input of:
+<BR><PRE>
+	postscript=&quot;(\&quot;\(\&quot;)&quot;
+</PRE><BR>
+would result in:
+<BR><PRE>
+	(&quot;\(&quot;)
+</PRE><BR>
+being copied to the PostScript output.
+(Of course, that is not a good symbol definition; it is just intended
+to show needed escapes.)
+As with any Mup text string, the postscript string can be as many lines
+long as you wish. But note that the
+<BR>
+     postscript = &quot;
+<BR>
+part must all be on one line.
+</P>
+<P>
+There isn't currently any good way to call a PostScript procedure from
+within a symbol definition. So if you have some some code that is common
+to several symbols, probably the best way to handle that is to define a Mup
+<A HREF="macros.html">macro</A>
+for the common code, and then use the macro in the postscript string:
+<BR><PRE>
+define COMMONCODE  <I>....the common code....</I> @
+postscript = &quot;<I>...some specific code</I> &quot; + `COMMONCODE` + &quot; <I>more specific code</I>&quot;
+</PRE><BR>
+</P>
+<P>
+The bounding box lists four numbers, giving the (x,y) coordinates of
+the lower left and upper right corners
+of the smallest box that can contain the symbol. It is in the same units
+as the symbol itself: 300 units per stepsize.
+Normally you should define the bounding box to include 
+a small amount of white space padding around what is actually drawn,
+typically about 100 units,
+so that if it is printed right next to another symbol, they won't touch.
+However, in the case of a symbol you want to use as a
+<A HREF="udefsym.html#notehead">note head,</A>
+you should not include any padding, so that stems
+will touch the note head.
+</P>
+<P>
+<A NAME="notehead">If you want to use a user-defined symbol as a</A>
+<A HREF="param.html#notehead">head head,</A>
+you need to specify the &quot;ystemoffset&quot; parameter.
+If the symbol is not to be used as a note head,
+you should omit that. The ystemoffset is given as two numbers, the first
+for when the stem is up, the second for when it is down. They specify,
+in the same units as the symbol itself (300 units per stepsize), where
+on the y axis the stem should begin.
+Any note head should be defined with its vertical center at y of zero.
+So if you want the stem to start at the vertical center of the note,
+the ystemoffset would also be zero. A stepsize below the center of the note
+would be -300, a half stepsize above would be 150, etc.
+In the x dimension, the stem is always placed at the edge of the note,
+as given by the bbox.
+</P>
+<P>
+If you need an &quot;upside down&quot; version of a note head,
+just name the upside version of the  symbol
+with a &quot;u&quot; prefix on the name of the right side up version.
+Then you can use the normal u? convention in
+<A HREF="shaped.html#hdshape">headshapes context,</A>
+and Mup will take care of the rest.
+</P>
+<P>
+Once defined, a user-defined symbol can be used just
+like the builtin symbols.
+There are only a few places where Mup uses some special knowledge of the
+characteristics of music symbols, but in those cases, if you redefine the
+symbol to have different characteristics, Mup may not place things quite as
+perfectly as you would like. One place where this might happen is if you
+redefine the symbol for flat, natural, or dblflat, to make them
+significantly different, since Mup tries very hard to pack accidentals
+as tightly as possible, based on some intimate knowledge of
+the shapes of the builtin versions.
+</P>
+<P>
+Here is an example that shows both overriding a builtin symbol and
+defining a completely new symbol, and then using them.
+<BR><PRE>
+// Override the builtin xnote to have thicker lines
+symbol &quot;xnote&quot;
+	bbox=-435, -365, 435, 375
+	postscript=&quot;gsave
+	  % normal xnote has 120 linewidth; we set to 300 here
+	  1.15 1 scale 300 setlinewidth 1 setlinecap
+	  -300 -300 moveto 300 300 lineto stroke
+	  -300 300 moveto 300 -300 lineto stroke
+	  grestore&quot;
+	ystemoffset=300, -300
+
+// Define a smiley face symbol.
+symbol &quot;Smiley&quot;
+	bbox=-700, -700, 700, 700
+	postscript=&quot;gsave
+	  100 setlinewidth
+	  % the face
+	  0 0 600 0 360 arc stroke
+	  % the mouth
+	  0 0 300 -160 -20 arc stroke
+	  % the eyes
+	  -200 200 100 0 360 arc fill
+	  200 200 100 0 360 arc fill
+	  grestore&quot;
+	ystemoffset = 0, 0
+	
+headshapes
+	// Set up to use the extra-thick xnote
+	// for quarter or shorter, and Smiley for longer.
+	&quot;boldxnote&quot; &quot;xnote Smiley Smiley Smiley&quot;
+music
+
+1: [hs &quot;boldxnote&quot;]...g;8b;d+;2g;
+// You can use the user-defined symbol just like a builtin
+mussym above 1: 1.5 &quot;Smiley&quot;;
+// You can apply size just like for a builtin
+rom below 1: 2 &quot;\(Smiley) \s(+5)\(Smiley) \s(+5)\(Smiley)&quot;;
+bar
+</PRE><BR>
+<IMG SRC="mugex91.gif" ALT="Picture of Mup output"><BR>
+</P>
+<HR><P>
+&nbsp;&nbsp;&nbsp;<A HREF="include.html">&lt;-- previous page</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="index.html">Table of Contents</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="mupindex.html">Index</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="fontfile.html">next page --&gt;</A>
+</P>
+</BODY></HTML>

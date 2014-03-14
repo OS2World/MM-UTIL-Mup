@@ -1,0 +1,155 @@
+<HTML>
+<HEAD><TITLE>
+Mup General Syntax
+</TITLE></HEAD>
+<BODY>
+<P>
+&nbsp;&nbsp;&nbsp;<A HREF="utilpgms.html">&lt;-- previous page</A>
+
+&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="index.html">Table of Contents</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="mupindex.html">Index</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="contexts.html">next page --&gt;</A>
+</P>
+         
+<H1>
+MUP FILE STRUCTURE
+</H1>
+<P>
+Mup files do not have to follow any naming convention,
+although on systems that use file name suffixes to associate a file
+with an application, it is traditional to use .mup for the suffix.
+It can also be useful to put a special &quot;magic string&quot;
+on the first line of Mup files.
+This magic string is completely optional, but having it there
+makes it easy for both people
+and programs to identify the file as Mup input.
+The standard recommended value for this string is:
+<BR><PRE>
+//!Mup-Arkkra
+</PRE><BR>
+with exactly that spacing and capitalization.
+If the file uses features of newer versions of Mup, and thus would
+not work with older versions, you can add a dash and
+the minimim version number the file requires, as in:
+<BR><PRE>
+//!Mup-Arkkra-5.8
+</PRE><BR>
+</P>
+<H2>
+Mup General Syntax
+</H2>
+<P>
+Any number of spaces and tabs can be put in
+
+almost anywhere except in the middle of a word.
+Each statement goes on a separate line.
+If for some reason you wish to split a statement onto several lines,
+each but the last must end with a &quot;\&quot; (backslash) character, to
+
+tell Mup to treat the next line as a continuation of the current line.
+Blank lines can be put between statements to make things easier to read.
+</P>
+<P>
+Comments begin with two slashes and continue to end of line. All comments
+
+will be totally ignored by Mup, and are for your own use to remind yourself
+of something. For example:
+<BR><PRE>
+// Note: in some early manuscripts, this chord had an accent
+</PRE><BR>
+</P>
+<P>
+Staffs are numbered from top to bottom, starting at staff 1.
+
+
+
+</P>
+<P>
+Several different units are used for distances. One is inches or
+centimeters. (There is a
+<A HREF="param.html#units">units parameter</A>
+that is used to select which you want to use.) Another
+
+is &quot;stepsizes.&quot; One stepsize is half the distance between two staff lines.
+In the horizontal dimension, &quot;counts&quot; are sometimes used. A &quot;count&quot;
+refers to the musical duration of a note with a duration of the denominator
+
+
+(bottom number) of the time signature.
+The actual distance on the page will vary depending
+on how Mup determines notes should be placed.
+When you use a
+<A HREF="param.html#time">time signature</A>
+with two or more fractions added together,
+as in 3/4 + 3/8, the &quot;count&quot; is the largest denominator, which would be
+8 in the example just given.
+</P>
+<P>
+Upper and lower case letters are not interchangeable. Thus, for example,
+&quot;SCORE&quot; is not the same as &quot;score.&quot;
+</P>
+<P>
+Most lines of input end with a semicolon. There are some kinds of input that
+
+do not require an ending semicolon, but Mup will allow semicolons
+on most of those
+too, so that if you can't
+remember if a given command requires a semicolon or not, you can just use one
+anyway. For the examples in this User's Guide, semicolons are not used when
+they are not necessary.*
+<HR>
+* For
+<A HREF="param.html">setting and unsetting of parameters,</A>
+either a semicolon or a newline
+is required. For
+<A HREF="bars.html">bar,</A>
+<A HREF="multirst.html">multirest,</A>
+<A HREF="prnttext.html">print, left, right, center, title,</A>
+<A HREF="linecurv.html">line, curve,</A>
+<A HREF="newscore.html">newscore, newpage,</A>
+<A HREF="prnttext.html#postscript">postscript,</A>
+and
+<A HREF="prnttext.html#paragrph">paragraph,</A>
+a newline is required, but it may optionally be preceeded by a semicolon.
+For commands for changing
+<A HREF="contexts.html">context,</A>
+semicolon and newline are both optional,
+but a newline is traditionally used to improve readability.
+</P>
+<P>
+In
+<A HREF="music.html">music context,</A>
+newlines are required to separate commands: music data, bar lines, rolls,
+commands to print strings, dynamic marks, lyrics, etc. all must each
+end with a newline. In
+<A HREF="textmark.html#grids">grids context</A>
+and
+<A HREF="shaped.html#hdshape">headshape context,</A>
+each pair of strings must end with a newline.
+In other contexts, there are a few cases where newlines between commands
+are optional, although you may wish to use them anyway to improve readability.
+</P>
+<P>
+Mup supports
+<A HREF="macros.html">macros and conditionals (like 'if' and 'ifdef')</A>
+that can be placed anywhere in input, except in the middle of words,
+numbers, or strings; they needn't be on separate lines.
+</P>
+<P>
+In a number of statements, Mup expects a text string. All strings must be
+
+enclosed in double quotes. For example:
+<BR><PRE>
+&quot;This is a string.&quot;
+&quot;Allegro&quot;
+</PRE><BR>
+</P>
+<P>
+A string can contain any combination of letters, numbers, spaces,
+and punctuation.
+It can also contain various things that will cause printing of special music
+characters, change font and size, and so forth. Those things are covered in
+<A HREF="textstr.html">the chapter on text strings.</A>
+</P>
+<HR><P>
+&nbsp;&nbsp;&nbsp;<A HREF="utilpgms.html">&lt;-- previous page</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="index.html">Table of Contents</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="mupindex.html">Index</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="contexts.html">next page --&gt;</A>
+</P>
+</BODY></HTML>

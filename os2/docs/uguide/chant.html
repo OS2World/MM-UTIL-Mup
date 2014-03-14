@@ -1,0 +1,105 @@
+<HTML>
+<HEAD><TITLE>
+Chant
+</TITLE></HEAD>
+<BODY>
+<P>
+&nbsp;&nbsp;&nbsp;<A HREF="invisbar.html">&lt;-- previous page</A>
+
+&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="index.html">Table of Contents</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="mupindex.html">Index</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="sharehd.html">next page --&gt;</A>
+</P>
+          
+<H2>
+Chant
+</H2>
+<P>
+Chant typically uses an irregular number of beats per measure, or often
+no measures at all in the normal sense. Mup checks to make sure you
+provide enough notes to fill the time signature, but will allow you to use
+less, filling the remainder with space. So one possible approach to writing
+chant is to specify a large time signature--at least as big as you will
+ever have on any given line of music--and then supplying as many notes
+as you need, letting Mup pad with space as needed. If the warnings are
+annoying, you can set the
+<A HREF="param.html#warn">warn parameter</A>
+to turn the warnings off.
+</P>
+<P>
+Here is an example that shows some other techniques you might use when
+
+writing chant.
+<BR><PRE>
+1: 1a;
+lyrics 1: &quot;This&lt;^ is an example of one way&gt;&quot;;
+bar
+
+1: d;e;2f;
+lyrics 1: &quot;to do chant.&quot;;
+bar
+
+1: 1f;
+lyrics 1: &quot;when&lt;^ there are many words for a&gt;&quot;;
+bar
+
+1: d;f;2;
+lyrics 1: &quot;sin-gle note.&quot;;
+dblbar
+
+newscore
+// Note use of 'n' to not print the time signature
+score time=7/4n
+music
+1: a;;;b;g;2a;
+lyrics 1: &quot;When there are man-y notes,&quot;;
+bar
+
+score time=8/4n
+music
+1: d;e;f;e;f;8e;;2;
+lyrics 1: &quot;You might change the time sig-na-ture&quot;;
+bar
+
+score time=5/4n
+music
+1: a;e;;2d;
+lyrics 1: &quot;on ev-ery bar,&quot;;
+bar
+
+score time=7/4n
+music
+1: e;f;e;d;c;2d;
+lyrics 1: &quot;to match the syl-la-bles.&quot;;
+dblbar
+
+newscore
+
+score time=8/4n
+music
+// Note use of 'n' to not print tuplet number/bracket
+1: {d;e;f;g;e;2d;;}10n,1/2; 
+lyrics 1: &quot;You can al-so use tup-lets,&quot;;
+invisbar
+
+1: {f;g;e;2d;e;2.d;}9n,1/2;
+lyrics 1: &quot;A-long with in-vis-bars.&quot;;
+dblbar
+
+newscore
+
+score stemlen=0
+music
+
+1: d+;c+;b;g;2a;;
+lyrics 1: &quot;Set stem-len to ze-ro,&quot;;
+invisbar
+
+1: {f;2e;4d;c;1d;}9n,1/2;
+lyrics 1: &quot;to get stem-less notes.&quot;;
+endbar
+</PRE><BR>
+<IMG SRC="mugex94.gif" ALT="Picture of Mup output"><BR>
+</P>
+<HR><P>
+&nbsp;&nbsp;&nbsp;<A HREF="invisbar.html">&lt;-- previous page</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="index.html">Table of Contents</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="mupindex.html">Index</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="sharehd.html">next page --&gt;</A>
+</P>
+</BODY></HTML>

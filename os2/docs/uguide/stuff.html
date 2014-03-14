@@ -1,0 +1,408 @@
+<HTML>
+<HEAD><TITLE>
+Tempo, dynamic marks, ornaments, etc.
+</TITLE></HEAD>
+<BODY>
+<P>
+&nbsp;&nbsp;&nbsp;<A HREF="textstr.html">&lt;-- previous page</A>
+
+&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="index.html">Table of Contents</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="mupindex.html">Index</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="textmark.html">next page --&gt;</A>
+</P>
+         
+<H1>
+TEMPO, DYNAMIC MARKS, ORNAMENTS, ETC.
+</H1>
+
+
+<H2>
+General information
+</H2>
+<P>
+There are a number of symbols and other markings that appear frequently
+in music, which are normally associated with a particular time or place in the
+
+composition. There are several classes of such symbols, all of which are
+handled by Mup in a somewhat similar fashion. The general format of these
+statements is:
+<BR><PRE>
+<I>mark_type place staff(s) distance aligntag : begintime text duration;</I>
+</PRE><BR>
+
+
+
+</P>
+<P>
+The <I>mark_type</I> can be any of the following:
+<PRE>
+Mark_type        Meaning
+
+rom        text in roman font
+ital       text in italic font
+bold       text in bold font
+boldital   text in bold-italic font
+mussym     music symbol (fermata, coda sign, etc.)
+phrase     phrase mark
+&lt;          crescendo &quot;hairpin&quot;
+&gt;          decrescendo &quot;hairpin&quot;
+octave     play 1 or more octaves higher or lower
+pedal      piano pedal marks
+</PRE>
+
+</P>
+<P>
+The <I>place</I> is as for
+<A HREF="lyrics.html">lyrics:</A>
+above, below, or between.
+
+
+
+There are some restrictions, as summarized below:
+<PRE>
+                       place allowed
+mark_type   above   below   between   default
+
+rom          yes     yes      yes      above
+bold         yes     yes      yes      above
+ital         yes     yes      yes      above
+boldital     yes     yes      yes      above
+mussym       yes     yes      yes      above
+phrase       yes     yes       no     varies
+&lt;            yes     yes      yes      above
+&gt;            yes     yes      yes      above
+octave       yes     yes       no       none
+pedal         no     yes       no      below
+</PRE>
+</P>
+<P>
+<A HREF="octave.html">Octave marks</A>
+must include a <I>place</I> of above or below.
+For all the other mark_types, the <I>place</I> is optional. For
+<A HREF="phrase.html">phrase,</A>
+if <I>place</I> is not specified, Mup determines it
+on a case-by-case basis depending on the location of the notes. 
+</P>
+<P>
+As with musical data or lyrics, the <I>staff</I> can be a single
+number or may include lists and ranges. In the case of &quot;between&quot;,
+staff numbers must be in pairs, separated by an &quot;&amp;&quot;, with the second
+staff number one greater than the first.
+</P>
+<P>
+The <I>staff</I> can also be specified by the keyword &quot;all,&quot; in which
+
+
+case the mark will be placed above the top visible staff or below the
+
+
+bottom visible staff. 
+</P>
+<P>
+Here are some examples:
+<BR><PRE>
+rom 3:
+boldital below 1:
+&lt; between 3&amp;4:
+pedal below 2:
+octave above 3:
+phrase 3,4:
+mussym above 2-3, 5:
+ital between 1&amp;2, 3&amp;4:
+</PRE><BR>
+</P>
+<P>
+<A NAME="dist">The</A>
+<I>distance</I> is optional. It is specified by the keyword &quot;dist&quot; followed
+by a number. This number overrides the
+<A HREF="param.html#dist">dist,</A>
+<A HREF="param.html#chdist">chorddist,</A>
+or
+<A HREF="param.html#dyndist">dyndist</A>
+parameter value that would normally apply, and is given in stepsizes.
+If the number is followed by a ! the items will be placed at exactly that
+distance from the edge of the staff,
+without regard for anything they might overwrite.
+Otherwise the normal rules apply: the dist is a minimum value, and items
+may be placed farther away than this to avoid colliding with other things.
+If the ! is used, the number is allowed to be negative,
+which allows you to place items inside the staff.
+A dist cannot be specified with pedal, phrase, or between.
+<BR><PRE>
+score
+	dist=2
+music
+
+rom above 1: 1 &quot;normal dist&quot;;
+rom above 1 dist 4: 2 &quot;dist 4&quot;;		// higher than usual
+rom above 1 dist 0! : 3 &quot;forced 0&quot;;	// lower than normal
+mussym above 1 dist -2! : 4.5 &quot;rr&quot;;	// forced down into staff
+1: c;;;;
+endbar
+</PRE><BR>
+<IMG SRC="mugex67.gif" ALT="Picture of Mup output"><BR>
+</P>
+<P>
+The <I>aligntag</I> is optional, and allows forcing several items to
+be placed at the same vertical position. This will be covered in more detail
+<A HREF="stuff.html#aligntag">a bit later.</A>
+</P>
+<P>
+After the colon comes one or more items to be printed. Each item contains
+at least a begintime specification. Some may also contain a
+
+
+
+<A HREF="textstr.html">text string</A>
+and/or
+a duration. Each item ends with a semicolon. A newline ends the list of items.
+
+</P>
+<P>
+The begintime describes where in time the item should be printed. It is
+a number ranging from 0 to the numerator (top number)
+
+of the
+<A HREF="param.html#time">time signature</A>
+
+plus one.
+0 refers to the bar line at the beginning of the current measure, 1 refers
+to the first beat of the measure, 2 to the second beat, etc., with the
+
+
+
+maximum value referring to the bar line which ends the measure. A &quot;beat&quot;
+is whatever time value is given by the denominator (bottom number)
+
+of the time signature.
+For example, in 4/4 or 3/4 time, a beat is a quarter note, whereas in 6/8
+
+or 9/8 time, a beat is an eighth note. Fractional values can be specified
+using a decimal number. Thus 1.5 is halfway between beats 1 and 2,
+while 2.66 is about 2/3 of the way between beats 2 and 3.
+For
+<A HREF="param.html#time">time signatures</A>
+that are the addition of two or more fractions, like 4/4 + 3/8,
+a &quot;beat&quot; is given by the largest denominator.
+</P>
+<P>
+
+
+
+Since grace notes effectively take zero time, special notation is used
+
+to place something relative to a grace note. The <I>begintime</I> can be
+
+followed by a number of grace notes to &quot;back up&quot; from the beat.
+The number is a negative number enclosed in parentheses.
+</P>
+<P>
+The beat time value can optionally be followed by
+<A NAME="stepoff">an offset, in stepsizes.</A>
+This offset is a number in square brackets.
+The number must begin with a + or - sign.
+It can optionally include a decimal point and fractional part.
+A negative offset will cause the item to
+be moved to the left, while a positive offset will cause it
+to be moved to the right.
+This offset is used as a final adjustment after all the other placement
+has been done. A common use for this would be if you want to place something
+slightly before the beginning of the first measure of a song. You could
+then specify something like:
+<BR><PRE>
+rom above all: 0 [-3.5] &quot;Allegro&quot;;
+</PRE><BR>
+which would place the &quot;Allegro&quot; 3.5 stepsizes left of the beginning
+of the measure.
+</P>
+<P>
+The grace note back up, if any, must occur before the
+stepsize offset, if any.
+For example:
+<BR><PRE>
+1: c; [grace] 8d; []e; []f; 2.g;
+ital above 1: 2(-3)[+1] &quot;cresc.&quot;;
+bar
+</PRE><BR>
+<IMG SRC="mugex68.gif" ALT="Picture of Mup output"><BR>
+would find the chord at or closest to count 2,
+
+and back up 3 grace notes from there, then move right by 1 stepsize.
+</P>
+<P>
+For items that include a duration, the duration tells the ending point of
+the item. A duration is specified by:
+<BR><PRE>
+<B>til</B> <I>M</I><B>m</B> + <I>N</I>
+</PRE><BR>
+
+where <I>M</I> is a number of
+<A HREF="bars.html">bar lines</A>
+to cross, and <I>N</I> is a number of additional beats.
+If either of them is 0, it can be omitted,
+but at least one of them must be non-zero.
+</P>
+<P>
+This can optionally be followed by
+a grace back up and/or an offset, like the start time.
+The grace backup is a negative number in parentheses,
+telling how many grace notes to back up. The steps
+offset is a number in square brackets,
+which must begin with a + or - sign,
+and can optionally include a decimal point and fractional part.
+A negative offset will cause the item to
+be moved to the left, while a positive offset will cause it
+to be moved to the right.
+This offset is used as a final adjustment after all the other placement
+has been done.
+Here are some examples:
+<BR><PRE>
+til 3	// until beat 3 of current measure
+til 1m+2   // until beat 2 of next measure
+til 1m   // until next bar line
+til 3m+2.8[-1.5]  // 3 bar lines and 2.8 beats, then left 1.5 stepsizes
+</PRE><BR>
+</P>
+<P>
+Whether the text and duration are allowed or required depends on the mark_type,
+as summarized below:
+<PRE>
+mark_type    text            duration
+
+rom        required          optional
+bold       required          optional
+ital       required          optional
+boldital   required          optional
+mussym     required      allowed on tr only
+phrase    not allowed        required
+&lt;         not allowed        required
+&gt;         not allowed        required
+octave     required          optional
+pedal     * or nothing     not allowed
+</PRE>
+</P>
+<P>
+If there are several items, such that they have to be stacked on top
+
+
+of each other, all items of a particular class are placed from top to bottom
+according to input order. The classes are done in the order
+shown in the table below, unless the order is overridden by
+the
+<A HREF="param.html#aboveord">aboveorder,</A>
+<A HREF="param.html#beloword">beloworder,</A>
+or
+<A HREF="param.html#betwnord">betweenorder</A>
+parameters.
+<PRE>
+above	(from bottom up)
+   phrase
+   mussym
+   octave
+   rom bold ital boldital &lt; &gt;
+   lyrics
+   endings
+   rehearsal marks
+
+below	(from top down)
+
+   phrase
+   mussym
+   octave
+   rom bold ital boldital &lt; &gt;
+   lyrics
+   pedal
+
+between	(from bottom up)
+   mussym
+   rom bold ital boldital &lt; &gt;
+   lyrics
+</PRE>
+</P>
+<P>
+
+
+
+For example, for the above items, all phrases will be placed as close to the
+staff as possible, then mussym items above them, then octave marks above
+
+them, etc. However, if there are several mussym items that belong at the
+same horizontal position, the first one entered in the input will be printed
+above the second, the second one entered will be printed above the third, etc.
+All of the &quot;above all&quot; items of a given class will be above the
+items of that class for the top visible staff,
+and all &quot;below all&quot; items of a given class will be below the
+items of that class for the bottom visible staff.
+
+</P>
+<P>
+Additional control of placement can be imposed by the
+<A NAME="aligntag">optional align tag.</A>
+
+This is the keyword &quot;align&quot; followed by a number between 0 and 10000 inclusive.
+On a given score, all marks in the same placement order level and
+having the same align tag value will be placed together,
+so that they will all be aligned at the same vertical position.
+An align tag can only be applied to text (rom, ital, bold, boldital)
+and crescendo and decrescendo marks.
+Among marks with the same placement order level,
+those without alignment are placed first. Then those with alignment
+are placed, in ascending numerical order of the align tag.
+If any of the aligned marks also have a dist specified, the rightmost
+such dist applies to all with that alignment tag, otherwise the
+largest default distance is used. If any also have ! specified,
+to force an exact distance, that applies to all.
+</P>
+<P>
+If after placing a set of aligned marks, Mup determines that any of them
+overlap horizontally, it will squeeze
+the one on the left in an attempt to avoid the overlap--to a point.
+If some overlap remains even after squeezing as much as seems prudent,
+Mup will issue a warning. You can then adjust things yourself if you wish. 
+</P>
+<P>
+Here is an example showing the impact of using alignment. The two measures
+are the same, except the second uses alignment tags.
+Note that since in this example only a single align tag value
+is used for above and one for below, there is no need for specifying an
+order among alignment tags, so the numeric values can be arbitrary.
+<BR><PRE>
+score
+   beamstyle=2,2
+
+music
+
+rom above 1: 1 &quot;Allegro con brio&quot;;
+ital above 1: 3 &quot;dolce&quot;;
+1: [with .]... 8g-;a-;b-;c;g;a;g;a;
+&lt; below 1: 1 til 2.8;
+boldital dyn below 1: 3 &quot;mf&quot;;
+&gt; below 1: 3.3 til 4.8;
+bar
+
+rom above 1 align 17: 1 &quot;Allegro con brio&quot;;
+ital above 1 align 17: 3 &quot;dolce&quot;;
+1: [with .]... 8g-;a-;b-;c;g;a;g;a;
+&lt; below 1 align 3: 1 til 2.8;
+boldital dyn below 1 align 3: 3 &quot;mf&quot;;
+&gt; below 1 align 3: 3.3 til 4.8;
+bar
+</PRE><BR>
+<IMG SRC="mugex69.gif" ALT="Picture of Mup output"><BR>
+<BR>
+<A HREF="textmark.html">Text</A>
+<BR>
+<A HREF="mussym.html">Music symbols</A>
+<BR>
+<A HREF="phrase.html">Phrase marks</A>
+<BR>
+<A HREF="cres.html">Crescendo and decrescendo marks</A>
+<BR>
+<A HREF="octave.html">Octave marks</A>
+<BR>
+<A HREF="pedal.html">Piano pedal marks</A>
+<BR>
+<A HREF="roll.html">Rolls</A>
+</P>
+<HR><P>
+&nbsp;&nbsp;&nbsp;<A HREF="textstr.html">&lt;-- previous page</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="index.html">Table of Contents</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="mupindex.html">Index</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="textmark.html">next page --&gt;</A>
+</P>
+</BODY></HTML>

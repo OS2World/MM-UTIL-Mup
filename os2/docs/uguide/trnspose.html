@@ -1,0 +1,140 @@
+<HTML>
+<HEAD><TITLE>
+Transposition
+</TITLE></HEAD>
+<BODY>
+<P>
+&nbsp;&nbsp;&nbsp;<A HREF="cadenza.html">&lt;-- previous page</A>
+
+&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="index.html">Table of Contents</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="mupindex.html">Index</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="verses.html">next page --&gt;</A>
+</P>
+           
+<H2>
+Transposition
+</H2>
+<P>
+
+The
+<A HREF="param.html#xpose">transpose</A>
+and
+<A HREF="param.html#addxpose">addtranspose</A>
+parameters
+can be used to transpose the pitches for a staff or the whole score.
+The following table shows what transposition values to use for different
+intervals.
+<TABLE BORDER=4>
+<TR>
+<TD><B>halfsteps</B></TD>	<TD><B>tranposition</B></TD>	<TD><B>alternate transposition</B></TD>
+</TR>
+<TR>
+<TD>0</TD>	<TD>perfect 1</TD>	<TD>diminished 2</TD>
+</TR>
+<TR>
+<TD>1</TD>	<TD>augmented 1</TD>	<TD>minor 2</TD>
+</TR>
+<TR>
+<TD>2</TD>	<TD>major 2</TD>	<TD>diminished 3</TD>
+</TR>
+<TR>
+<TD>3</TD>	<TD>augmented 2</TD>	<TD>minor 3</TD>
+</TR>
+<TR>
+<TD>4</TD>	<TD>major 3</TD>	<TD>diminished 4</TD>
+</TR>
+<TR>
+<TD>5</TD>	<TD>augmented 3</TD>	<TD>perfect 4</TD>
+</TR>
+<TR>
+<TD>6</TD>	<TD>augmented 4</TD>	<TD>diminished 5</TD>
+</TR>
+<TR>
+<TD>7</TD>	<TD>perfect 5</TD>	<TD>diminished 6</TD>
+</TR>
+<TR>
+<TD>8</TD>	<TD>augmented 5</TD>	<TD>minor 6</TD>
+</TR>
+<TR>
+<TD>9</TD>	<TD>major 6</TD>	<TD>diminished 7</TD>
+</TR>
+<TR>
+<TD>10</TD>	<TD>augmented 6</TD>	<TD>minor 7</TD>
+</TR>
+<TR>
+<TD>11</TD>	<TD>major 7</TD>	<TD>diminished 8</TD>
+</TR>
+</TABLE>
+
+</P>
+<P>
+This table continues in a similar way for intervals beyond an octave.
+For each number of halfsteps you want to transpose, there
+is more than one way the
+<A HREF="param.html#xpose">transpose</A>
+and
+<A HREF="param.html#addxpose">addtranspose</A>
+parameters can be
+specified, as shown by this table.  This allows to you control
+whether a sharp key or a flat key is to be used in cases where there is
+a choice.  For example, if the key signature has three sharps, and you
+want to transpose up two halfsteps, you could say either
+<BR><PRE>
+	transpose = up maj 2
+</PRE><BR>
+or
+<BR><PRE>
+	transpose = up dim 3
+</PRE><BR>
+The first will result in a key of five sharps, and the second will
+result in seven flats.  These are equivalent keys; in major for
+example, they are B and C flat, which are the same note.  It is up to
+you to choose the way you would like it to be printed.
+But no key is allowed to have more than seven sharps or flats, so in
+most cases only one of the ways will result in a valid key, and the
+other way will result in an error message.
+</P>
+<P>
+The transpose and addtranspose parameters are allowed
+in score and staff contexts, so they can
+be set to different values on different staffs, and on the score as a whole.
+This is useful for printing scores where some of the instruments are
+transposing instruments (like B-flat clarinet).
+You can set the transpose parameter on specific staffs to appropriate
+values for the transposing instruments. Then if you decide you want to
+move the entire score to a new key, you can set the addtranspose parameter
+in score context.
+You can enter all the music at true pitch, but print the score and/or
+the individual parts with the correct transposition.
+</P>
+<P>
+Another use for setting different transposition values is the following
+trick, useful in guitar music for printing both the real chords and chords
+for capo.
+Say, for example, you have a song that is in B flat, but the guitar is
+to use a capo on the third fret, and play in the key of G.
+You could define the following macro to print both versions of a chord,
+the capo version above the real version:
+<BR><PRE>
+define CHORD(COUNT, NAME)
+
+	bold chord all: COUNT `NAME`;     // chord for capo
+	ital(8) chord 1: COUNT `NAME`;    // real chord
+@
+</PRE><BR>
+Then, set these transpositions:
+<BR><PRE>
+score   transpose = down minor 3	// transpose score for capo
+staff 1 transpose = up perfect 1	// override score transposition
+</PRE><BR>
+and similarly for any other staffs.
+Then, wherever you want to print a chord, say (for example)
+<BR><PRE>
+CHORD(3,Dm)
+</PRE><BR>
+This will print both versions of the chord above count 3 of the measure.
+For the top chord it will transpose this to Bm, the capo chord.
+For the bottom chord it will leave it as Dm, the real chord.
+</P>
+<HR><P>
+&nbsp;&nbsp;&nbsp;<A HREF="cadenza.html">&lt;-- previous page</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="index.html">Table of Contents</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="mupindex.html">Index</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="verses.html">next page --&gt;</A>
+</P>
+</BODY></HTML>

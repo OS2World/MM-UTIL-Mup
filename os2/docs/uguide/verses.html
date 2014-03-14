@@ -1,0 +1,75 @@
+<HTML>
+<HEAD><TITLE>
+Placing verses below the scores
+</TITLE></HEAD>
+<BODY>
+<P>
+&nbsp;&nbsp;&nbsp;<A HREF="trnspose.html">&lt;-- previous page</A>
+
+&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="index.html">Table of Contents</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="mupindex.html">Index</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="pianored.html">next page --&gt;</A>
+</P>
+         
+<H2>
+Placing verses below the scores
+</H2>
+<P>
+Sometimes, particularly with songs that have a lot of verses,
+
+you may want to put some verses of lyrics as blocks of
+text below the music. Probably the easiest way to do this
+is using &quot;print&quot; or &quot;paragraph&quot; statements inside
+
+<A HREF="prnttext.html#block">a "block."</A>
+<BR><PRE>
+block
+print (_win.w + 30, _win.n - 15) &quot;2.   &quot;
+print &quot;\
+Here is the first line
+and the second line
+and the third line.
+&quot;
+print (_win.w + 90, _win.n - 15) &quot;3.   &quot;
+print &quot;\
+Here is another verse's first line
+and its second line
+and its third line.
+&quot;
+</PRE><BR>
+</P>
+<P>
+You may need to use a little trial-and-error to determine the
+coordinates to use on the print statements,
+but you only have to determine one coordinate per verse,
+and with a bit of practice it gets easier to find the right values.
+Since the &quot;print&quot; statement is being used, the font and size will be
+determined by the
+<A HREF="param.html#size">size parameter</A>
+and
+<A HREF="param.html#font">font parameter,</A>
+rather than by
+<A HREF="param.html#lyrsize">lyricssize</A>
+and
+<A HREF="param.html#lyrfont">lyricsfont.</A>
+</P>
+<P>
+If you also want chords symbols with these verses,
+you can do that too. It is easiest if you use Courier font,
+as shown in the example below, since its constant-width characters
+make it easy to line things up. If you use a proportional-width font,
+you will have to determine how to place the chords by trial and error.
+<BR><PRE>
+print (_win.w + 50, _win.n - 35) &quot;3.   &quot;
+print &quot;\f(CR)\
+C            D7    G7
+This is the first line
+C       F
+of the next verse
+B\(smflat)
+of the song.
+&quot;
+</PRE><BR>
+</P>
+<HR><P>
+&nbsp;&nbsp;&nbsp;<A HREF="trnspose.html">&lt;-- previous page</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="index.html">Table of Contents</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="mupindex.html">Index</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="pianored.html">next page --&gt;</A>
+</P>
+</BODY></HTML>

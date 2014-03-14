@@ -1,0 +1,83 @@
+<HTML>
+<HEAD><TITLE>
+Placing several songs on one page
+</TITLE></HEAD>
+<BODY>
+<P>
+&nbsp;&nbsp;&nbsp;<A HREF="tempochg.html">&lt;-- previous page</A>
+
+&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="index.html">Table of Contents</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="mupindex.html">Index</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="cadenza.html">next page --&gt;</A>
+</P>
+          
+<H2>
+Placing several songs on one page
+</H2>
+<P>
+Sometimes you may wish to print more than one song on the same page.
+While Mup considers all of its input to be a single song,
+it is possible to get the effect of separate songs.
+First of all, on the last bar line of first song, use &quot;hidechanges.&quot;
+That way, if the key or anything is
+different in the next song, Mup won't print the changes at the
+end of the first song. Then
+
+<A HREF="prnttext.html#block">use a "block"</A>
+for printing the titles
+for the second song.
+Here is an example:
+<BR><PRE>
+score
+	scoresep=10,14
+	label=&quot;&quot;
+header
+	title (18) &quot;Title for first song&quot;
+music
+1: c;d;e;f;
+bar
+1: f;e;d;c;
+bar
+1: c;d;e;f;
+bar
+1: f;d;2c;
+endbar
+
+// force time signature to be printed on next score
+// by changing the time, but only for an invisible measure
+score time=5/4n
+music
+1: ms;
+invisbar hidechanges
+
+// Force the block closer to next score,
+// so it will better match the spacing of
+// the title of the first song.
+score scoresep=6,6
+// print title for second song
+block
+title (30) &quot; &quot;   // Allow some extra room above title
+title (18) &quot;Title for second song&quot;
+
+score
+	// Set up for second song
+	time=4/4
+	key=1&amp;
+
+music
+1: d;e;2f;
+bar
+// Put score spacing back to original
+score scoresep=10,14
+music
+1: a;2g;4f;
+bar
+1: 2e;4c;d;
+bar
+1: 2g;f;
+endbar
+</PRE><BR>
+<IMG SRC="mugex104.gif" ALT="Picture of Mup output"><BR>
+</P>
+<HR><P>
+&nbsp;&nbsp;&nbsp;<A HREF="tempochg.html">&lt;-- previous page</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="index.html">Table of Contents</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="mupindex.html">Index</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="cadenza.html">next page --&gt;</A>
+</P>
+</BODY></HTML>

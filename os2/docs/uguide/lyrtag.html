@@ -1,0 +1,33 @@
+<HTML>
+<HEAD><TITLE>
+Printing relative to lyric syllables
+</TITLE></HEAD>
+<BODY>
+<P>
+&nbsp;&nbsp;&nbsp;<A HREF="crossbar.html">&lt;-- previous page</A>
+
+&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="index.html">Table of Contents</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="mupindex.html">Index</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="slantxt.html">next page --&gt;</A>
+</P>
+          
+<P>
+Here is an example that shows how location tags associated with lyric syllables
+might be useful:
+<BR><PRE>
+1: g;a;2g;
+lyrics below 1 :  4;;2; &quot;\v(+40)Yo,\v(-40)\=(_yo) sin&lt;^ tu a&gt;\=(_words)-mor&quot;;
+
+// Print an alternate word with brackets.
+print (_yo.w, _yo.y - 2.5) &quot;\(E')l,&quot;
+print (_yo.w - 4, _yo.y - 1.3) &quot;\s(+12){&quot;
+print (_yo.e - 1, _yo.y - 1.3) &quot;\s(+12)}&quot;
+
+// print curve to join three syllables
+curve (_words.w, _words.y - 1) to (_words.e - 1, _words.y - 1) bulge -1
+bar
+</PRE><BR>
+<IMG SRC="mugex100.gif" ALT="Picture of Mup output"><BR>
+</P>
+<HR><P>
+&nbsp;&nbsp;&nbsp;<A HREF="crossbar.html">&lt;-- previous page</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="index.html">Table of Contents</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="mupindex.html">Index</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="slantxt.html">next page --&gt;</A>
+</P>
+</BODY></HTML>

@@ -1,0 +1,93 @@
+<HTML>
+<HEAD><TITLE>
+Newscore and newpage
+</TITLE></HEAD>
+<BODY>
+<P>
+&nbsp;&nbsp;&nbsp;<A HREF="linecurv.html">&lt;-- previous page</A>
+
+&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="index.html">Table of Contents</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="mupindex.html">Index</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="headfoot.html">next page --&gt;</A>
+</P>
+         
+<H2>
+Newscore and newpage
+</H2>
+<P>
+Normally, Mup determines how many measures to put on each score and how many
+
+
+scores to put on each page. You can force Mup to move to the next score with
+the &quot;newscore&quot; statement, or to the next page with a &quot;newpage&quot; statement.
+
+
+Here is an example:
+<BR><PRE>
+1: c;d;e;f;
+bar
+1: e;f;g;;
+bar
+newscore   // go to next score
+1: 2c;;
+bar
+1: e;f;g;;
+bar
+newpage   // go to next page
+1: e;g;2c;
+bar
+</PRE><BR>
+</P>
+<P>
+You can temporarily change the indent for the new score
+by specifying &quot;leftmargin=<I>num</I>,&quot; where <I>num</I> is a floating point
+number of inches or centimeters (depending on the current setting of
+<A HREF="param.html#units">the units parameter.)</A>
+
+The new score will then be indented by that much, overriding the value
+of
+<A HREF="param.html#leftmar">the leftmargin parameter.</A>
+</P>
+<P>
+In a similar way, you can specify &quot;rightmargin=<I>num</I>,&quot; which
+
+will affect
+<A HREF="param.html#rightmar">the right margin</A>
+on the <B>previous</B> score. This might
+be used, for example, if you want a piece to end with a
+shorter than normal score.
+<BR><PRE>
+newscore leftmargin=1.2 rightmargin=2.7
+</PRE><BR>
+The equals sign is optional in these margin overrides.
+</P>
+<P>
+For rightmargin, you can specify rightmargin=auto rather than giving a
+number. In that case, Mup will calculate the appropriate value to use
+to make the music on the previous score spaced based on the
+<A HREF="param.html#packexp">packexp</A>
+and 
+<A HREF="param.html#packfact">packfact</A>
+parameters, without spreading to fill the line.
+<BR><PRE>
+1: c;d;e;f;
+bar
+
+1: g;f;e;g;
+bar
+
+1: c;d;e;f;
+bar
+
+1: g;f;e;g;
+bar
+
+1: 2e;c;
+endbar
+
+newscore rightmargin=auto
+</PRE><BR>
+<IMG SRC="mugex89.gif" ALT="Picture of Mup output"><BR>
+</P>
+<HR><P>
+&nbsp;&nbsp;&nbsp;<A HREF="linecurv.html">&lt;-- previous page</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="index.html">Table of Contents</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="mupindex.html">Index</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="headfoot.html">next page --&gt;</A>
+</P>
+</BODY></HTML>

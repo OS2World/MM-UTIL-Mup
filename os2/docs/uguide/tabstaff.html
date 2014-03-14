@@ -1,0 +1,414 @@
+<HTML>
+<HEAD><TITLE>
+Tablature notation
+</TITLE></HEAD>
+<BODY>
+<P>
+&nbsp;&nbsp;&nbsp;<A HREF="lyrics.html">&lt;-- previous page</A>
+
+&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="index.html">Table of Contents</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="mupindex.html">Index</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="shaped.html">next page --&gt;</A>
+</P>
+           
+<H1>
+TABLATURE NOTATION
+</H1>
+<P>
+
+Mup can print tablature staffs. Tablature notation is commonly used for
+
+guitar and several other instruments. Mup supports tablature for 1 to 9
+strings.
+</P>
+<P>
+Mup will automatically create a normal 5-line staff above each tablature
+staff, giving the equivalant music on that staff.
+This staff will be referred to as the &quot;tabnote
+staff.&quot; Normally, you will input music just for the tablature staff, and
+the tabnote staff will be derived from that. However, for any given measure,
+you can explicitly input music for a tabnote staff,
+which will turn off the automatic
+translation for that measure. If you only want either the tab or tabnote
+staff to be printed, you can mark the other one as invisible
+
+<A HREF="param.html#visible">(see the "visible" parameter).</A>
+You should specify the appropriate
+<A HREF="param.html#clef">clef</A>
+and
+<A HREF="param.html#key">key signature</A>
+for the tabnote staff, so that Mup can make the best derivation.
+</P>
+<H2>
+Specifying a tablature staff
+</H2>
+<P>
+To set up a tablature staff, you use the
+
+<A HREF="param.html#stlines">stafflines parameter.</A>
+To get a standard 6-line guitar tablature staff, you can just say
+<BR><PRE>
+score
+	staffs=2
+staff 2
+	stafflines = tab
+</PRE><BR>
+There are 2 staffs, because there is both the tablature staff and the
+automatically generated tabnote staff. The tablature staff is always
+immediately below the corresponding tabnote staff.
+Setting the
+<A HREF="param.html#stlines">stafflines parameter</A>
+to &quot;tab&quot; marks staff 2 as a tablature staff.
+</P>
+<P>
+If you want tablature for an instrument other than a 6-string guitar with
+standard tuning, you specify
+the pitches of the strings from top to bottom
+within parentheses after the &quot;tab.&quot; For example:
+<BR><PRE>
+stafflines = tab (e a d&amp; g)
+</PRE><BR>
+would define some instrument that had 4 strings, with the string on the
+top line of tablature staff being an e string, the next a, the next d flat,
+and the bottom g.
+As shown in the example, pitches can include a # or &amp; if necessary.
+Strings are assumed to be in octave 4 unless otherwise marked.
+You can specify a different octave by specifying an
+<A HREF="chordinp.html#oct">octave number</A>
+after the
+string's pitch (using either an absolute octave number or pluses or minuses).
+If the instrument
+has more than one string with the same pitch
+(even if they are in different octaves),
+they must be distinguished by adding one or more ' marks after the
+pitch. The tablature definition for standard guitar is
+<BR><PRE>
+stafflines = tab (e5 b g d a3 e'3)
+</PRE><BR>
+This specifies that the top string on the staff is e in octave 5.
+The next three strings
+are in the default octave of 4, and the last two strings are in octave 3.
+Since there are two different strings with pitch letter of e, the lower e is
+marked as e'. Note that the octaves given are how they
+should be printed on the tabnote staff. A standard guitar actually sounds
+an octave lower than written. If you just use &quot;stafflines = tab&quot; without
+specifying any strings, Mup not only assumes the standard guitar layout,
+and prints in the appropriate octave,
+<A NAME="autotran">but it also automatically</A>
+
+<A HREF="trnspose.html">transposes</A>
+the
+
+<A HREF="midi.html">MIDI output</A>
+to the actual pitches an octave lower. If you specify
+strings explicitly, you will have to specify the octaves and any
+desired MIDI transposition values yourself. Stated another way,
+<BR><PRE>
+score
+	staffs = 2
+staff 2
+	stafflines = tab
+</PRE><BR>
+is equivalent to
+<BR><PRE>
+score
+	staffs=2
+staff 2
+	stafflines = tab (e5 b g d a3 e'3)
+staff 1
+	ifdef MIDI transpose = down perfect 8 endif
+</PRE><BR>
+Note from this last example that MIDI is taken from the tabnote staff,
+not the tablature staff, so MIDI directives should be placed with the
+tabnote staff.
+</P>
+<P>
+Mup should be able to handle almost any instrument with up to 9 strings.
+Several strings can have the same pitch; you just need to distinguish
+them with ' marks.
+The strings must be listed in whatever order the strings are to appear
+on the tablature staff.
+As another example,
+<BR><PRE>
+stafflines = tab (g3 d3 a2 e2)
+</PRE><BR>
+would define a standard bass guitar. Note that a bass guitar also sounds
+an octave lower than written, so it should be transposed for MIDI purposes.
+</P>
+<H2>
+Music input on tablature staffs
+</H2>
+<P>
+Input of tablature is similar to that on regular staffs. Each note in a
+chord is specified by a string and a
+
+fret.
+So fret 3 on the g string
+is designated by g3 or fret 0 on the e' string is designated by e'0.
+If your open string pitch includes an accidental, that would be included
+as well, so if you had an instrument with an f# string and wanted to
+play the 6th fret on that string, it would be f#6.
+Fret numbers can range from 0 to 99.
+If you want fret numbers to be placed inside parentheses,
+
+put parentheses
+around them in the input.
+You can also put both the string and fret within a set of parentheses,
+in which case, the note generated on the tabnote staff will have parentheses
+around it.
+Here are some examples of chords:
+<BR><PRE>
+2: d4; d5a3; b0 d(5); e2(b3)g2;
+bar
+</PRE><BR>
+<IMG SRC="mugex53.gif" ALT="Picture of Mup output"><BR>
+</P>
+<P>
+<A HREF="chordinp.html#duration">Time values</A>
+are specified just like on non-tablature staffs: a number
+optionally followed by one or more dots (like 4 or 8..),
+or a list of such numbers added together (like 2+8),
+preceding the chord pitches. Tablature staffs follow the same
+rules as non-tablature staffs for using time values from the previous
+chord if no time value is specified on the current chord. Similarly,
+if no notes are specified for a chord, the same notes used in the previous
+chord are reused. As an example:
+<BR><PRE>
+2: 4.e5; ;8;b2;
+bar
+</PRE><BR>
+<IMG SRC="mugex54.gif" ALT="Picture of Mup output"><BR>
+Since nothing is specified for the second chord, both time value (dotted
+quarter) and note (e string fret 5) are copied from the first chord.
+The third chord in the measure has only a time value
+(an eighth note) so the note (string/fret) is repeated.
+The final chord has only a note,
+so the previous time value is used.
+</P>
+<P>
+Rests and spaces can be specified with r and s, just like on non-tablature
+staffs. They result in nothing being printed on the tablature staff, and
+rest or space being printed on the tabnote staff.
+</P>
+<H2>
+Chord attributes
+</H2>
+<P>
+Any chord on a tablature staff can be preceded by a list of
+<A HREF="chrdattr.html#chstyle">chord attributes</A>
+in brackets, just like with non-tablature staffs. If you want a chord to be
+printed with X (for a muffled string) rather than a fret number,
+
+use [xnote].
+In this case, the fret number will be used only to determine where to put
+the X on the tabnote staff, and what note to use for
+<A HREF="midi.html">MIDI.</A>
+Using [diam]
+
+will have no affect on the tablature staff, but will cause
+diamond notes to be used on the tabnote staff.
+
+
+Using [grace] or [cue] will cause the fret numbers to printed in a smaller
+size, and the corresponding notes on the tabnote staff to be printed
+in a smaller size. Using [slash <I>N</I>]
+will cause <I>N</I> slashes to be printed below the chord on the tablature
+staff, as well as
+
+<A HREF="chrdattr.html#slashes">slashes</A>
+on the corresponding chord on the tabnote staff.
+You can use the other chord attributes (with, pad, and =tag) just
+like on a non-tablature staff.
+</P>
+<H2>
+Ties
+</H2>
+<P>
+From an input point of view,
+
+<A HREF="noteattr.html#ntie">ties</A>
+work much the same on tablature staffs as on other staffs.
+On output, tie marks on tablature staffs are normally not printed,
+and the frets are not printed on the tied-to chord. If a tie goes across
+to a new score, the frets are printed, but in parentheses, to indicate the
+chord is really just the continuation of a tie.
+</P>
+<H2>
+Slides
+</H2>
+<P>
+In Mup input,
+
+slides are shown with &lt;&gt;, rather like
+<A HREF="noteattr.html#nslur">slurs</A>
+on non-tablature staffs.
+There is a special variation used for slides that come from nowhere in
+particular or go to nowhere in particular.
+These are shown with &lt;\n&gt;, &lt;/n&gt;, &lt;n\&gt;, or &lt;n/&gt;.
+A slide is indicated on output on tablature staffs
+as a slanted line between 2 fret numbers on a string.
+On tabnote staffs, they as drawn as a slanted line between 2 notes.
+See the examples below:
+<BR><PRE>
+2: a5&lt;&gt;; a6; d3&lt;&gt;; d2;
+bar
+
+2: b4&lt;/n&gt;; e3&lt;\n&gt;; a2&lt;n/&gt;; e'5&lt;n\&gt;;
+bar
+</PRE><BR>
+<IMG SRC="mugex55.gif" ALT="Picture of Mup output"><BR>
+</P>
+<H2>
+Bends
+</H2>
+<P>
+A bend (stretching a string to make it sound higher than normal)
+
+is specified on tablature staffs
+by putting a text string after the string. The
+text string can be the word &quot;full&quot; or a number and/or fraction.
+Some examples:
+<BR><PRE>
+2: e4 &quot;full&quot;; e &quot;1/2&quot;; 2e &quot;1 1/2&quot;;
+bar
+</PRE><BR>
+<IMG SRC="mugex56.gif" ALT="Picture of Mup output"><BR>
+</P>
+<P>
+If you want to bend back down to having no bend (a release),
+the text string specifying
+the bend is just an empty string of &quot;&quot;.
+Note that if both a fret and bend other than &quot;&quot; are specified,
+<A NAME="prebend">this indicates a prebend,</A>
+whereas if only a bend is specified, this indicates a normal bend.
+</P>
+<P>
+Bends need not be an integer number of half steps, but if you specify a bend
+that falls between half steps, when it is used on the tabnote
+staff, the bend is rounded to the nearest half step, or rounded downward
+if it is exactly in the middle of a half step.
+When possible, bends of 1/4 step or less are shown on the tabnote staff
+by a small curve rather than by a separate note.
+</P>
+<P>
+You can specify bends on more than one string at once, but a continuation
+bend (bending to a new distance without replucking the string) is only
+allowed on a single string at a time. Here are some examples:
+<BR><PRE>
+2: g0b2e'0; e' &quot;1/2&quot; g &quot;full&quot; b &quot;3/4&quot;; e' &quot;&quot;; a2;
+bar
+
+2: a &quot;1/2&quot;; a &quot;full&quot;; a &quot;1/2&quot;; a &quot;&quot;;
+bar
+</PRE><BR>
+<IMG SRC="mugex57.gif" ALT="Picture of Mup output"><BR>
+</P>
+<P>
+If you have more than one voice on a tablature staff,
+bends on other than the top voice may collide with other voices in some
+cases, and if there are bends from more than one voice simultaneously,
+they may collide.
+</P>
+<P>
+On non-tablature staffs, bends are specified with a ^ symbol followed
+by the note to bend to. The note to bend to is specified by letter and
+optional octave (accidentals are not specified). If you want just a small
+bend (1/4 step), this is specified by ^/. For example:
+<BR><PRE>
+1: e ^f; f; b ^c5; c#5;
+bar
+
+1: d+^e+ g^a; e+a; g ^/; c ^/ c+^/;
+bar
+</PRE><BR>
+<IMG SRC="mugex58.gif" ALT="Picture of Mup output"><BR>
+</P>
+<H2>
+Miscellaneous
+</H2>
+<P>
+Note attributes of ~ for tie, ? for a small note, and = for a tag work the
+same on tablatures staffs as on non-tablature staffs.
+</P>
+<P>
+If bm, ebm, or esbm are given on tablature staffs they are
+transferred to the tabnote staff and used for
+
+<A HREF="ichdattr.html#custbeam">custom beaming</A>
+there.
+
+<A HREF="chrdattr.html#withlist">Items in "with" lists inside [ ]</A>
+are also copied to the tabnote staff.
+In general, unless otherwise specified here,
+if you want items such as
+<A HREF="stuff.html">tempo and dynamic marks</A>
+to appear on both tablature and tabnote staff, you
+have to specify them for both staffs.
+</P>
+<P>
+The
+<A HREF="ichdattr.html#alt">"alt" inter-chord attribute</A>
+is not allowed on tablature staffs.
+</P>
+<P>
+When there is a tablature staff, the
+<A HREF="midi.html">MIDI</A>
+is actually generated from the
+tabnote staff. There are some limitations.
+Currently, no MIDI pitch bends are generated; slides and
+bends are instantaneous rather than gradual.
+</P>
+<P>
+If a
+
+capo is being used, it probably better to declare a
+
+<A HREF="trnspose.html">transposition</A>
+of the tabnote staff rather than declaring the strings to be different
+notes. This is because most people would rather think of the original
+string letters when entering the tab staff information; and if you decide to
+put the capo on a different fret later,
+you only have to change the &quot;transpose&quot; line.
+<A HREF="tabstaff.html#autotran">The automatic MIDI octave tranposition for standard guitar</A>
+will also then still apply, on top of your transposition.
+</P>
+<P>
+If you specify an
+<A HREF="octave.html">octave mark</A>
+(discussed in a later section)
+on a tabnote staff, the derived music will be printed with the notes
+raised or lowered the appropriate number of octaves to correspond to the given
+octave mark interval.
+</P>
+<P>
+Since ties are not printed on tablature staff, and input notation for
+tablature slides is like what is used for slurs on ordinary staffs, if
+you want a curved line like a tie or slur on a tablature or tabnote staff,
+you have to use a phrase mark. See the section on
+<A HREF="phrase.html">phrase marks</A>
+for more details.
+</P>
+<P>
+The chord-at-a-time input style can also be used for tablature.
+The staffs being mapped to from a single input line must either be
+all tablature or all non-tablature, however.
+<BR><PRE>
+score
+	staffs=4
+	brace=1-2, 3-4
+	tabwhitebox=y
+staff 2
+	stafflines=tab
+staff 4
+	stafflines=tab
+music
+
+// The first two notes in each chord go to staff 2,
+// and the last two go to staff 4.
+[ 2; 2; 4; 4] : a2d0 g0b3; e'0a2 g0e0; 2 e'0d2 b0e3; 
+bar
+</PRE><BR>
+<IMG SRC="mugex59.gif" ALT="Picture of Mup output"><BR>
+</P>
+<HR><P>
+&nbsp;&nbsp;&nbsp;<A HREF="lyrics.html">&lt;-- previous page</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="index.html">Table of Contents</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="mupindex.html">Index</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="shaped.html">next page --&gt;</A>
+</P>
+</BODY></HTML>

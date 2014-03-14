@@ -1,0 +1,212 @@
+<HTML>
+<HEAD><TITLE>
+Mup header and footers
+</TITLE></HEAD>
+<BODY>
+<P>
+&nbsp;&nbsp;&nbsp;<A HREF="newscore.html">&lt;-- previous page</A>
+
+&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="index.html">Table of Contents</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="mupindex.html">Index</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="macros.html">next page --&gt;</A>
+</P>
+           
+<H2>
+Headers and footers
+</H2>
+<P>
+
+
+
+Mup provides ways to put headers and footers on pages of output.
+Often you may want a certain kind of header and footer on the first
+page, but a different kind on any subsequent pages, so Mup makes it
+easy to do that. Mup also offers two different &quot;layers&quot; of headers and
+footers. These layers may be particularly useful if you have a single Mup
+file that contains multiple songs, or multiple movements of a song.
+In that case, there may be certain things that you want printed in
+headers and footers throughout,
+like the current page number and the name of the entire collection,
+but other things that you want to have change with each new song or
+movement.
+</P>
+<P>
+The &quot;outer&quot; layer is specified by four contexts: header, footer, header2,
+and footer2. The &quot;inner&quot; layer is specified by four contexts:
+top, bottom, top2, and bottom2.
+
+
+All of these contexts are optional.
+The outer contexts can only be specified once per file.
+The inner contexts can be specified more than once per file, and
+each time a set of them occurs, a new page is started.
+On output pages, all of these contexts are placed horizontally
+between the left and right margins, and vertically the
+elements appear in the following order:
+ (topmargin)
+header
+top
+ (one or more scores of music or blocks of text)
+bottom
+footer
+ (bottommargin)
+</P>
+<P>
+Which version is used--the one with or without the &quot;2&quot; suffix--depends
+on which page is being printed. The items in header and footer
+appear on only the very first page,
+while those in header2 and footer2 appear on all subsequent pages.
+Somewhat similarly, the items in top and bottom will appear on the page
+that is started when they are encountered in the input,
+while top2 and bottom2 will then be used on all subsequent pages.
+However, you can specify a new top and/or bottom later,
+that will then to used for one page, and you can specify
+a new top2 and/or bottom2 later which will replace the previous top2/bottom2.
+Note, however, that if you change top2 but not top,
+that new top2 is used immediately on the new page,
+whereas if you change both, the new top applies
+to the immediately following new page,
+and the new top2 isn't used until the following page. Subsequent pages
+will use top2 in either case.
+</P>
+<P>
+Some examples may help.
+First a simple case: suppose you have a single song, and you'd like a title
+at the top of the first page. This is straightforward:
+<BR><PRE>
+top
+    title &quot;Here is the Title&quot;
+</PRE><BR>
+For this simple example, it would work just as well to use &quot;header&quot; instead
+of &quot;top,&quot; so you can use either one, although top is slightly more flexible.
+Later we'll see some examples where you might use both header and top in
+the same file, for different kinds of titles.
+</P>
+<P>
+Now suppose you'd like to make the title bigger and bolder, and would like
+to add a subtitle and composer information, as well as add a copyright
+notice to the bottom of the page.
+<BR><PRE>
+top
+   title bold (18) &quot;Here is the Title&quot;
+   title ital (14) &quot;Here is a subtitle&quot;
+   title &quot;Lyrics: Ann Author&quot; &quot;Composer: Me&quot;
+bottom
+   title &quot;\(copyright) Copyright 2003 by Ann Author and Me&quot;
+</PRE><BR>
+Again, in this simple example,
+you could use &quot;header&quot; and &quot;footer&quot; rather than &quot;top&quot; and &quot;bottom.&quot;
+</P>
+<P>
+Now suppose the song is long enough to take several pages,
+and you would like to repeat the title along with the page number on
+all pages after the first. To accomplish this, you could add:
+<BR><PRE>
+top2
+  title &quot;Here is the Title - \%&quot;
+</PRE><BR>
+
+The \% is a special marker that will get replaced on each page
+with the current page number. While it can be used in any text string,
+it is probably only likely to be useful in these header and footer kinds
+of contexts.
+<A NAME="pagenum">Another special marker</A>
+is \#, which will be replaced by the page number of the final page.
+This could be useful for doing something like &quot;page \% of \#.&quot;
+</P>
+<P>
+As a variation, perhaps you'd prefer the information at the bottom of
+the page.
+<BR><PRE>
+bottom2
+   title &quot;This is the title&quot;  &quot;Page \%&quot;
+</PRE><BR>
+In this variation, two separate text strings are specified,
+so the first string will be left justified and the second will be
+right justified.
+</P>
+<P>
+Note that if you give a top2 or bottom2, 
+but it turns out there aren't any additional pages,
+they would never actually get used.
+But it wouldn't hurt to have set them.
+</P>
+<P>
+Now let's consider a more complicated example, using both outer and inner
+contexts. Suppose you are publishing a book of songs,
+entitled &quot;My Favorite Songs,&quot; and you want to put that title at the top
+of every page throughout the book, and you want a page number at the bottom
+of each page except the first.
+You could get that much using:
+<BR><PRE>
+header
+   title &quot;My Favorite Songs&quot;
+header2
+   title &quot;My Favorite Songs&quot;
+footer2
+   title &quot;\%&quot;
+</PRE><BR>
+But suppose that in addition, you want each song to have its title on its
+first page in big print, and on subsequent pages in regular size print.
+To get this, at the beginning of each song, you could use top and top2:
+<BR><PRE>
+top
+   title (18) &quot;This is the Song Title&quot;
+top2
+   title &quot;This is the Song Title&quot;
+</PRE><BR>
+</P>
+<P>
+A composition with multiple movements can be handled similarly,
+by giving header, footer, header2, and footer2 (or any subset thereof)
+for the composition as a whole,
+and then giving new top, bottom, top2, and bottom2 definition (or any subset)
+at the beginning of each new movement.
+</P>
+<P>
+These contexts are conceptually in a separate coordinate space,
+which will be overlaid on each page coordinate space.
+When in these contexts,
+<A HREF="tags.html#wintag">the _win special tag</A>
+applies to
+the header or footer window rather than the space between the header and
+footer as it does in the music context.
+
+</P>
+<P>
+Since headers or footers will expand as necessary, the
+<A HREF="tags.html#wintag">value of _win.s and _win.y</A>
+may be changed by any of the statements in the context. At any given
+time, they refer to the boundaries as defined by what has been printed
+so far. Thus, if the first line of a header contains an 18 point title,
+after that, _win.s would be 18 points below _win.n.
+It the header then contained a 12 point title, after that it
+would be 31 points below _win.n (12 points for the title string, plus 1 point
+of padding that is added between lines printed).
+</P>
+<P>
+In addition to the &quot;title&quot; commands used in the examples above,
+you can also use
+<A HREF="prnttext.html">the "print," "left," "right," or "center" commands.</A>
+
+
+
+In most
+cases you will want to use &quot;nl&quot; for the <I>location</I> on those commands
+to place things. If you don't specify a <I>location</I> for the first of these
+commands in a header or footer, Mup will start at the left margin, just far
+enough down from the top to accommodate the text string to be printed.
+
+These contexts can also contain settings of the
+<A HREF="param.html#font">font,</A>
+
+<A HREF="param.html#fontfam">fontfamily,</A>
+
+and
+<A HREF="param.html#size">size</A>
+parameters.
+These parameter values will be used until the end of the context or until
+set again to some other value.
+</P>
+<HR><P>
+&nbsp;&nbsp;&nbsp;<A HREF="newscore.html">&lt;-- previous page</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="index.html">Table of Contents</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="mupindex.html">Index</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="macros.html">next page --&gt;</A>
+</P>
+</BODY></HTML>

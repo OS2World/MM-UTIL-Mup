@@ -1,0 +1,125 @@
+<HTML>
+<HEAD><TITLE>
+Mup Utilities for displaying and printing output
+</TITLE></HEAD>
+<BODY>
+<P>
+&nbsp;&nbsp;&nbsp;<A HREF="cmdargs.html">&lt;-- previous page</A>
+
+&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="index.html">Table of Contents</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="mupindex.html">Index</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="gensyn.html">next page --&gt;</A>
+</P>
+           
+<H2>
+Mupdisp and Mupprnt utility programs
+</H2>
+<P>
+
+If you are using Ghostscript, but prefer to not use Mupmate,
+there are two utility programs included with
+Mup for displaying and printing music.
+
+<BR><PRE>
+mupdisp <I>Mup_options myfile</I>
+</PRE><BR>
+
+will display music to your screen, while
+<BR><PRE>
+mupprnt <I>Mup_options myfile</I>
+</PRE><BR>
+will print the output to your printer.
+
+See the installation instructions for more details on configuring the
+Mupprnt program for your printer.
+</P>
+<P>
+The <I>Mup_options</I> can be any of the options listed in the
+section on
+<A HREF="cmdargs.html">"Command line arguments"</A>
+
+except -C, -E, -f, -F, -m, -M, -r, or -v, which don't
+send PostScript output to the standard output.
+
+</P>
+<P>
+The Mupdisp program allows you to view pages in any order, with either a
+version small enough to fit on your screen or a near-actual-size version
+
+that you can scroll if it doesn't fit on your screen.
+
+Mupdisp will run under MS-DOS/Windows or will run under
+
+UNIX with TERM of AT386, linux, or xterm (under X windows). 
+
+</P>
+<P>
+Mupdisp begins in partial page mode,
+which displays output at approximately actual size (depending
+on the size of your monitor). In this mode, it is possible that
+not all of the page fits on the
+screen, so the scrolling commands can be used to move up and down to view
+different parts of the page. In full page mode, a small version of the
+entire page is displayed.  This is useful
+for seeing overall page layout, but is generally too small to see much detail.
+This mode is now somewhat of a relic of the days when screens were typically
+much smaller than they are today, and is thus becoming less useful.
+</P>
+<P>
+Once the music has been drawn on the screen, you can enter various commands
+to view different pages or parts of the current page.
+The commands are:
+<DL>
+<DT><I>num</I> &lt;Enter&gt;
+<DD>
+Go to page number <I>num</I>.
+<DT>+ or &lt;space&gt; or &lt;control-E&gt; or &lt;control-F&gt;
+<DD>
+move forward on the page by about 1/8 of an inch
+(partial page mode only)
+<DT>- or &lt;backspace&gt; or &lt;control-Y&gt; or &lt;control-B&gt;
+<DD>
+move backward on the page by about 1/8 of an inch
+(partial page mode only)
+<DT>b or &lt;control-U&gt; or &lt;control-P&gt;
+<DD>
+move backward on the page by about an inch
+(partial page mode only)
+<DT>f or &lt;Enter&gt; or &lt;control-D&gt; or &lt;control-N&gt;
+<DD>
+move forward on the page by about an inch
+(partial page mode only)
+<DT>h or ?
+<DD>
+display help screen
+<DT>m
+<DD>
+toggle between partial page and full page modes.
+<DT>n
+<DD>
+go to next page
+<DT>p
+<DD>
+go to previous page
+<DT>q or ZZ
+<DD>
+quit
+<DT>r
+<DD>
+Repaint the page (useful for exiting help page)
+</DL>
+</P>
+<P>
+When in X windows, the mouse can be used for scrolling. The left button scrolls
+
+downward like the f command, while the right button scrolls backwards like
+the b command.
+<HR>
+UNIX is a registered trademark of X/Open Company Limited
+<BR>
+MS-DOS and Windows are registered trademarks of Microsoft Corporation
+<BR>
+Apple and Mac OS X are registered trademarks of Apple, Inc.
+</P>
+<HR><P>
+&nbsp;&nbsp;&nbsp;<A HREF="cmdargs.html">&lt;-- previous page</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="index.html">Table of Contents</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="mupindex.html">Index</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="gensyn.html">next page --&gt;</A>
+</P>
+</BODY></HTML>

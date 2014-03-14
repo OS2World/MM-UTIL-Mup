@@ -1,0 +1,74 @@
+<HTML>
+<HEAD><TITLE>
+Automatic piano reduction
+</TITLE></HEAD>
+<BODY>
+<P>
+&nbsp;&nbsp;&nbsp;<A HREF="verses.html">&lt;-- previous page</A>
+
+&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="index.html">Table of Contents</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="mupindex.html">Index</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="slashmrk.html">next page --&gt;</A>
+</P>
+         
+<H2>
+Automatic piano reduction
+</H2>
+<P>
+Perhaps you'd like a 4-part vocal piece written on 4 separate staffs,
+
+as well as a piano reduction on two staffs with 2 voices.
+This could be done using:
+<BR><PRE>
+score
+   staffs=6
+   bracket=1-4
+   brace=5-6
+staff 3
+   clef=treble8
+staff 4
+   clef=bass
+staff 5
+   vscheme=2o
+   staffscale=0.75   // make piano staffs a little smaller
+staff 6
+   clef=bass
+   vscheme=2o
+   staffscale=0.75
+
+// Define macros to put each voice on its own staff
+// plus the appropriate staff/voice of the piano staffs.
+define S 1 1 &amp; 5 1: @  // soprano
+define A 2 1 &amp; 5 2: @  // alto
+define T 3 1 &amp; 6 1: @  // tenor
+define B 4 1 &amp; 6 2: @   // bass
+
+music
+S 2c+;;
+A 2f;e;
+T 2a;g;
+B 2c;;
+bar
+</PRE><BR>
+<IMG SRC="mugex106.gif" ALT="Picture of Mup output"><BR>
+</P>
+<P>
+This can also be done using
+<A HREF="altinp.html">chord-at-a-time input style:</A>
+<BR><PRE>
+// Define a macro to put each voice on its own staff
+// plus the appropriate staff/voice of the piano staffs.
+// This example assumes inputting notes from bottom to top.
+define M [ 4 1 &amp; 6 2; \
+           3 1 &amp; 6 1; \
+           2 1 &amp; 5 2; \
+           1 1 &amp; 5 1 ] :   @
+
+music
+
+M 2cafc+;cgec+;
+bar
+</PRE><BR>
+</P>
+<HR><P>
+&nbsp;&nbsp;&nbsp;<A HREF="verses.html">&lt;-- previous page</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="index.html">Table of Contents</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="mupindex.html">Index</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="slashmrk.html">next page --&gt;</A>
+</P>
+</BODY></HTML>

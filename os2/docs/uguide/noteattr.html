@@ -1,0 +1,216 @@
+<HTML>
+<HEAD><TITLE>
+Note attributes
+</TITLE></HEAD>
+<BODY>
+<P>
+&nbsp;&nbsp;&nbsp;<A HREF="chordinp.html">&lt;-- previous page</A>
+
+&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="index.html">Table of Contents</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="mupindex.html">Index</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="chrdattr.html">next page --&gt;</A>
+</P>
+         
+<H3>
+Note attributes
+</H3>
+
+<P>
+There are several optional attributes that can be specified for each note.
+Any or all of these may appear on any note in any order
+after the
+<A HREF="chordinp.html#letter">letter,</A>
+<A HREF="chordinp.html#acc">accidental,</A>
+and
+<A HREF="chordinp.html#oct">octave specifications.</A>
+They include:
+<UL>
+<LI>
+<A HREF="noteattr.html#small">small note head</A>
+<LI>
+<A HREF="noteattr.html#ntie">tie</A>
+<LI>
+<A HREF="noteattr.html#nslur">slurs</A>
+<LI>
+<A HREF="noteattr.html#shaped">headshape</A>
+<LI>
+<A HREF="noteattr.html#ntag">location tag</A>
+</UL>
+</P>
+<H4>
+Small note head
+</H4>
+<P>
+<A NAME="small">A note specification can be followed by a "?"</A>
+to indicate the note is to be printed with a small note head,
+
+rather than the normal
+size. (Note: if you have several notes in a chord and want all of them to
+be small,
+<A HREF="chrdattr.html#cue">the "cue" construct, described later,</A>
+may be preferable.)
+</P>
+<P>
+Examples:
+<BR><PRE>
+// print the &quot;e&quot; as a small note
+1: 1c e? g;
+bar
+
+// make the second note small
+1: f; ?; g; ;
+bar
+</PRE><BR>
+<IMG SRC="mugex12.gif" ALT="Picture of Mup output"><BR>
+</P>
+<H4>
+Note tie
+</H4>
+<P>
+<A NAME="ntie">A "~" can be used to indicate the note is to be tied</A>
+to the note of the same
+
+
+pitch in the following chord. That following chord need not be in the same
+
+measure, but it must contain a matching note.
+(Note: if a chord with several notes is to have all the notes tied
+to the following chord,
+<A HREF="ichdattr.html#tie">the "tie" construct</A>
+described later may be preferable.)
+The ~ may be preceded by the word 'dotted' or 'dashed' if you want
+a dotted or dashed tie; otherwise a normal, solid tie is drawn.
+The ~ may be followed by the word 'up' or 'down' to specify the
+direction for the curve's bulge. If neither is specified, Mup will
+determine an appropriate direction, so you only need to give a direction
+if you wish to override Mup's choice.
+After the aforementioned items (if any),
+you may put 'to voice <I>N</I>' to tie to the matching note in
+voice <I>N</I> rather than in the current voice.
+
+</P>
+<P>
+Examples
+<BR><PRE>
+1: d~; 8; e~; ; f;
+bar
+
+// tie the g (which also happens
+// to be a &quot;small&quot; note)
+1: 2g+g?~; 4eg?;
+bar
+</PRE><BR>
+<IMG SRC="mugex13.gif" ALT="Picture of Mup output"><BR>
+</P>
+<H4>
+Slurs
+</H4>
+<P>
+<A NAME="nslur">A note can also be followed by a list of notes to be slurred to,</A>
+enclosed in angle brackets.
+
+
+A slur will be drawn from the note to each of the notes
+listed in the angle brackets. The notes inside the brackets
+
+
+are specified by a pitch and optional octave. No
+<A HREF="chordinp.html#acc">accidentals</A>
+
+are specified, even if the note to be slurred
+to has an accidental. Examples:
+<BR><PRE>
+// slur from c of first chord to e of second chord
+1: c&lt;e&gt;; e; f; g;
+bar
+
+// slur from c+ of first chord to a&amp; of second chord
+// and from c+ of first chord to d&amp;+ of second chord
+1: 2cc+&lt;ad+&gt;; a&amp;d&amp;+;
+bar
+</PRE><BR>
+<IMG SRC="mugex14.gif" ALT="Picture of Mup output"><BR>
+</P>
+<P>
+If there is only one note in the following chord, it isn't necessary to
+explicitly state it within the angle brackets; &quot;&lt;&gt;&quot; will suffice.
+<BR><PRE>
+// slur from c to d, and f to g
+1: c&lt;&gt;; d; f&lt;&gt;; g;
+bar
+</PRE><BR>
+<IMG SRC="mugex15.gif" ALT="Picture of Mup output"><BR>
+</P>
+<P>
+The &lt; may be preceded by the word 'dotted' or 'dashed' if you want
+a dotted or dashed slur, otherwise a normal, solid slur is drawn.
+
+The &gt; may be followed by the word 'up' or 'down' to specify the
+direction for the curve's bulge. If neither is specified, Mup will
+determine an appropriate direction, so you only need to give a direction
+if you wish to override Mup's choice.
+After the aforementioned items (if any),
+you may put 'to voice <I>N</I>' to slur to the matching note in
+voice <I>N</I> rather than in the current voice.
+</P>
+<P>
+There are four special &quot;slurs&quot; which are really slides to/from an
+indefinite note. They are most commonly used on
+<A HREF="tabstaff.html">tablature staffs,</A>
+but are allowed on ordinary staffs too. 
+They are: &lt;/n&gt; &lt;\n&gt; &lt;n/&gt; and &lt;n\&gt; for sliding upward into the note,
+downward into the note, upward out from the note, and downward out from
+the note respectively. These have to be in angle brackets by themselves,
+so if you want to have both one of these slides and another slur on the
+same note, multiple sets of angle brackets must be used, as in
+<BR><PRE>
+1: 2c&lt;/n&gt;&lt;d&gt;;d;
+</PRE><BR>
+</P>
+<H4>
+Head shape
+</H4>
+<P>
+<A NAME="shaped">Sometimes you may want to mix head shapes on a single stem.</A>
+
+For example, you might want to use a diamond to designate a harmonic,
+with other notes in the same chord being normal shape.
+There is an entire
+<A HREF="shaped.html">section on head shapes,</A>
+so only a simple example is given here.
+To make a single note have a different head shape,
+use hs followed by the name of the shape in quotes.
+<BR><PRE>
+1: 2e e+ hs &quot;diam&quot;;g;
+</PRE><BR>
+</P>
+<H4>
+Note location tag
+</H4>
+<P>
+Finally, a
+<A HREF="tags.html">"location tag"</A>
+
+can be associated with a note. This would
+enable you to draw things relative to the note.
+<A NAME="ntag">A note location tag</A>
+is set by using an &quot;=&quot; followed by a name. The name can be either:
+<UL>
+<LI>
+a single lower case letter
+<LI>
+an underscore followed by one or more
+letters, numbers, and underscores in any combination.
+</UL>
+The name is arbitrary, and is used as
+a tag that can be referred to later. Examples:
+<BR><PRE>
+// associate tag p with note e&amp;
+3: 2c; e&amp; =p g;
+
+// associate tag _end with note f
+2: 1f =_end;
+</PRE><BR>
+</P>
+<HR><P>
+&nbsp;&nbsp;&nbsp;<A HREF="chordinp.html">&lt;-- previous page</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="index.html">Table of Contents</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="mupindex.html">Index</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="chrdattr.html">next page --&gt;</A>
+</P>
+</BODY></HTML>

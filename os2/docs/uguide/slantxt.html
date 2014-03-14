@@ -1,0 +1,37 @@
+<HTML>
+<HEAD><TITLE>
+Printing slanted text
+</TITLE></HEAD>
+<BODY>
+<P>
+&nbsp;&nbsp;&nbsp;<A HREF="lyrtag.html">&lt;-- previous page</A>
+
+&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="index.html">Table of Contents</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="mupindex.html">Index</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="mixtsig.html">next page --&gt;</A>
+</P>
+          
+<H2>
+Printing slanted text
+</H2>
+<P>
+While Mup doesn't have a command for directly printing text at some
+particular angle, it does allow printing text above a line, and that line can
+be at an angle. The original intent was to use that for
+printing &quot;glissando,&quot; but it can be used for other things too.
+So to print arbitrary text at an arbitrary angle,
+you can make the line so tiny it can hardly be seen.
+Because of roundoff, it is generally not possible to make it so small
+that you can't see it at all, but it can be small enough to look like
+just a stray ink dot. By adjusting the relative location
+of the endpoints of the tiny line, you can control the angle.
+<BR><PRE>
+1: 2c =c; =q;
+line (c.x, c.y - 14) to (c.x + 0.05, c.y -14.05) with &quot;Slanted text&quot;;
+line (q.x, q.y - 14) to (q.x + 0.04, q.y -14.02) with &quot;Different angle&quot;;
+bar
+</PRE><BR>
+<IMG SRC="mugex101.gif" ALT="Picture of Mup output"><BR>
+</P>
+<HR><P>
+&nbsp;&nbsp;&nbsp;<A HREF="lyrtag.html">&lt;-- previous page</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="index.html">Table of Contents</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="mupindex.html">Index</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="mixtsig.html">next page --&gt;</A>
+</P>
+</BODY></HTML>

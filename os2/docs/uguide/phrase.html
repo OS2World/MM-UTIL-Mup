@@ -1,0 +1,103 @@
+<HTML>
+<HEAD><TITLE>
+Phrase marks
+</TITLE></HEAD>
+<BODY>
+<P>
+&nbsp;&nbsp;&nbsp;<A HREF="mussym.html">&lt;-- previous page</A>
+
+&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="index.html">Table of Contents</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="mupindex.html">Index</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="cres.html">next page --&gt;</A>
+</P>
+             
+<H2>
+Phrase marks
+</H2>
+
+<P>
+While it may often be more convenient to
+<A HREF="ichdattr.html#phrase">specify phrase marks using "ph" and "eph" in the music input,</A>
+you can also use the phrase statement.
+</P>
+<P>
+If there is only one voice, specifying <I>place</I> for a phrase just tells
+
+Mup where to draw the phrase mark. If there are
+<A HREF="param.html#vscheme">two or more voices,</A>
+and a <I>place</I> is specified, &quot;above&quot;
+
+
+indicates to Mup that the phrase is associated with voice 1,
+and &quot;below&quot; indicates to Mup that the phrase is associated with voice 2.
+
+</P>
+<P>
+If no <I>place</I> is specified and there is only one voice with notes,
+Mup will decide which side would be better based on the musical data.
+This means the phrase mark may come out above or below.
+In the case where there are two voices and
+there are notes present in both voices, phrase marks will be drawn both
+above and below.
+</P>
+<P>
+Each phrase statement item must include a begintime and duration.
+
+
+A phrase mark must begin and end on a chord, so Mup first takes the begintime
+
+and duration and finds the chords nearest to each of them. It then draws a
+phrase mark between them, shaping it to be out of the way of other things as
+much as possible.
+It is possible to specify a &quot;grace back up&quot; on the begintime or endtime
+to make the phrase start or end on a grace note.
+This is done by giving a negative number in parentheses,
+specifying how many grace notes to back up.
+It is possible to &quot;nest&quot; phrase marks (i.e., have one phrase on a subset of
+the chords of another phrase).
+</P>
+<P>
+Some examples:
+<BR><PRE>
+staff 2
+  vscheme=2o
+
+music
+
+1: d;f;a;b;
+2,3 1: a;f;d;g;
+2 2: 4.c;8b-;4d;g; 
+phrase 1: 1 til 4;
+phrase above 2,3: 1 til 2; 3 til 4;
+phrase below 2: 2.5 til 1m + 1.5;
+bar
+1: b;c+;d+;e+;
+2,3 1: g;a;f;c;
+2 2: 4.e;8f;4b-;g;
+bar
+</PRE><BR>
+<IMG SRC="mugex74.gif" ALT="Picture of Mup output"><BR>
+</P>
+<P>
+Phrase marks are sometimes used on
+
+tablature staffs in conjunction with slides.
+<BR><PRE>
+score staffs=2
+staff 2 stafflines=tab
+music
+
+2: a3&lt;&gt;;a4;e4&lt;&gt;;e2;
+phrase above 2: 1 til 2; 3 til 4;
+bar
+</PRE><BR>
+<IMG SRC="mugex75.gif" ALT="Picture of Mup output"><BR>
+</P>
+<P>
+The word &quot;phrase&quot; can be preceded by a line type modifier: dotted or dashed.
+The dotted or dashed styles might be used for phrase marks
+that were added by an editor rather than the composer, or to show a phrase
+that doesn't apply to all verses.
+</P>
+<HR><P>
+&nbsp;&nbsp;&nbsp;<A HREF="mussym.html">&lt;-- previous page</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="index.html">Table of Contents</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="mupindex.html">Index</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="cres.html">next page --&gt;</A>
+</P>
+</BODY></HTML>

@@ -1,0 +1,344 @@
+<HTML>
+<HEAD><TITLE>
+Location Tags
+</TITLE></HEAD>
+<BODY>
+<P>
+&nbsp;&nbsp;&nbsp;<A HREF="roll.html">&lt;-- previous page</A>
+
+&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="index.html">Table of Contents</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="mupindex.html">Index</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="prnttext.html">next page --&gt;</A>
+</P>
+         
+<H2>
+Location tags
+</H2>
+<P>
+A location tag is associated with a
+<A HREF="noteattr.html#ntag">note,</A>
+
+<A HREF="chrdattr.html#ctag">chord,</A>
+
+<A HREF="lyrics.html#ltag">lyric syllable</A>
+or
+<A HREF="bars.html#btag">barline.</A>
+
+It can then be referenced in order to place a second object, like a comment
+or dotted line, relative to the first object.
+</P>
+<P>
+A tag name can be either a single lower case letter, or an underscore
+folowed by one or more letters, digits, or underscores.
+
+Each location tag is really a collection of six values,
+namely the north, south, east,
+
+
+
+
+west, x, and y values of the tagged object. These are referenced by giving
+the tag name followed by a dot, followed by the letter n, s, e, w, x, or y.
+For example:
+<BR><PRE>
+c.n	// north of tag c
+_xyz.e	// east of tag _xyz
+x.x	// x coordinate of tag x
+</PRE><BR>
+</P>
+<P>
+The n, s, e, and w values describe the smallest rectangle that will
+completely enclose the object being tagged.
+The north refers to the top of the object, the south to the bottom, the
+
+
+west to the left edge, and the east the right edge. The x and y values
+
+
+correspond to the &quot;center&quot; coordinate of the object. This is not necessarily
+the geometric center, but more of a &quot;logical center.&quot; In the case of a tag
+associated with an individual note, it is the geometric center of the note head.
+
+However, on tags associated with a chord, the x is at the center line of 
+note heads that are on the &quot;normal&quot; side of the stem. (Normally, when a stem
+
+is up, notes are put on the left side of the stem, and when the stem is
+down they are placed on the right side. However, when two notes adjacent
+on the staff have to be printed in a single chord, one has to be moved to the
+opposite side.) The y of a chord is always the middle line of the staff
+
+containing the chord. The x of a bar line is its geometric center. The y
+of a bar line is the center line of the top visible staff.
+
+For lyrics, the n, s, e, and w give the boundaries of the smallest
+box that encloses the syllable, including anything
+inside &lt;^ &gt;, but excluding anything inside &lt; &gt;, while
+the x and y are the center of that box.
+</P>
+<P>
+Tag names can be re-used. The value of a tag will always be its most
+recent definition.
+</P>
+<P>
+There are also several &quot;pre-defined&quot; tags. They are:
+<DL>
+<DT>
+_page
+<DD>
+the entire page
+<DT>
+_win
+<DD>
+the available part of the page
+<DT>
+_cur
+<DD>
+the current location
+</DL>
+</P>
+<P>
+The _page tag refers to the entire page.
+The x and y values of _page are at the geometric center of the page.
+This tag is
+seldom useful, but is provided in case you want to force something to
+a specific place on a page.
+</P>
+<P>
+<A NAME="wintag">The _win tag</A>
+refers to the area of the page available for printing.
+The name comes from the idea that it provides a view, as if through a window,
+of a portion of the page. Its precise meaning depends upon the current
+context.
+
+
+
+
+In header, footer, top, bottom,
+header2, footer2,  top2, bottom2, and block contexts,
+it refers to the area of the
+
+page taken up by the corresponding element. In music context, it refers
+
+to the area of the page that remains after excluding the margins and the
+header, footer, top and bottom for the page.
+There is no way to access location tags in any other
+contexts, so _win (and all other location tags)
+are meaningless in other contexts.
+</P>
+<P>
+The _cur tag refers to the current location on the page. This is a single
+point, such that east and west values are the same as x, and north and
+south values are the same as y. It is only useful immediately
+after a command that explicitly sets the current location, that is, after
+a printing command or line or curve command. Since Mup places musical
+
+
+data in an arbitrary order, trying to use _cur at other times is likely
+to cause output at a seemingly random place.
+</P>
+<P>
+Location tags can be referenced by a number of commands, including those
+for
+<A HREF="prnttext.html">printing text,</A>
+
+or
+<A HREF="linecurv.html">drawing lines or curves.</A>
+In the simplest case, two
+tag references are given in parentheses. The first tag
+will refer to a horizontal direction (the &quot;x&quot; direction for mathematicians),
+namely a tag with a w, e, or x after the dot. The second tag is then a
+vertical tag, having n, s, or y. For example:
+<BR><PRE>
+(g.x, g.y)	// x and y of tag &quot;g&quot;
+(_tag.w, _item.n)   // west of tag &quot;_tag&quot; and
+                   // north of tag &quot;_item&quot;
+</PRE><BR>
+The first example refers to the x,y coordinate of tag &quot;g&quot;. The second item
+refers to two different tags. The point referenced has its horizontal
+location aligned with
+the west side of the object having the tag &quot;_tag,&quot; while its vertical
+position is in line with the north side of the object having the tag &quot;_item&quot;.
+In other words, if a line were drawn along the west side of the object
+tagged with &quot;_tag&quot; and another line were drawn along the top edge of the
+object with tag &quot;_item&quot;, the point where those two lines crossed would be
+the point referenced.
+</P>
+<P>
+Frequently, you may want to place something relative to a tagged object.
+You can add offsets in both the x and y dimensions. These offsets are given
+in stepsizes.
+
+As was mentioned earlier, a stepsize is half the distance between two staff
+lines.
+<BR><PRE>
+(g.x + 4.5, g.y + 4.5)
+</PRE><BR>
+refers to the point 4.5 stepsizes to the right and above the point (g.x, g.y).
+Adding an offset moves to the right in the horizontal direction and
+upward in the vertical direction. You can also subtract an offset:
+<BR><PRE>
+(k.w - 1.3, m.n - 2)
+</PRE><BR>
+refers to a point 1.3 stepsizes to the left of the
+west edge of k and 2 stepsizes below the top of m.
+</P>
+<P>
+In the horizontal direction, offsets can be given in terms of &quot;time&quot;. This
+
+is specified by using the keyword &quot;time&quot; followed by a number of beats.
+As an example, suppose we have the tag reference:
+<BR><PRE>
+(q.x + time 1, q.y + 2)
+</PRE><BR>
+If the
+<A HREF="param.html#time">time signature</A>
+
+is 4/4 and tag &quot;q&quot; happens
+to be associated with a half note, this tag reference
+would refer to a point halfway between that note and the following chord,
+since it includes an offset of a quarter note. If &quot;q&quot; had been associated
+with a whole note, the point would be only 1/4 of the way between the
+note and the following chord. Since notes are placed based on various
+constraints and aesthetic considerations, the actual distance will vary
+depending on which tag is referenced.
+</P>
+<P>
+In the case of a
+<A HREF="bars.html#btag">tag associated with a bar line,</A>
+the time to distance mapping
+is done based on the distance between the bar (at count &quot;0&quot;) and the first
+
+chord in the measure (at count &quot;1&quot;). So, for example, in 4/4 time, a reference
+to a bar line tag + time 0.5 would indicate a place halfway between the bar
+line and the first chord, whereas tag + time 0.25 would be one fourth of the
+way.
+</P>
+<P>
+The mapping of time to distance is done based
+on the note, rest, lyric syllable, or bar
+
+
+
+line associated with the most recent horizontal tag in the expression.
+For example, if the most recent horizontal tag is associated with a
+quarter note, and the distance between that note and the next was 0.5 inches,
+specifying  &quot;+ time 2&quot; (a half note) would mean 1.0 inch to the right, or
+specifying &quot;- time 2&quot; would mean 1.0 inch to the left, even if the notes to
+the left or right happened to be spread somewhat differently than 0.5 inches
+
+per quarter note. Thus it is usually advisable not to specify a time offset 
+greater than the time value of the note or rest associated with the tag,
+nor to subtract a time value. Stated another way, when specifying the X
+portion of a coordinate using a time offset, it is best to use a location tag
+based on whichever note, rest, or bar is immediately to the left of the
+X location you are trying to specify.
+</P>
+<P>
+If the first horizontal tag in a horizontal expression is associated with
+a bar, and that bar happens to be at the end of a score other than the
+final score, and the result of evaluating the expression is a location that
+would be out in the right margin or off the right edge of the page, it will
+be moved to act as if the bar was at the beginning of the following score.
+</P>
+<P>
+The various kinds of offsets can be combined.
+<BR><PRE>
+( _pp + 1.2 - time 3.5, _zz + 2)
+</PRE><BR>
+</P>
+<P>
+If no tag is specified, the reference becomes an absolute reference,
+giving an exact page location. For example:
+<BR><PRE>
+(10, 20)
+</PRE><BR>
+is 10 stepsizes from the left edge and 20 stepsizes
+above the bottom of the page.
+</P>
+<P>
+While usually the horizontal and vertical specifications
+will each be just a tag and direction, possibly plus or minus some offset,
+they can be more complicated arithmetic expressions.
+The expressions can involve * for multiplication, / for division, or %
+for modulo. These operators have higher precedence than addition or subtration,
+but you can use parentheses to force different precendence.
+There are also several functions available that you can use, namely:
+<TABLE BORDER=4>
+<TR>
+<TD>Name</TD>	<TD>Description</TD>	<TD>Parameters</TD>
+</TR>
+<TR>
+<TD>sqrt</TD>	<TD>square root</TD>	<TD>1</TD>
+</TR>
+<TR>
+<TD>sin</TD>	<TD>sine</TD>	<TD>1</TD>
+</TR>
+<TR>
+<TD>cos</TD>	<TD>cosine</TD>	<TD>1</TD>
+</TR>
+<TR>
+<TD>tan</TD>	<TD>tangent</TD>	<TD>1</TD>
+</TR>
+<TR>
+<TD>asin</TD>	<TD>arc sine</TD>	<TD>1</TD>
+</TR>
+<TR>
+<TD>acos</TD>	<TD>arc cosine</TD>	<TD>1</TD>
+</TR>
+<TR>
+<TD>atan</TD>	<TD>arc tangent</TD>	<TD>1</TD>
+</TR>
+<TR>
+<TD>atan2</TD>	<TD>arc tangent y/x</TD>	<TD>2</TD>
+</TR>
+<TR>
+<TD>hypot</TD>	<TD>hypotenuse</TD>	<TD>2</TD>
+</TR>
+</TABLE>
+
+</P>
+<P>
+A function name must be followed by parentheses containing its parameter(s).
+For functions with two parameters, the parameters are separated by a comma.
+Function parameters can themselves be arithmetic expressions.
+The sin, cos, and tan function parameters are expected to be in degrees.
+The return values of the asin, acos, atan, and atan2 functions are in degrees.
+For the most part, expressions are allowed to include
+operators and functions in any order.
+This makes it possible to do things like calculate a horizontal
+location based on some vertical attribute, if you really want to do that.
+But it also means Mup will not stop you from creating an expression
+that may not make any logical sense.
+Mup will do its best to try to do whatever you say,
+even if that wasn't what you meant.
+</P>
+<P>
+A common use for an expression more complicated
+than just a simple tag reference and
+offset would be to place something in the middle of a measure. You could set
+locations tags on the bars at either end of the measure, and then use the
+average to get the midpoint of the measure.
+<BR><PRE>
+1: 2g;e;
+// Note that be able to set a tag on the left of the very first measure,
+// we could make an invisible bar, just to set a tag on it. But here,
+// we can use the actual bar line at the left of the measure of interest.
+bar =_firstbar
+
+1: c;d;e;f;
+bar =_secondbar
+
+// Print a centered string at the average of the X values of
+// the bars on either side of the measure,
+// 6 stepsizes above the middle of the top staff of the score.
+center ((_firstbar.x + _secondbar.x) / 2, _firstbar.y + 6) &quot;mid measure&quot;;
+</PRE><BR>
+<IMG SRC="mugex82.gif" ALT="Picture of Mup output"><BR>
+</P>
+<P>
+A much more complicated example is presented later, in the
+<A HREF="macros.html#arrow">section on macros,</A>
+demonstrating use of the trigonometric functions.
+</P>
+<HR><P>
+&nbsp;&nbsp;&nbsp;<A HREF="roll.html">&lt;-- previous page</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="index.html">Table of Contents</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="mupindex.html">Index</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="prnttext.html">next page --&gt;</A>
+</P>
+</BODY></HTML>

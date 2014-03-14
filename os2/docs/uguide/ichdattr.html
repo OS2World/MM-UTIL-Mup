@@ -1,0 +1,421 @@
+<HTML>
+<HEAD><TITLE>
+Inter-chord attributes
+</TITLE></HEAD>
+<BODY>
+<P>
+&nbsp;&nbsp;&nbsp;<A HREF="crossst.html">&lt;-- previous page</A>
+
+&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="index.html">Table of Contents</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="mupindex.html">Index</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="tuplets.html">next page --&gt;</A>
+</P>
+          
+<H3>
+Inter-chord attributes
+</H3>
+<P>
+In addition to the
+<A HREF="chrdattr.html">chord attributes</A>
+that can appear in the square brackets
+before time and pitch information, there are a few attributes that are
+
+specified after the time and pitch information. These are attributes that
+start or end on the chord but also affect other chords. There are several
+such attributes:
+<UL>
+<LI>
+<A HREF="ichdattr.html#tie">chord ties</A>
+<LI>
+<A HREF="ichdattr.html#slur">chord slurs</A>
+<LI>
+<A HREF="ichdattr.html#custbeam">custom beaming</A>
+<LI>
+<A HREF="ichdattr.html#crossbm">cross-staff beams</A>
+<LI>
+<A HREF="ichdattr.html#alt">alternation</A>
+<LI>
+<A HREF="ichdattr.html#slope">slope</A>
+<LI>
+<A HREF="ichdattr.html#phrase">phrase</A>
+</UL>
+</P>
+<P>
+If several of these are specified on a single chord, they may be in any
+order, separated by commas.
+</P>
+<H4>
+Chord ties
+</H4>
+<P>
+<A NAME="tie">If all notes in a chord are to be tied to the following chord,</A>
+the keyword &quot;tie&quot;
+
+can be placed at the end of the chord. As was mentioned earlier,
+<A HREF="noteattr.html#ntie">individual notes can be tied using a "~" symbol.</A>
+Thus:
+<BR><PRE>
+ceg tie;
+</PRE><BR>
+is equivalent to
+<BR><PRE>
+c~e~g~;
+</PRE><BR>
+The word &quot;tie&quot; may be preceded by the word &quot;dotted&quot; or &quot;dashed&quot; to
+produce dotted or dashed ties, otherwise normal, solid ties are drawn.
+
+The word &quot;tie&quot; may be followed by the word &quot;up&quot; or &quot;down&quot; to specify the
+direction of each curve's bulge. If neither is specified, Mup will
+determine an appropriate direction, so you only need to give a direction
+if you wish to override Mup's choice.
+After the aforementioned items (if any),
+you may put 'to voice <I>N</I>' to tie to the chord in
+voice <I>N</I> rather than in the current voice.
+</P>
+<P>
+You can also produce the effect of tying chords by using additive time
+values. For example, the following lines produce the same output:
+<BR><PRE>
+1: 2ceg tie;8;;4;  // explicit tie
+
+1: 2+8ceg;8;4;	// tie implied by added time values
+</PRE><BR>
+</P>
+<H4>
+Chord slurs
+</H4>
+<P>
+<A NAME="slur">The keyword "slur" can be placed at the end of a chord to indicate</A>
+
+that each note in the chord is to be slurred to the corresponding
+note in the following chord. In other words, the top note of the chord
+is slurred to the top note of the following chord, the second from the
+top note in the first chord to the second from the top note in the
+second chord, etc.
+Thus the following 2 measures give equivalent output:
+<BR><PRE>
+1: 2f&lt;d&gt; a&lt;b&gt; c+&lt;d+&gt;; dbd+;
+bar
+
+1: 2fac+ slur; dbd+;
+bar
+</PRE><BR>
+<IMG SRC="mugex22.gif" ALT="Picture of Mup output"><BR>
+</P>
+<P>
+The chord with the &quot;slur&quot; keyword
+and the chord that follows it must have the same number of notes.
+The word &quot;slur&quot; may be preceded by the word &quot;dotted&quot; or &quot;dashed&quot; to
+produce dotted or dashed slurs, otherwise normal, solid slurs are drawn.
+
+The word &quot;slur&quot; may be followed by the word &quot;up&quot; or &quot;down&quot; to specify the
+direction of each curve's bulge. If neither is specified, Mup will
+determine an appropriate direction, so you only need to give a direction
+if you wish to override Mup's choice.
+After the aforementioned items (if any),
+you may put 'to voice <I>N</I>' to slur to the chord in
+voice <I>N</I> rather than in the current voice.
+</P>
+<H4>
+Custom beaming
+</H4>
+<P>
+
+Normally, notes of eighth or shorter duration are automatically beamed
+
+according to the specification of
+<A HREF="param.html#beamstyl">the "beamstyle" parameter.</A>
+
+<A NAME="custbeam">Occasionally, you may wish to</A>
+override the default beaming style for a particular situation.
+
+This is done using the &quot;bm&quot; and &quot;ebm&quot; keywords. The &quot;bm&quot; (short for &quot;beam&quot;)
+is placed at the end of the chord which is the first to be beamed.
+The  &quot;ebm&quot; (short for &quot;end beam&quot;) is placed at the end of the last chord.
+Both chords must be in the same measure. If there is any custom beaming
+
+specified for a given voice in a given measure, the default beamstyle
+is turned off for that voice for the entire measure, meaning that only
+what you explicitly specify to be beamed will be beamed.
+An example:
+<BR><PRE>
+// The d, e, and f will be beamed together,
+// but other 8th notes will not be.
+1: 4c; 8; d bm; e; f ebm; g; a;
+bar
+
+// First two chords beamed together.
+// Second chord is tied to third chord.
+1: 8.fa bm; 16gc+ tie, ebm; 2; 8a; g;
+bar
+</PRE><BR>
+<IMG SRC="mugex23.gif" ALT="Picture of Mup output"><BR>
+</P>
+<P>
+In the absence of custom beaming, Mup will beam notes together
+using the
+<A HREF="param.html#beamstyl">beamstyle parameter,</A>
+
+if that parameter is set.
+The beamstyle parameter is a list of time values that add up to
+a measure. Each time value tells how many chords to beam together.
+For example, a 2 means to beam a half note worth of chords together,
+whereas 1.. would indicate that a double dotted whole note worth of
+chords should be beamed together.
+Here are some examples of how the beamstyle parameter works.
+<BR><PRE>
+// beam each quarter note worth of notes together,
+// breaking the beaming at each quarter note boundary
+score beamstyle = 4,4,4,4
+music
+1: 8c;d;e;f;g;a;b;c+;
+bar
+1: 8c;d;4e;f;8g;c;
+bar
+
+// beam each half note worth of notes together,
+// breaking the beaming at each half note boundary
+score beamstyle = 2,2
+music
+1: 8c;d;e;f;g;a;b;c+;
+bar
+// the middle two eighth notes will not be beamed together,
+// because they are on opposite sides of the half note boundary
+1: 8c;4d;8e;f;4g;8c;
+bar
+
+// beam each whole note worth of notes together
+score beamstyle = 1
+music
+1: 8c;d;e;f;g;a;b;c+;
+bar
+1: 8c;4d;8e;f;4g;8c;
+bar
+
+// in 9/8 time, beam each dotted quarter note worth of notes together
+score time = 9/8 ; beamstyle = 4., 4., 4.
+music
+1: 8c;d;e;d;e;f;e;f;g;
+bar
+// the eight notes will not be beamed together,
+// because they are on opposite side of the dotted quarter boundary
+1: 4.c;4d;8e;8f;4g;
+bar
+
+// in each measure, beam the first dotted half worth of notes together,
+// then beam the remaining dotted quarter worth of notes together
+score beamstyle = 2., 4.
+music
+1: 8c;d;e;d;e;f;e;f;g;
+bar
+
+// in each measure, beam the first dotted quarter worth of notes together
+// then beam the remaining dotted half worth of notes together
+score beamstyle = 4., 2.;
+music
+1: 8c;d;e;d;e;f;e;f;g;
+bar
+</PRE><BR>
+<IMG SRC="mugex24.gif" ALT="Picture of Mup output"><BR>
+</P>
+<P>
+The value of the beamstyle parameter is remembered for
+any later changes back to the same time signature.
+For example, suppose you set
+<BR><PRE>
+time=4/4
+beamstyle=4,4,4,4
+</PRE><BR>
+then later in the piece switched to
+<BR><PRE>
+time=3/4
+beamstyle=4,4,4
+</PRE><BR>
+Then any time you went back to 4/4 or 3/4, the beamstyle you had set for that
+time signature would automatically be set as well.
+You could, of course, override the automatic setting
+with a new beamstyle if you wished.
+</P>
+<P>
+Normally Mup will break beams whenever it encounters a rest or space,
+but if you or specify an &quot;r&quot; at the end of the
+beamstyle parameter, it will beam across rests
+of eighth note or shorter duration. Similarly, specifying an &quot;s&quot; at the
+end of the beamstyle parameter will cause it to beam across spaces of
+eighth note or shorter. Specifying both (in either order) will result
+in beaming across both. Mup will also beam across eighth note or
+shorter rests or spaces inside of custom beams.
+</P>
+<P>
+Sometimes, if there are many short notes beamed together, you may wish to
+subdivide the beams into smaller groupings, where the outer, or primary
+beam remains unbroken, but the inner, or secondary beams are broken
+periodically. When using custom beaming, this is specified by &quot;esbm&quot;
+(&quot;end subbeam&quot; or &quot;end secondary beam&quot;)
+on the chord after which you want the break to occur.
+When using beamstyle, parentheses are used to indicate what sets of
+secondary beams are to be included in a given outer beam.
+<BR><PRE>
+score
+beamstyle=(4,4),(4,4)
+music
+
+// use the beamstyle parameter
+1: 16c;d;e;f; g;a;b;c+; c+;b;a;g; 32f;e;f;e;d;c;d;c;
+bar
+
+// use custom beaming
+1: 16c bm;d;e;f;g;a esbm;b;c+;c+;b;a;g esbm;f;e;d;c ebm;
+bar
+</PRE><BR>
+<IMG SRC="mugex25.gif" ALT="Picture of Mup output"><BR>
+</P>
+<H4>
+Cross-staff beams
+</H4>
+<P>
+In keyboard music,
+<A NAME="crossbm">sometimes notes on adjacent staffs are beamed together.</A>
+
+Mup will do this with a variation on
+<A HREF="ichdattr.html#custbeam">custom beaming.</A>
+A bm and ebm must be specified on both staffs, and in each case the
+bm is followed by a qualifier:
+on the first of the two staffs, &quot;bm with staff below&quot; must
+be specified, while on the second staff you use &quot;bm with staff above&quot;.
+For every point in time for the duration of the beam, one staff
+must have a chord with notes in it, and the other staff must have
+a space chord. (This is somewhat different than ordinary,
+non-cross-staff beams controlled by the
+<A HREF="param.html#beamstyl">beamstyle parameter,</A>
+where spaces are not allowed unless beaming across spaces
+is specifically requested.)
+The two &quot;bm&quot; marks must occur at the same time in the
+measure. Similarly, the two &quot;ebm&quot; marks must
+occur at the same time in each staff.
+Grouping subbeams using &quot;esbm&quot; is not supported on cross-staff beams.
+</P>
+<P>
+Some examples:
+<BR><PRE>
+1: 8f bm with staff below; a; 4s ebm; 4s bm with staff below; 8b; d ebm;
+2: 4s bm with staff above; 8a; b ebm; b bm with staff above; d; 4s ebm;
+bar
+</PRE><BR>
+<IMG SRC="mugex26.gif" ALT="Picture of Mup output"><BR>
+</P>
+<P>
+Normally the beam will be drawn between the staffs, but
+you can force the beam to be above or below all the notes by specifying a
+<A HREF="chrdattr.html#stemdir">stem direction.</A>
+
+You can also adjust the appearance of the beam by giving
+<A HREF="chrdattr.html#stemlen">stems lengths</A>
+for the first and last chords in the beam.
+<BR><PRE>
+1: [up]8f bm with staff below;a;4s ebm;4s bm with staff below;8b;[len 11]d ebm;
+2: 4s bm with staff above;8a;b ebm;[down;len 14]b bm with staff above;d;4s ebm;
+bar
+</PRE><BR>
+<IMG SRC="mugex27.gif" ALT="Picture of Mup output"><BR>
+</P>
+<P>
+If a cross-staff beam includes
+<A HREF="tuplets.html">tuplets,</A>
+the tuplet numbers will not
+be printed. You would have to print them yourself using either
+<A HREF="prnttext.html">a "print" statement</A>
+or
+<A HREF="stuff.html">a "boldital" statement.</A>
+</P>
+<P>
+It is possible for cross-staff beams to collide with other items, such as
+<A HREF="stuff.html">dynamic marks.</A>
+In these cases, you may need to move the other items. Another
+thing you might try is
+<A HREF="chrdattr.html#stemlen">specifying stem lengths</A>
+to alter where the beams get placed, or
+<A HREF="prnttext.html">printing</A>
+a blank string between the staffs to cause them to get placed further apart.
+If you specify a
+<A HREF="ichdattr.html#slope">slope,</A>
+you have to specify it on the staff having notes in the first chord,
+not the staff with space.
+<A HREF="chrdattr.html#slashes">Slashes</A>
+are not allowed on cross-staff beams.
+</P>
+<P>
+Mup doesn't directly allow cross-staff grace note beams.
+However, you may be able simulate the effect by using cue note chords
+along with invisible time signature changes and possibly invisible bar lines.
+See the
+<A HREF="invisbar.html">section on "Special uses of invisbar"</A>
+for more details.
+</P>
+<P>
+You may want to also look at the section on
+<A HREF="crossst.html">cross-staff stems,</A>
+for an alternate way to handles some cases where you might
+use cross-staff beams.
+</P>
+<H4>
+Alternation
+</H4>
+<P>
+<A NAME="alt">Alternation pairs</A>
+
+can be specified using &quot;alt <I>N</I>&quot; where <I>N</I>
+is a number. An alternation
+pair is two chords that are to played alternately in quick succession
+but are not written out as such. This is shown by drawing <I>N</I> beams
+between the stems of the chords. The note value you specify for each
+
+chord must be the same, and the time value of each must equal the time
+
+taken by the pair. For example, if the pair takes up the time of a half
+note, each chord would be a half note.
+Here is an example:
+<BR><PRE>
+// Alternate between c and c an octave
+// higher. Total time taken is that of
+// a half note. Two &quot;beam&quot;-like lines
+// will be drawn to show the alternation.
+1: 2c alt 2; 2c+;2g;
+bar
+</PRE><BR>
+<IMG SRC="mugex28.gif" ALT="Picture of Mup output"><BR>
+</P>
+<P>
+Alternation is not allowed on cross-staff beams.
+</P>
+<H4>
+Slope
+</H4>
+<P>
+<A NAME="slope">On the first chord of a set of chords that are beamed together,</A>
+you can specify a
+
+beam angle from -45 to 45 degrees.
+This will override whatever angle Mup would have used.
+<BR><PRE>
+1: 8g slope 11; b; g slope 0; b;  g slope -5.75; b;
+bar
+</PRE><BR>
+<IMG SRC="mugex29.gif" ALT="Picture of Mup output"><BR>
+</P>
+<H4>
+Phrase marks
+</H4>
+
+<P>
+<A NAME="phrase">Phrase marks</A>
+can be specified by putting &quot;ph&quot; on the chord where you want the phrase
+to begin, and &quot;eph&quot; on the chord where you want it to end.
+The ph can optionally be followed by &quot;above&quot; or &quot;below&quot;
+to specify the side for the phrase mark.
+There is also an alternate way to specify phrase marks,
+described in the section on
+<A HREF="phrase.html">Tempo, Dynamic Marks, Ornaments, etc.</A>
+</P>
+<HR><P>
+&nbsp;&nbsp;&nbsp;<A HREF="crossst.html">&lt;-- previous page</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="index.html">Table of Contents</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="mupindex.html">Index</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="tuplets.html">next page --&gt;</A>
+</P>
+</BODY></HTML>

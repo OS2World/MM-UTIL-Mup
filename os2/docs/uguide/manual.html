@@ -1,0 +1,104 @@
+<HTML>
+<HEAD><TITLE>
+Manual placement of notes
+</TITLE></HEAD>
+<BODY>
+<P>
+&nbsp;&nbsp;&nbsp;<A HREF="mantup.html">&lt;-- previous page</A>
+
+&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="index.html">Table of Contents</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="mupindex.html">Index</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="trillacc.html">next page --&gt;</A>
+</P>
+         
+<H2>
+Manual placement of notes
+</H2>
+
+
+<P>
+Mup supports up to three voices per staff. If you need more than that, such as
+
+when 4 notes of different lengths occur on the same beat, it is possible
+
+to position extra notes manually.
+Manually positioned notes will not be included in
+<A HREF="midi.html">MIDI output.</A>
+
+</P>
+<P>
+First of all, unless the fourth voice is vertically far away from the other two,
+you'll probably need to reserve some
+extra space to the left or right of the other chords. This can be done
+
+by adding a bit of
+<A HREF="chrdattr.html#pad">padding to the chord.</A>
+
+If you want the extra note on the left of the regular
+voices, add padding to whichever regular voice is leftmost. If you want it
+on the right, the padding will have to go on the following note, or on
+the bar line if you are on the last chord of a measure. The amount of
+padding to add may have to be determined by trial and error; 5 stepsizes
+
+is a good first guess. Next, set a
+<A HREF="tags.html">location tag</A>
+
+<A HREF="noteattr.html#ntag">on one of the notes</A>
+in one of the regular groups.
+The manually-positioned note will be placed relative to
+that location tag. The x will be slightly left or right of the
+west or east of the existing group; something like 3 stepsizes might be
+a good first guess. The y can be specified in terms of
+stepsizes up from the note you used for the location tag. You can use a
+<A HREF="prnttext.html">print statement</A>
+
+using one of the special
+<A HREF="textstr.html#symlist">music characters,</A>
+such as:
+dblwhole, 1n, up2n, dn2n, up4n, up32n, etc. If the note needs ledger lines,
+dots, or accidentals, these too have to be manually positioned,
+
+
+which can be a bit tricky. Here is a simple example:
+<BR><PRE>
+score
+vscheme=3o
+beamstyle=4,4,4,4
+
+music
+1 1: [pad 4] 4g =h; a; b; a;
+1 2: 4.c;8;2;
+1 3: [down] 8e;; [ho 0] 2.f;
+print (h.w - 2.3, h.y + 3) &quot;\(up2n)&quot;
+bar
+</PRE><BR>
+<IMG SRC="mugex95.gif" ALT="Picture of Mup output"><BR>
+In this example, 4 stepsizes of padding
+was added to the quarter note g of voice 1
+on staff 1. A location tag &quot;h&quot; was set to this note. After the information
+about the second voice on staff 1, a half note was manually placed
+2.3 stepsizes left of the first voice and at pitch c+ (3 steps up from the g).
+</P>
+<P>
+If you also need to place an accidental and/or dots, more padding should be
+requested, and additional print statements used for each item. For example,
+you could specify perhaps 5 stepsizes of padding, then add:
+<BR><PRE>
+print (h.w - 5, h.y + 3) &quot;\(flat)&quot;
+</PRE><BR>
+<IMG SRC="mugex96.gif" ALT="Picture of Mup output"><BR>
+to place a flat sign in front of the c.
+</P>
+<P>
+Ledger lines needed by the notes also have to be
+placed manually, using the &quot;line&quot;
+command. If the note is more than three steps above or below the staff, more
+than one ledger line would be needed, and each would need to be specified
+separately. The y coordinate of the each ledger line would be the same
+as the y coordinate of the note,
+plus or minus some number of step sizes. The length of
+the line depends on the note head. About 4.5 stepsizes is a good estimate for
+most notes, but a double whole needs more like 6 stepsizes.
+</P>
+<HR><P>
+&nbsp;&nbsp;&nbsp;<A HREF="mantup.html">&lt;-- previous page</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="index.html">Table of Contents</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="mupindex.html">Index</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="trillacc.html">next page --&gt;</A>
+</P>
+</BODY></HTML>

@@ -1,0 +1,55 @@
+<HTML>
+<HEAD><TITLE>
+Multirests
+</TITLE></HEAD>
+<BODY>
+<P>
+&nbsp;&nbsp;&nbsp;<A HREF="bars.html">&lt;-- previous page</A>
+
+&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="index.html">Table of Contents</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="mupindex.html">Index</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="lyrics.html">next page --&gt;</A>
+</P>
+           
+<H2>
+Multirest
+</H2>
+
+<P>
+Multiple measure rests can be indicated using the &quot;multirest&quot; statement.
+
+
+
+It is followed by the number of measures of rest.
+The number must be greater than 1, and no larger than 1000.
+There must not be any note or lyric information specified for
+
+a multirest measure.
+Examples:
+<BR><PRE>
+multirest 15
+bar
+1: 2c;4;;
+bar
+1: 2.c;4r;
+bar
+multirest 5
+bar
+</PRE><BR>
+<IMG SRC="mugex40.gif" ALT="Picture of Mup output"><BR>
+</P>
+<P>
+See also
+<A HREF="cmdargs.html#coption">the -c command line option,</A>
+and
+<A HREF="param.html#restcomb">the restcombine parameter.</A>
+</P>
+<P>
+Normally, the number of measures of rest is printed, but
+it is possible to turn this off using
+<A HREF="param.html#prmultn">the printmultnum parameter.</A>
+An alternate notation can be specified using
+<A HREF="param.html#restsymm">the restsymmult parameter.</A>
+</P>
+<HR><P>
+&nbsp;&nbsp;&nbsp;<A HREF="bars.html">&lt;-- previous page</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="index.html">Table of Contents</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="mupindex.html">Index</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="lyrics.html">next page --&gt;</A>
+</P>
+</BODY></HTML>

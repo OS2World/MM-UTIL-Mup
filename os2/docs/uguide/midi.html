@@ -1,0 +1,372 @@
+<HTML>
+<HEAD><TITLE>
+Mup MIDI output
+</TITLE></HEAD>
+<BODY>
+<P>
+&nbsp;&nbsp;&nbsp;<A HREF="pstools.html">&lt;-- previous page</A>
+
+&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="index.html">Table of Contents</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="mupindex.html">Index</A>                                                                                   
+<H1>
+MIDI OUTPUT
+</H1>
+<P>
+
+Mup will optionally produce MIDI output
+<A HREF="cmdargs.html#moption">(using the -m command line argument).</A>
+
+Mup is first and foremost a music publication program,
+so its MIDI capabilities have a few limitations.
+However, the MIDI output is quite useful for &quot;proofreading&quot;
+(or perhaps we should say &quot;proof-listening&quot;).
+It is often easier to spot a typo in Mup input by
+listening to it than to look at the output. Mup provides enough MIDI
+control to do virtually all of what MIDI supports, and will be adequate
+for many people. Others however, may find they want a separate MIDI editor
+for really serious MIDI work.
+</P>
+<P>
+The following section assumes a general knowledge of MIDI. If you are not
+familiar with MIDI, there are many books available on the subject
+at most music stores or computer book stores.
+There are also many online resources and tutorials.
+You could start at
+<A HREF="http://www.harmony-central.com/MIDI/Doc/doc.html">http://www.harmony-central.com/MIDI/Doc/doc.html</A>
+or use your favorite search engine.
+</P>
+<P>
+Each
+<A HREF="param.html#vscheme">voice</A>
+
+is put on a separate MIDI track. The first track contains
+
+
+general information such as key and time signature. The next track will be for
+staff 1, voice 1. If staff 1 has a second voice, that will be the next
+
+track, otherwise it will be voice 1 of staff 2, if any, and so forth,
+one track for each voice, top to bottom.
+
+
+</P>
+<P>
+Output is in MIDI file format 1, with a default of 120 quarter notes
+per minute, 192 ticks per quarter note. MIDI channel 1 is used by default for
+all voices. If you want to use different instrument sounds for different
+voices, you will need to specify a different channel for each voice, then
+specify the MIDI &quot;program&quot; for that voice. This is demonstrated in some
+of the examples later in this section.
+
+
+</P>
+<P>
+Mup MIDI output will handle
+<A HREF="bars.html">repeats</A>
+
+and
+<A HREF="bars.html#endings">first and second endings,</A>
+
+but it does not know anything about &quot;D.S. al coda&quot; or anything of that sort. 
+
+It is possible to work around this limitation to some extent using
+<A HREF="macros.html">macros.</A>
+
+For example, a section between a &quot;sign&quot; and a &quot;jump to coda&quot; symbol could
+be put inside a macro definition, then the macro can be called. Then later
+in the piece, where the &quot;D. S.&quot; occurs the macro can be called again if MIDI
+is defined. For example:
+<BR><PRE>
+// an introductory section, ends with a sign
+1: c;d;e;f;
+mussym above all: 5 &quot;sign&quot;;
+bar
+
+// define macro for section between sign and
+// symbol to &quot;jump to coda&quot;
+define SECTION
+1: g;a;g;;
+mussym above all: 5 &quot;coda&quot;;
+bar
+@
+
+// print/play the section just defined by
+// the macro
+SECTION
+
+// now do the music up to the D.S.
+1: e;f;2g;
+ital above 1: 1 &quot;D. S. al Coda&quot;;
+dblbar
+
+// human player would now flip back to
+// the sign, so do the MIDI equivalent:
+// play that section again.
+ifdef MIDI
+	SECTION
+endif
+
+// now do the coda
+1: e;d;2c;
+rom above 1: 0 &quot;Coda&quot;;
+endbar
+</PRE><BR>
+
+</P>
+<P>
+Mup mainly just outputs the note information.
+Mup will recognize
+<A HREF="octave.html">octave marks,</A>
+
+
+and move notes up or down appropriately.
+It recognizes
+<A HREF="pedal.html">piano pedal marks.</A>
+
+It does not attempt to interpret tempo or dynamics marks
+
+
+
+specified by
+<A HREF="textmark.html">"rom," "boldital," etc. or ornaments in</A>
+<A HREF="mussym.html">"mussym" statement.</A>
+
+It does not handle ties to a different voice.
+It does interpret
+<A HREF="bars.html#reh">rehearsal marks</A>
+
+as cue points.
+It handles
+<A HREF="chrdattr.html#chstyle">grace notes,</A>
+
+<A HREF="roll.html">rolls,</A>
+<A HREF="chrdattr.html#slashes">slashes,</A>
+
+and
+<A HREF="ichdattr.html#alt">alternation groups.</A>
+
+You can control how legato the music is by using
+<A HREF="param.html#release">the Mup "release" parameter.</A>
+</P>
+<P>
+Some styles of music are often
+ 
+written in &quot;swing time,&quot; meaning the
+players are expected to play pairs of notes with the first twice
+as long as the second, even though they are written as if they were the
+same duration, or as if the first were three times as long as the second.
+The most common example would be where the written notation shows
+two eighth notes like 8;; or a dotted rhythm like 8.;16;
+but the musician &quot;knows&quot; that the composer really intended it
+to be played as if it were a triplet {4;8;}3;
+The
+<A HREF="param.html#swing">swingunit</A>
+parameter can be used to get Mup MIDI output to automatically follow
+that performance convention.
+</P>
+<P>
+A MIDI editing program will probably be necessary to add some effects.
+However, it is possible to specify certain directives for MIDI.
+They are of the form:
+<BR><PRE>
+<B>midi</B> <I>S V</I><B>:</B> <I>begintime &quot;keyword=value&quot;;</I>
+</PRE><BR>
+
+The <I>S</I> and <I>V</I> specify the staff and voice for which the directive is
+
+to apply. As elsewhere in Mup, an omitted voice will default to voice 1,
+and both staff and voice can be given as a list.
+Certain keywords apply to the entire score. In that case the form
+
+
+<BR><PRE>
+<B>midi all:</B> <I>begintime &quot;keyword=value&quot;;</I>
+</PRE><BR>
+is used instead.
+The items specified using &quot;all&quot; are placed on the first track, the track
+containing score-wide information. They are not applied to the
+voices on the other tracks.
+</P>
+<P>
+The <I>begintime</I>, as elsewhere in Mup,
+gives the beat into the measure where the MIDI output is to be placed.
+
+
+If notes are to be turned on or off at the same instant in time as the
+<I>begintime</I>, first all &quot;note off&quot; commands are generated, then the &quot;midi&quot;
+command events, then &quot;note on&quot; commands.
+</P>
+<P>
+The <I>keyword=value</I> gives specific information of
+what MIDI output to generate. The following keywords are currently supported:
+<TABLE BORDER=4>
+<TR>
+<TD><B>keyword</B></TD>	<TD><B>values</B></TD>	<TD><B>meaning</B></TD>	<TD><B>midi S V</B></TD>	<TD><B>midi all</B></TD>
+</TR>
+<TR>
+<TD>program</TD>	<TD>0-127</TD>	<TD>program change (new instrument)</TD>	<TD>yes</TD>	<TD>no</TD>
+</TR>
+<TR>
+<TD>parameter</TD>	<TD>0-127,0-127</TD>	<TD>parameter</TD>	<TD>yes</TD>	<TD>yes</TD>
+</TR>
+<TR>
+<TD>channel</TD>	<TD>1-16</TD>	<TD>channel</TD>	<TD>yes</TD>	<TD>no</TD>
+</TR>
+<TR>
+<TD>chanpressure</TD>	<TD>0-127</TD>	<TD>channel pressure (after touch)</TD>	<TD>yes</TD>	<TD>yes</TD>
+</TR>
+<TR>
+<TD>tempo</TD>	<TD>10-1000</TD>	<TD>tempo, quarter notes per minute</TD>	<TD>no</TD>	<TD>yes</TD>
+</TR>
+<TR>
+<TD>seqnum</TD>	<TD>0-65535</TD>	<TD>sequence number</TD>	<TD>yes</TD>	<TD>yes</TD>
+</TR>
+<TR>
+<TD>text</TD>	<TD>text</TD>	<TD>text meta event</TD>	<TD>yes</TD>	<TD>yes</TD>
+</TR>
+<TR>
+<TD>copyright</TD>	<TD>text</TD>	<TD>copyright notice</TD>	<TD>yes</TD>	<TD>yes</TD>
+</TR>
+<TR>
+<TD>name</TD>	<TD>text</TD>	<TD>sequence/track name</TD>	<TD>yes</TD>	<TD>yes</TD>
+</TR>
+<TR>
+<TD>instrument</TD>	<TD>text</TD>	<TD>instrument name</TD>	<TD>yes</TD>	<TD>yes</TD>
+</TR>
+<TR>
+<TD>marker</TD>	<TD>text</TD>	<TD>marker meta event</TD>	<TD>yes</TD>	<TD>yes</TD>
+</TR>
+<TR>
+<TD>cue</TD>	<TD>text</TD>	<TD>cue point</TD>	<TD>yes</TD>	<TD>yes</TD>
+</TR>
+<TR>
+<TD>port</TD>	<TD>0-127</TD>	<TD>MIDI port</TD>	<TD>yes</TD>	<TD>yes</TD>
+</TR>
+<TR>
+<TD>onvelocity</TD>	<TD>1-127</TD>	<TD>note on velocity</TD>	<TD>yes</TD>	<TD>no</TD>
+</TR>
+<TR>
+<TD>offvelocity</TD>	<TD>0-127</TD>	<TD>note off velocity</TD>	<TD>yes</TD>	<TD>no</TD>
+</TR>
+<TR>
+<TD>hex</TD>	<TD>hex data</TD>	<TD>arbitrary MIDI data</TD>	<TD>yes</TD>	<TD>yes</TD>
+</TR>
+</TABLE>
+
+</P>
+<P>
+The keywords can be abbreviated to their first three or more letters,
+except &quot;chanpressure&quot; which requires at least five letters to differentiate
+it from &quot;channel&quot; (&quot;cha&quot; or &quot;chan&quot; will be interpreted as channel).
+In most cases, the &quot;=&quot; is followed by either a number or some text. Exceptions
+to this are discussed in the next few paragraphs.
+</P>
+<P>
+The &quot;parameter&quot; keyword is followed by 2 numbers, separated by a comma.
+
+The first is the parameter number, the second is the parameter value.
+Thus to set parameter 7 (which is the volume parameter) to 90 for voice
+2 of staff 3, starting at the beginning of the measure, you can use:
+<BR><PRE>
+midi 3 2: 0 &quot;parameter=7,90&quot;;
+</PRE><BR>
+</P>
+<P>
+The &quot;onvelocity&quot; and &quot;offvelocity&quot; keywords can have one or more values,
+separated by commas. If there is only one value, it applies to all notes
+in each chord. If there is more than one value, the first value applies
+to the top note of the chord, the second value to the second-from-the-top
+note, and so forth. If there are more notes in a chord than there are
+values specified, the last value specified applies to all of the remaining
+notes. So, for example, if you want to emphasize the top note of each
+chord because it is the melody, you can specify two values, as in
+<BR><PRE>
+midi 1: 1 &quot;onvelocity=76, 60&quot;;
+</PRE><BR>
+which would cause the top note to have a velocity of 76 and all other
+notes to have a velocity of 60.
+</P>
+<P>
+The &quot;hex&quot; form can be used to insert any arbitrary MIDI data into
+the MIDI file. The value consists of any even number of hexadecimal digits.
+Spaces and tabs can be included in the value field for readability.
+</P>
+<P>
+Note that Mup uses the MIDI standard,
+which numbers instruments from 0 through 127,
+but some MIDI playback programs follow a convention of numbering them
+from 1 through 128.
+</P>
+<P>
+Here are some examples:
+<BR><PRE>
+midi all: 0 &quot;tempo=72&quot;;
+midi 1-2 1-2: 0 &quot;channel=2&quot;; 0 &quot;program=14&quot;; 3.5 &quot;program=76&quot;;
+midi all: 3 &quot;hex= ff 00 02 00 01&quot;;   // sequence number 1
+midi 3,6: 0 &quot;channel=5&quot;; 0 &quot;prog=15&quot;; 0 &quot;instr=dulcimer&quot;;
+// set parameter 7 (usually volume) to 100
+midi 2: &quot;par = 7, 100&quot;;
+</PRE><BR>
+</P>
+<P>
+Here is a more extensive example of how midi commands might be used
+in a song:
+<BR><PRE>
+score
+	staffs=2
+	vscheme=2o
+
+staff 2
+	clef=bass
+
+voice 2 2
+	// Make the bottom voice more staccato
+	release=50
+
+music
+
+// Set the tempo.
+// Start out at 108 quarter notes per minute,
+// but on count 4, slow down to 96 per minute.
+midi all: 0 &quot;tempo=108&quot;; 4 &quot;tempo=96&quot;;
+
+// Put each voice on a different channel
+// using a different instrument sound.
+// The program numbers correspond to the
+// General MIDI sounds as noted.
+midi 1 1: 0 &quot;channel=1&quot;; 0 &quot;program=68&quot;;  //oboe
+midi 1 2: 0 &quot;channel=2&quot;; 0 &quot;program=11&quot;;  //vibraphone
+midi 2 1: 0 &quot;channel=6&quot;; 0 &quot;program=60&quot;;  //french horn
+midi 2 2: 0 &quot;channel=4&quot;; 0 &quot;program=35&quot;;  //fretless bass
+
+// Make the top voice louder, and put an
+// accent on the third beat
+midi 1 1: 0 &quot;onvelocity=86&quot;; 3 &quot;onvelocity=100&quot;; 4 &quot;onvel=86&quot;;
+
+// Set maximum reverb on french horn part,
+// starting at the second beat.
+// (Reverb is parameter 91)
+midi 2 1: 2 &quot;parameter=91, 127&quot;;
+
+// Set chorus on oboe to 75, from the beginning.
+// (Chorus is parameter 93)
+midi 1 1: 0 &quot;param=93, 75&quot;;
+
+// Pan the bass part to middle of left side.
+// (Pan is parameter 10, with a value of 0 being hard left,
+// 64 in the center, and 127 being hard right, so 32 is
+// half way to the left.)
+midi 2 2: 0 &quot;parameter=10, 32&quot;;
+
+// Now the music to be played...
+1 1: e;d;2c;
+1 2: c;b-;2g-;
+2 1: g;f;2e;
+2 2: c;g-;2c;
+bar
+</PRE><BR>
+</P>
+<HR>
+<P>
+&nbsp;&nbsp;&nbsp;<A HREF="pstools.html">&lt;-- previous page</A>
+&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="index.html">Table of Contents</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="mupindex.html">Index</A></P>
+</BODY></HTML>

@@ -1,0 +1,8 @@
+Most people will have no need for the files in this directory.
+It contains the bison and flex code that is used to generate C code
+for the Mup parser. The generated code is provided in the directory
+above, so that you can build Mup with just an ordinary C compiler,
+without needing the bison and flex tools.
+However, if you are familiar with bison and flex
+and want to do something special with the parsing code,
+the input files are provided here.

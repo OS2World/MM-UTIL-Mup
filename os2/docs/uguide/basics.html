@@ -1,0 +1,360 @@
+<HTML>
+<HEAD><TITLE>
+Mup Basics
+</TITLE></HEAD>
+<BODY>
+<P>
+&nbsp;&nbsp;&nbsp;<A HREF="intro.html">&lt;-- previous page</A>
+
+&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="index.html">Table of Contents</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="mupindex.html">Index</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="running.html">next page --&gt;</A>
+</P>
+          
+<H1>
+MUP BASICS
+</H1>
+<P>
+This section introduces the Mup language, giving some simple examples to
+give you the flavor of a Mup input file.
+Subsequent sections will go into greater detail.
+</P>
+<H2>
+Notes and chords
+</H2>
+
+<P>
+Music is described one measure at a time. Each note is specified by its pitch
+
+
+
+value, &quot;a&quot; to &quot;g.&quot; As an example, the first measure of &quot;Three Blind
+Mice&quot; can be described like this:
+<BR><PRE>
+1:    4e; 4d; 2c;
+</PRE><BR>
+<IMG SRC="mugex2.gif" ALT="Picture of Mup output"><BR>
+The &quot;1:&quot; at the beginning of the line tells Mup that we are describing
+the notes on staff number 1. In this very simple example, we only have one
+staff, but later we'll do songs with more than one.
+Each staff of each measure is normally put on a separate line.
+</P>
+<P>
+The first three notes of &quot;Three Blind Mice&quot; are E, D, and C. For Mup
+input, these pitches are given in lower case to avoid having to use the shift
+key. No octave information was specified in this simple example, so Mup
+
+would use its default, which in this case would be the octave beginning
+with middle C.
+</P>
+<P>
+The first two notes are quarter notes, and the last note is a half
+note. Time values of notes are given as shown in the example. A quarter
+note is marked by a 4, a half note by 2, a sixteenth note by a 16, etc.
+</P>
+<P>
+A semicolon is used to separate chords. In this simple example, each chord
+
+has only a single note in it, but it is possible to have lots of notes in one
+<A HREF="chordinp.html">chord.</A>
+</P>
+<P>
+At the end of each measure, we have to tell Mup what kind of
+<A HREF="bars.html">bar line</A>
+
+to draw. The standard bar line is just called &quot;bar.&quot; So a complete
+description of the first measure would be:
+<BR><PRE>
+1:    4e; 4d; 2c;
+bar
+</PRE><BR>
+</P>
+<P>
+To save typing, Mup allows a lot of shortcuts. One such shortcut is that
+it assumes that unless you tell it otherwise, each note in the measure is
+like the note before. You can leave out the second 4, because if you
+don't specify a time value, Mup will assume the note is the same length
+
+as the previous note.
+</P>
+<P>
+The same sort of idea works with pitches. The third measure of &quot;Three Blind
+Mice&quot; could be stated like this:
+<BR><PRE>
+1: 4g;8f;;2e;
+bar
+</PRE><BR>
+<IMG SRC="mugex3.gif" ALT="Picture of Mup output"><BR>
+The third note has no information given at all in this example--there is
+only a semicolon. In this case, Mup will get both pitch and time value from
+the previous note, so the actual third note in this measure would be an
+eighth note with pitch F.
+</P>
+<P>
+You may have noticed that this example doesn't have spaces between chords.
+
+There are only a few places where the Mup language requires you to put spaces.
+However, you can always put some in other places to make things easier to read.
+</P>
+<H2>
+Parameters
+</H2>
+<P>
+
+Printed music contains a lot more than just notes and bar lines. Among other
+things, each staff normally begins with a clef, key signature, and time
+
+
+
+signature. Mup provides default values for these, which you can then
+override if you want something different. In the examples so far, we didn't
+override anything, so Mup would assume its default values, which are
+treble clef, a key signature with no sharps or flats, and a time signature
+
+of 4/4.
+</P>
+<P>
+There is a long
+<A HREF="param.html">list of "parameters" that can be set.</A>
+Things like clef
+and key signature are among them. Parameters can be changed with a line of the
+form:
+<BR><PRE>
+<I>parameter_name</I>=<I>value</I>
+</PRE><BR>
+For example, suppose we have a song written in 6/8 time in the key of D major.
+We can convey this information to Mup like this:
+<BR><PRE>
+score
+  time=6/8
+  key=2#
+
+music
+  1: 4d;8e;4f;8d;
+  bar
+</PRE><BR>
+<IMG SRC="mugex4.gif" ALT="Picture of Mup output"><BR>
+</P>
+<P>
+Note that in this example, the key was specified as two sharps.
+You can also specify the key by name:
+<BR><PRE>
+  key = d major
+</PRE><BR>
+</P>
+<P>
+These parameters give a very different sort of information than the notes of
+a measure, so they go in a separate section of the input file.
+Each section of the file describes information for a specific
+<A HREF="contexts.html">"context."</A>
+
+Information about musical notes is given in &quot;music&quot; context,
+
+while things that apply in general to the whole
+score are given in &quot;score&quot; context.
+
+Once you start a measure in music context, you have to complete that measure
+before switching to another context, but otherwise you can pretty much
+change from one context to another as necessary.
+Each new context section is headed by its name (e.g.,
+&quot;music&quot; or &quot;score&quot;).
+At the beginning of input, music context is assumed.
+</P>
+<P>
+Here is a more complicated example:
+<BR><PRE>
+score
+	staffs=2
+	key=3&amp;
+	time=2/4
+
+music
+1: ceg;;
+2: 2c;
+bar
+</PRE><BR>
+<IMG SRC="mugex5.gif" ALT="Picture of Mup output"><BR>
+This example starts by setting some parameters. First it states that this
+piece of music should be printed with two staffs, instead of the default of
+only one. Then it gives a key signature. Since there is no &quot;flat&quot; symbol
+on a standard computer keyboard, Mup uses the &quot;&amp;&quot; symbol for flat.
+
+The time signature is then set to 2/4.
+</P>
+<P>
+Next we find the keyword &quot;music,&quot; which indicates the end of parameters
+and the beginning of the music. Data is given for both staff 1 and staff 2.
+Staff 1 has two chords in the measure. The first is a C minor triad (it's
+minor since the key is three flats). No time value is specified for this
+chord. Since it is the very first chord of the piece, Mup cannot use the
+previous chord's time value, because there is no previous chord. 
+In this case, Mup falls back to using the denominator (bottom number)
+
+of the time signature,
+so the chord is a quarter note. Incidentally, if Mup has to back up to
+previous notes to deduce pitch and/or time values, it only goes back as far
+as the beginning of the current measure. That means the default time value
+for the first chord of every measure in this piece would be quarter note.
+The second chord on staff 1 is the same as the first, since only a semicolon
+is specified. 
+</P>
+<P>
+Staff 2 has only a single chord, consisting of a half note with pitch C.
+Mup checks to make sure the time values on each staff add up to the time
+signature--no more or less. It is an error to specify too much time.
+For too little time, Mup will print
+a warning message (unless warnings are turned off via the
+<A HREF="param.html#warn">warn parameter).</A>
+
+If you have something like a &quot;pickup&quot; measure, which doesn't add up to the
+
+time signature, you can specify &quot;space&quot; rather than a chord,
+
+to account for the rest of the time.
+</P>
+<P>
+Some parameters can be set on a per-staff basis as well as for the entire
+score. Mup also allows for
+<A HREF="param.html#vscheme">up to three independent voices on each staff,</A>
+
+
+and each voice can have parameters
+set that apply to only that voice. To get the
+value of a parameter, Mup always starts at the most specific place it could
+be defined and works toward the most general. In other words, it will first
+see if the parameter is set for the current voice. If not, it will see if
+it is set for the current staff. If not, it will use the value set for the
+entire score. Staff parameters are set in &quot;staff&quot; context, and voice parameters
+are set in &quot;voice&quot; context.
+As an example:
+<BR><PRE>
+score
+	staffs=3
+	key=1&amp;
+staff 2
+	key=2&amp;
+	clef=bass
+music
+1: 2f;a;
+2: 2c;f;
+3: 1f;
+bar
+</PRE><BR>
+<IMG SRC="mugex6.gif" ALT="Picture of Mup output"><BR>
+Staff 2 will have two flats, whereas the other staffs will have one flat.
+Staff 2 will use the bass clef, whereas the other staffs will use treble
+clef (since that is the default when none is specified).
+<A HREF="param.html">The complete list of Mup parameters</A>
+includes
+information about whether they can be set for an individual staff
+or voice, or just for the score as a whole.
+
+</P>
+<H2>
+Page headers and footers
+</H2>
+<P>
+Mup allows you to specify a
+<A HREF="headfoot.html">header and/or footer</A>
+
+
+to put on the first page,
+as well as a header and/or footer to use on subsequent pages. These can
+include a page number that will be incremented automatically as pages are
+printed. The headers and footers can be customized as you like, with
+
+
+
+
+different fonts and sizes of text and items centered or left or right
+justified. There is also a shortcut
+<A HREF="prnttext.html">"title" command</A>
+
+that can be used to create a canned format title. For example:
+<BR><PRE>
+title &quot;Three Blind Mice&quot;
+</PRE><BR>
+will create a centered title. You can also get left and right justified titles.
+</P>
+<H2>
+Lyrics
+</H2>
+<P>
+You can specify
+<A HREF="lyrics.html">lyrics</A>
+
+
+for as many verses as you like. They are specified
+somewhat like notes. As an example:
+<BR><PRE>
+1: 4e;d;2c;
+lyrics 1: 4;;2; &quot;Three blind mice,&quot;;
+bar
+</PRE><BR>
+<IMG SRC="mugex7.gif" ALT="Picture of Mup output"><BR>
+This example describes the lyrics to go with staff 1. There are three lyric
+syllables, having time values of quarter note, quarter note, and half note.
+
+The actual syllables are given inside the double quotes.
+Incidentally, since in this example the time values for the lyrics
+are the same as those of the notes, the time values don't actually need to
+be specified; if no lyrics time values are given, Mup assumes they
+match the note time values.
+</P>
+<H2>
+Miscellaneous
+</H2>
+<P>
+Mup provides a way to
+<A HREF="textmark.html">print arbitrary text</A>
+(like &quot;allegro&quot;) and
+<A HREF="mussym.html">musical symbols</A>
+(like a fermata). It can also print
+<A HREF="phrase.html">phrase marks,</A>
+
+<A HREF="pedal.html">piano pedal marks,</A>
+
+etc. The placement of these items is specified in terms
+of &quot;counts&quot; into the measure. For example:
+<BR><PRE>
+boldital below 1: 3 &quot;mf&quot;;
+</PRE><BR>
+<IMG SRC="mugex8.gif" ALT="Picture of Mup output"><BR>
+
+tells Mup to print &quot;mf&quot; in bold-italics below staff 1, at count 3 of the
+measure.
+You can also print
+<A HREF="chrdattr.html#withlist">marks associated with specific chords.</A>
+All of these facilities are described in detail in following sections.
+</P>
+<H2>
+Displaying, printing, and playing music
+</H2>
+<P>
+
+Once you have an input file, you can run Mup on it to get the printed
+version of the music. Entering:
+<BR><PRE>
+mup <I>myfile</I>
+</PRE><BR>
+from a command line prompt or selecting Run &gt; Display from Mupmate
+will cause Mup to read <I>myfile</I>, which should contain text in the Mup
+input language. If there are no errors in <I>myfile</I>, PostScript output
+
+
+will be produced, which can be displayed on the screen or printed via
+Mupmate or other programs. Mup can also produce
+<A HREF="midi.html">MIDI output,</A>
+which can then be played on your speakers.
+</P>
+<P>
+
+If you are using Ghostscript, but without Mupmate,
+two utility programs are included with Mup
+for
+<A HREF="utilpgms.html">displaying and printing music</A>
+using Ghostscript.
+These are described in more detail in the next section.
+</P>
+<HR><P>
+&nbsp;&nbsp;&nbsp;<A HREF="intro.html">&lt;-- previous page</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="index.html">Table of Contents</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="mupindex.html">Index</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="running.html">next page --&gt;</A>
+</P>
+</BODY></HTML>

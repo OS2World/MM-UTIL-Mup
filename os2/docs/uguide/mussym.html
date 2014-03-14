@@ -1,0 +1,55 @@
+<HTML>
+<HEAD><TITLE>
+Music symbols
+</TITLE></HEAD>
+<BODY>
+<P>
+&nbsp;&nbsp;&nbsp;<A HREF="textmark.html">&lt;-- previous page</A>
+
+&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="index.html">Table of Contents</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="mupindex.html">Index</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="phrase.html">next page --&gt;</A>
+</P>
+           
+<H2>
+Mussym
+</H2>
+
+<P>
+While it is possible to place musical symbols
+such as fermatas and coda signs using
+<A HREF="textmark.html">text statements,</A>
+it is perhaps a bit confusing, since music
+symbols are really not part of any particular font. So there is a &quot;mussym&quot;
+statement which can be used. The text strings after the colon must each
+consist of a single musical symbol whose name can be given without the
+usual \() wrapper. The following two lines produce identical results,
+but the second is perhaps a bit clearer:
+<BR><PRE>
+rom above 1: 1 &quot;\(ferm)&quot;;
+mussym above 1: 1 &quot;ferm&quot;;
+</PRE><BR>
+</P>
+<P>
+A duration is not allowed on mussym statements
+
+except in one special case--if the
+
+symbol is &quot;tr&quot; (trill). In that case, the duration tells Mup how long a
+wavy line to draw from the end of the &quot;tr&quot; symbol.
+<BR><PRE>
+1: 2e;g;
+mussym above 1: 1 &quot;tr&quot; til 2; 3 &quot;ferm&quot;;
+endbar
+</PRE><BR>
+<IMG SRC="mugex73.gif" ALT="Picture of Mup output"><BR>
+</P>
+<P>
+
+A size can optionally be specified, inside parentheses:
+<BR><PRE>
+mussym (15) above 2: &quot;turn&quot;;
+</PRE><BR>
+</P>
+<HR><P>
+&nbsp;&nbsp;&nbsp;<A HREF="textmark.html">&lt;-- previous page</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="index.html">Table of Contents</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="mupindex.html">Index</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="phrase.html">next page --&gt;</A>
+</P>
+</BODY></HTML>

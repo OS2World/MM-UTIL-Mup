@@ -1,0 +1,439 @@
+<HTML>
+<HEAD><TITLE>
+Chord attributes
+</TITLE></HEAD>
+<BODY>
+<P>
+&nbsp;&nbsp;&nbsp;<A HREF="noteattr.html">&lt;-- previous page</A>
+
+&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="index.html">Table of Contents</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="mupindex.html">Index</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="midmeas.html">next page --&gt;</A>
+</P>
+          
+<H3>
+Chord attributes
+</H3>
+
+<P>
+<A NAME="attrib">There are optional attributes that are associated with an entire chord</A>
+rather than an individual note. These are put inside square brackets
+
+before the list of notes and the time value.
+There are several classes of information:
+<UL>
+<LI>
+<A HREF="chrdattr.html#chstyle">chord style (grace, cue, diam, or xnote)</A>
+<LI>
+<A HREF="chrdattr.html#shaped">head shape</A>
+<LI>
+<A HREF="chrdattr.html#withlist">symbols to be printed with a chord</A>
+<LI>
+<A HREF="chrdattr.html#slashes">slashes</A>
+<LI>
+<A HREF="chrdattr.html#stemdir">stem direction</A>
+<LI>
+<A HREF="chrdattr.html#stemlen">stem length</A>
+<LI>
+<A HREF="chrdattr.html#pad">padding</A>
+<LI>
+<A HREF="chrdattr.html#ctag">chord location tag</A>
+<LI>
+<A HREF="chrdattr.html#hoffset">horizontal offset</A>
+<LI>
+<A HREF="chrdattr.html#dist">rest distance</A>
+</UL>
+</P>
+<P>
+Each class of information is
+separated from the other by a semicolon. All classes are optional, and can
+
+occur in any order.
+</P>
+<H4>
+Chord style
+</H4>
+<P>
+<A NAME="chstyle">Several chord styles can be specified.</A>
+<A NAME="cue">Grace note chords are designated by the word "grace," or cue note chords by "cue."</A>
+
+
+Grace notes can be specified as any undotted time value of eighth note or
+
+
+shorter, but are treated as taking no time. The time value given is merely used
+
+to specify how many flags or beams to put on the grace note.
+You can also specify a quarter note grace note, which will be printed as a
+small, stemless note, as is used to show
+<A HREF="tabstaff.html#prebend">a "prebend" in guitar music.</A>
+(Actually, you can force a stem if you want, by specifying a
+<A HREF="chrdattr.html#stemlen">len, as is described later.)</A>
+Cue notes have time like regular notes, but they are printed smaller.
+
+If there are several grace notes in a row, they will be beamed automatically.
+However, you cannot mix quarter (stemless) grace notes with shorter ones.
+Cue notes follow the same beaming rules as regular notes.
+
+</P>
+<P>
+It is also possible to specify &quot;diam,&quot; or &quot;xnote.&quot;
+
+
+In the case of &quot;diam,&quot; the chords will be drawn with diamond-shaped notes,
+while with &quot;xnote,&quot; the chords will be
+drawn with X-shaped notes. A diamond shaped
+note head will be used for xnotes that are half note or longer.
+Here are some examples:
+<BR><PRE>
+[grace]
+<BR>
+[xnote]
+<BR>
+[cue; xnote]
+<BR>
+[diam]
+</PRE><BR>
+</P>
+<H4>
+Head shape
+</H4>
+<P>
+If you want to have the
+<A NAME="shaped">note heads in a chord</A>
+
+use a shape other than the
+normal shapes, you use hs followed by the name of the head shape in quotes.
+There is an entire
+<A HREF="shaped.html">section on shaped notes,</A>
+so only the basics are covered here. The xnote and diam
+<A HREF="chrdattr.html#chstyle">described above</A>
+are really just shorthands for two common head shapes.
+The method using hs lets you use many other note head styles,
+
+such as a slash, or triangle. 
+<BR><PRE>
+1: [hs &quot;righttri&quot;]cf; [hs &quot;slash&quot;]fa;
+</PRE><BR>
+</P>
+<P>
+The
+<A HREF="shaped.html">section on shaped notes</A>
+lists all the builtin head shape names,
+and explains how you can define your own.
+</P>
+<H4>
+Symbols to be printed with a chord
+</H4>
+<P>
+<A NAME="withlist">It is possible to specify one or more musical symbols or text strings to be printed with a chord.</A>
+
+This is typically used for
+things like staccato and accent marks. The word &quot;with&quot; 
+
+
+
+is followed by one or more things to print. If there are more than one, they
+are separated by commas. They will be printed outwards from the notes in
+the order specified.
+</P>
+<P>
+The &quot;with&quot; list is not allowed on space groups.
+On rests, the side on which the items are printed is determined as if
+the rests had a stem, so if they are not placed on the side
+you want, in some cases
+<A HREF="chrdattr.html#stemdir">forcing the "stem" direction</A>
+will produce what you want.
+</P>
+<P>
+
+The list can include symbols from the following table:
+<TABLE BORDER=4>
+<TR>
+<TD><B>Symbol</B></TD>	<TD><B>Meaning</B></TD>
+</TR>
+<TR>
+<TD><TT>.</TT></TD>	<TD>staccato</TD>
+</TR>
+<TR>
+<TD><TT>-</TT></TD>	<TD>legato</TD>
+</TR>
+<TR>
+<TD><TT>&gt;</TT></TD>	<TD>accent</TD>
+</TR>
+<TR>
+<TD><TT>^</TT></TD>	<TD>accent</TD>
+</TR>
+</TABLE>
+
+</P>
+<P>
+<A HREF="textstr.html">A quoted string</A>
+
+can also be specified (e.g., &quot;ff&quot;, &quot;adagio&quot;, etc.).
+This will be printed in the font and size specified by the
+The
+<A HREF="param.html#withfam">"withfontfamily,"</A>
+<A HREF="param.html#withfont">"withfont,"</A>
+and
+<A HREF="param.html#withsize">"withsize"</A>
+parameters. Any of the
+<A HREF="textstr.html#symlist">special music characters can be printed by using the usual convention,</A>
+e.g., \(ferm) for a fermata.
+(This is described in a
+<A HREF="textstr.html">later section.)</A>
+However, it is usually preferable to use the printing of
+<A HREF="textmark.html">text strings relative to beats.</A>
+
+
+</P>
+<P>
+Here are some examples:
+<BR><PRE>
+[with ., -]
+[with ^, &quot;\(ferm)&quot;]
+[with &quot;sfz&quot;; cue]
+</PRE><BR>
+</P>
+<P>
+If the symbols acc_hat, ferm, or wedge are used by themselves in a &quot;with&quot;
+list item, they are handled specially. If the stem direction is such that
+
+
+the upside down versions of these characters should be used, the upside down
+version will be used.
+</P>
+<H4>
+Slashes
+</H4>
+<P>
+<A NAME="slashes">Diagonal lines to be drawn through the stem of the group</A>
+
+can be specified using
+<BR><PRE>
+slash <I>N</I>
+</PRE><BR>
+where <I>N</I> is the number of slashes to draw. In the case of
+<A HREF="chrdattr.html#chstyle">grace notes,</A>
+
+<I>N</I> can only be 1, which will produce a grace note with a slash through it.
+In the case of other notes, <I>N</I> can be 1 or greater, and is used to
+specify tremolo or repetition of the note group. Examples:
+<BR><PRE>
+[slash 2]
+[grace; slash 1]
+</PRE><BR>
+</P>
+<H4>
+Stem direction
+</H4>
+<P>
+
+
+The chord stem direction can be specified as &quot;up&quot; or &quot;down&quot;.
+<A NAME="stemdir">Normally Mup chooses the stem direction, but once in a while you</A>
+may want to override its choice. There are some restrictions.
+All chords beamed together and the pair of chords in an
+<A HREF="ichdattr.html#alt">alternation pair</A>
+(described later)
+must have the same stem direction.
+Examples:
+<BR><PRE>
+[up]
+[down]
+</PRE><BR>
+</P>
+<P>
+For voice 3, stem direction works a little differently. By default, the
+stem direction for voice 3 is up,
+but for voice 3 on any given staff, when you specify a stem
+direction, that direction will remain in effect until explicitly changed.
+Thus, for example, if you want all voice 3 stems on a given staff
+in an entire song to
+be down, you only need to specify &quot;[down]&quot; on the first chord.
+Grace notes on voice 3, however, are always stem up unless explictly forced
+down.
+</P>
+<H4>
+Stem len
+</H4>
+<P>
+<A NAME="stemlen">Normally, Mup sets stem lengths as appropriate, but sometimes you might</A>
+want to make a stem longer or shorter than normal. This is done with
+
+the keyword &quot;len&quot; followed by a length in stepsizes.
+Some examples:
+<BR><PRE>
+[ len 14 ]
+[ len 7; up ]
+</PRE><BR>
+</P>
+<P>
+You cannot specify stem length on chords inside of beams.
+The len can be set to 0 to produce a note head with no stem at all.
+</P>
+<P>
+There is a
+<A HREF="param.html#stemlen">stemlen parameter</A>
+that can be used to set the default stem length.
+If you don't want any stems, setting that parameter to 0 is more
+convenient than setting len to 0 on each chord individually.
+</P>
+<P>
+There are certain circumstances in which Mup will normally shorten stems
+slightly on beamed chords or on chords whose stems protrude from the staff.
+There is a
+<A HREF="param.html#sshorten">stemshorten parameter</A>
+that allows you to control how Mup handles those cases.
+</P>
+<H4>
+Padding
+</H4>
+<P>
+Sometimes it may be desirable to space notes somewhat differently than
+
+Mup would normally place them.
+<A NAME="pad">It is possible to specify "padding" before any note group.</A>
+
+This is done by specifying the word &quot;pad&quot; followed
+by a number of stepsizes of white space padding to add before the chord.
+
+The number can be fractional, as in 0.5 or 2.25.
+For example:
+<BR><PRE>
+[ pad 2.5 ]
+</PRE><BR>
+</P>
+<P>
+The padding can also be negative. Padding affects the minimum amount of
+width allocated to a chord, so you can use positive padding values to
+force additional room in front of a chord, or negative padding to allow
+things closer together.
+</P>
+<H4>
+Chord location tag
+</H4>
+<P>
+<A NAME="ctag">It is possible to set a location tag</A>
+
+which is
+associated with an entire chord
+rather than an individual note. This
+<A HREF="tags.html">tag</A>
+is specified like
+<A HREF="noteattr.html#ntag">location tags for notes,</A>
+with an &quot;=&quot; followed by a name, but is inside
+the square brackets rather than after a note.
+<BR><PRE>
+3: 2cf; [=h] egc+;
+1: [cue; with &gt;; =_ch] fa;
+</PRE><BR>
+</P>
+<H4>
+Horizontal offset
+</H4>
+<P>
+<A NAME="hoffset">A horizontal offset can be applied to a chord by specifying "ho" followed</A>
+by a number of stepsizes. The number can be positive or negative,
+and can include a fractional part. A positive number will cause the chord to
+be placed that far right of where the horizontal center of the chord
+would normally be; a negative number will place it that far to the left.
+It is also possible to simply specify a &quot;+&quot; or &quot;-&quot; which says to place the
+chord to the right or left,
+as close as possible without running into something.
+</P>
+<P>
+A horizontal offset is most commonly used on the third voice of a staff,
+although it can be used on other voices too.
+By default, Mup places third
+voice chords as close as it thinks is safe for avoiding
+most collisions. Sometimes it may actually be okay visually
+to place the chord a little closer than that,
+or perhaps there is a better &quot;nook&quot; to tuck it into on the left side.
+By specifying a horizontal offset, you can place chords anywhere you want.
+Mup makes no checks to avoid collisions when you specify a horizontal
+offset, so this attribute needs to be used with some care.
+</P>
+<P>
+Here is an example of the use of horizontal offset and stem direction
+on voice 3.
+<BR><PRE>
+score
+  vscheme=3f
+
+music
+1 1: c+;b;a;c+;
+1 2: e;d;e;f;
+1 3: [ho+1] g; [ho-5.2; down]; [ho-] f; [ho+; up] a;
+bar
+</PRE><BR>
+<IMG SRC="mugex16.gif" ALT="Picture of Mup output"><BR>
+</P>
+<H4>
+Rest distance
+</H4>
+<P>
+<A NAME="dist">Usually Mup's placement of rests is satisfactory, but once in a while</A>
+you might want to force a rest to be placed a little higher or lower
+than Mup would place it. You can specify a &quot;dist&quot; which is the number
+of stepsizes from the center of the staff to place the rest symbol,
+with positive numbers being above the center and negative numbers below.
+If the staff is
+<A HREF="param.html#xpose">transposed,</A>
+the placement of the rest symbol will be adjusted accordingly.
+<BR><PRE>
+// The first and last rests are in normal position.
+// The second is forced higher, the third is forced lower.
+1: r; [dist 6]; [dist -4]; r;
+bar
+</PRE><BR>
+<IMG SRC="mugex17.gif" ALT="Picture of Mup output"><BR>
+</P>
+<H4>
+Repeated attributes
+</H4>
+<P>
+<A NAME="rptattr">If two or more chords in a row have the same bracketed attributes,</A>
+
+there are two shorthand notations. Specifying an empty set of brackets &quot;[]&quot;
+means to use the same attributes as were specified on the previous chord.
+The previous chord must be within the same measure.
+
+Some examples:
+<BR><PRE>
+1: [cue] 4c;[]d;[grace; slash 1] 8f;2e;
+bar
+
+1: d; [with .,-]d; []e; []f;
+bar
+</PRE><BR>
+<IMG SRC="mugex18.gif" ALT="Picture of Mup output"><BR>
+</P>
+<P>
+The other shorthand is to put 3 dots after a set of bracketed items.
+This means to repeat the same bracketed items on all chords for the
+rest of the measure, or until a new set of bracketed items is specified.
+Items in a &quot;with&quot; list are omitted on rests, since usually they are things
+that don't make sense for rests.
+If you wish to cancel this before the end of a measure but without
+specifying a new set, the special set &quot;[-]&quot; can be used.
+<BR><PRE>
+// put staccato marks on all notes
+1: [with .]... c; d; e; g;
+bar
+// put several cue size notes in the middle of a measure
+1: c; [cue]... 8d; f; e; g; [-] 4c+;
+bar
+</PRE><BR>
+<IMG SRC="mugex19.gif" ALT="Picture of Mup output"><BR>
+</P>
+<P>
+You can use more than one set of backets on a single chord.
+For example &quot;[len 5][down]&quot; and &quot;[len 5;down]&quot; are equivalent.
+However, [-] can only be used by itself, and if you want to use [] along
+with another backeted set of items (to duplicate the items on the previous
+chord plus add some more), the empty [] needs to be first, before the
+other set of items.
+</P>
+<HR><P>
+&nbsp;&nbsp;&nbsp;<A HREF="noteattr.html">&lt;-- previous page</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="index.html">Table of Contents</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="mupindex.html">Index</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="midmeas.html">next page --&gt;</A>
+</P>
+</BODY></HTML>

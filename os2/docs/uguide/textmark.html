@@ -1,0 +1,258 @@
+<HTML>
+<HEAD><TITLE>
+Mup Text Marks
+</TITLE></HEAD>
+<BODY>
+<P>
+&nbsp;&nbsp;&nbsp;<A HREF="stuff.html">&lt;-- previous page</A>
+
+&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="index.html">Table of Contents</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="mupindex.html">Index</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="mussym.html">next page --&gt;</A>
+</P>
+           
+<H2>
+Text
+</H2>
+<P>
+The four forms of Mup text statements
+(rom, bold, ital, and boldital) operate identically except for the font
+
+
+
+
+
+which is used.
+</P>
+<P>
+The text statements can have several additional qualifiers. The first is a
+
+fontfamily, given before the font. It can have any of the values of
+<A HREF="param.html#fontfam">the "fontfamily" parameter</A>
+(avantgarde, bookman, courier, helvetica,
+newcentury, palatino, or times), with the default being the value of
+the &quot;fontfamily&quot; parameter.
+</P>
+<P>
+The next optional qualifier is a
+
+point size, given in parentheses after the font type of rom, bold, etc.
+If this is omitted, the size is obtained from
+<A HREF="param.html#size">the "size" parameter</A>
+for the given staff, or for the score if the staff is specified by &quot;all.&quot;
+
+
+</P>
+<H3>
+Chord, analysis, figured bass, and dynamics
+</H3>
+<P>
+<A NAME="chordmod">The final optional qualifier specifies special treatment of the text.</A>
+
+
+The qualifier can be &quot;chord&quot;, &quot;analysis&quot;, &quot;figbass&quot;, or &quot;dyn&quot;.
+
+The &quot;chord&quot; modifier is typically used for marking chords that might be
+played by a guitar or other instrument. The &quot;analysis&quot; modifier is
+typically used when marking harmonic analysis like &quot;IV&quot; or &quot;vii&quot;.
+The &quot;figbass&quot; modifier is for figured bass notation.
+For all three, distance from the staff is affected by
+<A HREF="param.html#chdist">the "chorddist" parameter.</A>
+
+The &quot;dyn&quot; modifier is to mark the text as something that specifies
+dynamics. Mup only uses it when deciding where to place the text;
+something marked &quot;dyn&quot; will be treated like crescendo
+and decrescendo &quot;hairpins.&quot;
+The default <I>place</I> for chord and dyn is above, whereas the default
+for the others is below.
+</P>
+<P>
+The text strings used with these chord, analysis, or figbass modifiers can
+contain any characters, but
+characters that indicate accidentals (&quot;#&quot;, &quot;&amp;&quot;, &quot;x&quot;, &quot;&amp;&amp;&quot;, and &quot;n&quot;)
+
+are translated to the appropriate music character, while &quot;o&quot;, &quot;o/&quot;,
+
+and &quot;^&quot; are translated to &quot;\(dim)&quot;, &quot;\(halfdim)&quot;, and &quot;\(triangle)&quot;
+respectively. However, with &quot;chord,&quot; the
+translation of &quot;n&quot; to natural sign is not done, so you have to
+use \(nat) if you want a natural sign. This is because a literal letter n
+tends to occur more often in chords than natural signs.
+</P>
+<P>
+If you want to turn off the translation, to treat one of these characters
+literally, you can precede it with two backslashes.
+Thus, for example, &quot;\\&amp;&quot; would yield a literal ampersand rather than
+a flat symbol.
+</P>
+<P>
+If the
+<A HREF="param.html#xpose">transpose</A>
+or
+<A HREF="param.html#addxpose">addtranspose</A>
+parameters are set, chords are transposed to match the new key:
+
+the letters &quot;A&quot; through &quot;G&quot;
+and any following accidentals will be transposed appropriately.
+The accidental can be either something like &quot;#&quot; or &quot;&amp;&quot; or any of the special
+<A HREF="textstr.html#symlist">music characters</A>
+for accidentals (\(sharp), \(flat), etc.).
+If the staff is specified as &quot;all,&quot; the score transposition value is used.
+Transposition has no effect on analysis or figbass.
+</P>
+<P>
+In figbass, the string starts out in piled mode, which means that
+
+each space in the input string will cause a new line on output, and,
+
+unless you specify other alignment, each line will be aligned on
+the last digit in the line. Also, the meanings of
+/ and \/ are reversed from the normal meaning. This is done since
+
+drawing a slash through a number is very common in
+figured bass, so you can just use a / to indicate this,
+but if you really want a real slash,
+you can still get one by entering \/.
+</P>
+<P>
+With all three special qualifiers, the usual meanings
+of : and \: are reversed. This is
+because piling is very common in these strings, so it's handier to just
+put a : to indicate this, and for those rare cases when you want a
+literal colon, you can still get one by entering a \:.
+</P>
+<P>
+Here is an example showing chord, analysis, and figbass:
+<BR><PRE>
+1: egc+;dgb;dfa;dgb;
+bold chord above 1: 1 &quot;C&quot;; 2 &quot;G&quot;; 3 &quot;Dm&quot;; 4 &quot;G&quot;;
+rom analysis below 1: 1 &quot;I&quot;; 2 &quot;V&quot;; 3 &quot;ii&quot;; 4 &quot;V&quot;;
+bar
+
+1: egc+;dgb;df#a;dgb;
+rom figbass below 1: 1 &quot;6 3&quot;; 2 &quot;6 4&quot;; 3 &quot;3/&quot;; 4 &quot;6 4&quot;;
+bar
+
+1: 1cegb;
+rom chord above 1: 1 &quot;C^7&quot;;
+bar
+1: 1ce&amp;g&amp;b&amp;;
+rom chord above 1: 1 &quot;Co/&quot;;
+bar
+1: 1ce&amp;g&amp;b&amp;&amp;;
+rom chord above 1: 1 &quot;Co:7&quot;;
+bar
+1: 1e&amp;g&amp;b&amp;;
+rom chord above 1: 1 &quot;E&amp;m&quot;;
+bar
+</PRE><BR>
+<IMG SRC="mugex70.gif" ALT="Picture of Mup output"><BR>
+</P>
+<P>
+If a music symbol occurs inside an ital or boldital string,
+<A NAME="italmus">the music symbol will automatically be made italics,</A>
+to match the rest of the string.
+</P>
+<P>
+It is possible to supply a duration on text statements. When this is done,
+
+Mup will draw a dashed line from the end of the text to the
+
+end of the duration.
+This may be useful if you want to indicate how long
+an action such as an accelerando or crescendo is to last.
+
+If the last character of the string is a &quot;~&quot;, 
+a wavy line will be drawn instead of a dashed line.
+
+If the last character of the string is an underscore, an underscore
+
+line will be drawn.
+</P>
+<P>
+Here are some examples of text:
+<BR><PRE>
+1: e;g;b;d+;
+2: 2e;b-;
+rom (12) above 1: 0 &quot;Andante ( \(smup4n) = 88 )&quot;;
+boldital (12) below 1: 1 &quot;mf&quot;; 3.5 &quot;mp&quot;;
+newcentury bold (12) chord above 1: 1 &quot;E&amp;7&quot;; 3 &quot;B&amp;9&quot;;
+ital between 1&amp;2: 2 &quot;rit.&quot;;
+palatino ital below 2: 2 &quot;cresc.&quot; til 1m+2;
+bar
+1: 1egc+;
+2: 1c;
+bold (12) chord above 1: 1 &quot;Cm&quot;;
+bar
+</PRE><BR>
+<IMG SRC="mugex71.gif" ALT="Picture of Mup output"><BR>
+</P>
+<H2>
+Grids
+</H2>
+<P>
+<A NAME="grids">If the</A>
+<A HREF="param.html#gridused">gridswhereused parameter</A>
+is set to &quot;y&quot; chords will also have a grid printed.
+
+For this to work, a grid with the same name as the chord must be
+defined in &quot;grids&quot; context elsewhere in the input file.
+</P>
+<P>
+The grids context contains lines each consisting of two text strings.
+The first is the name of the chord, matching the name you want to
+use in printing text with the &quot;chord&quot; qualifier. The second describes
+the fret pattern for that chord. It is a space-separated list, with
+each list element being either a fret number from 1 to 99, which will result in
+a dot being printed at that fret, or an &quot;o&quot; or &quot;x&quot;
+which will result in a circle or x respectively being printed above the
+grid, or a &quot;-&quot; in which case no mark at all will be made.
+The fret pattern may also contain an open and closing
+parenthesis to mark where a curve is to be drawn, indicating the use
+of a single finger to span several strings. For example:
+<BR><PRE>
+score
+      gridswhereused=y
+      gridfret=3
+grids
+      &quot;C&quot;     &quot; -  3  2  o  1  o &quot;
+      &quot;C5&quot;     &quot; -  3  x  o  1  3 &quot;
+      &quot;Em&quot;     &quot; o  2  2  o  o  o &quot;
+      &quot;A&amp;&quot;     &quot;(4  6  6  5  4  4)&quot;
+      &quot;A11&quot;    &quot; -  o  o  o  o  o &quot;
+music
+
+rom chord 1: 1 &quot;C&quot;; 2 &quot;C5&quot;; 3 &quot;Em&quot;;
+1: 2c;e;
+bar
+
+rom chord 1: 1 &quot;A&amp;&quot;; 3 &quot;A11&quot;;
+1: 2a&amp;;an;
+bar
+</PRE><BR>
+<IMG SRC="mugex72.gif" ALT="Picture of Mup output"><BR>
+</P>
+<P>
+If
+<A HREF="param.html#xpose">transposition</A>
+is in effect,
+the chord names in the grids context have to match the transposed names.
+So, for example, if you use an &quot;A&quot; chord in a chord statement, then
+transpose the staff up a major second, Mup will look for and use the grid
+definition called &quot;B&quot; to match the transposed chord name.
+</P>
+<P>
+If you supply more than one grid definition for the same chord name,
+Mup uses the last one. This allows you to easily
+<A HREF="include.html">"include" a file</A>
+of standard chords, but override a few of them with a special fingering for a
+particular song. If you really want to use more than one fingering in
+different places in the same song for the same chord name, you need to make
+the names look different, so Mup will treat them as different chords.
+One way to do this would be to put a space and backspace in the name.
+So, for example, &quot;Am&quot; and &quot;Am \b&quot; would count as separate chords and could
+have different grid definitions, but the chord names would still look
+the same on output.
+</P>
+<HR><P>
+&nbsp;&nbsp;&nbsp;<A HREF="stuff.html">&lt;-- previous page</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="index.html">Table of Contents</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="mupindex.html">Index</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="mussym.html">next page --&gt;</A>
+</P>
+</BODY></HTML>

@@ -1,0 +1,179 @@
+<HTML>
+<HEAD><TITLE>
+Chord-at-a-time input style
+</TITLE></HEAD>
+<BODY>
+<P>
+&nbsp;&nbsp;&nbsp;<A HREF="tuplets.html">&lt;-- previous page</A>
+
+&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="index.html">Table of Contents</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="mupindex.html">Index</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="bars.html">next page --&gt;</A>
+</P>
+             
+<H2>
+Chord-at-a-time input style
+</H2>
+<P>
+There is an alternate input style, in which you enter music
+
+a chord at a time, rather than a voice at a time. In this style, the
+specification before the colon gives one or more patterns that tells
+
+how to map notes to staffs and voices.
+</P>
+<P>
+Suppose you want to print some
+music in a style which is common for many traditional hymns:
+it is to be printed on two staffs, each staff will always have
+exactly two notes, and the rhythm is exactly the same for all voices.
+With chord at a time input, you specify, for each note in a chord,
+which staff and voice to map that note. Since there are four notes in
+each chord, there will be four mappings listed. You want the bottom
+two notes to get mapped to staff 2, and the top two notes to staff 1.
+This is shown as
+<BR><PRE>
+// Bass to staff 2 voice 1
+// |    Tenor to staff 2 voice 1
+// |    |    Alto to staff 1 voice 1
+// |    |    |    Soprano to staff 1 voice 1
+[  2 1; 2 1; 1 1; 1 1 ]
+</PRE><BR>
+Each item in the semicolon-separated list tells how to map one note.
+So the first note in each chord will get mapped to staff 2 voice 1.
+The second note in each chord will also get mapped to staff 2 voice 1.
+The third and fourth notes will get mapped to staff 1 voice 1.
+</P>
+<P>
+Since voice 1 is, as always, the default, this could be written more
+compactly as just:
+<BR><PRE>
+[ 2; 2; 1; 1 ]
+</PRE><BR>
+If you wanted to input notes from top to bottom instead
+(in soprano-alto-tenor-bass order, rather than bass-tenor-alto-soprano order),
+you could use:
+<BR><PRE>
+// Soprano
+//    Alto
+//       Tenor
+//          Bass
+[  1; 1; 2; 2 ]
+</PRE><BR>
+If you wanted to use two separate voices on each staff (going
+back to bottom-to-top order), you could specify:
+<BR><PRE>
+// Bass to staff 2 voice 2
+// |    Tenor to staff 2 voice 1
+// |    |    Alto to staff 1 voice 2
+// |    |    |    Soprano to staff 1 voice 1
+[  2 2; 2 1; 1 2; 1 1  ]
+</PRE><BR>
+</P>
+<P>
+Now let's put these mappings with music data.
+<BR><PRE>
+score
+    staffs=2
+    vscheme=2f
+staff 2
+   clef=bass
+
+music
+
+[ 2; 2; 1; 1 ] : facf;dgfb;2cgec+;
+bar
+
+[ 1 1; 1 2; 2 1; 2 2 ] : fcaf;bfgd;2c+egc;
+bar
+</PRE><BR>
+<IMG SRC="mugex31.gif" ALT="Picture of Mup output"><BR>
+In the first measure, the first two notes listed in each chord are mapped
+to staff 2, voice 1, while the third and fourth notes listed in each chord
+are mapped to staff 1 voice 1. In the second measure, two voices are
+used and notes are entered in descending order. Note that each note takes
+on the correct default octave for whichever staff it is mapped to.
+</P>
+<P>
+It is also possible to use rests or spaces for some of the voices.
+<BR><PRE>
+score
+  key=3&amp;
+  vscheme=2f
+
+music
+
+[ 1 2; 1 1 ]: rb; eg; ca; gr;
+bar
+
+[ 1 2; 1 1 ]: er; sr; 8sf; se; 4sg;
+bar
+</PRE><BR>
+<IMG SRC="mugex32.gif" ALT="Picture of Mup output"><BR>
+</P>
+<P>
+Chord attributes and interchord attributes (like tie, slur, xnote,
+len, and alt) can be specified just like
+for voice-at-a-time input. Note attributes (like ? and ~) apply to
+the note wherever it gets mapped, and items that apply to the chord as
+a whole will be applied to all the notes.
+<BR><PRE>
+[1 2; 1 1] : [cue; xnote; len 6] b-e; [with &gt; ] ce&amp; slur; dg~; c?g;
+</PRE><BR>
+<IMG SRC="mugex33.gif" ALT="Picture of Mup output"><BR>
+</P>
+<P>
+It is possible to map a note to more than one place by using ranges,
+and/or by giving a list of staffs and voices,
+separated by ampersands. This may be useful,
+for example, if several voices are in unison.
+In the next example, the first note in each chord will be mapped to voice
+1 of staffs 1 through 3, as well as to voice 2 of staff 1, while the
+second note in each chord will be mapped to voice 2 of staffs 2 and 3.
+<BR><PRE>
+[ 1-3 1  &amp;  1 2;  2-3 2 ] : ec;fd;ge;af;
+</PRE><BR>
+<IMG SRC="mugex34.gif" ALT="Picture of Mup output"><BR>
+</P>
+<P>
+It is also possible to specify more than one bracketed mapping.
+Each must include a mapping for a different number of notes.
+So, for example, if some chords in a measure have two notes and
+others have three, you can define two maps: one for two notes,
+and one for three. The example below demonstrates placing alto
+and soprano as two voices on one staff, but sometimes the alto
+part splits.
+<BR><PRE>
+// For chords with two notes,
+// map the first to staff 1 voice 2 (alto),
+// and the second to staff 1 voice 1 (soprano).
+// For chords with three notes,
+// map the first two notes to staff 1 voice 2
+// (first and second alto part),
+// and the third to staff 1 voice 1 (soprano).
+[ 1 2; 1 1 ] [ 1 2; 1 2; 1 1 ]: cec+;df;eg;a-fc+;
+</PRE><BR>
+<IMG SRC="mugex35.gif" ALT="Picture of Mup output"><BR>
+If mappings of different chords need to vary by something other than
+the number of notes in the chord, then you will have to use
+the voice-at-a-time input style.
+</P>
+<P>
+Since the mapping specifications can get rather complex,
+and they may be used many times during a song,
+it is usually best to define
+<A HREF="macros.html">macros</A>
+for them, and possibly even put the macro definitions in
+<A HREF="include.html">an "include" file.</A>
+</P>
+<P>
+You can use the different input styles in different measures of a single
+song, and use different mappings in different measures.
+You can even mix the two input styles within a measure,
+but a given staff/voice
+can only appear on one line of input per measure. So, for example,
+you could choose to input staffs 1 and 2 of a song in chord-at-a-time
+input style, and staff 3 in voice-at-a-time style.
+</P>
+<HR><P>
+&nbsp;&nbsp;&nbsp;<A HREF="tuplets.html">&lt;-- previous page</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="index.html">Table of Contents</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="mupindex.html">Index</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="bars.html">next page --&gt;</A>
+</P>
+</BODY></HTML>

@@ -1,0 +1,457 @@
+<HTML>
+<HEAD><TITLE>
+Lyrics
+</TITLE></HEAD>
+<BODY>
+<P>
+&nbsp;&nbsp;&nbsp;<A HREF="multirst.html">&lt;-- previous page</A>
+
+&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="index.html">Table of Contents</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="mupindex.html">Index</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="tabstaff.html">next page --&gt;</A>
+</P>
+         
+<H2>
+Lyrics
+</H2>
+<P>
+
+Lyrics are specified in a somewhat similar manner to
+<A HREF="chordinp.html">note groups.</A>
+Lyrics for each staff are specified with the word &quot;lyrics&quot;
+
+optionally followed by a <I>place</I>,
+followed by the <I>staff number</I>, followed by a colon, then the timing and
+syllable information.
+
+</P>
+<P>
+The <I>place</I>, if specified, can be &quot;above&quot; or &quot;below,&quot; to
+
+
+indicate whether the lyrics are to be printed above or below the given
+staff. The default is below.
+</P>
+<P>
+The <I>staff number</I> can be a single number or list of ranges of numbers.
+It can also be given as the keyword &quot;all,&quot; which will place the lyrics
+above the top visible staff or below the bottom visible staff.
+
+
+
+</P>
+<P>
+The place can also be specified as &quot;between <I>M</I><B>&amp;</B><I>N</I>&quot;
+where <I>M</I> and <I>N</I> are numbers.
+
+This will cause the lyrics to printed approximately halfway between staff
+<I>M</I> and staff <I>N</I>. <I>N</I> must be exactly one greater than <I>M</I>.
+<BR><PRE>
+lyrics 1:
+lyrics above 2,3:
+lyrics between 1&amp;2, 3&amp;4:
+</PRE><BR>
+</P>
+<P>
+If you want the same lyrics above some staffs but below others,
+you can specify several places and list of staffs, separated by semicolons.
+For example:
+<BR><PRE>
+lyrics above 1,3 ; below 2,4 ; between 5&amp;6 :
+</PRE><BR>
+</P>
+<P>
+After the colon comes a list of
+time values.
+
+Time values are separated by semicolons and are specified as they are
+
+for notes: &quot;2&quot; for half notes, &quot;8.&quot; for dotted eight, etc.
+
+</P>
+<P>
+If the time values for lyrics are the same as the time values for the notes
+on the staff, the time values need not be specified. If you don't
+specify them, Mup will derive the appropriate values from the music input.
+If you list more than one staff, the time values will be derived from the
+first staff you list. Usually, the time values will be derived from voice 1,
+but if voice 1 music data doesn't exist or is invisible,
+or if the lyrics are explicitly specified as &quot;below&quot;
+and there is a visible voice 2, then voice 2 will be used.
+Voice 3, if any, is never used for automatically
+deriving time values for lyrics.
+Some examples:
+<BR><PRE>
+
+1: c;d;e;f;
+lyrics 1: &quot;The sun will shine&quot;;
+// The time values will be all quarter notes,
+// as derived from the music on staff 1
+bar
+
+1: 8g;4.f;4g;a;
+lyrics 1: &quot;up-on the earth.&quot;;
+// The derived time values will be 8;4.;4;;
+bar
+
+// In these examples, time values will be taken
+// from staff 4, since it is the first one listed.
+// In the last case, because &quot;below&quot; is specified explicitly,
+// the times will be taken from voice 2
+// if there is a visible voice 2; in all the other cases
+// it will be taken from voice 1 if voice 1 music
+// has been entered and is visible.
+lyrics 4,7,9: &quot;for-ev-er&quot;;
+lyrics above 4-6: &quot;nev-er-more&quot;;
+lyrics between 4&amp;5,6&amp;7: &quot;this is it&quot;;
+lyrics below 4,2: &quot;and so forth&quot;;
+</PRE><BR>
+The line describing the music from which to derive the times
+must appear in the input prior to the lyrics line that is deriving the times.
+If chords in the music are tied or slurred together, Mup will 
+treat those chords as being for a single syllable.
+However, there may be some 
+circumstances in which the rules Mup uses to derive time values may not
+yield what you want, in which case you will have to explicitly specify the times
+for that measure.
+</P>
+<P>
+Following the time values is a list of one or more
+verse numbers and lyric strings containing the words of the lyrics.
+
+
+The verse number(s) are given within square brackets. If no verse is
+
+specified on the first set of lyrics for a staff and
+place, verse 1 is assumed.
+On subsequent lyrics strings for that staff and place,
+the verse number is assumed to be one more than the previous verse number.
+Thus you only need to explicitly specify a verse
+number if you want to skip over a verse or supply them out of order.
+</P>
+<P>
+Verse numbers need not be consecutive.
+The staff number and verse number can be given as lists or ranges.
+Another example:
+<BR><PRE>
+1-2: 4.c+;8c;{4e;f;g;}3;
+lyrics below 1-2: 4.;8;{4;;;}3; \
+        &quot;This is some-thing else.&quot;; \
+        [4,5] &quot;How do you like this?&quot;; \
+        [2-3,6] &quot;Now try this out too.&quot;;
+bar
+</PRE><BR>
+<IMG SRC="mugex41.gif" ALT="Picture of Mup output"><BR>
+</P>
+<P>
+In this example, the lyrics will go below staffs 1 and 2. There are
+5 syllables. The first is a dotted quarter in length, the second is
+an eighth, and the last three make up a quarter note triplet. The first
+string is for verse 1, since no verse number was specified. The second
+string will be used for verses 4 and 5, and the last string for verses
+2, 3, and 6.
+</P>
+<P>
+<A NAME="centered">You can also specify a verse number of "c" which means the verse is</A>
+
+to be centered vertically. This is useful if you have a refrain that
+is identical for several verses, and you don't want to have it printed
+multiple times.
+<BR><PRE>
+1: c;;e;;
+lyrics 1: ;;2s; [1] &quot;verse one&quot;; [2] &quot;verse two&quot;;
+lyrics 1: 2s;4;; [c] &quot;The refrain&quot;;	// centered lyrics
+bar
+</PRE><BR>
+<IMG SRC="mugex42.gif" ALT="Picture of Mup output"><BR>
+</P>
+<P>
+The lyrics string is followed by a semicolon.
+There must normally be one syllable in the lyrics string for each time value.
+<A HREF="lyrics.html#except">(There is one exception,</A>
+discussed later.)
+Syllables are separated in the lyrics string by white space,
+
+a dash, or an underscore. 
+
+</P>
+<P>
+Sometimes a syllable is to be held out for several counts
+or over several notes. This can be indicated by dashes or underscores.
+
+If the syllable in the lyric string ends with a dash, on output the dash
+will be placed halfway between the given syllable and the next syllable.
+If the distance between the two syllables is long, several evenly-spaced
+dashes will be printed.
+If a syllable in the lyric string ends with an underscore,
+an underscore line will be printed from the end of the
+current syllable to the edge of the last note associated with the syllable.
+
+</P>
+<P>
+Here are some examples:
+<BR><PRE>
+// Verse 1. The first two words have the
+// duration of a quarter note each.
+// The last word lasts a half note.
+1: e;d;2c;
+lyrics 1: 4;;2; [1] &quot;Three blind mice&quot;;
+bar
+</PRE><BR>
+<IMG SRC="mugex43.gif" ALT="Picture of Mup output"><BR>
+<BR><PRE>
+// examples of above lyrics with dash and underscore
+1: 4d&lt;&gt;;e;8g;b;4a;
+lyrics above 1: &quot;now_ or nev-er&quot;;
+bar
+</PRE><BR>
+<IMG SRC="mugex44.gif" ALT="Picture of Mup output"><BR>
+</P>
+<P>
+Mup does its best to figure out where to end dashes or underscores. However,
+if there isn't a following syllable after a dash or underscore, Mup would
+extend the dash or underscore to the end of the piece, which may not be
+what you want. There are a few other cases where Mup may be unable to
+properly deduce where you had intended an underscore to end.
+You can manually halt the dash or underscore by adding in
+
+an &quot;empty syllable,&quot; consisting of &quot;&lt;&gt;&quot;. Normally, the angle brackets are
+
+used inside lyrics to enclose special non-lyrics items, as will be
+<A HREF="lyrics.html#lyrext">described a bit later.</A>
+However, if they are used by themselves with nothing between them,
+they essentially mean a syllable with no text.
+<BR><PRE>
+1: 2c;4d&lt;&gt;;e;
+lyrics 1: &quot;last word._&quot;;
+bar
+
+1: 4d;e;f;g;
+// add empty syllable to end the underscore
+lyrics 1: 1; &quot;&lt;&gt;&quot;;
+bar
+</PRE><BR>
+<IMG SRC="mugex45.gif" ALT="Picture of Mup output"><BR>
+</P>
+<P>
+Occasionally, a single chord is used for more than one syllable.
+If the syllables are within the same word, it is sufficient to omit the
+dashes between syllables, so that Mup will treat them as a single syllable.
+However, if the syllables are in separate words,
+a &quot;~&quot; can be used in place of a space between the syllables.
+On output, Mup will replace the &quot;~&quot;
+with a space and a small, curved line below the space, indicating that the
+
+syllables on either side are to be joined. For example:
+<BR><PRE>
+1: b;a;2g;
+lyrics 1: ;;2; &quot;man-y~a day&quot;;
+bar
+</PRE><BR>
+<IMG SRC="mugex46.gif" ALT="Picture of Mup output"><BR>
+If you don't want the curved line,
+you can use the special character name &quot;\(space)&quot; instead of a
+
+literal space.
+<A HREF="textstr.html#space">That special space character</A>
+is printed like a normal space on output,
+but is not considered a space for the purposes of determining syllable
+boundaries. Alternately,
+<A HREF="lyrics.html#lyrext">a technique using angle brackets,</A>
+described later, can be used.
+</P>
+<P>
+If several verses use the same time values, you can specify them all on
+one input line.
+For example:
+<BR><PRE>
+1: d;f;a;g;
+lyrics 1: [1] &quot;this is verse one&quot;; \
+       [2] &quot;this is verse two&quot;;
+bar
+</PRE><BR>
+<IMG SRC="mugex47.gif" ALT="Picture of Mup output"><BR>
+</P>
+<P>
+In this example,
+because of the \ at the end of the first line, both verses are effectively
+on the same input line.
+</P>
+<P>
+<A NAME="except">Occasionally, lyrics may occur during only part of a measure.</A>
+
+This case can be handled by specifying &quot;space&quot;
+
+by using an &quot;s&quot; after time values that have no
+lyric syllable associated with them. For example:
+<BR><PRE>
+1: 2r;g;
+lyrics 1: 2s;; [1] &quot;Now&quot;;
+bar
+</PRE><BR>
+<IMG SRC="mugex48.gif" ALT="Picture of Mup output"><BR>
+</P>
+<P>
+In this example, the first half note of the measure is a space, so there will
+be no lyric there. The second half note of the measure will have the word &quot;Now&quot;
+as its lyric. Note that the &quot;s&quot; does not work quite the same way with lyrics
+as it does with notes. With notes, &quot;2s;;&quot; would mean two half-note spaces,
+because the space would be used as default for the following chord where no
+notes were specified. With lyrics, &quot;2s;;&quot; means a half note space, followed
+by a half note lyric; the space is not carried forward as a default.
+</P>
+<P>
+If you don't specify any time values, relying on Mup to derive the time values
+from the corresponding music time values, any rests and spaces in the music
+will be translated to lyric spaces. If the first note entered in a chord
+is tied to or slurred to the following chord, that following chord
+will also be translated to a lyric space, since you most likely want
+a single syllable to span both chords in that case.
+</P>
+<P>
+<A NAME="lyrext">Occasionally, you may want to print something within a lyric string</A>
+which isn't really a lyric syllable.
+The most common example of this would be
+that you may want to print verse numbers. Other possibilities may include
+associating a dynamic mark (e.g., &quot;mf&quot;) with a particular verse, or
+
+marking a section for a subset of the singers (e.g., &quot;Men:&quot; or &quot;Solo:&quot;).
+These extra things are specified within angle brackets. They can be placed
+
+immediately before or after any syllable.
+Mup will not consider them when lining up the syllable with notes.
+
+Normally, it will assume there is enough
+space to print them rather than reserving space for them. If you want Mup
+to ensure there is enough space to print them, put a &quot;^&quot; immediately
+after the &quot;&lt;&quot;.
+</P>
+<P>
+Some examples:
+<BR><PRE>
+1: f;e;d;c;
+lyrics 1: &quot;&lt;1. &gt;This is verse one.&quot;;
+bar
+1: 2g;4;;
+lyrics 1: 2s;4;; &quot;&lt;^\f(TX)ff\f(PV) &gt;Loud-er&quot;;
+bar
+</PRE><BR>
+<IMG SRC="mugex49.gif" ALT="Picture of Mup output"><BR>
+</P>
+<P>
+The &lt; &gt; construct can also be used to fine-tune the placement of syllables.
+The placement of syllables is governed in general by the
+<A HREF="param.html#lyralign">lyricsalign parameter.</A>
+
+Sometimes, however, you may want to adjust the placement of specific syllables.
+Suppose you have a long syllable, like &quot;strength&quot; and would like
+to shift it leftward somewhat. Entering it as &quot;&lt;str&gt;ength&quot; would
+cause Mup to move the syllable farther to the left than it normally would.
+<BR><PRE>
+1: c;d;e;f;
+lyrics 1: &quot;This strength not moved.&quot;; \
+        &quot;This &lt;str&gt;ength was moved.&quot;;
+bar
+</PRE><BR>
+<IMG SRC="mugex50.gif" ALT="Picture of Mup output"><BR>
+</P>
+<P>
+Angle brackets may also be useful for entering
+
+chant, where many words
+are to be associated with a single note. For example:
+<BR><PRE>
+lyrics 1: &quot;All&lt;^ these words will be treated like one syllable.&gt;&quot;;
+</PRE><BR>
+</P>
+<P>
+The font and size to use for lyrics is initially determined
+
+
+from the
+<A HREF="param.html#lyrfam">"lyricsfontfamily,"</A>
+
+<A HREF="param.html#lyrfont">"lyricsfont"</A>
+and
+<A HREF="param.html#lyrsize">"lyricssize"</A>
+parameters for the appropriate staff.
+If &quot;all&quot; is used for the staff number, the score parameters are used.
+
+
+In the case of &quot;between,&quot; the parameters for the staff above are used for
+determining the font and size.
+The usual \f and \s forms can be used to
+<A HREF="textstr.html">change these values</A>
+for a given verse. Lyrics fontfamily, font and size values
+are maintained separately for each
+combination of staff number, verse number, and place, and are carried forward
+from one measure to the next. Thus, for example, if you want one verse to
+be printed in roman and another in italics (perhaps one is in English and the
+
+
+other in another language), you need only put a &quot;\f(TI)&quot; at the beginning of
+the syllable string for the first measure of the second verse, and all
+subsequent syllables for that verse will be in italics.
+Setting the
+<A HREF="param.html#lyrfam">"lyricsfontfamily,"</A>
+<A HREF="param.html#lyrfont">"lyricsfont"</A>
+or
+<A HREF="param.html#lyrsize">"lyricssize"</A>
+parameters will reset the values for
+all verses of the staff (if set in
+<A HREF="contexts.html">staff context),</A>
+
+or the entire score (if set in
+<A HREF="contexts.html">score context).</A>
+
+</P>
+<P>
+Another way to align a syllable in a particular way is to precede the
+syllable with a |. If the | is preceded by a number (optionally signed),
+the left edge of the syllable will be placed that many points from the
+horizontal &quot;middle&quot; of the chord.
+
+If there isn't a number before it, the value is obtained from the
+<A HREF="param.html#sylpos">sylposition parameter.</A>
+Negative values are to the left, and will usually be what you want.
+This alignment method is particularly useful for lining up multiple verses,
+either to get verse numbers to line up or to align words at the beginning
+of a poetic line. The | goes after anything in angle brackets.
+<BR><PRE>
+1: 8c;d;4e;8e;g;4c+;
+lyrics 1: &quot;&lt;1. &gt;|\&quot;How are you?\&quot; -7|He asked her.&quot;; \
+          &quot;&lt;2. &gt;|\&quot;I am fine,\&quot; -7|She re-plied.&quot;;
+bar
+</PRE><BR>
+<IMG SRC="mugex51.gif" ALT="Picture of Mup output"><BR>
+</P>
+<P>
+<A NAME="ltag">Location tags can be set on lyrics syllables</A>
+
+by adding \=(<I>tagname</I>)
+to the syllable. As with all tags, the <I>tagname</I> must be either a
+single lower case letter, or an underscore followed by any number
+of upper or lower case letters, digits, or underscores.
+The area associated with the tag will include the syllable itself
+and anything inside &lt;^ &gt;, but excluding things inside &lt; &gt;.
+While Mup will recognize a tag like this almost anywhere within a syllable
+(except inside &lt; &gt; or before any initial &lt; &gt;), it is recommended that it
+be placed at the end of the syllable, before the dash or underscore, if any,
+because that's less confusing to read than putting it
+in the middle of a syllable. An
+<A HREF="lyrtag.html">example showing common uses of lyric tags</A>
+in given in the Hints section.
+</P>
+<P>
+A few more examples of lyrics:
+<BR><PRE>
+1,3-4: c;8e;;4d;r;
+2: c+;8g;;4b;;
+lyrics between 1&amp;2,3&amp;4: 4;8;;4;s; &quot;This is a test.&quot;;
+lyrics above 2: 2s;4;; &quot;The end.&quot;;
+bar
+</PRE><BR>
+<IMG SRC="mugex52.gif" ALT="Picture of Mup output"><BR>
+</P>
+<HR><P>
+&nbsp;&nbsp;&nbsp;<A HREF="multirst.html">&lt;-- previous page</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="index.html">Table of Contents</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="mupindex.html">Index</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="tabstaff.html">next page --&gt;</A>
+</P>
+</BODY></HTML>

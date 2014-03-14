@@ -1,0 +1,54 @@
+<HTML>
+<HEAD><TITLE>
+Diagonal slash marks
+</TITLE></HEAD>
+<BODY>
+<P>
+&nbsp;&nbsp;&nbsp;<A HREF="pianored.html">&lt;-- previous page</A>
+
+&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="index.html">Table of Contents</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="mupindex.html">Index</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="breathmk.html">next page --&gt;</A>
+</P>
+         
+<H2>
+Diagonal slash marks
+</H2>
+<P>
+Sometimes, instead of a note or notes,
+
+a diagonal slash mark is printed on a staff.
+This is used for various purposes,
+
+such as strumming a chord (in a
+
+guitar part), or to mean that the previous beat should be
+
+repeated or
+that a note should be improvised.
+You can get slash marks for all notes by setting the
+<A HREF="param.html#notehead">noteheads parameter.</A>
+<BR><PRE>
+noteheads = &quot;allslash&quot;
+</PRE><BR>
+or if you want to use hollow slashes for half notes and longer
+<BR><PRE>
+noteheads = &quot;slash&quot;
+</PRE><BR>
+Usually such slash marks do not include a stem,
+so you may wish to also set
+<BR><PRE>
+stemlen=0
+</PRE><BR>
+</P>
+<P>
+If you just want specific chords to be slashes, you can use the
+chord head shape override:
+<BR><PRE>
+1: b;[ hs &quot;allslash&quot;; len 0 ]... ;;;
+bar
+</PRE><BR>
+<IMG SRC="mugex107.gif" ALT="Picture of Mup output"><BR>
+</P>
+<HR><P>
+&nbsp;&nbsp;&nbsp;<A HREF="pianored.html">&lt;-- previous page</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="index.html">Table of Contents</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="mupindex.html">Index</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="breathmk.html">next page --&gt;</A>
+</P>
+</BODY></HTML>

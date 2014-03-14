@@ -1,0 +1,50 @@
+<HTML>
+<HEAD><TITLE>
+Manually placed tuplet numbers
+</TITLE></HEAD>
+<BODY>
+<P>
+&nbsp;&nbsp;&nbsp;<A HREF="sharehd.html">&lt;-- previous page</A>
+
+&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="index.html">Table of Contents</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="mupindex.html">Index</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="manual.html">next page --&gt;</A>
+</P>
+           
+<H2>
+Manually placed tuplet numbers
+</H2>
+<P>
+Generally, Mup will place
+<A HREF="tuplets.html">tuplet</A>
+
+numbers for you.
+However, you do need to print them yourself on
+<A HREF="ichdattr.html#crossbm">cross-staff beams.</A>
+
+And there may be cases where you choose
+to use 'n' to turn off Mup's automatic printing of tuplet numbers,
+
+in order to print them manually in a different place than Mup would.
+Mup normally uses newcentury boldital font for tuplet numbers, in 11-point
+size for regular notes and 9-point for cue notes.
+So to make your manually placed tuplet numbers
+look the same as automatic ones, you might use a
+<A HREF="macros.html">macro</A>
+something like this:
+<BR><PRE>
+define TUPNUM(NUM) &quot;\f(NX)\s(11)&quot; +`NUM` @
+1: { 8c; d; e; } 3n; 2.us;         
+rom above 1 dist0: 1.34 TUPNUM(3);
+bar
+</PRE><BR>
+Or another approach would be something like this:
+<BR><PRE>
+define TN(NUM,WHERE,D,N) newcentury boldital WHERE dist D: N `NUM`;@
+1: { 8c; d; e; } 3n; 2.us;         
+TN(3,above 1,0,1.34)
+bar
+</PRE><BR>
+</P>
+<HR><P>
+&nbsp;&nbsp;&nbsp;<A HREF="sharehd.html">&lt;-- previous page</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="index.html">Table of Contents</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="mupindex.html">Index</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="manual.html">next page --&gt;</A>
+</P>
+</BODY></HTML>

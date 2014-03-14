@@ -1,0 +1,82 @@
+<HTML>
+<HEAD><TITLE>
+Special uses of invisbar
+</TITLE></HEAD>
+<BODY>
+<P>
+&nbsp;&nbsp;&nbsp;<A HREF="adjust.html">&lt;-- previous page</A>
+
+&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="index.html">Table of Contents</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="mupindex.html">Index</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="chant.html">next page --&gt;</A>
+</P>
+            
+<H2>
+Special uses of invisbar
+</H2>
+<P>
+
+The &quot;invisbar&quot; can be used
+to force Mup into
+doing something in the middle of a bar that it normally would allow
+to happen only at a bar line.
+Suppose, for example, you wish to place a
+<A HREF="bars.html#reh">rehearsal letter</A>
+in the middle of a measure. This could be accomplished as follows:
+<BR><PRE>
+// assume we are in 4/4 time, but want
+// a rehearsal letter by count 3
+// of the measure
+
+// do first part of measure and use &quot;space&quot;
+// for last part so time values will add up
+// properly to a full measure
+1: 4c;d;2s;
+
+// put in invisible bar with rehearsal letter
+invisbar rehearsal let
+
+// now do the last half of the measure,
+// this time with space at the beginning
+1: 2s;4e;c;
+bar
+</PRE><BR>
+<IMG SRC="mugex92.gif" ALT="Picture of Mup output"><BR>
+</P>
+<P>
+As another example of invisbar use, suppose you want to add a &quot;courtesy&quot;
+key signature at the end of a repeated section to remind the player that the
+beginning of the repeated section is in a different key. This can be done
+by adding an empty measure whose sole purpose is to produce this key signature.
+<BR><PRE>
+score key=3&amp;
+music
+1: g;f;e;d;
+repeatstart
+1: c;e;f;g;
+dblbar
+score key=0&amp;
+music
+1: g;f;e;d;
+bar ending &quot;1.&quot;
+1: f;e;2c;
+// add a courtesy key signature,
+// to remind player the beginning
+// of the repeated section is in
+// a different key
+invisbar
+score key=3&amp;
+music
+1: ms;
+repeatend ending &quot;2.&quot;
+1: e;d;2c;
+endbar
+</PRE><BR>
+<IMG SRC="mugex93.gif" ALT="Picture of Mup output"><BR>
+</P>
+<P>
+You can use a similar technique to insert time signatures, clefs, etc.
+at unusual places.
+</P>
+<HR><P>
+&nbsp;&nbsp;&nbsp;<A HREF="adjust.html">&lt;-- previous page</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="index.html">Table of Contents</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="mupindex.html">Index</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="chant.html">next page --&gt;</A>
+</P>
+</BODY></HTML>

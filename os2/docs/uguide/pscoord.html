@@ -1,0 +1,87 @@
+<HTML>
+<HEAD><TITLE>
+Passing multiple coordinates to PostScript
+</TITLE></HEAD>
+<BODY>
+<P>
+&nbsp;&nbsp;&nbsp;<A HREF="muspaper.html">&lt;-- previous page</A>
+
+&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="index.html">Table of Contents</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="mupindex.html">Index</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="pstools.html">next page --&gt;</A>
+</P>
+          
+<H2>
+Passing multiple coordinates to PostScript
+</H2>
+<P>
+When you use a &quot;postscript&quot; section to add arbitrary PostScript code to
+the Mup output, you specify a current point, but sometimes it would be
+useful for the PostScript code to know about the location of more than
+one thing on the page, for example, to draw a line between two points, or
+to draw a box or oval around several chords. One way to do that is to
+have one postscript section to save away the X,Y values of each point of
+interest, and then have a final postscript section that uses the points to
+draw something. Since Mup puts the contents of postscript sections inside
+a save/restore block, saving coordinate information for later use is a
+little tricky, but the following example shows one way it can be done.
+Earlier, in the
+<A HREF="macros.html#arrow">section on macros,</A>
+we showed how to draw a line with an arrow using macros
+and arithmetic expressions.
+Here we will show how to accomplish a similar thing using a postscript section.
+<BR><PRE>
+score
+	staffs=2
+staff 2
+	clef=bass
+music
+1: c =c;r;e;f;
+2: r;e =e;g;d;
+// This PostScript saves the (X,Y) coordinate of a point
+// near c in PostScript variables beginX and beginY
+postscript (c.x + 3, c.y) &quot;
+	% Save current point on the stack
+	currentpoint
+	% Since Mup did a 'save,' move that save object to the top of the stack
+	% and do a restore, leaving the currentpoint values on the stack,
+	% so we can then save them in beginX and beginY.
+	3 -1 roll
+	restore
+	/beginY exch def
+	/beginX exch def
+	% Push a 'save' object for Mup's restore to use
+	save&quot;;
+// This PostScript retrieves the beginX and beginY that were saved by the
+// previous PostScript, along with the given current point coordinate,
+// and from that, calculates and prints an arrow.
+postscript (e.x - 3, e.y) &quot;
+	% Similar to above, save the specified coord in endX and endY
+	currentpoint   3 -1 roll   restore
+	/endY exch def   /endX exch def
+	% Calculate length of the line, sin and cos to get arrowhead angle, etc.
+	/fullX endX beginX sub def       /fullY endY beginY sub def
+	/fulllen fullX fullX mul fullY fullY mul add sqrt def
+	/cosine fullX fulllen div def    /sine fullY fulllen div def
+	/headlen 15 def     /headwidth 10 def
+	/headX headlen cosine mul def    /headY headlen sine mul def
+	/hbX endX headX sub def          /hbY endY headY sub def
+	/thicklen headwidth 2.0 div def
+	/thickX thicklen sine mul def    /thickY thicklen cosine mul def
+	/feathupx hbX thickX sub def     /feathupy hbY thickY add def
+	/feathdnx hbX thickX add def     /feathdny hbY thickY sub def
+	% Make the arrow wide, a shade of red, and with rounded ends
+	gsave 3 setlinewidth 0.8 0.2 0.2 setrgbcolor 1 setlinecap
+	% Draw the line and its arrowhead lines
+	newpath beginX beginY moveto endX endY lineto stroke
+	newpath endX endY moveto feathupx feathupy lineto stroke
+	newpath endX endY moveto feathdnx feathdny lineto stroke
+	grestore
+	% Push a save object to match the one we undid earlier
+	save&quot;;
+bar 
+</PRE><BR>
+<IMG SRC="mugex110.gif" ALT="Picture of Mup output"><BR>
+</P>
+<HR><P>
+&nbsp;&nbsp;&nbsp;<A HREF="muspaper.html">&lt;-- previous page</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="index.html">Table of Contents</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="mupindex.html">Index</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="pstools.html">next page --&gt;</A>
+</P>
+</BODY></HTML>

@@ -1,0 +1,563 @@
+<HTML>
+<HEAD><TITLE>
+Text Strings
+</TITLE></HEAD>
+<BODY>
+<P>
+&nbsp;&nbsp;&nbsp;<A HREF="shaped.html">&lt;-- previous page</A>
+
+&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="index.html">Table of Contents</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="mupindex.html">Index</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="stuff.html">next page --&gt;</A>
+</P>
+            
+<H1>
+TEXT STRINGS
+</H1>
+<P>
+Text strings are used in many different ways.
+A text string is enclosed in double quotes,
+and can contain any combination of letters, numbers, spaces,
+and punctuation.
+It can contain a \n to indicate a newline or \b to indicate a backspace,
+
+but otherwise cannot contain tabs or other
+control characters. If you want a double quote mark inside a string, it
+has to be preceded by a backslash, to indicate it is not ending the string:
+<BR><PRE>
+&quot;A \&quot;word\&quot; in quotes&quot;
+</PRE><BR>
+</P>
+<P>
+If you want an actual backslash in a string, it must be entered as two
+backslashes.
+</P>
+<P>
+<A NAME="strcat">You can concatenate strings with a + sign. Thus the following are equivalent:</A>
+<BR><PRE>
+&quot;this is a string&quot;
+&quot;this is &quot; + &quot;a string&quot;
+</PRE><BR>
+</P>
+<H2>
+Special characters
+</H2>
+<P>
+<A NAME="symlist">A string can also contain special</A>
+music characters.
+These are specified
+by \(<I>xxx</I>), where the <I>xxx</I> is a code from the following table:
+</P>
+<H3>
+Clef
+</H3>
+<PRE>
+gclef       G clef (treble clef)
+fclef       F clef (bass clef)
+cclef       C clef (used for alto clef, tenor clef, etc.)
+</PRE>
+<H3>
+Time Signature
+</H3>
+<PRE>
+com         common time
+cut         cut time
+</PRE>
+<H3>
+Accidentals
+</H3>
+<PRE>
+flat        flat
+dblflat     double flat
+sharp       sharp
+dblsharp    double sharp
+nat         natural
+</PRE>
+<H3>
+Notes
+</H3>
+<PRE>
+dn2n        half note with stem down
+dn4n        quarter note with stem down
+dn8n        eighth note with stem down
+dn16n       16th note with stem down
+dn32n       32nd note with stem down
+dn64n       64th note with stem down
+dn128n      128th note with stem down
+dn256n      256th note with stem down
+up2n        half note with stem up
+up4n        quarter note with stem up
+up8n        eighth note with stem up
+up16n       16th note with stem up
+up32n       32nd note with stem up
+up64n       64th note with stem up
+up128n      128th note with stem up
+up256n      256th note with stem up
+upflag      upward flag
+dnflag      downward flag
+</PRE>
+<H3>
+Noteheads
+</H3>
+<PRE>
+4n                   quarter (and shorter) note head
+2n                   half note head
+1n                   whole note
+dblwhole             double whole note
+xnote                X-shaped note head
+diamond              open diamond-shaped note head
+filldiamond          filled diamond-shaped note head
+dwhdiamond           double whole diamond-shaped note
+isostriangle         open isosceles triangle notehead
+fillisostriangle     filled isosceles triangle notehead
+dwhisostriangle      double whole isosceles triangle notehead
+piewedge             open piewedge notehead
+fillpiewedge         filled piewedge notehead
+dwhpiewedge          double whole piewedge notehead
+rectangle            open rectangle notehead
+fillrectangle        filled rectangle notehead
+dwhrectangle         double whole rectangle notehead
+righttriangle        open right triangle notehead
+fillrighttriangle    filled right triangle notehead
+dwhrighttriangle     double whole right triangle notehead
+urighttriangle       upside-down open right triangle notehead
+ufillrighttriangle   upside-down filled right triangle notehead
+udwhrighttriangle    upside-down double whole right triangle notehead
+semicircle           open semicircle notehead
+fillsemicircle       filled semicircle notehead
+dwhsemicircle        double whole semicircle notehead
+slashhead            open slash notehead
+fillslashhead        filled slash notehead
+dwhslashhead         double whole slash notehead
+blankhead            blank notehead
+</PRE>
+<H3>
+Rests
+</H3>
+<PRE>
+qwhrest     quadruple whole rest
+dwhrest     double whole rest
+1rest       whole rest
+2rest       half rest
+4rest       quarter rest
+8rest       eighth rest
+16rest      sixteenth rest
+32rest      thirty-second rest
+64rest      sixty-fourth rest
+128rest     128th rest
+256rest     256th rest
+</PRE>
+<H3>
+Pedal
+</H3>
+<PRE>
+begped      begin pedal mark
+endped      end pedal mark
+pedal       pedal up/down mark
+</PRE>
+<H3>
+Ornaments
+</H3>
+<PRE>
+tr          trill
+mor         mordent
+invmor      inverted mordent
+turn        turn
+invturn     inverted turn
+</PRE>
+<H3>
+Miscellaneous
+</H3>
+<PRE>
+ferm        fermata
+uferm       upside-down fermata
+acc_gt      accent like a greater-than sign
+acc_hat     accent like a &quot;hat&quot; or ^ (circumflex or &quot;up-arrow&quot;)
+acc_uhat    accent like an upside down hat
+leg         legato mark
+dot         dot
+wedge       wedge
+uwedge      upside-down wedge
+sign        sign for D. S.
+coda        coda mark
+upbow       up bow
+dnbow       down bow
+rr          &quot;railroad tracks&quot; or caesura (2 slanted lines sometimes put
+            at the top of a staff to indicate the end of a musical thought)
+measrpt     measure repeat
+copyright   C-in-circle copyright symbol
+dim         diminished
+halfdim     half diminished
+triangle    triangle
+</PRE>
+<BR>
+<IMG SRC="muschar.gif" ALT="music characters">
+<BR>
+<P>
+Any of these music character names can be prefixed by &quot;sm&quot; to indicate a
+smaller version of the character. For example, &quot;smup4n&quot; is a small quarter
+
+note, as might be used for a &quot;cue&quot; note.
+
+
+Small music characters are 0.65 times as big as regular characters.
+</P>
+<P>
+<A NAME="special">Various non-ASCII characters</A>
+can be included in text strings. If you have a non-United States keyboard
+which can produce characters listed in the table below
+from the &quot;Latin-1&quot; alphabet, you can simply type them into strings as
+you normally would. If you want a character that your keyboard does not
+support, you can put them in strings
+by using their names in a manner similar to the music characters.
+For example, you can include an 'a' with an acute accent on it in
+
+
+a string by using \(aacute), or an upside down question mark
+using \(questiondown).
+</P>
+<P>
+There are 2-character shortcut names for many
+of the letters with diacritical marks. The shortcut names
+consist of the letter and a character representing the diacritical mark.
+So, for example, \(aacute) can also be specified
+by just \(a'), \(Egrave) can also be specified by \(E`), \(ntilde)
+can be specified as \(n~), and \(Ocircumflex)
+can be specified as \(O^). The following table lists the diacritical mark
+names, their shortcut symbols, and the list of available shortcut names
+using those symbols:
+<TABLE BORDER=4>
+<TR>
+<TD>acute</TD>	<TD>'</TD>	<TD>A'  a'  C'  c'  E'  e'  I'  i'  L'  l'  N'  n'  O'  o'  R'  r'  S'  s'  U'  u'  Y'  y'  Z'  z'</TD>
+</TR>
+<TR>
+<TD>breve</TD>	<TD>(</TD>	<TD>A(  a(  E(  e(  G(  g(  I(  i(  O(  o(  U(  u(</TD>
+</TR>
+<TR>
+<TD>caron</TD>	<TD>v</TD>	<TD>Cv  cv  Dv  dv  Ev  ev  Lv  lv  Nv  nv  Rv  rv  Sv  sv  Tv  tv  Zv  zv</TD>
+</TR>
+<TR>
+<TD>cedilla</TD>	<TD>,</TD>	<TD>C,  c,  S,  s,</TD>
+</TR>
+<TR>
+<TD>circumflex</TD>	<TD>^</TD>	<TD>A^  a^  C^  c^  E^  e^  G^  g^  H^  h^  I^  i^  J^  j^  O^  o^  S^  s^  U^  u^  W^  w^  Y^  y^</TD>
+</TR>
+<TR>
+<TD>dieresis</TD>	<TD>:</TD>	<TD>A:  a:  E:  e:  I:  i:  O:  o:  U:  u:  Y:  y:</TD>
+</TR>
+<TR>
+<TD>dotaccent</TD>	<TD>.</TD>	<TD>C.  c.  E.  e.  G.  g.  I.  A.  z.</TD>
+</TR>
+<TR>
+<TD>grave</TD>	<TD>`</TD>	<TD>A`  a`  E`  e`  I`  i`  O`  o`  U`  u`</TD>
+</TR>
+<TR>
+<TD>macron</TD>	<TD>-</TD>	<TD>A-  a-  E-  e-  I-  i-  O-  o-  U-  u-</TD>
+</TR>
+<TR>
+<TD>ogonek</TD>	<TD>c</TD>	<TD>Ac  ac  Ec  ec  Ic  ic  Uc  uc</TD>
+</TR>
+<TR>
+<TD>ring</TD>	<TD>o</TD>	<TD>Ao  ao  Uo  uo</TD>
+</TR>
+<TR>
+<TD>slash</TD>	<TD>/</TD>	<TD>L/  l/  O/  o/</TD>
+</TR>
+<TR>
+<TD>tilde</TD>	<TD>~</TD>	<TD>A~  a~  I~  i~  N~  n~  O~  o~  U~  u~</TD>
+</TR>
+</TABLE>
+
+</P>
+<P>
+There are also a few special case shortcut names:
+<TABLE BORDER=4>
+<TR>
+<TD>germandbls</TD>	<TD>ss</TD>
+</TR>
+<TR>
+<TD>qoutedblleft</TD>	<TD>``</TD>
+</TR>
+<TR>
+<TD>quotedblright</TD>	<TD>''</TD>
+</TR>
+<TR>
+<TD>guillemotleft</TD>	<TD>&lt;&lt;</TD>
+</TR>
+<TR>
+<TD>guillemotright</TD>	<TD>&gt;&gt;</TD>
+</TR>
+</TABLE>
+
+</P>
+<P>
+The following charts list the full names of
+all of the available named characters, and shows what they look like.
+<P>
+<IMG SRC="ext_1.gif" ALT="extended characters">
+</P>
+<P>
+<IMG SRC="ext_2.gif" ALT="extended characters">
+</P>
+<P>
+<IMG SRC="ext_3.gif" ALT="extended characters">
+</P>
+<P>
+<IMG SRC="ext_4.gif" ALT="extended characters">
+</P>
+<P>
+<A NAME="space">One of the special characters</A>
+is specified by \(space).
+
+This character appears as a normal space on output, but is not treated
+like a space when Mup is looking for word or syllable boundaries.
+The most common use for this is probably in
+<A HREF="lyrics.html">lyrics</A>
+when you want several words to be sung on a single note.
+Another use would be in cases where Mup would normally split up a long
+string between words in order to avoid running off the edge of a page,
+but you want to prevent that split.
+</P>
+<H2>
+Font and size changes
+</H2>
+<P>
+<A NAME="fonts">Strings can also contain special codes to indicate changes in font or size.</A>
+
+
+The font codes begin with \f, and
+can either be spelled out, as in the first column of
+the table below, or as the abbreviations given in the second column.
+<PRE>
+       Code              Abbr        Meaning
+
+\f(avantgarde rom)      \f(AR)  Avant Garde roman font
+\f(avantgarde bold)     \f(AB)  Avant Garde bold font
+\f(avantgarde ital)     \f(AI)  Avant Garde italic font
+\f(avantgarde boldital) \f(AX)  Avant Garde bold-italic font
+
+\f(bookman rom)         \f(BR)  Bookman roman font
+\f(bookman bold)        \f(BB)  Bookman bold font
+\f(bookman ital)        \f(BI)  Bookman italic font
+\f(bookman boldital)    \f(BX)  Bookman bold-italic font
+
+\f(courier rom)         \f(CR)  Courier roman font
+\f(courier bold)        \f(CB)  Courier bold font
+\f(courier ital)        \f(CI)  Courier italic font
+\f(courier boldital)    \f(CX)  Courier bold-italic font
+
+\f(helvetica rom)       \f(HR)  Helvetica* roman font
+\f(helvetica bold)      \f(HB)  Helvetica bold font
+\f(helvetica ital)      \f(HI)  Helvetica italic font
+\f(helvetica boldital)  \f(HX)  Helvetica bold-italic font
+
+\f(newcentury rom)      \f(NR)  New Century roman font
+\f(newcentury bold)     \f(NB)  New Century bold font
+\f(newcentury ital)     \f(NI)  New Century italic font
+\f(newcentury boldital) \f(NX)  New Century bold-italic
+
+\f(palatino rom)        \f(PR)  Palatino roman font
+\f(palatino bold)       \f(PB)  Palatino bold font
+\f(palatino ital)       \f(PI)  Palatino italic font
+\f(palatino boldital)   \f(PX)  Palatino bold-italic font
+
+\f(times rom)           \f(TR)  Times* roman font
+\f(times bold)          \f(TB)  Times bold font
+\f(times ital)          \f(TI)  Times italic font
+\f(times boldital)      \f(TX)  Times bold-italic font
+
+\f(previous)            \f(PV)  previous font
+\f(rom)	\f(R)	change to roman in the current family
+\f(ital)	\f(I)	change to italics in the current family
+\f(bold)	\f(B)	change to bold in the current family
+\f(boldital)	\f(X)	change to bold italics in the current family
+</PRE>
+Some of the
+<A HREF="textstr.html#special">special characters</A>
+look better in some fonts than others.  We have found that
+
+
+a few older PostScript interpreters unfortunately don't always
+implement all the special characters in all fonts, so if you have
+one of those, you may want to see if a newer version is available
+that corrects the problem.
+</P>
+<P>
+If you need a font other than those Mup supports directly,
+it is possible to override Mup's builtin fonts with other fonts.
+This is described later in the
+<A HREF="fontfile.html">section on "Installing other fonts."</A>
+</P>
+<P>
+<A NAME="size">The point size can also be changed. (A "point" is about 1/72 of an inch.)</A>
+
+<PRE>
+   Code                   Meaning
+
+\s(<I>N)</I>    change to point size <I>N</I>
+\s(+<I>N)</I>   increase point size by <I>N</I> points
+\s(-<I>N)</I>   decrease point size by <I>N</I> points
+\s(PV) or \s(previous)	revert to previous size
+
+</PRE>
+The point size can range from 1 to 100. A font or size change will last until
+changed or until the end of the string. Any subsequent strings will begin
+with default font and size values, except in the case of
+<A HREF="lyrics.html">lyrics,</A>
+
+where font and size information is maintained separately
+for each staff and verse, and carried forward from measure to measure, and
+<A HREF="bars.html#reh">rehearsal marks,</A>
+where the information is also carried forward.
+
+
+
+The default values can be set as
+<A HREF="param.html">described in the "Parameters" section. The</A>
+<A HREF="textstr.html#symlist">music symbols</A>
+are affected by size changes.
+If a music symbol follows italics or bolditalics characters, it will be
+made italics to match.
+</P>
+<P>
+Here are some examples of strings:
+<BR><PRE>
+&quot;hello&quot;
+&quot;( \(up2n) = 100 )&quot;
+&quot;\f(TB)this will be bold. \f(TI)this will be italics&quot;
+&quot;A \f(TX)\s(+12)BIG\f(PV)\s(-12) word&quot;
+&quot;\f(newcentury boldital)Allegro&quot;
+</PRE><BR>
+</P>
+<H2>
+Horizontal and vertical motion
+</H2>
+<P>
+It is also possible to specify a string that takes up more than one line,
+by putting a &quot;\n&quot; where you want to move to a new line. The place where
+this is most likely to be useful is for
+<A HREF="param.html#label">staff labels,</A>
+
+which you may want
+to make multi-line, to keep them from becoming excessively wide.
+For example:
+<BR><PRE>
+&quot;Violins\nI&amp;II&quot;
+</PRE><BR>
+</P>
+<P>
+
+A &quot;\b&quot; can be used to specify a backspace. This might be useful for
+
+adding underlines to text.
+If you wish to use letters with diacritical marks,
+
+you will probably want to use the
+<A HREF="textstr.html#special">special characters,</A>
+described earlier in this section,
+rather than trying to construct them using the plain letter,
+a backspace, and the mark.
+</P>
+<P>
+You are not allowed to back up to before the beginning of a line.
+Note that in all fonts except Courier,
+different characters have different widths, so
+using backspaces can be a bit tricky. For example, underlining a 5-letter
+word might require more than 5 underscores, if the characters in the word
+
+are wider than an underscore character. In general, it works better to
+enter an entire string, then backspace to add underscoring or accents, rather
+than doing them along the way. For example, &quot;My\b\b___&quot; will line up
+much better than &quot;M\b_y\b_&quot;.
+</P>
+<P>
+<A NAME="vert">Vertical motion within a string</A>
+can be specified using &quot;\v(<I>N</I>)&quot;
+
+where <I>N</I> is some percentage of the current font height.
+The distance may be negative for downward motion
+or positive for upward motion, ranging from -100 to 100.
+
+This might be used for creating superscripts and subscripts, although
+the next section describes an alternate way of doing that which is
+usually better. It might also be used just to line something up differently
+than Mup normally would.
+You cannot put newlines (with \n) in the same string with vertical
+motion.
+</P>
+<H2>
+Piled text, for superscripts, subscripts, etc.
+</H2>
+<P>
+It is also possible to &quot;pile up&quot; lines of text in a string.
+Some common uses of this could be for superscripts and subscripts or for
+
+figured bass notation.
+Some facilities to specifically deal with
+<A HREF="textmark.html#chordmod">figured bass</A>
+will be described in a later section, but
+here we describe the general-purpose constructs for piling text. 
+
+A \: is used to indicate the beginning of piling. Any subsequent
+instances of \: in the same string will alternately turn piling off and on.
+When a pile is begun, the text size is automatically made smaller, and
+the text baseline is moved up, so that the first line of piled text is
+like a superscript, and the next like a subscript. If there are additional
+lines, they are placed below the subscript.
+By default, the lines in a pile are placed such that the last digit
+in each line all line up, or if there is no digit, the last character.
+However, you can force different alignment.
+
+A \| will force alignment at that point, or a \^ will force alignment
+at the center of the following character. A maximum of one alignment marker
+can be specified on each line of a pile.
+You cannot put newlines (with \n) in the same string with piling.
+A new line of the pile is started at each &lt;space&gt; character in the input string.
+If you want an actual literal space inside a piled line, it must be
+preceded with a backslash. As an example:
+<BR><PRE>
+&quot;Text\:superscript subscript\: back to normal.&quot;;
+&quot;This pile \:has\ literal spaces\ in\ it.&quot;;
+&quot;This pile \:h\^as align\|ment spec\^ified.&quot;;
+</PRE><BR>
+<IMG SRC="mugex65.gif" ALT="Picture of Mup output"><BR>
+</P>
+<H2>
+Slash through number
+</H2>
+<P>
+Another thing which is common in figured bass notation
+
+is to draw a slash through a number. Again, the section on
+<A HREF="textmark.html#chordmod">figured bass</A>
+will describe how to do that inside figured bass,
+but it is possible to put a slash through a number elsewhere by
+placing a backslashed slash after a number, like this:
+<BR><PRE>
+	&quot;6\/&quot;
+	&quot;10\/&quot;
+</PRE><BR>
+</P>
+<H2>
+Boxed or circled text
+</H2>
+<P>
+<A NAME="boxed">You can cause the text to be</A>
+
+printed inside a box by placing a \[ at
+the beginning of the string and a \] at the end of the string.
+Similarly you can cause text to be placed inside a circle (or ellipse
+for strings that are wide) by placing a \{ at
+the beginning of the string and a \} at the end of the string.
+Boxed or circled text are not allowed in
+<A HREF="lyrics.html">lyrics.</A>
+<BR><PRE>
+ &quot;\[This is in a box\]&quot;
+ &quot;\{This is in an ellipse\}&quot;
+</PRE><BR>
+<IMG SRC="mugex66.gif" ALT="Picture of Mup output"><BR>
+<HR>
+* Times is a trademark and Helvetica is a registered trademark of Allied Corporation.
+</P>
+<HR><P>
+&nbsp;&nbsp;&nbsp;<A HREF="shaped.html">&lt;-- previous page</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="index.html">Table of Contents</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="mupindex.html">Index</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="stuff.html">next page --&gt;</A>
+</P>
+</BODY></HTML>

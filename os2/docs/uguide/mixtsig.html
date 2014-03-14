@@ -1,0 +1,72 @@
+<HTML>
+<HEAD><TITLE>
+Mixed time signatures
+</TITLE></HEAD>
+<BODY>
+<P>
+&nbsp;&nbsp;&nbsp;<A HREF="slantxt.html">&lt;-- previous page</A>
+
+&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="index.html">Table of Contents</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="mupindex.html">Index</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="oddeven.html">next page --&gt;</A>
+</P>
+          
+<H2>
+Mixed time signatures
+</H2>
+<P>
+<A NAME="mixdtime">Once in a while, music is written with different</A>
+
+time signatures
+on different staffs. Mup does not support this directly,
+but it is possible to simulate it
+for the case where the time signatures reduce to the same value, for example,
+3/4 and 6/8 time (since 6/8 taken as a fraction and reduced to lowest terms
+is 3/4). You can make the output use both 3/4 and 6/8 by using a non-printing
+time signature, then placing the time signatures manually. 
+Here is an example of how to do that:
+<BR><PRE>
+score
+	// set time signature to 3/4 but don't print it
+	time=3/4n
+	staffs=2
+
+staff 1
+	// We want this staff to be in 3/4 time,
+	// so beam things in groups of
+	// quarter note times.
+	beamstyle=4,4,4
+
+staff 2
+	// We want this staff to effectively be
+	// in 6/8 time, so we'll beam things
+	// in groups of dotted quarters.
+	beamstyle=4., 4.
+	// In real 6/8 time, the time unit would
+	// be eighth note, so make that the default
+	timeunit=8
+
+music
+
+// Add padding to the first chord on at least one
+// of the staffs, to make room for the manually placed
+// time signatures, and set location tags
+1: [pad 5; =t] c; 8d; e; f; g;
+2: [=s] g; f; g; 4.c;
+
+// Manually place the time signatures
+// They are printed in 16-point newcentury bold font,
+// relative to the location tags that were set.
+// First print the 3/4
+print (t.w - 4, t.y) &quot;\f(newcentury bold)\s(16)3&quot;; 
+print (t.w - 4, t.y - 4) &quot;\f(newcentury bold)\s(16)4&quot;; 
+
+// Then print the 6/8
+print (t.w - 4, s.y) &quot;\f(newcentury bold)\s(16)6&quot;; 
+print (t.w - 4, s.y - 4) &quot;\f(newcentury bold)\s(16)8&quot;; 
+bar
+</PRE><BR>
+<IMG SRC="mugex102.gif" ALT="Picture of Mup output"><BR>
+</P>
+<HR><P>
+&nbsp;&nbsp;&nbsp;<A HREF="slantxt.html">&lt;-- previous page</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="index.html">Table of Contents</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="mupindex.html">Index</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="oddeven.html">next page --&gt;</A>
+</P>
+</BODY></HTML>

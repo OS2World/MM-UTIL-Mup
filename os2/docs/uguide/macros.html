@@ -1,0 +1,267 @@
+<HTML>
+<HEAD><TITLE>
+Mup macros
+</TITLE></HEAD>
+<BODY>
+<P>
+&nbsp;&nbsp;&nbsp;<A HREF="headfoot.html">&lt;-- previous page</A>
+
+&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="index.html">Table of Contents</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="mupindex.html">Index</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="ifclause.html">next page --&gt;</A>
+</P>
+         
+<H2>
+Macros
+</H2>
+<H3>
+Simple Macros (without parameters)
+</H3>
+<P>
+
+
+Macros can be defined to avoid retyping or to give mnemonic names to
+things. A macro is defined with the following syntax:
+<BR><PRE>
+<B>define</B> <I> macro_name macro_text</I> <B>@</B>
+</PRE><BR>
+</P>
+<P>
+The <I>macro_name</I> consists of one or more upper case letters, digits,
+and underscores, with the first character being a letter.
+
+The <I>macro_text</I> can be any text. It can be any length from empty
+to many pages. The &quot;@&quot; terminates the macro. A literal &quot;@&quot; can be
+placed in the <I>macro_text</I> by preceding it with a backslash.
+
+If you want a literal backslash in the <I>macro_text</I>, it also must
+be preceded by a backslash.
+</P>
+<P>
+A macro is called by stating the <I>macro_name</I> in the input. The
+<I>macro_name</I> is replaced by the <I>macro_text</I>. 
+A macro can be defined at any point in the input. It can be used as
+often as desired any time after it has been defined. A given <I>macro_name</I>
+can be redefined as many times as desired, with each new definition
+overwriting the previous definition.
+</P>
+<P>
+As an example, suppose you are printing an orchestral score, and the oboe
+
+part happens to be on staff 5. Rather than having to remember which staff
+it is, you could define a macro:
+<BR><PRE>
+define OBOE 5: @
+</PRE><BR>
+Not only is the name easier to remember than a number, but if you later
+decide to move the oboe part to a different place in the score, only the
+macro definition and perhaps a few other things would have to be changed.
+</P>
+<P>
+Another common use of macros might be if a musical motif occurs several
+times. You could define a macro for the motive:
+<BR><PRE>
+define SCALE 8c;d;e;f;g;a;b;c+; @
+</PRE><BR>
+then do something like:
+<BR><PRE>
+OBOE SCALE
+</PRE><BR>
+</P>
+<P>
+It is possible to remove the definition of a macro using the &quot;undef&quot;
+
+statement:
+<BR><PRE>
+undef OBOE
+</PRE><BR>
+</P>
+<P>
+It is possible to have parts of the input skipped over depending on whether
+certain macros are defined or not. This is done using
+&quot;ifdef,&quot; &quot;else,&quot; and &quot;endif.&quot; The keyword &quot;ifdef&quot; is followed by
+
+a macro name. If a macro by that name is currently defined,
+Mup will continue
+reading and processing input normally. If it finds a matching &quot;else,&quot;
+it will skip over input until the matching &quot;endif.&quot;
+If the macro is not currently defined, Mup will skip over the input
+until it finds a matching &quot;else&quot; or &quot;endif.&quot;  There is also
+an &quot;ifndef&quot; command that uses the opposite logic: it will read the input
+up to the &quot;else&quot; or &quot;endif&quot; only if the macro is NOT defined.
+</P>
+<P>
+The ifdefs can be sprinkled between other items in the input;
+they need not be on separate lines. They can be nested. Examples:
+<BR><PRE>
+// make last c an octave higher if macro &quot;FRED&quot; is defined
+1: c;e;g;c ifdef FRED + endif;
+
+ifdef PIANO
+    staff 1 visible=n
+else
+    ifdef VIOLIN
+        staff 2 visible=n
+        staff 3 visible=n
+    endif
+endif
+</PRE><BR>
+</P>
+<P>
+<A HREF="cmdargs.html#doption">Macros can also be set from the command line using the -D option.</A>
+Only ordinary macros can be defined using the -D option,
+not macros with parameters.
+</P>
+<H3>
+Macros with parameters
+</H3>
+<P>
+<A NAME="macparm">Macros defined within Mup input can be defined to have "parameters."</A>
+
+This may be useful
+when you have something that is repeated with small variations.
+When defining a macro with parameters, the macro name must be followed
+immediately by a ( with no space between the end of the name and the
+parenthesis. The opening parenthesis is followed by one or more
+parameter names, separated by commas, and ending with a close parenthesis.
+Parameter names have the same rules as macro names: they consist of
+upper case letters, numbers, and underscores, starting with an upper case
+letter. The parameter names can then appear in the text of the macro
+definition where you want a value to be substituted.
+</P>
+<P>
+As an example, suppose you are doing a score with staffs 1 through 4
+for vocal parts, and staffs 5 and 6 for a piano accompaniment, and that
+you frequently want to mark a dymanics change at the same point in time
+below each of the vocal scores and between the two piano staffs.
+You could typically do this with something like:
+<BR><PRE>
+boldital below 1-4: 1 &quot;ff&quot;;
+boldital between 5&amp;6: 1 &quot;ff&quot;;
+</PRE><BR>
+but if you needed to do this lots of times, it could get tedious.
+So let's define a macro with parameters:
+<BR><PRE>
+define DYN( COUNT, VOLUME )
+boldital below 1-4: COUNT VOLUME;
+boldital between 5&amp;6: COUNT VOLUME;
+@
+</PRE><BR>
+This macro has two parameters,
+which have been given the names COUNT and VOLUME.
+When you call the macro, you will give them values.
+For example,
+<BR><PRE>
+DYN(1,&quot;ff&quot;)
+</PRE><BR>
+would give a VOLUME of &quot;ff&quot; at COUNT 1, whereas
+<BR><PRE>
+DYN(3.5,&quot;mp&quot;)
+</PRE><BR>
+would give a VOLUME of &quot;mp&quot; at COUNT 3.5.
+</P>
+<P>
+When calling a macro with parameters, the values to give the parameters
+are given inside parentheses. The values are separated by commas.
+The values in the parentheses are copied exactly as they are,
+including any spaces, newlines, macro names, etc.
+There are only a few exceptions to this:
+you can include a comma, closing parenthesis, or backslash
+as part of a parameter value by preceding it with a backslash, and
+a backslash followed by a newline
+in a parameter value will be discarded. Thus a macro call of
+<BR><PRE>
+MAC(\\\,\))
+</PRE><BR>
+has one parameter, the text of which is 3 characters long: a backslash,
+comma, and closing parenthesis.
+If you backslash other characters they will be copied without the backslash,
+but doing this on anything other than a double quote will produce a warning,
+because it seems unlikely the backslash was really needed.
+</P>
+<P>
+<A NAME="quoting">If in a macro definition a parameter is used inside backticks,</A>
+as in `NAME`, the value of the parameter will be placed
+
+inside double quotes. Thus, another way to do the example above would be:
+<BR><PRE>
+define DYN( COUNT, VOLUME )
+boldital below 1-4: COUNT `VOLUME`;
+boldital between 5&amp;6: COUNT `VOLUME`;
+@
+
+DYN(1,ff)
+DYN(3.5,mp)
+</PRE><BR>
+</P>
+<P>
+Conceptually, when the macro is expanded, the backticks are replaced
+by double quote marks, but in addition,
+any double quote mark found in the value being passed to the parameter will
+have a backslash inserted before it, and any backslash that occurs
+within double quotes in the value will also have a backslash inserted
+before it. Thus, for example:
+<BR><PRE>
+// If we define a macro like this:
+define QUOTED(X) `X` @
+
+// then for input    value passed is    `X` would be    which would print as
+
+print QUOTED(hello)       hello          &quot;hello&quot;          hello
+print QUOTED(&quot;hello&quot;)     &quot;hello&quot;        &quot;\&quot;hello\&quot;&quot;      &quot;hello&quot;
+print QUOTED(\\n)         \n             &quot;\n&quot;             a literal newline
+print QUOTED(&quot;\\n&quot;)       &quot;\n&quot;           &quot;\&quot;\\n\&quot;&quot;        &quot;\n&quot;
+</PRE><BR>
+</P>
+<P>
+Sometimes it can be a little tricky to get the number of backslashes right,
+or other details like that.
+<A HREF="cmdargs.html#Eoption">The -E Mup command line option</A>
+shows how macros will expand, which may help you figure out what to do.
+</P>
+<P>
+<A NAME="arrow">Let's look at an example of much more complicated use of macros.</A>
+This example demostrates the use of arithmetic functions described in the
+<A HREF="tags.html">section on location tags. We will draw a line with an arrow between notes</A>
+on two different staffs.
+While it may be possible to write the expressions directly, 
+the result would be very hard to read and understand,
+so using macros to build up the pieces of the expression can be very helpful.
+<BR><PRE>
+define HEAD_LENGTH             5 @
+define HEAD_WIDTH              3 @
+define ANGLE(X1,Y1,X2,Y2)      atan2((Y2) - (Y1), (X2) - (X1)) @
+define COS(X1,Y1,X2,Y2)        cos(ANGLE(X1,Y1,X2,Y2)) @
+define SIN(X1,Y1,X2,Y2)        sin(ANGLE(X1,Y1,X2,Y2)) @
+define HEAD_X(X1,Y1,X2,Y2)     (HEAD_LENGTH * COS(X1,Y1,X2,Y2)) @
+define HEAD_Y(X1,Y1,X2,Y2)     (HEAD_LENGTH * SIN(X1,Y1,X2,Y2)) @
+define HB_X(X1,Y1,X2,Y2)       ((X2) - HEAD_X(X1,Y1,X2,Y2)) @
+define HB_Y(X1,Y1,X2,Y2)       ((Y2) - HEAD_Y(X1,Y1,X2,Y2)) @
+define THICK_LEN               (HEAD_WIDTH / 2) @
+define THICK_X(X1,Y1,X2,Y2)    (THICK_LEN * SIN(X1,Y1,X2,Y2)) @
+define THICK_Y(X1,Y1,X2,Y2)    (THICK_LEN * COS(X1,Y1,X2,Y2)) @
+define FEATH_UP_X(X1,Y1,X2,Y2) (HB_X(X1,X2,Y1,Y2) - THICK_X(X1,Y1,X2,Y2)) @
+define FEATH_UP_Y(X1,Y1,X2,Y2) (HB_Y(X1,X2,Y1,Y2) + THICK_Y(X1,Y1,X2,Y2)) @
+define FEATH_DN_X(X1,Y1,X2,Y2) (HB_X(X1,X2,Y1,Y2) + THICK_X(X1,Y1,X2,Y2)) @
+define FEATH_DN_Y(X1,Y1,X2,Y2) (HB_Y(X1,X2,Y1,Y2) - THICK_Y(X1,Y1,X2,Y2)) @
+define ARROW(X1,Y1,X2,Y2)
+  medium line (X1, Y1) to (X2, Y2)
+  medium line (X2, Y2) to (FEATH_UP_X(X1,Y1,X2,Y2), FEATH_UP_Y(X1,Y1,X2,Y2))
+    medium line (X2, Y2) to (FEATH_DN_X(X1,Y1,X2,Y2), FEATH_DN_Y(X1,Y1,X2,Y2))
+@
+
+score
+	staffs = 2
+staff 2
+	clef = bass
+music
+	1: c =h; r; 2;
+	2: r; g =k; e; g;
+	bar
+
+ARROW(h.x + 2, h.y - 1, k.x - 2, k.y + 1)
+</PRE><BR>
+<IMG SRC="mugex90.gif" ALT="Picture of Mup output"><BR>
+</P>
+<HR><P>
+&nbsp;&nbsp;&nbsp;<A HREF="headfoot.html">&lt;-- previous page</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="index.html">Table of Contents</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="mupindex.html">Index</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="ifclause.html">next page --&gt;</A>
+</P>
+</BODY></HTML>

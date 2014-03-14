@@ -1,0 +1,72 @@
+<HTML>
+<HEAD><TITLE>
+Bracketing notes across staffs
+</TITLE></HEAD>
+<BODY>
+<P>
+&nbsp;&nbsp;&nbsp;<A HREF="tieacc.html">&lt;-- previous page</A>
+
+&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="index.html">Table of Contents</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="mupindex.html">Index</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="crossbar.html">next page --&gt;</A>
+</P>
+         
+<H2>
+Bracketing notes across staffs
+</H2>
+<P>
+In keyboard music, sometimes a bracket is drawn to indicate that
+notes from two staffs are to be played
+
+with the same hand. The bracket is really just a vertical line with short
+horizontal lines at each end. But if you need to make lots of brackets,
+a macro with parameters can be very helpful.
+<BR><PRE>
+score
+  staffs=2
+
+staff 2
+  clef=bass
+  vscheme=2f
+
+// Define a macro to draw a bracket to show that notes on two
+// different staffs are to be played with the same hand.
+// The parameters are location tags for the top and bottom notes
+// to be included in the bracket.
+define BRACK(TOP, BOT)
+// Draw a short horizontal line 0.5 stepsizes above the top note
+line (TOP.w - 2, TOP.n + 0.5) to (TOP.w - 1, TOP.n + 0.5)
+// Draw a vertical line from 0.5 stepsizes above the top note
+// to 0.5 stepsizes below the bottom note.
+// Do all the 'x' coordinates relative to the same note (in
+// this case the top), so that if the top and bottom chord happen
+// to be different widths, the line will still be vertical.
+line (TOP.w - 2, TOP.n + 0.5) to (TOP.w - 2, BOT.s - 0.5)
+// Draw short horizontal line just below and left of the bottom note.
+line (TOP.w - 2, BOT.s - 0.5) to (TOP.w - 1, BOT.s - 0.5)
+@
+
+music
+
+// For each chord that is to get a bracket, add some padding to
+// make sure there is enough room, and set a location tag
+// on the top and bottom notes.
+1: [pad 2] ce =a;[] df =b; [] d =c; [] ce =d;
+2: [pad 2] g =e; [] a =f; [] af =g; [] g =h;
+2 2: 2cc-; 4g-; cc-;
+// Now draw the brackets, using the tags as parameters
+BRACK (a, e)
+BRACK (b, f)
+BRACK (c, g)
+BRACK (d, h)
+bar
+</PRE><BR>
+<IMG SRC="mugex98.gif" ALT="Picture of Mup output"><BR>
+</P>
+<P>
+Note that Mup supports
+<A HREF="crossst.html">cross-staff stems, which is another way to notate a chord that is split</A>
+across two staffs, and may often be a better choice.
+</P>
+<HR><P>
+&nbsp;&nbsp;&nbsp;<A HREF="tieacc.html">&lt;-- previous page</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="index.html">Table of Contents</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="mupindex.html">Index</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="crossbar.html">next page --&gt;</A>
+</P>
+</BODY></HTML>

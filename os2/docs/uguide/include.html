@@ -1,0 +1,40 @@
+<HTML>
+<HEAD><TITLE>
+Mup include files
+</TITLE></HEAD>
+<BODY>
+<P>
+&nbsp;&nbsp;&nbsp;<A HREF="ifclause.html">&lt;-- previous page</A>
+
+&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="index.html">Table of Contents</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="mupindex.html">Index</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="udefsym.html">next page --&gt;</A>
+</P>
+          
+<H2>
+Include
+</H2>
+<P>
+
+The &quot;include&quot; statement can be used to include the contents of one file
+inside another.
+<BR><PRE>
+<B>include &quot;</B><I>filename</I><B>&quot;</B>
+</PRE><BR>
+causes input to be read from the specified <I>filename</I>. When the end
+of that file is reached, reading of input resumes from the original file
+after the include statement.
+</P>
+<P>
+If the <I>filename</I> cannot be found as is, and it is not an absolute
+path, and if the environment variable MUPPATH is set, Mup will search
+for the file in each directory listed in MUPPATH. On Unix systems, the
+directories are separated by colons. On systems with DOS-like file naming
+conventions, they are separated by semicolons.
+The MUPPATH may be useful if, for example, you have a number of &quot;boilerplate&quot;
+files that you want to include in lots of songs. You can put them in
+some directory and set MUPPATH to list that directory, then any Mup
+files you have can refer to them.
+</P>
+<HR><P>
+&nbsp;&nbsp;&nbsp;<A HREF="ifclause.html">&lt;-- previous page</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="index.html">Table of Contents</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="mupindex.html">Index</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="udefsym.html">next page --&gt;</A>
+</P>
+</BODY></HTML>

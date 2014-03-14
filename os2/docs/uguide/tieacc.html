@@ -1,0 +1,35 @@
+<HTML>
+<HEAD><TITLE>
+Accidental on tied-to note
+</TITLE></HEAD>
+<BODY>
+<P>
+&nbsp;&nbsp;&nbsp;<A HREF="trillacc.html">&lt;-- previous page</A>
+
+&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="index.html">Table of Contents</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="mupindex.html">Index</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="brackmac.html">next page --&gt;</A>
+</P>
+         
+<H2>
+Accidental on tied-to note
+</H2>
+<P>
+When a note with an accidental is tied across a bar line, the standard
+convention is to not print the accidental on the tied-to note, and Mup
+uses that convention. If you really want to have the accidental printed,
+you can specify a slur rather than a tie. If you want the MIDI output to be
+correct, you can use an
+<A HREF="macros.html">ifdef</A>
+to use slur for printing and tie for MIDI.
+<BR><PRE>
+1: 2c;e&amp; ifdef MIDI ~ else &lt;&gt; endif ;
+bar
+
+1: 1e&amp;;
+bar
+</PRE><BR>
+<IMG SRC="mugex97.gif" ALT="Picture of Mup output"><BR>
+</P>
+<HR><P>
+&nbsp;&nbsp;&nbsp;<A HREF="trillacc.html">&lt;-- previous page</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="index.html">Table of Contents</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="mupindex.html">Index</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="brackmac.html">next page --&gt;</A>
+</P>
+</BODY></HTML>

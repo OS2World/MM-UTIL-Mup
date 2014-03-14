@@ -1,0 +1,64 @@
+<HTML>
+<HEAD><TITLE>
+Mid-measure parameter changes
+</TITLE></HEAD>
+<BODY>
+<P>
+&nbsp;&nbsp;&nbsp;<A HREF="chrdattr.html">&lt;-- previous page</A>
+
+&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="index.html">Table of Contents</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="mupindex.html">Index</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="crossst.html">next page --&gt;</A>
+</P>
+          
+<H3>
+Mid-measure parameter changes
+</H3>
+<P>
+The group attributes can optionally be preceded by mid-measure
+parameter changes.
+
+This is not used very often, but the most common
+use is to change the
+<A HREF="param.html#clef">clef</A>
+
+in the middle of a measure. There are only a few
+other parameters that can be changed inside a measure:
+<A HREF="param.html#alignrst">alignrests,</A>
+<A HREF="param.html#defoct">defoct</A>
+
+and
+<A HREF="param.html#release">release.</A>
+
+The change is enclosed in double angle brackets.
+After the opening angle bracket is the
+<A HREF="contexts.html">context</A>
+to which the changes applies (score, staff, or voice),
+followed by one or more parameter changes.
+<BR><PRE>
+1: c; e; &lt;&lt;score clef=bass&gt;&gt; 2g;
+bar
+</PRE><BR>
+<IMG SRC="mugex20.gif" ALT="Picture of Mup output"><BR>
+If there is more than one parameter listed, they are separated by semicolons.
+<BR><PRE>
+&lt;&lt; staff clef = tenor ; defoct = 4 &gt;&gt;
+</PRE><BR>
+</P>
+<P>
+If you wish to change parameters in more than one context, multiple
+angle-bracketed items can be given:
+<BR><PRE>
+2-3 2: 2c; &lt;&lt;score release=100&gt;&gt;&lt;&lt;staff clef=alto&gt;&gt;&lt;&lt;voice defoct=3&gt;&gt; c;
+</PRE><BR>
+</P>
+<P>
+If you specify &quot;staff&quot; or &quot;voice&quot; context, the specific staff(s) or voice(s)
+to which the changes apply is based on which staff(s) or voice(s)
+are being described on the input line. So in the example above,
+the clef is changed to alto on staffs 2 and 3, and the defoct is
+changed to 3 for voice 2 on both of those staffs. The release change
+applies to the entire score.
+</P>
+<HR><P>
+&nbsp;&nbsp;&nbsp;<A HREF="chrdattr.html">&lt;-- previous page</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="index.html">Table of Contents</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="mupindex.html">Index</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="crossst.html">next page --&gt;</A>
+</P>
+</BODY></HTML>

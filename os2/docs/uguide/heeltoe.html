@@ -1,0 +1,41 @@
+<HTML>
+<HEAD><TITLE>
+Organ pedal heel/toe marks
+</TITLE></HEAD>
+<BODY>
+<P>
+&nbsp;&nbsp;&nbsp;<A HREF="breathmk.html">&lt;-- previous page</A>
+
+&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="index.html">Table of Contents</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="mupindex.html">Index</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="muspaper.html">next page --&gt;</A>
+</P>
+         
+<H2>
+Organ pedal heel and toe marks
+</H2>
+<P>
+Mup does not include characters specially for the standard organ pedal
+
+heel and toe indications, but a U in helvetica font and the acc_hat
+music symbol can be used. You may want to make them a bit smaller than
+the default size, so defining macros for them may be useful.
+<BR><PRE>
+score
+	clef = bass
+
+// define strings for the organ pedal heel and toe marks
+define HEEL &quot;\s(-3)\f(HB)U&quot; @
+define TOE &quot;\s(-1)\(acc_hat)&quot; @
+
+music
+
+1: a-;b-;e;f;
+rom below 1: 1 HEEL; 2 TOE;
+rom above 1: 3 TOE; 4 HEEL;
+bar
+</PRE><BR>
+<IMG SRC="mugex109.gif" ALT="Picture of Mup output"><BR>
+</P>
+<HR><P>
+&nbsp;&nbsp;&nbsp;<A HREF="breathmk.html">&lt;-- previous page</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="index.html">Table of Contents</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="mupindex.html">Index</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="muspaper.html">next page --&gt;</A>
+</P>
+</BODY></HTML>

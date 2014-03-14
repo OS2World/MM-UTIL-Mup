@@ -1,0 +1,66 @@
+<HTML>
+<HEAD><TITLE>
+Generating blank staff paper
+</TITLE></HEAD>
+<BODY>
+<P>
+&nbsp;&nbsp;&nbsp;<A HREF="heeltoe.html">&lt;-- previous page</A>
+
+&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="index.html">Table of Contents</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="mupindex.html">Index</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="pscoord.html">next page --&gt;</A>
+</P>
+          
+<H2>
+Generating blank staff paper
+</H2>
+<P>
+It is possible to use Mup to generate
+
+blank music staff paper.
+You simply use an input file that contains
+<A HREF="chordinp.html#measdur">measure spaces,</A>
+each ending with an
+<A HREF="invisbar.html">invisbar.</A>
+You can control whether you want
+<A HREF="param.html#clef">clefs,</A>
+<A HREF="param.html#time">time signatures,</A>
+<A HREF="param.html#brace">braces,</A>
+etc., and can control the spacing of staffs using
+<A HREF="param.html#scoresep">the scoresep parameter.</A>
+Here is a simple input that will generate a page with 8 completely
+blank staffs.
+<BR><PRE>
+score
+	scoresep=9,100		// spread staffs out nicely
+	stafflines=5n		// don't print any clefs
+	label=&quot;&quot;		// make sure left edges line up both on first
+	label2=&quot;&quot;		//    and on subsequent lines
+	topmargin=1		// allow extra margin to write in header/footer
+	bottommargin=1
+	time=4/4n		// don't print any time signature
+music
+
+define SCORE
+	1: ms;
+	invisbar		// no bar line at the end of the staff
+@
+
+define SCORE_NEWSCORE
+	SCORE
+	newscore
+@
+
+// print 8 staffs, with newscore between each
+SCORE_NEWSCORE
+SCORE_NEWSCORE
+SCORE_NEWSCORE
+SCORE_NEWSCORE
+SCORE_NEWSCORE
+SCORE_NEWSCORE
+SCORE_NEWSCORE
+SCORE
+</PRE><BR>
+</P>
+<HR><P>
+&nbsp;&nbsp;&nbsp;<A HREF="heeltoe.html">&lt;-- previous page</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="index.html">Table of Contents</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="mupindex.html">Index</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="pscoord.html">next page --&gt;</A>
+</P>
+</BODY></HTML>

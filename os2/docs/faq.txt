@@ -1,0 +1,312 @@
+
+       
+
+                   Mup Frequently Asked Questions (FAQ)
+
+       1.  Frequent questions for those who have not yet used Mup
+
+       1.1  Q: What makes Mup unique? Why should I consider using
+       Mup?
+
+         1.  Mup  provides  high  quality  music output at very low
+             cost.  You  can  download  Mup  and  try  it  out  for
+             yourself.
+
+         2.  Mup  is  available  ready-to-run  for several computer
+             operating systems, and is  also  available  in  source
+             form,  so  that  it  can  be run on almost any kind of
+             computers, including Windows, Apple, Linux or Unix.
+
+         3.  If you prefer a command line interface,  Mup  provides
+             that,  and doesn't require using a mouse or learning a
+             new editor; you can just create a Mup input file using
+             any  text  editor  of  your  choice.   However, if you
+             prefer an interface with menus and integrated  editor,
+             the companion Mupmate program provides that.
+
+         4.  Mup  input  can  be easily generated or manipulated by
+             another program.  Input files are typically small,  so
+             it doesn't take a long time to create them. Since they
+             are ordinary text they can easily be  moved  to  other
+             systems,  even  if  the  other system uses a different
+             operating system. For example, it  would  be  easy  to
+             email  a  song  in Mup format to a friend, and if they
+             had Mup, they could then print it out or play  it  via
+             MIDI.   Since  Mup  output  is  standard PostScript or
+             standard MIDI,  output  files  are  also  portable  to
+             almost any operating system.
+
+         5.  Mup  handles page layout details, but provides ways to
+             alter the layout if you wish.  It  has  the  power  to
+             handle    complicated    scores,   and   can   produce
+             professional-quality output quickly.
+
+         6.  Mup's ability to  produce  MIDI  output  can  be  very
+             helpful  for "proof listening" to your music, which is
+             usually a very effective way to spot errors  that  you
+             might miss by just looking at the score,
+
+       1.2  Q: Will Mup run on my computer?
+
+       We  currently  provide Mup in ready-to-run form for Windows,
+       Mac OS X,, and Linux x86 systems.
+
+       If you use a different operating system, Mup source code  is
+       also  available,  so  if  you  have  a  C  compiler, you can
+       probably compile and run Mup. It has been run using  several
+       versions of UNIX on x86, Sun, Digital, Silicon Graphics, and
+       other systems.   Mup  require  no  special  libraries.   The
+       Windows  version will run under ReactOS.  An ANSI-C compiler
+       is recommended, but not required.  If you try to compile Mup
+       and  have problems, please let us know at support@arkkra.com
+       We'd like to make it portable to  as  many  computer  system
+       types as possible.  The companion Mupmate program requires a
+       C++ compiler and the FLTK toolkit.
+
+       1.3  Q: How long will it take to learn how to use Mup?
+
+       This will vary from person  to  person.  A  person  who  has
+       experience with computer languages will probably pick up Mup
+       more quickly, but such knowledge is not necessary.  Mup  has
+       a  broad  array  of features, so if you want to learn how to
+       use every feature that Mup  has  to  offer,  this  may  take
+       several  days. (The Mup User's Guide, which explains all the
+       features, and includes many examples,  is  about  150  pages
+       long.)  However,  once  you get Mup installed, you can start
+       experimenting with Mup after reading the first few pages  of
+       the  User's  Guide,  and  it  should take no more than a few
+       hours to feel comfortable with the basics, enough  to  enter
+       simple  songs  and  get  professional-looking  output.   The
+       User's Guide includes many examples, and is provided both as
+       a  PostScript  file  that you can print out on paper, and as
+       HTML files with hundreds of hypertext links,  that  you  can
+       view  with  your  Web browser.  The Mup installation package
+       contains several sample files and a template  file  to  help
+       you  get  started.   You can also download sample songs from
+       ftp://ftp.arkkra.com/pub/music
+
+       1.4  Q: How long will it take to enter music?
+
+       This will vary greatly, depending on a  number  of  factors,
+       such  as  how  complicated the music is, how much experience
+       you have had with using Mup, how  fast  you  type,  etc.  An
+       experienced  Mup  user  can  typically enter simple music in
+       less than 15 minutes per page, but very  complex  music  can
+       often  take  over  an hour, especially if you like to make a
+       lot of adjustments to make things look just exactly the  way
+       you want.
+
+       1.5  Q: How did Mup and Arkkra Enterprises come about?
+
+       We are musicians and computer programmers who wanted a music
+       publication program that  would  produce  very  high-quality
+       output  with  a  minimum  amount  of  fuss. We wrote the Mup
+       program for our own use, and continue to use it for all  our
+       own compositions. When other people expressed an interest in
+       getting a copy of Mup, we formed Arkkra Enterprises  to  set
+       up  a  Web site to make Mup available as shareware to anyone
+       who wants it.  We rely on  the  shareware  registration  fee
+       that you pay to cover the cost of maintaining a Web site and
+       providing support to answer questions. We add  new  features
+       based  on  user  suggestions, and once you register, we will
+       notify you of any future free upgrades.
+
+       1.6  Q: How do I pay for Mup?
+
+       If you wish to pay online, we have  arrangements  with  both
+       PayPal  and  setSystems  (part  of  Digital River) to handle
+       paying for Mup with a credit card.  They are able to  handle
+       transactions  in  many different currencies.  Otherwise, you
+       can fill out the registration form and  send  the  form  and
+       (US) $29 in cash, check, or money order to the address given
+       on the form.  If you are writing a check from a bank outside
+       the  United  States,  please make it out in the bank's local
+       currency in an amount equivalent to  29  U.S.  dollars;  our
+       bank  will not accept US-dollar-denominated checks from non-
+       US banks.  As soon as we receive your payment, we will email
+       the  registration  information  to you.  <I>Please make sure
+       that any "spam filters" used by you or your provider do  not
+       block     this     mail,     which     will     come    from
+       support@arkkra.com.</I> Once you register,  we  will  notify
+       you via email of future Mup versions, and you can upgrade to
+       any  future  versions  of  Mup  for  free.   Once  you  have
+       registered,  you also can join the Mup users mailing list if
+       you wish, at no additional charge.  We only use your address
+       to  send  you information about Mup; it is our policy to not
+       give out names, email, or street addresses to anyone else.
+
+       --------------------------------------------------
+
+       2.  Frequent questions from Mup users
+
+       2.1  Q. Is there a mailing list for Mup users?
+
+       Yes.  There  is  a  "majordomo"   mailing   list   available
+       exclusively  to  registered  Mup users.  It provides a forum
+       where you can ask or answer questions, get tips on how other
+       people are using Mup, etc.
+
+       2.2  Q. Can I put Mup output into some other document?
+
+       There   is  a  tool  that  comes  with  Ghostscript,  called
+       "ps2epsi" that converts a PostScript file to an Encapsulated
+       PostScript  file,  which  can  then  be  imported into other
+       documents.
+
+       2.3  Q: Can Mup produce PDF files?
+
+       Not directly, but since Mup produces PostScript output,  you
+       can easily convert the output to PDF format using the ps2pdf
+       utility that comes with Ghostscript.
+
+       2.4  Q. Why is the first score indented differently than the
+       others?
+
+       The first  score  of  a  piece  of  music  is  traditionally
+       indented  somewhat  more  than  subsequent scores, so that's
+       what Mup does by default.   It  does  that  by  setting  the
+       default label parameter to a few spaces, whereas it sets the
+       default for the label2 parameter to an empty string.  If you
+       don't want the indentation, you can set
+         label=""
+
+       2.5  Q: Is is possible to specify a pickup measure?
+
+       Yes. You use "space" on all voices. For example,
+       1: 2.s; 4e;
+       2: 2.s; 4c;
+       will  produce  a  pickup measure with just a quarter note in
+       it.
+
+       2.6  Q: Is it possible to display a tempo marking of the
+       form '(N = 120)' where N is a note symbol, like a quarter
+       note?
+
+       Yes. Try something like
+       rom above all: 1 "( \(sm4n) = 120 )";
+
+       2.7  Q: Can Mup take a MIDI file as input?
+
+       No. However, it is possible to write a program that reads  a
+       MIDI  file  and outputs a file that can be input to Mup. Two
+       programs that do this, called "mtm" and "midi2mup" have been
+       donated  by  Mup users.  They are limited, and not supported
+       by Arkkra Enterprises, but may be useful  for  some  people.
+       Check out the programs donated by Mup users.
+
+       2.8  Q. Where can I find general information about MIDI?
+
+       There  are  thousands  of  MIDI  tutorials  on the web; just
+       search for "MIDI tutorials."  One place you might  start  is
+       http://www.harmony-central.com/MIDI/Doc/doc.html  which  has
+       links to several tutorials, ranging  from  very  high  level
+       overviews to low level technical details.
+
+       2.9  Q: What are some of the shorthands that can be used to
+       reduce typing?
+
+       There are many shorthands available. Some of the most useful
+       are:
+
+         -- When the time value of a chord is the same as  that  of
+            the  previous  chord in the measure, it can be omitted.
+            If all pitch values of a chord  are  the  same  as  the
+            previous chord, they can be omitted. For example:
+            1: 4c; 4c; 4ceg; 4ceg;
+            is the same as
+            1: 4c; ; ceg; ;
+
+         -- If several voices have the same music data, they can be
+            given on a single line.
+            1-3 1-2: mr;
+            is equivalent to
+            1 1: mr;
+            1 2: mr;
+            2 1: mr;
+            2 2: mr;
+            3 1: mr;
+            3 2: mr;
+            A similar shorthand works for text and music symbols:
+            rom above 1-4: 3 "mf";   // staffs 1 through 4
+            < below 2-3: 4 til 3m+2; // staffs 2 and 3
+            mussym 1-5: 1 "ferm";   // staffs 1 through 5
+
+         -- If several chords in a  row  have  the  same  items  in
+            square  brackets before the chords, only the first must
+            have everything included. By giving an  ellipsis  after
+            the  ]  the  items in brackets will be repeated for the
+            rest of the  measure  or  until  cancelled.   Thus  the
+            following lines are equivalent:
+            1: [with .] c; [with .] d; [with .] e;
+            1: [with .]... c; d; e;
+
+       2.10  Q: The Mupprnt command doesn't seem to work right.
+       What do I do?
+
+       You  may  need  to  edit  the  mupprnt file to make sure the
+       variables and paths  are  set  to  match  where  things  are
+       installed on your system.  In particular,
+
+         -- GS_DIR  needs to be set to the directory which contains
+            the  Ghostscript  font  files  (*.gsf)  and  the  other
+            Ghostscript setup files (gs_*.ps).
+
+         -- GS_DEVICE  needs  to be set to the proper type to match
+            your printer type.
+
+         -- The path to Mup must be correct
+
+         -- The path to Ghostscript (gs or gs386 on  MS-DOS/Windows
+            system) must be correct.
+
+         -- On  MS-DOS/Windows  systems, dos4gw.exe must be in your
+            PATH.
+       If you are using a viewer such as GSview or gv, you may want
+       to use its print feature rather than using mupprnt.
+
+       2.11  Q: On MS-DOS, the Mupdisp command comes back with
+       ghostscript error 1. What do I do?
+
+       Check your config.sys file. You need to have a line like
+       files=10
+       where  the  number  after the equals sign is greater than or
+       equal to 9.
+
+       Also, make sure gs386.exe exists and is in your PATH. If you
+       are  running  Mup  from MS-DOS directly or from a DOS prompt
+       under Windows, make sure you installed the  DOS  version  of
+       Ghostscript,  not  the  Windows  version.   If you are using
+       Mupmate, or Winmup, make  sure  you  installed  the  Windows
+       version of Ghostscript, not the MS-DOS version.
+
+       2.12  Q: If I use Mup for a language other than English,
+       will it handle the letters that are not used in English?
+
+       Mup  handles  all  the  symbols  in  the standard PostScript
+       fonts, which covers most  Western  languages.  Only  Latin-1
+       characters  are  handled directly from Mup input, but others
+       can be entered via names like  \(Euro)  or  \(lambda).   The
+       User's  Guide  section on text strings gives a complete list
+       of supported non-ASCII characters.
+
+       2.13  Q: Under Linux, Mupdisp says it can't open
+       /dev/console. What do I do?
+
+       The svga library  used  by  Mupdisp  in  non-X-windows  mode
+       requires write permission to the console. To allow this:
+
+         -- Make Mupdisp setuid to root:
+            chown root mupdisp
+            chmod 4755 mupdisp
+
+       2.14  Q: What if I have more questions about Mup?
+
+       Send  us email at support@arkkra.com We welcome any comments
+       and questions  about  Mup.  Normally,  you  should  have  no
+       problem  contacting  us  this way. In the unlikely event you
+       get a "rejected" reply when sending email, this  is  because
+       excessive  "spam"  (junk  mail)  has been received from your
+       domain at some time in the past, and  our  Internet  service
+       provider  has installed a "spam blocker."  In this case, you
+       will have to send email from another address or  send  paper
+       mail.

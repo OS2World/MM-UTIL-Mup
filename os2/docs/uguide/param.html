@@ -1,0 +1,3612 @@
+<HTML>
+<HEAD><TITLE>
+Mup Parameters
+</TITLE></HEAD>
+<BODY>
+<P>
+&nbsp;&nbsp;&nbsp;<A HREF="fontfile.html">&lt;-- previous page</A>
+
+&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="index.html">Table of Contents</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="mupindex.html">Index</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="debug.html">next page --&gt;</A>
+</P>
+            
+<H1>
+PARAMETERS
+</H1>
+<P>
+
+Parameters can be set in various contexts. All parameters
+
+have default values, so that you need to explicitly set them only if you
+want some value other than the default value. 
+</P>
+<P>
+Some parameters can be set only in the score context. Others can be set in
+
+
+either score or staff contexts. A few can be set in score, staff, or voice
+
+context. If a given parameter can be set in several
+<A HREF="contexts.html">contexts,</A>
+the value is that of the parameter at the
+most specific context in which it is set. For example, if Mup is working
+on musical data for voice 2 of staff 5, and it needs to
+look up the value of a parameter, it will first see if that parameter has
+been set in context &quot;voice 5 2&quot;.
+If so, it will use that value. If not,
+it will see if the parameter was set in context &quot;staff 5&quot;. If that has not
+been set either, it will use the value from the score context. The score
+context initially has all parameters set to their default values.
+There are a few parameters, mostly related to font and text size,
+that can also be set in
+<A HREF="headfoot.html">header, footer, and similiar contexts.</A>
+</P>
+<P>
+Parameters are set by the following syntax:
+<BR><PRE>
+<I>parameter_name</I><B>=</B><I>value</I>
+</PRE><BR>
+</P>
+<P>
+Several parameters can be set on a single line by separating them with
+a semicolon. For example:
+
+<BR><PRE>
+staffs=2 ; key=2&amp; ; time=2/4
+</PRE><BR>
+</P>
+<P>
+Parameters can be unset in staff or voice context using
+<BR><PRE>
+<B>unset</B><I> parameter_name</I>
+</PRE><BR>
+Unsetting a parameter in staff context will cause it
+to revert to its value in score context (unless overridden in voice context).
+Unsetting a parameter in voice context will cause it
+to revert to its value in staff context if that is set,
+otherwise to its value in score context.
+</P>
+<P>
+The parameters are listed below in alphabetical order. For each,
+the description includes the parameter's name,
+legal values, default value, and contexts in which the parameter can be
+set, along with an example of its usage.
+If there are other related parameters, they are referenced as well.
+</P>
+<H2>Index of parameters</H2>
+<A HREF="param.html#indexA">A</A> <A HREF="param.html#indexB">B</A> <A HREF="param.html#indexC">C</A> <A HREF="param.html#indexD">D</A> <A HREF="param.html#indexE">E</A> <A HREF="param.html#indexF">F</A> <A HREF="param.html#indexG">G</A> <A HREF="param.html#indexK">K</A> <A HREF="param.html#indexL">L</A> <A HREF="param.html#indexM">M</A> <A HREF="param.html#indexN">N</A> <A HREF="param.html#indexO">O</A> <A HREF="param.html#indexP">P</A> <A HREF="param.html#indexR">R</A> <A HREF="param.html#indexS">S</A> <A HREF="param.html#indexT">T</A> <A HREF="param.html#indexU">U</A> <A HREF="param.html#indexV">V</A> <A HREF="param.html#indexW">W</A> <H3><A NAME="indexA">A</A></H3><BR>
+<A HREF="param.html#aboveord">aboveorder</A><BR>
+<A HREF="param.html#addxpose">addtranspose</A><BR>
+<A HREF="param.html#alignrst">alignrests</A><BR>
+<H3><A NAME="indexB">B</A></H3><BR>
+<A HREF="param.html#barstyle">barstyle</A><BR>
+<A HREF="param.html#beamslp">beamslope</A><BR>
+<A HREF="param.html#beamstyl">beamstyle</A><BR>
+<A HREF="param.html#beloword">beloworder</A><BR>
+<A HREF="param.html#betwnord">betweenorder</A><BR>
+<A HREF="param.html#botmar">bottommargin</A><BR>
+<A HREF="param.html#brace">brace</A><BR>
+<A HREF="param.html#bracket">bracket</A><BR>
+<A HREF="param.html#brktrpts">bracketrepeats</A><BR>
+<H3><A NAME="indexC">C</A></H3><BR>
+<A HREF="param.html#canclkey">cancelkey</A><BR>
+<A HREF="param.html#carryacc">carryaccs</A><BR>
+<A HREF="param.html#chdist">chorddist</A><BR>
+<A HREF="param.html#clef">clef</A><BR>
+<A HREF="param.html#cresdist">crescdist</A><BR>
+<H3><A NAME="indexD">D</A></H3><BR>
+<A HREF="param.html#defoct">defoct</A><BR>
+<A HREF="param.html#dist">dist</A><BR>
+<A HREF="param.html#division">division</A><BR>
+<A HREF="param.html#dyndist">dyndist</A><BR>
+<H3><A NAME="indexE">E</A></H3><BR>
+<A HREF="param.html#emptym">emptymeas</A><BR>
+<A HREF="param.html#endingst">endingstyle</A><BR>
+<H3><A NAME="indexF">F</A></H3><BR>
+<A HREF="param.html#firstpg">firstpage</A><BR>
+<A HREF="param.html#font">font</A><BR>
+<A HREF="param.html#fontfam">fontfamily</A><BR>
+<H3><A NAME="indexG">G</A></H3><BR>
+<A HREF="param.html#gridfret">gridfret</A><BR>
+<A HREF="param.html#gridend">gridsatend</A><BR>
+<A HREF="param.html#gridscl">gridscale</A><BR>
+<A HREF="param.html#gridused">gridswhereused</A><BR>
+<H3><A NAME="indexK">K</A></H3><BR>
+<A HREF="param.html#key">key</A><BR>
+<H3><A NAME="indexL">L</A></H3><BR>
+<A HREF="param.html#label">label</A><BR>
+<A HREF="param.html#label2">label2</A><BR>
+<A HREF="param.html#leftmar">leftmargin</A><BR>
+<A HREF="param.html#lyralign">lyricsalign</A><BR>
+<A HREF="param.html#lyrdist">lyricsdist</A><BR>
+<A HREF="param.html#lyrfont">lyricsfont</A><BR>
+<A HREF="param.html#lyrfam">lyricsfontfamily</A><BR>
+<A HREF="param.html#lyrsize">lyricssize</A><BR>
+<H3><A NAME="indexM">M</A></H3><BR>
+<A HREF="param.html#maxmeas">maxmeasures</A><BR>
+<A HREF="param.html#maxscore">maxscores</A><BR>
+<A HREF="param.html#measnum">measnum</A><BR>
+<A HREF="param.html#mnumfont">measnumfont</A><BR>
+<A HREF="param.html#mnumfam">measnumfontfamily</A><BR>
+<A HREF="param.html#mnumsize">measnumsize</A><BR>
+<A HREF="param.html#mnumstyl">measnumstyle</A><BR>
+<A HREF="param.html#mingrid">mingridheight</A><BR>
+<H3><A NAME="indexN">N</A></H3><BR>
+<A HREF="param.html#notehead">noteheads</A><BR>
+<A HREF="param.html#nummrpt">numbermrpt</A><BR>
+<H3><A NAME="indexO">O</A></H3><BR>
+<A HREF="param.html#ontheline">ontheline</A><BR>
+<H3><A NAME="indexP">P</A></H3><BR>
+<A HREF="param.html#packexp">packexp</A><BR>
+<A HREF="param.html#packfact">packfact</A><BR>
+<A HREF="param.html#pad">pad</A><BR>
+<A HREF="param.html#pgheight">pageheight</A><BR>
+<A HREF="param.html#pgsize">pagesize</A><BR>
+<A HREF="param.html#pgwidth">pagewidth</A><BR>
+<A HREF="param.html#panels">panelsperpage</A><BR>
+<A HREF="param.html#pedstyle">pedstyle</A><BR>
+<A HREF="param.html#prmultn">printmultnum</A><BR>
+<H3><A NAME="indexR">R</A></H3><BR>
+<A HREF="param.html#rehstyle">rehstyle</A><BR>
+<A HREF="param.html#release">release</A><BR>
+<A HREF="param.html#rptdots">repeatdots</A><BR>
+<A HREF="param.html#restcomb">restcombine</A><BR>
+<A HREF="param.html#restsymm">restsymmult</A><BR>
+<A HREF="param.html#rightmar">rightmargin</A><BR>
+<H3><A NAME="indexS">S</A></H3><BR>
+<A HREF="param.html#scale">scale</A><BR>
+<A HREF="param.html#scorepad">scorepad</A><BR>
+<A HREF="param.html#scoresep">scoresep</A><BR>
+<A HREF="param.html#size">size</A><BR>
+<A HREF="param.html#slashbet">slashesbetween</A><BR>
+<A HREF="param.html#stlines">stafflines</A><BR>
+<A HREF="param.html#staffpad">staffpad</A><BR>
+<A HREF="param.html#staffs">staffs</A><BR>
+<A HREF="param.html#stscale">staffscale</A><BR>
+<A HREF="param.html#staffsep">staffsep</A><BR>
+<A HREF="param.html#stemlen">stemlen</A><BR>
+<A HREF="param.html#sshorten">stemshorten</A><BR>
+<A HREF="param.html#swing">swingunit</A><BR>
+<A HREF="param.html#sylpos">sylposition</A><BR>
+<H3><A NAME="indexT">T</A></H3><BR>
+<A HREF="param.html#tabwhite">tabwhitebox</A><BR>
+<A HREF="param.html#time">time</A><BR>
+<A HREF="param.html#timeunit">timeunit</A><BR>
+<A HREF="param.html#topmar">topmargin</A><BR>
+<A HREF="param.html#xpose">transpose</A><BR>
+<H3><A NAME="indexU">U</A></H3><BR>
+<A HREF="param.html#units">units</A><BR>
+<A HREF="param.html#useaccs">useaccs</A><BR>
+<H3><A NAME="indexV">V</A></H3><BR>
+<A HREF="param.html#vcombine">vcombine</A><BR>
+<A HREF="param.html#visible">visible</A><BR>
+<A HREF="param.html#vscheme">vscheme</A><BR>
+<H3><A NAME="indexW">W</A></H3><BR>
+<A HREF="param.html#warn">warn</A><BR>
+<A HREF="param.html#withfont">withfont</A><BR>
+<A HREF="param.html#withfam">withfamily</A><BR>
+<A HREF="param.html#withsize">withsize</A><BR>
+
+<HR>
+<H2>
+<A NAME="aboveord">aboveorder</A>
+</H2><P>
+specify in what order to stack items that are printed above a staff.
+The value is a comma-separated list of all the types of things that
+can be printed above a staff. Items are stacked in the order listed,
+starting from just above the staff and working upward.
+If you want several types to be handled as a single
+category, with all types in the category
+having the same stacking priority, separate
+them with an ampersand rather than a comma. The ampersand cannot
+be used with lyrics, ending, or reh. The dyn category applies to
+crescendo and decrescendo marks (from &quot;&lt;&quot; and &quot;&gt;&quot; statements)
+as well as text with the dyn modifier.
+The chord category applies to text with chord, analysis, or figbass
+modifiers. The othertext category applies to rom, bold, ital, and
+boldital items that do not have a chord, analysis, figbass, or dyn modifier.
+If you omit any categories, they will be stacked last, in their default order.
+</P>
+<P><B>Value: </B>
+<A HREF="mussym.html">mussym,</A>
+<A HREF="octave.html">octave,</A>
+<A HREF="textmark.html#chordmod">dyn, othertext, chord,</A>
+<A HREF="lyrics.html">lyrics,</A>
+<A HREF="bars.html#endings">ending,</A>
+<A HREF="bars.html#reh">reh</A>
+</P>
+<P><B>Default value: </B>
+mussym, octave, dyn &amp; othertext &amp; chord, lyrics, ending, reh
+</P>
+<P><B>Context: </B>
+score, staff
+</P>
+<P><B>Example:</B><BR>
+aboveorder = mussym, lyrics, dyn, octave, othertext, chord, ending, reh
+</P>
+<P><B>Related parameters: </B>
+<A HREF="param.html#beloword">beloworder,</A>
+<A HREF="param.html#betwnord">betweenorder,</A>
+<A HREF="param.html#chdist">chorddist,</A>
+<A HREF="param.html#dist">dist,</A>
+<A HREF="param.html#dyndist">dyndist</A>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</P>
+<HR>
+<H2>
+<A NAME="addxpose">addtranspose</A>
+</H2><P>
+specify by what additional interval to transpose the music data.
+There is another parameter called just
+<A HREF="param.html#xpose">transpose.</A>
+Typically you would use the transpose parameter to change the key of
+individual staffs (for transposing instruments), and then use the
+addtranspose parameter if you want to change the key of the entire score.
+But either of these parameters can be used either way.
+In any case, for each staff, and for the score, the values of
+transpose and addtranspose are &quot;added&quot; to find the transposition
+for that staff or score.
+The interval can be
+larger than an octave, but must be a valid interval (e.g., there is no
+such thing as a perfect 6th). It is an error to specify a transposition value
+which would result in a key signature with more than 7 flats or sharps.
+
+It is also an error if transposition would result in a note requiring a
+triple sharp or triple flat.
+</P>
+<P><B>Value: </B>
+the word &quot;up&quot; or &quot;down,&quot; followed by an interval and a whole number greater than 0.
+The interval is one of major, minor, augmented, diminished, or perfect.
+
+The intervals can be abbreviated to their first 3 letters (maj,
+min, aug, dim, or per).
+The
+<A HREF="trnspose.html">section on transposition</A>
+lists transposition intervals and gives further details.
+Depending on which key signature you are
+transposing from, some transposition intervals may not work because they
+result in more than 7 flats or sharps.
+</P>
+<P><B>Default value: </B>
+up perfect 1 (i.e., no transposition)
+</P>
+<P><B>Context: </B>
+score, staff
+</P>
+<P><B>Examples:</B><BR>
+addtranspose = down major 3
+<BR>
+addtranspose = up perfect 5
+</P>
+<P><B>Related parameters: </B>
+<A HREF="param.html#key">key,</A>
+<A HREF="param.html#xpose">transpose,</A>
+<A HREF="param.html#useaccs">useaccs</A>
+
+
+
+
+
+</P>
+<HR>
+<H2>
+<A NAME="alignrst">alignrests</A>
+</H2><P>
+This parameter controls whether rests stay as close to the middle of the
+staff as possible, or whether they are adjusted to align with the notes
+surrounding them. If the value is 'n' no alignment to the notes is done.
+If the value is 'y' rests are moved to try to follow the flow of the voice.
+The alignment of rests with notes is only done when the
+<A HREF="param.html#vscheme">vscheme parameter</A>
+is something other than 1, and if there are no non-space chords in voice 3.
+It is not used on voice 3.
+This parameter can be changed in mid-measure. Only notes that are inside the
+time period when this parameter is set to y will affect alignment.
+</P>
+<P><B>Value: </B>
+y or n
+</P>
+<P><B>Default value: </B>
+n
+</P>
+<P><B>Context: </B>
+score, staff, voice
+</P>
+<P><B>Example:</B><BR>
+alignrests=y
+</P>
+<P><B>Related parameters: </B>
+<A HREF="param.html#vscheme">vscheme</A>
+</P>
+<HR>
+<H2>
+<A NAME="barstyle">barstyle</A>
+</H2><P>
+specifies which staffs are to have their bar lines connected together.
+When drawing bar lines, a continuous vertical line will be drawn from
+the top line of the top staff in a range to the bottom line of the bottom
+staff of the range.
+Any staff not listed will be barred by itself, with the bar line spanning
+only the height of the staff.
+</P>
+<P><B>Value: </B>
+a comma-separated list of staff numbers and/or ranges of staff numbers.
+Staff numbers can be from 1 to the value of the
+<A HREF="param.html#staffs">"staffs" parameter.</A>
+A range is a pair of numbers separated by a dash.
+A given staff number can be specified only once,
+and there can be no overlapping between ranges.
+</P>
+<P><B>Default value: </B>
+each visible staff barred individually
+</P>
+<P><B>Context: </B>
+score
+</P>
+<P><B>Example:</B><BR>
+barstyle = 1-2, 5-8
+</P>
+<P><B>Related parameters: </B>
+<A HREF="param.html#staffs">staffs,</A>
+<A HREF="param.html#visible">visible</A>
+
+
+
+
+
+</P>
+<HR>
+<H2>
+<A NAME="beamslp">beamslope</A>
+</H2><P>
+allows you to control the slope of beams.
+Two values must be given, separated by a comma.
+Mup calculates an appropriate slope for beams by applying a linear
+regression algorithm that uses the positions of the note heads within
+the beam. The first value supplied for the beamslope parameter
+is a factor by which to multiply the default slope that Mup calculates.
+The minimum value of 0.0 would cause all beams to be horizontal,
+whereas the maximum value of 1.0 will use the slope Mup calculates.
+Intermediate values will yield beams that are less slanted than the
+default slope calculation. The second value given to the beamslope parameter
+is the maximum angle for the beam, in degrees.
+If the originally calculated value multiplied by the
+factor yields an angle of greater than this maximum angle,
+the maximum angle will be used.
+<A HREF="ichdattr.html#crossbm">Cross-staff beams that are between staffs</A>
+are allowed to have a slope up to 1.4 times the value
+of the slope of the maximum angle, since they face more constraints.
+The slope can be overridden on a particular beam by specifying a
+<A HREF="ichdattr.html#slope">slope as an interchord attribute</A>
+on the first chord of the beamed set.
+</P>
+<P><B>Value: </B>
+0.0 to 1.0 for the factor, and 0.0 to 45.0 for the maximum angle
+</P>
+<P><B>Default value: </B>
+0.7, 20.0
+</P>
+<P><B>Context: </B>
+score, staff, voice
+</P>
+<P><B>Example:</B><BR>
+beamslope=0.8,20
+
+</P>
+<HR>
+<H2>
+<A NAME="beamstyl">beamstyle</A>
+</H2><P>
+specifies how to beam eighth notes or shorter. It is specified
+as a list of time values. Any number of notes up to each time value
+will be beamed together. For example, in 4/4 time, with beamstyle=4,4,4,4
+each quarter note worth of shorter notes would be beamed together.
+However, beams would not span across beats. As another example, for an input
+of 4.; 8; 8; 4.; the two eighth notes
+would not be beamed together, because they span beats. If beamstyle
+had been specified as 4,2,4 then the eighth notes would be beamed.
+Normally, beams also end whenever a rest or space is encountered.
+However, if an &quot;r&quot; is placed at the end of the list of time values,
+Mup will beams across rests of less than quarter note duration.
+Similarly, if an &quot;s&quot; is placed at the end of the list,
+Mup will beam across spaces of less than quarter note duration.
+You can specify both r and s in either order.
+It is possible to specify subbeams, or secondary groupings within a beam,
+by enclosing a list of time values in parentheses. In this case,
+the outer beam extends for the sum of the values in the parentheses,
+while inner beams extend only for the individual values within the parentheses.
+For example, if you set
+beamstyle=(4,4),(4,4) and then have a measure that consists of all 16th notes,
+the first 8 notes would be connected by an outer beam, as would the last 8
+notes, but the second (inner) beams would cover only 4 notes each.
+The parentheses cannot be nested.
+It is possible to override this default beaming style within a specific
+measure. See the section on
+<A HREF="ichdattr.html#custbeam">Custom Beaming</A>
+for examples of how to obtain various kinds of beaming.
+The value of the beamstyle parameter is remembered for
+any later changes back to the same time signature.
+In other words, if you set the value of the
+<A HREF="param.html#time">time parameter</A>
+and the beamstyle parameter in the same context, then later set only
+the time, the beamstyle that you had set earlier
+will be used again.
+</P>
+<P><B>Value: </B>
+a comma-separated list of time values that add up to a measure. Time values
+are specified as 4 for a quarter note, 2 for half note, etc, and
+can be dotted if necessary, or an expression with added and/or subtracted
+times. The list can optionally be followed by an &quot;r&quot;
+to indicate beams should span rests.
+It can optionally be followed by &quot;s&quot; to indicate beams should span spaces.
+Two or more of the time values may be enclosed in parentheses, to indicate
+sub-groupings of inner (secondary) beams within outer (primary) beams.
+If the value is empty, automatic beaming is turned off.
+</P>
+<P><B>Default value: </B>
+no beams; each note of eighth or shorter duration is individually flagged.
+</P>
+<P><B>Context: </B>
+score, staff, and voice
+</P>
+<P><B>Examples:</B><BR>
+beamstyle = 4,4,4,4
+<BR>
+beamstyle = 2.
+<BR>
+beamstyle=4+16, 4+16
+<BR>
+beamstyle = 2, 2 rs   // beam across rests and spaces
+<BR>
+beamstyle = (4., 4., 4.)  // one outer beam per measure,
+<BR>
+             // with inner beams broken at each dotted quarter duration
+<BR>
+beamstyle =      // turn off beaming
+
+
+
+
+
+
+
+
+
+
+</P>
+<HR>
+<H2>
+<A NAME="beloword">beloworder</A>
+</H2><P>
+specify in what order to stack items that are printed below a staff.
+The value is a comma-separated list of all the types of things that
+can be printed below a staff. Items are stacked in the order listed,
+starting from just below the staff and working downward.
+If you want several types to be handled as a single
+category, with all types in the category
+having the same stacking priority, separate
+them with an ampersand rather than a comma. The ampersand cannot
+be used with lyrics or pedal. The dyn category applies to
+crescendo and decrescendo marks (from &quot;&lt;&quot; and &quot;&gt;&quot; statements)
+as well as text with the dyn modifier.
+The chord category applies to text with chord, analysis, or figbass
+modifiers. The othertext category applies to rom, bold, ital, and
+boldital items that do not have a chord, analysis, figbass, or dyn modifier.
+If you omit any categories, they will be stacked last, in their default order.
+</P>
+<P><B>Value: </B>
+<A HREF="mussym.html">mussym,</A>
+<A HREF="octave.html">octave,</A>
+<A HREF="textmark.html#chordmod">dyn, othertext, chord,</A>
+<A HREF="lyrics.html">lyrics,</A>
+<A HREF="pedal.html">pedal</A>
+</P>
+<P><B>Default value: </B>
+mussym, octave, dyn &amp; othertext &amp; chord, lyrics, pedal
+</P>
+<P><B>Context: </B>
+score, staff
+</P>
+<P><B>Example:</B><BR>
+beloworder = mussym, lyrics, dyn, octave, othertext, chord, pedal
+</P>
+<P><B>Related parameters: </B>
+<A HREF="param.html#aboveord">aboveorder,</A>
+<A HREF="param.html#betwnord">betweenorder,</A>
+<A HREF="param.html#chdist">chorddist,</A>
+<A HREF="param.html#dist">dist,</A>
+<A HREF="param.html#dyndist">dyndist</A>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</P>
+<HR>
+<H2>
+<A NAME="betwnord">betweenorder</A>
+</H2><P>
+specify in what order to stack items that are printed between two staffs.
+The value is a comma-separated list of all the types of things that
+can be printed between staffs. Items are stacked in the order listed,
+starting from a baseline and working upward.
+If you want several types to be handled as a single
+category, with all types in the category
+having the same stacking priority, separate
+them with an ampersand rather than a comma. The ampersand cannot
+be used with lyrics. The dyn category applies to
+crescendo and decrescendo marks (from &quot;&lt;&quot; and &quot;&gt;&quot; statements)
+as well as text with the dyn modifier.
+The chord category applies to text with chord, analysis, or figbass
+modifiers. The othertext category applies to rom, bold, ital, and
+boldital items that do not have a chord, analysis, figbass, or dyn modifier.
+If you omit any categories, they will be stacked last, in their default order.
+</P>
+<P><B>Value: </B>
+<A HREF="mussym.html">mussym,</A>
+<A HREF="textmark.html#chordmod">dyn, othertext, chord,</A>
+<A HREF="lyrics.html">lyrics,</A>
+</P>
+<P><B>Default value: </B>
+mussym, dyn &amp; othertext &amp; chord, lyrics
+</P>
+<P><B>Context: </B>
+score, staff
+</P>
+<P><B>Example:</B><BR>
+betweenorder = mussym, lyrics, dyn &amp; othertext, chord
+</P>
+<P><B>Related parameters: </B>
+<A HREF="param.html#aboveord">aboveorder,</A>
+<A HREF="param.html#beloword">beloworder,</A>
+<A HREF="param.html#chdist">chorddist,</A>
+<A HREF="param.html#dist">dist,</A>
+<A HREF="param.html#dyndist">dyndist</A>
+
+
+
+
+
+
+
+
+
+
+
+
+</P>
+<HR>
+<H2>
+<A NAME="botmar">bottommargin</A>
+</H2><P>
+sets the amount of white space margin to put at the bottom of each page.
+It is specified in inches if the
+<A HREF="param.html#units">units parameter</A>
+is set to inches, or in centimeters if the units parameter is set to cm.
+This parameter can only be specified before any music or
+
+<A HREF="prnttext.html#block">block input.</A>
+Margins are unaffected by
+<A HREF="param.html#scale">the "scale" parameter.</A>
+The parameter name can be abbreviated to just &quot;botmargin&quot; if you wish.
+</P>
+<P><B>Value: </B>
+0.0 to pageheight minus 0.5 inches
+</P>
+<P><B>Default value: </B>
+0.5 inches
+</P>
+<P><B>Context: </B>
+score
+</P>
+<P><B>Example:</B><BR>
+bottommargin = 0.8
+</P>
+<P><B>Related parameters: </B>
+<A HREF="param.html#leftmar">leftmargin,</A>
+<A HREF="param.html#rightmar">rightmargin,</A>
+<A HREF="param.html#topmar">topmargin</A>
+<A HREF="param.html#pgheight">pageheight</A>
+<A HREF="param.html#units">units</A>
+
+
+
+
+</P>
+<HR>
+<H2>
+<A NAME="brace">brace</A>
+</H2><P>
+specifies which staffs are to be grouped together with a brace to the left
+of the score. If there is a string given in parentheses, that string
+will be used as the label to print on the next score,
+left of the bracket at its vertical center.
+If there is a second string,
+that will be used as the label for succeeding scores.
+</P>
+<P><B>Value: </B>
+a comma-separated list of staffs and/or staff ranges, each optionally followed
+by one or two double-quoted strings enclosed in parentheses.
+If there are two strings, they are separated by a comma.
+Staff numbers can range from 1 to the value of
+<A HREF="param.html#staffs">the "staffs" parameter.</A>
+A given staff number can be specified only once,
+and there can be no overlapping between ranges.
+Giving no value will result in no braces on any staffs.
+</P>
+<P><B>Default value: </B>
+no staffs are grouped by braces.
+</P>
+<P><B>Context: </B>
+score
+</P>
+<P><B>Examples:</B><BR>
+brace = 3-4
+<BR>
+brace = 1, 2-3, 4, 5-6
+<BR>
+brace = 1-2 (&quot;piano&quot;), 3 (&quot;cello&quot;)
+<BR>
+brace = 1-2 (&quot;Primo&quot;, &quot;I&quot;)
+<BR>
+brace =        // no braces at all (the default)
+</P>
+<P><B>Related parameters: </B>
+<A HREF="param.html#bracket">bracket,</A>
+<A HREF="param.html#label">label,</A>
+<A HREF="param.html#label2">label2,</A>
+<A HREF="param.html#staffs">staffs</A>
+
+
+
+
+
+</P>
+<HR>
+<H2>
+<A NAME="bracket">bracket</A>
+</H2><P>
+specifies which staffs are to be grouped together with a bracket to the left
+of the score. If there is a string given in parentheses, that string
+will be used as the label to print on the next score,
+left of the bracket at its vertical center.
+If there is a second string,
+that will be used as the label for succeeding scores.
+</P>
+<P><B>Value: </B>
+a comma-separated list of staffs and/or staff ranges, each optionally followed
+by one or two double-quoted strings enclosed in parentheses.
+If there are two strings, they are separated by a comma.
+Staff numbers can range from 1 to the value of
+<A HREF="param.html#staffs">the "staffs" parameter.</A>
+A bracket range can overlap another bracket range, as long as one range
+is a proper subset of the other.
+Giving no value will result in no brackets on any staffs.
+</P>
+<P><B>Default value: </B>
+no staffs are grouped by brackets.
+</P>
+<P><B>Context: </B>
+score
+</P>
+<P><B>Examples:</B><BR>
+bracket = 6-7
+<BR>
+bracket = 17, 21-23
+<BR>
+bracket = 8-9 (&quot;SATB&quot;)
+<BR>
+bracket = 10-12 (&quot;Strings&quot;, &quot;Str&quot;)
+<BR>
+bracket =        // no brackets at all (the default)
+</P>
+<P><B>Related parameters: </B>
+<A HREF="param.html#brace">brace,</A>
+<A HREF="param.html#label">label,</A>
+<A HREF="param.html#label2">label2,</A>
+<A HREF="param.html#staffs">staffs</A>
+
+</P>
+<HR>
+<H2>
+<A NAME="brktrpts">bracketrepeats</A>
+</H2><P>
+When set to <B>y</B>, brackets are draw at repeat signs to make it more
+obvious to the performer where the repeated section begins and ends,
+which may be helpful when playing in a dimly lit area. Which staffs are
+bracketed together is controlled by the
+<A HREF="param.html#endingst">endingstyle parameter.</A>
+</P>
+<P><B>Value: </B>
+<B>y</B> or <B>n</B>
+</P>
+<P><B>Default value: </B>
+n
+</P>
+<P><B>Context: </B>
+score
+</P>
+<P><B>Example:</B><BR>
+bracketrepeats=y
+</P>
+<P><B>Related parameters: </B>
+<A HREF="param.html#endingst">endingstyle,</A>
+<A HREF="param.html#rptdots">repeatdots,</A>
+</P>
+<HR>
+<H2>
+<A NAME="canclkey">cancelkey</A>
+</H2><P>
+When set to <B>y</B>, when a key changes, any sharps or flats in the 
+previous key that are not part of the new key will be canceled by printing
+natural signs, before printing the new key signature. When
+set to <B>n</B>, the naturals will only be printed if the new key has no
+sharps or flats.
+</P>
+<P><B>Value: </B>
+<B>y</B> or <B>n</B>
+</P>
+<P><B>Default value: </B>
+n
+</P>
+<P><B>Context: </B>
+score, staff
+</P>
+<P><B>Example:</B><BR>
+cancelkey=y
+</P>
+<P><B>Related parameters: </B>
+<A HREF="param.html#key">key,</A>
+<A HREF="param.html#useaccs">useaccs</A>
+
+</P>
+<HR>
+<H2>
+<A NAME="carryacc">carryaccs</A>
+</H2><P>
+this specifies for
+<A HREF="midi.html">MIDI</A>
+whether accidentals follow the normal notation rules of carrying through
+the remainder of the current measure until explicitly changed. If set to n,
+each accidental will apply only to the specific chord where it was specified.
+</P>
+<P><B>Value: </B>
+y or n
+</P>
+<P><B>Default value: </B>
+y
+</P>
+<P><B>Context: </B>
+score, staff
+</P>
+<P><B>Example:</B><BR>
+carryaccs = n
+</P>
+<P><B>Related parameters: </B>
+<A HREF="param.html#useaccs">useaccs</A>
+</P>
+<HR>
+<H2>
+<A NAME="chdist">chorddist</A>
+</H2><P>
+sets minimum distance from staff to place chords. When
+chord marks are printed, they will be placed
+no closer to the staff than the value
+of this parameter. This can be used to reduce the ragged effect of having
+some chord marks much higher than others, because other things were in
+their way.
+If a specific chord mark has to be
+moved farther away than this parameter to avoid running into something,
+that will still happen,
+but any others will come out at the level specified by this parameter.
+This parameter may be overridden on specific items. The section on
+<A HREF="stuff.html">tempo, dynamic marks, ornaments, etc.</A>
+gives details on how to do this.
+</P>
+<P><B>Value: </B>
+a number between 0.0 and 50.0 inclusive, given in stepsizes.
+</P>
+<P><B>Default value: </B>
+3.0
+</P>
+<P><B>Context: </B>
+score, staff
+</P>
+<P><B>Example:</B><BR>
+chorddist = 4
+</P>
+<P><B>Related parameters: </B>
+<A HREF="param.html#dyndist">dyndist,</A>
+<A HREF="param.html#dist">dist,</A>
+<A HREF="param.html#lyrdist">lyricsdist,</A>
+<A HREF="param.html#scorepad">scorepad,</A>
+<A HREF="param.html#scoresep">scoresep</A>
+
+
+
+
+</P>
+<HR>
+<H2>
+<A NAME="clef">clef</A>
+</H2><P>
+sets the clef to use.
+Changing a clef may also change the default octave
+<A HREF="param.html#defoct">(see the "defoct" parameter below).</A>
+</P>
+<P><B>Value: </B>
+treble, treble8, 8treble, frenchviolin, soprano, mezzosoprano,
+alto, tenor, baritone or bass.
+The treble8 clef looks like a treble clef with an 8 below it,
+and refers to notes that are an octave lower than a normal treble clef.
+The 8treble clef looks like a treble clef with an 8 above it,
+and refers to notes that are an octave higher than a normal treble clef.
+If the
+<A HREF="param.html#stlines">stafflines parameter</A>
+includes the &quot;drum&quot;
+
+keyword, then the value of this clef parameter is
+only used for determining the placement of notes on the staff, with the
+drum (or &quot;neutral&quot;) clef actually printed.
+Clef can be changed in
+<A HREF="midmeas.html">the middle of a measure</A>
+using a construct like &lt;&lt;staff clef=bass&gt;&gt; before a note group.
+</P>
+<P><B>Default value: </B>
+treble
+</P>
+<P><B>Context: </B>
+score, staff
+</P>
+<P><B>Example:</B><BR>
+clef = alto
+</P>
+<P><B>Related parameters: </B>
+<A HREF="param.html#defoct">defoct,</A>
+<A HREF="param.html#stlines">stafflines</A>
+
+</P>
+<HR>
+<H2>
+<A NAME="cresdist">crescdist</A>
+</H2><P>
+This parameter is obsolete; it has been replaced by
+<A HREF="param.html#dyndist">the dyndist parameter.</A>
+</P>
+<HR>
+<H2>
+<A NAME="defoct">defoct</A>
+</H2><P>
+sets the default octave for any note 
+which does not have an explicit octave specified.
+An octave goes from C up to the next B, with octave 4 being the octave
+beginning on middle C.
+If the clef is changed on a staff, the default octave
+is changed to match the new clef.
+defoct can be changed in
+<A HREF="midmeas.html">the middle of a measure</A>
+using a construct like &lt;&lt;staff defoct=5&gt;&gt; before a note group.
+</P>
+<P><B>Value: </B>
+a number from 0 to 9 inclusive. Octave 4 is the octave beginning at middle C.
+</P>
+<P><B>Default value: </B>
+the octave containing the note represented by the middle line of the staff
+given the current
+<A HREF="param.html#clef">clef.</A>
+(Octave 5 for frenchviolin and 8treble;
+octave 4 for treble, soprano, mezzosoprano, and
+alto clefs; octave 3 for treble8, tenor, baritone and bass clefs).
+</P>
+<P><B>Context: </B>
+score, staff, voice
+</P>
+<P><B>Example:</B><BR>
+defoct = 3
+
+
+
+
+</P>
+<HR>
+<H2>
+<A NAME="dist">dist</A>
+</H2><P>
+sets minimum distance from staff to place
+<A HREF="textmark.html">rom, bold, ital, and boldital items,</A>
+and
+<A HREF="bars.html#reh">rehearsal marks.</A>
+When these items are printed,
+they will be placed no closer to the staff than the value
+of this parameter. This can be used to reduce the ragged effect of having
+some items much higher than others, because other things were in their way.
+If a specific item has to be
+moved farther away than this parameter to avoid running into something,
+that will still happen,
+but any others will come out at the level specified by this parameter.
+If an item is also a chord,
+<A HREF="param.html#chdist">the chorddist parameter</A>
+will be used instead of dist.
+This parameter may be overridden on specific items. The sections on
+<A HREF="stuff.html">tempo, dynamic marks, ornaments, etc.</A>
+and on
+<A HREF="bars.html#reh">rehearsal marks</A>
+give details on how to do this.
+</P>
+<P><B>Value: </B>
+a number between 0.0 and 50.0 inclusive, given in stepsizes.
+</P>
+<P><B>Default value: </B>
+2.0
+</P>
+<P><B>Context: </B>
+score, staff
+</P>
+<P><B>Example:</B><BR>
+dist = 6
+</P>
+<P><B>Related parameters: </B>
+<A HREF="param.html#chdist">chorddist,</A>
+<A HREF="param.html#dyndist">dyndist,</A>
+<A HREF="param.html#lyrdist">lyricsdist,</A>
+<A HREF="param.html#scorepad">scorepad,</A>
+<A HREF="param.html#scoresep">scoresep</A>
+
+
+
+
+
+
+</P>
+<HR>
+<H2>
+<A NAME="division">division</A>
+</H2><P>
+sets
+<A HREF="midi.html">MIDI</A>
+division (number of clock ticks per quarter note). This typically
+has a value of 192 or 384.
+This parameter can only be specified before any music or block input.
+</P>
+<P><B>Value: </B>
+1 to 1536
+</P>
+<P><B>Default value: </B>
+192
+</P>
+<P><B>Context: </B>
+score
+</P>
+<P><B>Example:</B><BR>
+division = 384
+
+
+
+</P>
+<HR>
+<H2>
+<A NAME="dyndist">dyndist</A>
+</H2><P>
+sets minimum distance from staff to place
+
+
+<A HREF="cres.html">crescendo and decrescendo marks.</A>
+and text that is marked &quot;dyn.&quot;
+When these items are printed,
+they will be placed no closer to the staff than the value
+of this parameter. This can be used to reduce the ragged effect of having
+some items much higher than others, because other things were in their way.
+If a specific item has to be
+moved farther away than this parameter to avoid running into something,
+that will still happen,
+but any others will come out at the level specified by this parameter.
+This parameter may be overridden on specific items. The section on
+<A HREF="stuff.html">tempo, dynamic marks, ornaments, etc.</A>
+gives details on how to do this.
+</P>
+<P><B>Value: </B>
+a number between 0.0 and 50.0 inclusive, given in stepsizes.
+</P>
+<P><B>Default value: </B>
+2.0
+</P>
+<P><B>Context: </B>
+score, staff
+</P>
+<P><B>Example:</B><BR>
+dyndist = 4
+</P>
+<P><B>Related parameters: </B>
+<A HREF="param.html#chdist">chorddist,</A>
+<A HREF="param.html#dist">dist,</A>
+<A HREF="param.html#lyrdist">lyricsdist,</A>
+<A HREF="param.html#scorepad">scorepad,</A>
+<A HREF="param.html#scoresep">scoresep</A>
+
+
+
+</P>
+<HR>
+<H2>
+<A NAME="emptym">emptymeas</A>
+</H2><P>
+By default, if you don't specify any music input for a given voice,
+Mup just leaves a measure of space.
+This parameter lets you specify what Mup should use.
+The most common value other than space would be a measure of rest,
+but you can supply any valid music input. So, for example, if your music
+has a measure long pattern that repeats frequently in some voice, you could 
+set this parameter to that pattern, and Mup will fill in that music
+for every measure where you don't override with something else.
+The value is a string, and is effectively placed in the input as if you
+had typed it yourself. Note that since errors in the string will generally
+not be caught until it is actually used, error messages may reference a line
+a long ways away from the line where the parameter is defined.
+Note also that since the value is a text string, all the usual rules for
+<A HREF="textstr.html">text strings</A>
+apply; for example any double quotes inside the string must
+be backslashed. Since the processing of emptymeas happens before the
+derivation of music on tabnote staffs,
+you probably do not want to set a
+<A HREF="tabstaff.html">tabnote staff</A>
+to something like emptymeas=&quot;mr;&quot; unless the tab staff is also going to be
+all rests, because that would override the music derivation.
+Also, when you have set the
+<A HREF="param.html#vscheme">vscheme</A>
+to have two or three voices just because there are a few spots in
+the song that need more than one, you probably only want to set 
+emptymeas=&quot;mr;&quot; on voice 1, or you will likely get more rests than you intended.
+</P>
+<P><B>Value: </B>
+a text string (enclosed in double quotes, as usual), containing music input
+</P>
+<P><B>Default value: </B>
+ms;
+</P>
+<P><B>Context: </B>
+score, staff, voice
+</P>
+<P><B>Examples:</B><BR>
+emptymeas=&quot;mr;&quot;
+<BR>
+emptymeas=&quot;8.c;16;8.e;16;8.f;16;{8g;f;g;}3;&quot;
+</P>
+<HR>
+<H2>
+<A NAME="endingst">endingstyle</A>
+</H2><P>
+controls how
+<A HREF="bars.html#endings">first and second endings</A>
+are placed.
+This parameter also controls where
+<A HREF="param.html#measnum">measure numbers</A>
+and
+<A HREF="bars.html#reh">rehearsal marks</A>
+are placed, as well as which staffs are bracketed together if the
+<A HREF="param.html#brktrpts">bracketrepeats parameter</A>
+is set.
+A value of &quot;top&quot; means that the endings and similar marks
+will be shown only above the top
+<A HREF="param.html#visible">visible staff.</A>
+A value of &quot;barred&quot;
+means these marks will be shown above each set of staffs
+that is barred together. Each staff that is barred individually will also
+have the ending shown above it.
+<A HREF="param.html#barstyle">(See the "barstyle" parameter above.)</A>
+A value of &quot;grouped&quot; means the marks
+will be shown above the top visible
+staff of each range of staffs that are joined by a
+<A HREF="param.html#brace">brace</A>
+or
+<A HREF="param.html#bracket">bracket.</A>
+In all cases, at least the top visible staff will
+have endings shown above it.
+</P>
+<P><B>Value: </B>
+top, barred, or grouped
+</P>
+<P><B>Default value: </B>
+top
+</P>
+<P><B>Context: </B>
+score
+</P>
+<P><B>Example:</B><BR>
+endingstyle = grouped
+</P>
+<P><B>Related parameters: </B>
+<A HREF="param.html#barstyle">barstyle,</A>
+<A HREF="param.html#brace">brace,</A>
+<A HREF="param.html#bracket">bracket,</A>
+<A HREF="param.html#brktrpts">bracketrepeats,</A>
+<A HREF="param.html#measnum">measnum,</A>
+<A HREF="param.html#rehstyle">rehstyle,</A>
+<A HREF="param.html#visible">visible</A>
+
+
+
+
+
+
+
+
+
+
+
+
+</P>
+<HR>
+<H2>
+<A NAME="firstpg">firstpage</A>
+</H2><P>
+specifies what to number the first page.
+This value can be overridden by the
+<A HREF="cmdargs.html#poption">-p command line option.</A>
+This parameter can only be set before any music or block input.
+</P>
+<P><B>Value: </B>
+1 to 5000
+</P>
+<P><B>Default value: </B>
+1
+</P>
+<P><B>Context: </B>
+score
+</P>
+<P><B>Example:</B><BR>
+firstpage = 12
+</P>
+<HR>
+<H2>
+<A NAME="font">font</A>
+</H2><P>
+specifies which font to use for
+<A HREF="prnttext.html">print, left, right, center, and title statements,</A>
+and
+<A HREF="chrdattr.html#withlist">"with" lists (i.e., strings that are associated with a particular chord).</A>
+</P>
+<P><B>Value: </B>
+rom, ital, bold, or boldital
+</P>
+<P><B>Default value: </B>
+rom
+</P>
+<P><B>Context: </B>
+score, staff, header, footer, header2, footer2, top, bottom, top2, bottom2, block
+</P>
+<P><B>Example:</B><BR>
+font = boldital
+</P>
+<P><B>Related parameters: </B>
+<A HREF="param.html#fontfam">fontfamily,</A>
+<A HREF="param.html#lyrfont">lyricsfont,</A>
+<A HREF="param.html#lyrfam">lyricsfontfamily,</A>
+<A HREF="param.html#size">size,</A>
+<A HREF="param.html#withfont">withfont</A>
+
+
+
+
+
+
+
+
+
+
+</P>
+<HR>
+<H2>
+<A NAME="fontfam">fontfamily</A>
+</H2><P>
+specifies what font family to use for
+<A HREF="prnttext.html">print, left, right, center, and title statements</A>
+and
+<A HREF="chrdattr.html#withlist">"with" lists (i.e., strings that are associated with a particular chord).</A>
+It also provides the default for rom, bold, ital, and boldital statements.
+</P>
+<P><B>Value: </B>
+avantgarde, bookman, courier, helvetica, newcentury, palatino, times
+</P>
+<P><B>Default value: </B>
+times
+</P>
+<P><B>Context: </B>
+score, staff, header, footer, header2, footer2, top, bottom, top2, bottom2, block
+</P>
+<P><B>Example:</B><BR>
+fontfamily=palatino
+</P>
+<P><B>Related parameters: </B>
+<A HREF="param.html#font">font,</A>
+<A HREF="param.html#lyrfont">lyricsfont,</A>
+<A HREF="param.html#lyrfam">lyricsfontfamily,</A>
+<A HREF="param.html#withfam">withfontfamily</A>
+
+</P>
+<HR>
+<H2>
+<A NAME="gridfret">gridfret</A>
+</H2><P>
+specifies when to print fret numbers on grids.
+
+Normally, the top line of
+a grid represents the nut. However, if the fingering for a chord is rather
+far up the neck, it is customary to have the top line of the grid represent
+some other fret, and print a fret number and &quot;fr&quot; next to the grid,
+showing the actual fret of the lowest fret mark. This parameter controls
+when Mup begins using this alternate format. Whenever all the frets of
+a chord are greater than or equal to
+the value specified for this parameter, and there are no strings marked &quot;o&quot;,
+the &quot;fr&quot; notation is used. If no value is set for this parameter,
+the grid will just be made as tall
+as necessary to accommodate the chord's frets;
+but in any case, the grid will always be at least 4 frets high.
+</P>
+<P><B>Value: </B>
+2 to 99, or not set
+</P>
+<P><B>Default value: </B>
+4
+</P>
+<P><B>Context: </B>
+score, staff
+</P>
+<P><B>Examples:</B><BR>
+gridfret = 3
+<BR>
+gridfret =
+</P>
+<P><B>Related parameters: </B>
+<A HREF="param.html#gridend">gridsatend,</A>
+<A HREF="param.html#gridscl">gridscale,</A>
+<A HREF="param.html#gridused">gridswhereused,</A>
+<A HREF="param.html#mingrid">mingridheight</A>
+</P>
+<HR>
+<H2>
+<A NAME="gridend">gridsatend</A>
+</H2><P>
+specifies whether to print guitar grids at the end of the song.
+If set to &quot;y&quot;
+grids for all of the chords used in the song will be printed.
+</P>
+<P><B>Value: </B>
+y or n
+</P>
+<P><B>Default value: </B>
+n
+</P>
+<P><B>Context: </B>
+score
+</P>
+<P><B>Example:</B><BR>
+gridsatend = y
+</P>
+<P><B>Related parameters: </B>
+<A HREF="param.html#gridfret">gridfret,</A>
+<A HREF="param.html#gridscl">gridscale,</A>
+<A HREF="param.html#gridused">gridswhereused,</A>
+<A HREF="param.html#mingrid">mingridheight</A>
+</P>
+<HR>
+<H2>
+<A NAME="gridscl">gridscale</A>
+</H2><P>
+specifies how large to make grids, relative to their default size.
+For example, a value of 0.5 will make them 1/2 their default size.
+The default size for grids summarized at the end
+of the song
+<A HREF="param.html#gridend">(the gridsatend parameter)</A>
+is larger than the default size for those printed with the music
+<A HREF="param.html#gridused">(the gridswhereused parameter).</A>
+</P>
+<P><B>Value: </B>
+0.1 to 10.0
+</P>
+<P><B>Default value: </B>
+1.0
+</P>
+<P><B>Context: </B>
+score, staff
+</P>
+<P><B>Example:</B><BR>
+gridscale = 0.5
+</P>
+<P><B>Related parameters: </B>
+<A HREF="param.html#gridend">gridsatend,</A>
+<A HREF="param.html#gridfret">gridfret,</A>
+<A HREF="param.html#gridused">gridswhereused,</A>
+<A HREF="param.html#mingrid">mingridheight,</A>
+<A HREF="param.html#scale">scale,</A>
+<A HREF="param.html#stscale">staffscale</A>
+</P>
+<HR>
+<H2>
+<A NAME="gridused">gridswhereused</A>
+</H2><P>
+specifies whether to print guitar grids along with chords
+where they appear in the song. If set to &quot;y&quot; each
+<A HREF="textmark.html#chordmod">text item with the chord modifier</A>
+will have a grid printed below its name.
+</P>
+<P><B>Value: </B>
+y or n
+</P>
+<P><B>Default value: </B>
+n
+</P>
+<P><B>Context: </B>
+score, staff
+</P>
+<P><B>Example:</B><BR>
+gridswhereused = y
+</P>
+<P><B>Related parameters: </B>
+<A HREF="param.html#gridfret">gridfret,</A>
+<A HREF="param.html#gridend">gridsatend,</A>
+<A HREF="param.html#gridscl">gridscale,</A>
+<A HREF="param.html#mingrid">mingridheight</A>
+</P>
+<HR>
+<H2>
+<A NAME="key">key</A>
+</H2><P>
+sets the key signature. This can be specified either by giving the
+number of sharps (#) or flats (&amp;), or by giving the name of the key.
+</P>
+<P><B>Value: </B>
+If using the number of sharps/flats format, the value is
+a number from 0 to 7, followed by &quot;#&quot; or &quot;&amp;,&quot; optionally followed by &quot;major&quot;
+or &quot;minor.&quot; 0&amp; and 0# are equivalent.
+If using the name of the key, the value is a letter &quot;a&quot; through &quot;g,&quot;
+optionally followed by a &quot;#&quot; or &quot;&amp;,&quot; optionally followed by &quot;major&quot; or &quot;minor.&quot;
+The &quot;major&quot; and &quot;minor&quot; can be abbreviated to &quot;maj&quot; or &quot;min.&quot;
+The &quot;major&quot; or &quot;minor&quot; is used for
+<A HREF="midi.html">MIDI file</A>
+purposes, and is optional; if omitted, it defaults to major.
+If you wish to use a mode other than major or minor,
+you have to specify the number of sharps or flats.
+</P>
+<P><B>Default value: </B>
+c major
+</P>
+<P><B>Context: </B>
+score, staff
+</P>
+<P><B>Examples:</B><BR>
+key = 3&amp;
+<BR>
+key = 6#
+<BR>
+key = c# minor
+<BR>
+key = d major
+</P>
+<P><B>Related parameters: </B>
+<A HREF="param.html#addxpose">addtranspose,</A>
+<A HREF="param.html#carryacc">carryaccs,</A>
+<A HREF="param.html#stlines">stafflines,</A>
+<A HREF="param.html#xpose">transpose,</A>
+<A HREF="param.html#useaccs">useaccs</A>
+
+
+
+</P>
+<HR>
+<H2>
+<A NAME="label">label</A>
+</H2><P>
+specify a label to be printed to the left of the staff on the next
+score. If there is also a
+<A HREF="param.html#brace">brace</A>
+or
+<A HREF="param.html#bracket">bracket</A>
+label, that label will
+be to the left of this label.
+There is a
+<A HREF="param.html#label2">label2</A>
+parameter that is used on subsequent scores.
+In addition to being used for the very first score of a song,
+this label parameter might be used to clearly mark a change in instrumentation
+or voices for a particular staff. The label2 would typically be changed at
+the same time, giving a more abbreviated label. For example,
+you might set label=&quot;Tenor/Bass&quot; and label2=&quot;TB&quot;
+</P>
+<P><B>Value: </B>
+<A HREF="textstr.html">a text string</A>
+enclosed in double quotes.
+</P>
+<P><B>Default value: </B>
+enough spaces to produce an indent of 1/2 inch
+</P>
+<P><B>Context: </B>
+score, staff
+</P>
+<P><B>Example:</B><BR>
+label = &quot;oboe&quot;
+</P>
+<P><B>Related parameters: </B>
+<A HREF="param.html#brace">brace,</A>
+<A HREF="param.html#bracket">bracket,</A>
+<A HREF="param.html#label">label2</A>
+
+
+
+
+
+
+</P>
+<HR>
+<H2>
+<A NAME="label2">label2</A>
+</H2><P>
+specify a label to be printed to the left of the staff on all scores after
+the first. If there is also a
+<A HREF="param.html#brace">brace</A>
+or
+<A HREF="param.html#bracket">bracket</A>
+label, that label will be to the left of this label.
+If both the
+<A HREF="param.html#label">label</A>
+and label2 parameters are set at the same time,
+the label value will be used for the immediately
+following score, with the label2 value used for subsequent scores.
+If however, after the first score, only the label2 is changed,
+then the label2 value will be used on the immediately following score
+as well as subsequent scores.
+</P>
+<P><B>Value: </B>
+<A HREF="textstr.html">a text string</A>
+enclosed in double quotes
+</P>
+<P><B>Default value: </B>
+no label
+</P>
+<P><B>Context: </B>
+score, staff
+</P>
+<P><B>Example:</B><BR>
+label2 = &quot;Solo&quot;
+</P>
+<P><B>Related parameters: </B>
+<A HREF="param.html#brace">brace,</A>
+<A HREF="param.html#bracket">bracket,</A>
+<A HREF="param.html#label">label</A>
+</P>
+<HR>
+<H2>
+<A NAME="leftmar">leftmargin</A>
+</H2><P>
+sets the amount of white space margin to put at the left side of each page.
+It is specified in inches if the
+<A HREF="param.html#units">units parameter</A>
+is set to inches, or in centimeters if the units parameter is set to cm.
+This parameter can only be specified before any music or block input.
+Margins are unaffected by
+<A HREF="param.html#scale">the "scale" parameter.</A>
+</P>
+<P><B>Value: </B>
+0.0 to pagewidth minus 0.5 inches
+</P>
+<P><B>Default value: </B>
+0.5 inches
+</P>
+<P><B>Context: </B>
+score
+</P>
+<P><B>Example:</B><BR>
+leftmargin = 0.3
+</P>
+<P><B>Related parameters: </B>
+<A HREF="param.html#botmar">bottommargin,</A>
+<A HREF="param.html#rightmar">rightmargin,</A>
+<A HREF="param.html#topmar">topmargin,</A>
+<A HREF="param.html#pgwidth">pagewidth,</A>
+<A HREF="param.html#units">units</A>
+
+
+
+</P>
+<HR>
+<H2>
+<A NAME="lyralign">lyricsalign</A>
+</H2><P>
+specifies how to align lyric syllables with chords. Its value is the
+proportion of each syllable to place to the left of the syllable's chord.
+Thus for example, a value of 0.0 causes
+the left edge of syllables to be aligned with
+the chords, whereas a value of 0.5 causes syllables to be centered with
+the chord, and 1.0 causes the right edge of the syllables to be aligned
+with the chord.
+</P>
+<P><B>Value: </B>
+0.0 to 1.0
+</P>
+<P><B>Default value: </B>
+0.25
+</P>
+<P><B>Context: </B>
+score, staff
+</P>
+<P><B>Example:</B><BR>
+lyricsalign = 0.1
+</P>
+<P><B>Related parameters: </B>
+<A HREF="param.html#sylpos">sylposition</A>
+
+</P>
+<HR>
+<H2>
+<A NAME="lyrdist">lyricsdist</A>
+</H2><P>
+sets minimum distance from staff to place lyrics. When
+lyrics are printed, they will be placed
+no closer to the staff than the value of this parameter.
+This only affects lyrics above and below, not between.
+</P>
+<P><B>Value: </B>
+a number between 0.0 and 50.0 inclusive, given in stepsizes.
+</P>
+<P><B>Default value: </B>
+2.0
+</P>
+<P><B>Context: </B>
+score, staff
+</P>
+<P><B>Example:</B><BR>
+lyricsdist = 4
+</P>
+<P><B>Related parameters: </B>
+<A HREF="param.html#chdist">chorddist,</A>
+<A HREF="param.html#dyndist">dyndist,</A>
+<A HREF="param.html#dist">dist,</A>
+<A HREF="param.html#scorepad">scorepad,</A>
+<A HREF="param.html#scoresep">scoresep</A>
+</P>
+<HR>
+<H2>
+<A NAME="lyrfont">lyricsfont</A>
+</H2><P>
+sets which font to use for
+<A HREF="lyrics.html">lyrics.</A>
+</P>
+<P><B>Value: </B>
+rom, ital, bold, boldital
+</P>
+<P><B>Default value: </B>
+rom
+</P>
+<P><B>Context: </B>
+score, staff
+</P>
+<P><B>Example:</B><BR>
+lyricsfont = ital
+</P>
+<P><B>Related parameters: </B>
+<A HREF="param.html#font">font,</A>
+<A HREF="param.html#lyrsize">lyricssize</A>
+
+
+
+
+
+</P>
+<HR>
+<H2>
+<A NAME="lyrfam">lyricsfontfamily</A>
+</H2><P>
+specifies what font family to use for
+<A HREF="lyrics.html">lyrics.</A>
+</P>
+<P><B>Value: </B>
+avantgarde, bookman, courier, helvetica, newcentury, palatino, times
+</P>
+<P><B>Default value: </B>
+times
+</P>
+<P><B>Context: </B>
+score, staff
+</P>
+<P><B>Example:</B><BR>
+lyricsfontfamily=helvetica
+</P>
+<P><B>Related parameters: </B>
+<A HREF="param.html#font">font,</A>
+<A HREF="param.html#fontfam">fontfamily,</A>
+<A HREF="param.html#lyrfont">lyricsfont</A>
+</P>
+<HR>
+<H2>
+<A NAME="lyrsize">lyricssize</A>
+</H2><P>
+sets point size to use for
+<A HREF="lyrics.html">lyrics.</A>
+</P>
+<P><B>Value: </B>
+a number from 1 to 100
+</P>
+<P><B>Default value: </B>
+12
+</P>
+<P><B>Context: </B>
+score, staff
+</P>
+<P><B>Example:</B><BR>
+lyricssize = 10
+</P>
+<P><B>Related parameters: </B>
+<A HREF="param.html#lyrfont">lyricsfont,</A>
+<A HREF="param.html#lyrfam">lyricsfontfamily,</A>
+<A HREF="param.html#size">size</A>
+
+</P>
+<HR>
+<H2>
+<A NAME="maxmeas">maxmeasures</A>
+</H2><P>
+specifies the maximum number of measures to put on any score.
+</P>
+<P><B>Value: </B>
+a number from 1 to 1000
+</P>
+<P><B>Default value: </B>
+1000
+</P>
+<P><B>Context: </B>
+score
+</P>
+<P><B>Example:</B><BR>
+maxmeasures = 3
+</P>
+<P><B>Related parameters: </B>
+<A HREF="param.html#leftmar">leftmargin,</A>
+<A HREF="param.html#maxscore">maxscores,</A>
+<A HREF="param.html#packexp">packexp,</A>
+<A HREF="param.html#packfact">packfact,</A>
+<A HREF="param.html#rightmar">rightmargin,</A>
+<A HREF="param.html#scale">scale,</A>
+<A HREF="param.html#stscale">staffscale</A>
+</P>
+<HR>
+<H2>
+<A NAME="maxscore">maxscores</A>
+</H2><P>
+specifies the maximum number of scores to print per page.
+</P>
+<P><B>Value: </B>
+1 to 1000
+</P>
+<P><B>Default value: </B>
+1000
+</P>
+<P><B>Context: </B>
+score
+</P>
+<P><B>Example:</B><BR>
+maxscores=2
+</P>
+<P><B>Related parameters: </B>
+<A HREF="param.html#scorepad">scorepad,</A>
+<A HREF="param.html#scoresep">scoresep</A>
+</P>
+<HR>
+<H2>
+<A NAME="measnum">measnum</A>
+</H2><P>
+specifies whether or not to print measure numbers.
+If set to &quot;y,&quot;
+the current measure number will be printed at the beginning of each score
+other than the first. The number will be printed above any scores that
+would receive ending marks
+<A HREF="param.html#endingst">(see "endingstyle" parameter).</A>
+If set to &quot;n,&quot; no measure numbers will be printed.
+If set to &quot;every <I>N</I>,&quot; measure numbers will be printed
+on every Nth bar line
+unless some other
+<A HREF="bars.html#reh">rehearsal mark</A>
+has been specified on that bar. 
+</P>
+<P><B>Value: </B>
+y, n, or every N, where N can be from 1 to 10000
+</P>
+<P><B>Default value: </B>
+n
+</P>
+<P><B>Context: </B>
+score
+</P>
+<P><B>Examples:</B><BR>
+measnum = y
+<BR>
+measnum = every 1   // number all measures
+<BR>
+measnum = every 5
+</P>
+<P><B>Related parameters: </B>
+<A HREF="param.html#endingst">endingstyle,</A>
+<A HREF="param.html#mnumfont">measnumfont,</A>
+<A HREF="param.html#mnumfam">measnumfontfamily,</A>
+<A HREF="param.html#mnumsize">measnumsize,</A>
+<A HREF="param.html#mnumstyl">measnumstyle,</A>
+<A HREF="param.html#rehstyle">rehstyle</A>
+
+
+
+
+
+</P>
+<HR>
+<H2>
+<A NAME="mnumfont">measnumfont</A>
+</H2><P>
+This specifies which font type to use for the automatic measure numbers,
+if they are turned on via the
+<A HREF="param.html#measnum">measnum parameter.</A>
+</P>
+<P><B>Value: </B>
+rom, ital, bold, or boldital
+</P>
+<P><B>Default value: </B>
+rom
+</P>
+<P><B>Context: </B>
+score
+</P>
+<P><B>Example:</B><BR>
+measnumfont=boldital
+</P>
+<P><B>Related parameters: </B>
+<A HREF="param.html#measnum">measnum,</A>
+<A HREF="param.html#mnumfam">measnumfontfamily,</A>
+<A HREF="param.html#mnumsize">measnumsize,</A>
+<A HREF="param.html#mnumstyl">measnumstyle</A>
+</P>
+<HR>
+<H2>
+<A NAME="mnumfam">measnumfontfamily</A>
+</H2><P>
+This specifies which font family to use for the automatic measure numbers,
+if they are turned on via the
+<A HREF="param.html#measnum">measnum parameter.</A>
+</P>
+<P><B>Value: </B>
+avantegarde, bookman, courier, helvetica, newcentry, palatino, or times
+</P>
+<P><B>Default value: </B>
+times
+</P>
+<P><B>Context: </B>
+score
+</P>
+<P><B>Example:</B><BR>
+measnumfontfamily=helvetica
+</P>
+<P><B>Related parameters: </B>
+<A HREF="param.html#measnum">measnum,</A>
+<A HREF="param.html#mnumfont">measnumfont,</A>
+<A HREF="param.html#mnumsize">measnumsize,</A>
+<A HREF="param.html#mnumstyl">measnumstyle</A>
+</P>
+<HR>
+<H2>
+<A NAME="mnumsize">measnumsize</A>
+</H2><P>
+This specifies what size to use for the automatic measure numbers,
+in points, if they are turned on via the
+<A HREF="param.html#measnum">measnum parameter.</A>
+</P>
+<P><B>Value: </B>
+1 to 100
+</P>
+<P><B>Default value: </B>
+11
+</P>
+<P><B>Context: </B>
+score
+</P>
+<P><B>Example:</B><BR>
+measnumsize=15
+</P>
+<P><B>Related parameters: </B>
+<A HREF="param.html#measnum">measnum,</A>
+<A HREF="param.html#mnumfont">measnumfont,</A>
+<A HREF="param.html#mnumfam">measnumfontfamily,</A>
+<A HREF="param.html#mnumstyl">measnumstyle</A>
+</P>
+<HR>
+<H2>
+<A NAME="mnumstyl">measnumstyle</A>
+</H2><P>
+This specifies whethere to put automatic measure numbers inside boxes
+or circles, or leave them plain.
+</P>
+<P><B>Value: </B>
+plain, boxed, or circled
+</P>
+<P><B>Default value: </B>
+plain
+</P>
+<P><B>Context: </B>
+score
+</P>
+<P><B>Example:</B><BR>
+measnumstyle=boxed
+</P>
+<P><B>Related parameters: </B>
+<A HREF="param.html#measnum">measnum,</A>
+<A HREF="param.html#mnumfont">measnumfont,</A>
+<A HREF="param.html#mnumfam">measnumfontfamily,</A>
+<A HREF="param.html#mnumsize">measnumsize,</A>
+<A HREF="param.html#rehstyle">rehstyle</A>
+</P>
+<HR>
+<H2>
+<A NAME="mingrid">mingridheight</A>
+</H2><P>
+This specifies the minimum number of frets to print on grids. Grids will
+be made taller than this when necessary, but will never be shorter than this.
+</P>
+<P><B>Value: </B>
+A number from 2 to 99
+</P>
+<P><B>Default value: </B>
+4
+</P>
+<P><B>Context: </B>
+score, staff
+</P>
+<P><B>Example:</B><BR>
+mingridheight=6
+</P>
+<P><B>Related parameters: </B>
+<A HREF="param.html#gridfret">gridfret,</A>
+<A HREF="param.html#gridend">gridsatend,</A>
+<A HREF="param.html#gridscl">gridscale,</A>
+<A HREF="param.html#gridused">gridswhereused</A>
+</P>
+<HR>
+<H2>
+<A NAME="notehead">noteheads</A>
+</H2><P>
+The noteheads parameter describes which note head shape(s)
+to use for each pitch in the scale.
+If you want to use the same shape for all pitches,
+as is the case with standard notation, the value is a string
+containing a single shape name (e.g., &quot;norm&quot; for standard notation).
+If you want to use different shapes for different pitches,
+the noteheads parameter value is a string containing a list of 7 shape names.
+They are listed in order starting from the &quot;tonic&quot;
+of the major key as indicated by the number of sharps or flats in the
+<A HREF="param.html#key">key signature.</A>
+There are 10 pre-defined head shapes:
+blank, diam, isostri, norm, pie, rect, righttri, semicirc, slash, and xnote.
+Additional head shapes can be defined in the
+<A HREF="shaped.html#hdshape">headshapes context.</A>
+See the examples below for the most common settings for
+this parameter. Head shape can be
+<A HREF="shaped.html#chord">overridden on an individual chord</A>
+by using [hs &quot;shapename&quot;]
+before the chord. It can also be
+<A HREF="shaped.html#note">overridden on an individual note</A>
+by putting hs &quot;shapename&quot; after the note.
+</P>
+<P><B>Value: </B>
+A string containing either 1 or 7 head shape names.
+</P>
+<P><B>Default value: </B>
+&quot;norm&quot;
+</P>
+<P><B>Context: </B>
+score, staff, voice
+</P>
+<P><B>Examples:</B><BR>
+// This is the setting for the most common shaped note system using 4 shapes.
+<BR>
+noteheads = &quot;righttri norm rect righttri norm rect diam&quot;
+<BR>
+
+// This is the setting for a shaped notes system that uses 7 different shapes.
+<BR>
+noteheads = &quot;isostri semicirc diam righttri norm rect pie&quot;
+
+</P>
+<HR>
+<H2>
+<A NAME="nummrpt">numbermrpt</A>
+</H2><P>
+If set to 'y'
+<A HREF="chordinp.html#measdur">measure repeats</A>
+are numbered; if set to 'n' they aren't.
+</P>
+<P><B>Value: </B>
+y or n
+</P>
+<P><B>Default value: </B>
+y
+</P>
+<P><B>Context: </B>
+score, staff
+</P>
+<P><B>Example:</B><BR>
+numbermrpt = n
+</P>
+<HR>
+<H2>
+<A NAME="ontheline">ontheline</A>
+</H2><P>
+specifies whether notes for voices 1 and 2
+on a 1-line staff are to be placed on the line.
+If this is set to n, notes with stem up will be placed above the line
+and notes with stem down will be placed below the line, otherwise both
+will be placed on the line. For notes that don't have a stem, the rules
+are applied using the direction the stem would be if there were a stem.
+This parameter has no effect on
+<A HREF="param.html#stlines">5-line staffs</A>
+or
+<A HREF="tabstaff.html">tablature staffs.</A>
+Notes for voice 3 are always placed on the line on 1-line staffs,
+regardless of the value of this parameter.
+</P>
+<P><B>Value: </B>
+y or n
+</P>
+<P><B>Default value: </B>
+y
+</P>
+<P><B>Context: </B>
+score, staff, voice
+</P>
+<P><B>Example:</B><BR>
+ontheline=n
+</P>
+<P><B>Related parameters: </B>
+<A HREF="param.html#stlines">stafflines</A>
+</P>
+<HR>
+<H2>
+<A NAME="packexp">packexp</A>
+</H2><P>
+sets note expansion factor. This factor controls spacing of notes relative
+to their time values. If set to 1.0, Mup will try to give a half note twice
+as much space as a quarter note, a whole note twice as much as a half note,
+etc. If set to 0.0, a chord's time value will have no impact on its placement.
+Intermediate values will cause relative spacing
+between the two extremes. Note that individual chords may get more space
+than they would theoretically &quot;deserve&quot; if they happen to need extra space
+to accommodate accidentals, dots, etc.
+</P>
+<P><B>Value: </B>
+a number from 0.0 to 1.0 inclusive
+</P>
+<P><B>Default value: </B>
+0.8
+</P>
+<P><B>Context: </B>
+score
+</P>
+<P><B>Example:</B><BR>
+packexp = 0.95
+</P>
+<P><B>Related parameters: </B>
+<A HREF="param.html#packfact">packfact,</A>
+<A HREF="param.html#pad">pad</A>
+
+
+
+
+
+
+</P>
+<HR>
+<H2>
+<A NAME="packfact">packfact</A>
+</H2><P>
+specifies how tightly to pack notes together on output. The smaller
+the value, the more tightly notes are packed together.
+</P>
+<P><B>Value: </B>
+a number from 0.0 to 10.0
+</P>
+<P><B>Default value: </B>
+1.0
+</P>
+<P><B>Context: </B>
+score
+</P>
+<P><B>Example:</B><BR>
+packfact = 1.4
+</P>
+<P><B>Related parameters: </B>
+<A HREF="param.html#packexp">packexp,</A>
+<A HREF="param.html#pad">pad</A>
+
+</P>
+<HR>
+<H2>
+<A NAME="pad">pad</A>
+</H2><P>
+specifies the amount of padding to be added to notes.
+This can be used to control how tightly things are packed together.
+Especially if
+<A HREF="param.html#packexp">packexp</A>
+and
+<A HREF="param.html#packfact">packfact</A>
+are very small, notes can get placed very close together.
+This parameter can be used to always force a minimum amount of space
+between horizontally adjacent note groups.
+A value of zero means notes will be allowed to just touch.
+More positive values cause more space around notes.
+A negative value will let things
+actually overlap, so most people will probably never want to use a
+negative value, but the option is there if you want to do something unusual.
+This parameter works somewhat like
+<A HREF="chrdattr.html#pad">the "pad" value that can be specified for individual note groups,</A>
+except that it applies to all groups.
+</P>
+<P><B>Value: </B>
+a floating point number of stepsizes, -5.0 to 50.0
+</P>
+<P><B>Default value: </B>
+0.3333
+</P>
+<P><B>Context: </B>
+score, staff, voice
+</P>
+<P><B>Example:</B><BR>
+pad = 1.76
+</P>
+<P><B>Related parameters: </B>
+<A HREF="param.html#packexp">packexp,</A>
+<A HREF="param.html#packfact">packfact</A>
+</P>
+<HR>
+<H2>
+<A NAME="pgheight">pageheight</A>
+</H2><P>
+Set the page height. If the
+<A HREF="param.html#units">units parameter</A>
+is inches, the value of pageheight is given in inches,
+or if the units parameter is cm, it is given in centimeters.
+This parameter can only be specified before any music or block input.
+If the
+<A HREF="param.html#pgwidth">pagewidth</A>
+and pageheight parameters are set to values that match
+a standard paper size in landscape mode, the Mup output will be rotated
+to print properly in landscape mode.
+</P>
+<P><B>Value: </B>
+2.0 to 24.0 inches or 5.0 to 61.0 cm
+</P>
+<P><B>Default value: </B>
+11.0 inches
+</P>
+<P><B>Context: </B>
+score
+</P>
+<P><B>Example:</B><BR>
+pageheight = 9
+</P>
+<P><B>Related parameters: </B>
+<A HREF="param.html#pgwidth">pagewidth,</A>
+<A HREF="param.html#botmar">bottommargin</A>
+<A HREF="param.html#topmar">topmargin,</A>
+<A HREF="param.html#units">units</A>
+
+</P>
+<HR>
+<H2>
+<A NAME="pgsize">pagesize</A>
+</H2><P>
+Set the page size. This is just an alternate way of specifying
+<A HREF="param.html#pgheight">pageheight</A>
+and
+<A HREF="param.html#pgwidth">pagewidth</A>
+using the common names for paper sizes rather than specifying in
+<A HREF="param.html#units">inches or cm.</A>
+An orientation (portrait or landscape) can also be specified;
+the default is portrait.
+This parameter can only be specified before any music or block input.
+</P>
+<P><B>Value: </B>
+letter, legal, flsa, halfletter, a4, a5, a6; optionally followed by
+portrait or landscape.
+</P>
+<P><B>Default value: </B>
+letter
+</P>
+<P><B>Context: </B>
+score
+</P>
+<P><B>Examples:</B><BR>
+pagesize = a4
+<BR>
+pagesize = legal landscape
+</P>
+<P><B>Related parameters: </B>
+<A HREF="param.html#pgheight">pageheight,</A>
+<A HREF="param.html#pgwidth">pagewidth,</A>
+<A HREF="param.html#panels">panelsperpage</A>
+</P>
+<HR>
+<H2>
+<A NAME="pgwidth">pagewidth</A>
+</H2><P>
+Set the page width. If the
+<A HREF="param.html#units">units parameter</A>
+is inches, the value of pagewidth is given in inches,
+or if the units parameter is cm, it is given in centimeters.
+This parameter can only be specified before any music or block input.
+If the pagewidth and
+<A HREF="param.html#pgheight">pageheight</A>
+parameters are set to values that match
+a standard paper size in landscape mode, the Mup output will be rotated
+to print properly in landscape mode.
+</P>
+<P><B>Value: </B>
+2.0 to 24.0 inches or 5.0 to 61.0 cm
+</P>
+<P><B>Default value: </B>
+8.5 inches
+</P>
+<P><B>Context: </B>
+score
+</P>
+<P><B>Example:</B><BR>
+pagewidth = 6.5
+</P>
+<P><B>Related parameters: </B>
+<A HREF="param.html#pgheight">pageheight,</A>
+<A HREF="param.html#leftmar">leftmargin,</A>
+<A HREF="param.html#rightmar">rightmargin,</A>
+<A HREF="param.html#units">units</A>
+
+</P>
+<HR>
+<H2>
+<A NAME="panels">panelsperpage</A>
+</H2><P>
+Specifies how many pages of music to print on each physical page.
+This parameter can only be specified before any music or block input.
+Note that the
+<A HREF="param.html#pgheight">pageheight</A>
+and
+<A HREF="param.html#pgwidth">pagewidth</A>
+parameters still apply to the physical paper size viewed in portrait mode,
+even when the panelsperpage value causes the printing to be landscape mode,
+so you should continue to leave those set as you normally would.
+The
+<A HREF="cmdargs.html#ooption">-o command line option</A>
+may be useful for getting pages printed in desired order.
+For example, to make a 4-page booklet from a single sheet of paper
+folded in half, you can use panelsperpage=2, then use -o4,1 to print one side
+of the paper, and -o2,3 to print the other side.
+</P>
+<P><B>Value: </B>
+1 or 2
+</P>
+<P><B>Default value: </B>
+1
+</P>
+<P><B>Context: </B>
+score
+</P>
+<P><B>Example:</B><BR>
+panelsperpage=2
+</P>
+<P><B>Related parameters: </B>
+<A HREF="param.html#pgheight">pageheight,</A>
+<A HREF="param.html#pgwidth">pagewidth</A>
+</P>
+<HR>
+<H2>
+<A NAME="pedstyle">pedstyle</A>
+</H2><P>
+Specifies whether to display
+<A HREF="pedal.html">piano pedal marks</A>
+with lines or with the word &quot;Ped&quot; and &quot;*&quot;.
+With the &quot;pedstar&quot; style, a &quot;bounce&quot; of the pedal is shown by a &quot;* Ped&quot;
+whereas with the &quot;alt pedstar&quot; style, only a &quot;Ped&quot; is printed.
+</P>
+<P><B>Value: </B>
+line, pedstar, or alt pedstar
+</P>
+<P><B>Default value: </B>
+line
+</P>
+<P><B>Context: </B>
+score, staff
+</P>
+<P><B>Example:</B><BR>
+pedstyle = pedstar
+
+
+</P>
+<HR>
+<H2>
+<A NAME="prmultn">printmultnum</A>
+</H2><P>
+If set to 'y'
+<A HREF="multirst.html">multirests</A>
+are labeled with the number of measures of rest they represent;
+if set to 'n' they aren't.
+This would allow you to print some other commentary in place of the
+number, print it in a different style, etc.
+</P>
+<P><B>Value: </B>
+y or n
+</P>
+<P><B>Default value: </B>
+y
+</P>
+<P><B>Context: </B>
+score, staff
+</P>
+<P><B>Example:</B><BR>
+printmultnum = n
+</P>
+<HR>
+<H2>
+<A NAME="rehstyle">rehstyle</A>
+</H2><P>
+Specifies whether to enclose
+<A HREF="bars.html#reh">rehearsal marks</A>
+inside box, inside a circle, or just as plain text.
+</P>
+<P><B>Value: </B>
+boxed, circled, or plain
+</P>
+<P><B>Default value: </B>
+boxed
+</P>
+<P><B>Context: </B>
+score, staff
+</P>
+<P><B>Example:</B><BR>
+rehstyle = circled
+</P>
+<P><B>Related parameters: </B>
+<A HREF="param.html#endingst">endingstyle</A>
+
+</P>
+<HR>
+<H2>
+<A NAME="release">release</A>
+</H2><P>
+Specifies how soon (in milliseconds) before the full time value of note
+to release the note when generating
+<A HREF="midi.html">MIDI output.</A>
+This controls how legato (smooth) the music is.
+A value of 0 will make it very legato. The larger the value, the
+more detached notes will be. This parameter specifies a
+maximum amount to shorten notes; a note will never be shortened
+to less than 75% of its full value.
+release can be changed in
+<A HREF="midmeas.html">the middle of a measure</A>
+using a construct like &lt;&lt;score release=50&gt;&gt; before a note group.
+</P>
+<P><B>Value: </B>
+0 to 500
+</P>
+<P><B>Default value: </B>
+20
+</P>
+<P><B>Context: </B>
+score, staff, voice
+</P>
+<P><B>Example:</B><BR>
+release = 40
+</P>
+<HR>
+<H2>
+<A NAME="rptdots">repeatdots</A>
+</H2><P>
+If set to &quot;standard&quot; repeat signs are printed using the standard convention
+of two dots. If set to &quot;all&quot; repeat signs are printed with dots between all
+the lines of the staff.
+</P>
+<P><B>Value: </B>
+standard or all
+</P>
+<P><B>Default value: </B>
+standard
+</P>
+<P><B>Context: </B>
+score, staff
+</P>
+<P><B>Example:</B><BR>
+repeatdots = all
+</P>
+<P><B>Related parameters: </B>
+<A HREF="param.html#brktrpts">bracketrepeats</A>
+</P>
+<HR>
+<H2>
+<A NAME="restcomb">restcombine</A>
+</H2><P>
+If the given number of measures of rest occur in a row,
+they will be replaced by a
+<A HREF="multirst.html">multirest.</A>
+This parameter can be overridden by the
+-c command line option.
+See the
+<A HREF="cmdargs.html#coption">description of the -c option</A>
+for more complete information on how the combining is done.
+</P>
+<P><B>Value: </B>
+2 to 1000 or nothing
+</P>
+<P><B>Default value: </B>
+not set
+</P>
+<P><B>Context: </B>
+score
+</P>
+<P><B>Examples:</B><BR>
+restcombine = 5
+<BR>
+restcombine =    // turn off combining
+</P>
+<HR>
+<H2>
+<A NAME="restsymm">restsymmult</A>
+</H2><P>
+Multi-rests are normally drawn as a horizontal line on the middle line
+of the staff, with two vertical lines at the end. But there is an
+alternate notation style that uses rest symbols (whole, double whole,
+and quad whole) when the number of measures is short.
+If this parameter is set to y, that alternate style will be used for
+multirests of eight measures or less.
+</P>
+<P><B>Value: </B>
+y or n
+</P>
+<P><B>Default value: </B>
+n
+</P>
+<P><B>Context: </B>
+score, staff
+</P>
+<P><B>Example:</B><BR>
+restsymmult = y
+</P>
+<P><B>Related parameters: </B>
+<A HREF="param.html#prmultn">printmultnum</A>
+</P>
+<HR>
+<H2>
+<A NAME="rightmar">rightmargin</A>
+</H2><P>
+sets the amount of white space margin to put at the right side of each page.
+It is specified in inches if the
+<A HREF="param.html#units">units parameter</A>
+is set to inches, or in centimeters if the units parameter is set to cm.
+This parameter can only be specified before any music or block input.
+Margins are unaffected by
+<A HREF="param.html#scale">the "scale" parameter.</A>
+</P>
+<P><B>Value: </B>
+0.0 to pagewidth minus 0.5 inches
+</P>
+<P><B>Default value: </B>
+0.5 inches
+</P>
+<P><B>Context: </B>
+score
+</P>
+<P><B>Example:</B><BR>
+rightmargin = 0.3
+</P>
+<P><B>Related parameters: </B>
+<A HREF="param.html#botmar">bottommargin,</A>
+<A HREF="param.html#leftmar">leftmargin,</A>
+<A HREF="param.html#topmar">topmargin,</A>
+<A HREF="param.html#pgwidth">pagewidth,</A>
+<A HREF="param.html#units">units</A>
+
+
+
+</P>
+<HR>
+<H2>
+<A NAME="scale">scale</A>
+</H2><P>
+Scale the printed output by the specified factor. For example,
+scale=2 prints everything twice as large as normal, while scale=0.5
+prints everything at half size.
+This parameter can only be specified before any music or block input.
+</P>
+<P><B>Value: </B>
+A number between 0.1 and 10.0
+</P>
+<P><B>Default value: </B>
+1.0
+</P>
+<P><B>Context: </B>
+score
+</P>
+<P><B>Example:</B><BR>
+scale=0.95
+</P>
+<P><B>Related parameters: </B>
+<A HREF="param.html#packfact">packfact,</A>
+<A HREF="param.html#packexp">packexp,</A>
+<A HREF="param.html#stscale">staffscale</A>
+
+</P>
+<HR>
+<H2>
+<A NAME="scorepad">scorepad</A>
+</H2><P>
+sets the amount of padding (white space) to leave between scores,
+accounting for all the things that protrude from both scores.
+Either a single number, giving a minimum
+amount, or two numbers, giving a minimum and maximum,
+can be specified. They are specified in stepsizes.
+If only the minimum is specified, and it is larger than the default
+maximum of 2, the maximum will be adjusted to equal the minimum.
+Depending on the setting of the
+<A HREF="param.html#scoresep">scoresep parameter,</A>
+the maximum may be exceeded; see the description of
+scoresep for how these parameters interact to determine the placement
+of the scores.
+If a negative value is specified for scorepad, some overlap may occur,
+(subject to the interaction with scoresep).
+Specifying a negative value may be particularly useful when things
+protrude downward from the top score and upward from the bottom score,
+but at different places horizontally, such that it is actually safe
+to put the scores closer together without collision, even though Mup
+can't tell that it is safe.
+Note, however, that this overrides Mup's protection against real
+collisions, so this must be used with care to avoid undesired overlaps.
+</P>
+<P><B>Value: </B>
+one or two whole numbers, in the range from
+negative the height of the page and the height of a page, in stepsizes.
+If there are two numbers, they are separated by a comma, and the second
+must be greater than or equal to the first.
+</P>
+<P><B>Default value: </B>
+2,2
+</P>
+<P><B>Context: </B>
+score
+</P>
+<P><B>Examples:</B><BR>
+scorepad = 5
+<BR>
+scorepad = -1
+<BR>
+scorepad = 3,10
+</P>
+<P><B>Related parameters: </B>
+<A HREF="param.html#scoresep">scoresep,</A>
+<A HREF="param.html#staffpad">staffpad,</A>
+<A HREF="param.html#staffsep">staffsep</A>
+
+
+
+
+</P>
+<HR>
+<H2>
+<A NAME="scoresep">scoresep</A>
+</H2><P>
+sets how much space to leave between scores;
+i.e., between the bottom line of the
+bottom staff of one score and the top line of the top staff of the
+following score. Either a single number, giving a minimum
+amount, or two numbers, giving a minimum and maximum,
+can be specified. They are specified in stepsizes.
+If only the minimum is specified, and it is larger than the default
+maximum of 20, the maximum will be adjusted to equal the minimum.
+Depending on the setting of the
+<A HREF="param.html#scorepad">scorepad parameter,</A>
+the maximum may be exceeded.
+The parameters interact as follows in determining the layout of a page:
+As many scores are allocated to the page as will fit (or until
+<A HREF="newscore.html">a "newpage" command</A>
+is encountered).  Initially, they are packed together
+as tightly as they can be without violating
+the minimum values of scorepad and scoresep between any neighboring scores.
+Next, if there is extra space available at the bottom of the page,
+the scores are spread out, increasing the white space between them, but
+not increasing any beyond the maximum scorepad value.
+(Some may however already be beyond the maximum scorepad value, because
+the minimum scoresep value required it.)
+This spreading is done without regard for the maximum scoresep value.
+If any of the inter-score gaps start narrower than others
+(because of the minimum scoresep), they are increased first, in an
+attempt to even out the differences.
+If the maximum scorepad value is reached or exceeded between all the scores,
+and there is still extra space available at the bottom of the page,
+then the scores are spread out some more, increasing the white space between
+them, this time ignoring the scorepad values, but not increasing any
+beyond the maximum scoresep value.
+(Some may however already be beyond the maximum scoresep value, because
+of the previous steps.)
+If still not all the space is used up, it remains as extra space at the
+bottom of the page.
+</P>
+<P><B>Value: </B>
+one or two whole numbers, in the range from 6
+to the height of the page in stepsizes.
+If there are two numbers, they are separated by a comma, and the second
+must be greater than or equal to the first.
+</P>
+<P><B>Default value: </B>
+12,20 
+</P>
+<P><B>Context: </B>
+score
+</P>
+<P><B>Examples:</B><BR>
+scoresep = 25
+<BR>
+scoresep = 9,15
+</P>
+<P><B>Related parameters: </B>
+<A HREF="param.html#scorepad">scorepad,</A>
+<A HREF="param.html#staffpad">staffpad,</A>
+<A HREF="param.html#staffsep">staffsep</A>
+
+
+
+
+</P>
+<HR>
+<H2>
+<A NAME="size">size</A>
+</H2><P>
+specifies what point size to use for text in
+<A HREF="prnttext.html">print, title, left, right, and center statements,</A>
+and
+<A HREF="chrdattr.html#withlist">"with" lists (i.e., strings that are associated with a particular chord).</A>
+It also provides the default for rom, bold, ital, and boldital statements.
+</P>
+<P><B>Value: </B>
+a number from 1 to 100 inclusive
+</P>
+<P><B>Default value: </B>
+12
+</P>
+<P><B>Context: </B>
+score, staff, header, footer, header2, footer2, top, bottom, top2, bottom2, block
+</P>
+<P><B>Example:</B><BR>
+size = 9
+</P>
+<P><B>Related parameters: </B>
+<A HREF="param.html#font">font,</A>
+<A HREF="param.html#fontfam">fontfamily,</A>
+<A HREF="param.html#lyrsize">lyricssize,</A>
+<A HREF="param.html#withsize">withsize</A>
+
+
+
+
+
+
+</P>
+<HR>
+<H2>
+<A NAME="slashbet">slashesbetween</A>
+</H2><P>
+specifies whether to put two thick slanted lines between scores at the
+left edge of the staffs. These are often used when there are a lot of staffs,
+or when the number of scores per page varies, to help the musicians see clearly
+where the next score begins.
+</P>
+<P><B>Value: </B>
+y or n
+</P>
+<P><B>Default value: </B>
+n
+</P>
+<P><B>Context: </B>
+score
+</P>
+<P><B>Example:</B><BR>
+slashesbetween=y
+</P>
+<HR>
+<H2>
+<A NAME="stlines">stafflines</A>
+</H2><P>
+specifies how many lines to draw for the staff. Normally, there are 5 lines
+per staff, but a single line staff is sometimes used for percussion,
+and tablature staffs for various instruments
+may have different numbers of lines.
+Setting this parameter to 1 will produce a single line staff.
+The number of lines can be followed by &quot;n&quot; to indicate that
+<A HREF="param.html#clef">clef</A>
+and
+<A HREF="param.html#key">key signature</A>
+are not to be printed. The &quot;n&quot; also implies that accidentals are to
+be ignored and that notes are never to be transposed.
+If the number of lines is 1, the clef and
+key signature are never printed,
+regardless of whether or not you add the &quot;n,&quot; so the &quot;n&quot; is really only
+meaningful when used with 5. When stafflines=1, you can only have one note
+per chord, and the pitch of that note is irrelevant, except for
+<A HREF="midi.html">MIDI output.</A>
+
+Alternately, rather than specifying &quot;n&quot; you can specify &quot;drum&quot; which
+means to use the drum clef (also sometimes called the &quot;neutral&quot; clef).
+With the drum clef, no key signature is printed, accidentals are
+ignored, and notes are never transposed. The value used for the
+<A HREF="param.html#clef">clef parameter</A>
+is used to determine the pitch for placement of notes in this case,
+but the drum clef of two vertical lines is printed.
+For a tablature staff, rather than specifying a number of staff lines as the
+value, the keyword &quot;tab&quot; is used, optionally followed by a list of strings
+in parentheses. The strings are listed in order from the top line of the
+tablature staff to the bottom.
+
+Each item in the list has at least a string pitch, which is
+a letter from a to g, optionally followed by # or &amp;. If there is more than
+one string having the same letter/accidental, they are distinguished by
+adding one or more single quote marks (&quot;ticks&quot;). An octave number can also
+be specified.
+If the list of strings is omitted, standard guitar strings are used,
+which is tab( e5 b4 g4 d4 a3 e'3 ).
+Tablature can only be specified in staff context, not score or voice, and
+when a tablature staff is specified, the staff above it becomes a &quot;tabnote&quot;
+staff which is a normal 5-line staff containing music derived from the
+tablature staff.
+</P>
+<P><B>Value: </B>
+1 or 5, optionally followed by &quot;n&quot; or &quot;drum&quot;;
+or for tablature staff, the keyword &quot;tab&quot; optionally followed by a
+list of strings, in parentheses.
+Setting the stafflines parameter will also reinitialize other parameters:
+<A HREF="param.html#key">key,</A>
+<A HREF="param.html#xpose">transpose,</A>
+<A HREF="param.html#addxpose">addtranspose,</A>
+<A HREF="param.html#clef">clef,</A>
+<A HREF="param.html#beamstyl">beamstyle,</A>
+and
+<A HREF="param.html#defoct">defoct.</A>
+</P>
+<P><B>Default value: </B>
+5
+</P>
+<P><B>Context: </B>
+score, staff
+</P>
+<P><B>Examples:</B><BR>
+stafflines=1
+<BR>
+stafflines=5n
+<BR>
+stafflines = tab	// standard guitar tablature staff
+<BR>
+stafflines = tab ( g3 d3 a2 e2 )  // standard bass guitar
+<BR>
+stafflines = tab (d# g b3 g'3)
+</P>
+<P><B>Related parameters: </B>
+<A HREF="param.html#clef">clef,</A>
+<A HREF="param.html#key">key,</A>
+<A HREF="param.html#xpose">transpose,</A>
+<A HREF="param.html#addxpose">addtranspose</A>
+
+
+
+
+
+
+
+
+
+
+
+
+</P>
+<HR>
+<H2>
+<A NAME="staffpad">staffpad</A>
+</H2><P>
+sets the minimum amount of space to leave between staffs,
+accounting for all the things that protrude from both staffs.
+If a negative value is specified, some overlap may occur, although
+it will still be limited by the value of the
+<A HREF="param.html#staffsep">staffsep parameter.</A>
+Specifying a negative value may be particularly useful when things
+protrude downward from the top staff and upward from the bottom staff,
+but at different places horizontally, such that it is actually safe
+to put the staffs closer together without collision, even though Mup
+can't tell that it is safe.
+Note, however, that this overrides Mup's protection against real
+collisions, so this must be used with care to avoid undesired overlaps.
+If this parameter is set in staff context for staff N, it affects
+the distance from staff N to staff N+1.
+</P>
+<P><B>Value: </B>
+a whole number between negative the height of the page
+and the height of a page, in stepsizes.
+</P>
+<P><B>Default value: </B>
+0
+</P>
+<P><B>Context: </B>
+score, staff
+</P>
+<P><B>Example:</B><BR>
+staffpad = -2
+</P>
+<P><B>Related parameters: </B>
+<A HREF="param.html#scorepad">scorepad,</A>
+<A HREF="param.html#scoresep">scoresep,</A>
+<A HREF="param.html#staffsep">staffsep</A>
+
+
+
+
+</P>
+<HR>
+<H2>
+<A NAME="staffs">staffs</A>
+</H2><P>
+specifies the number of staffs. It is possible that not all of these staffs
+will be printed (see
+<A HREF="param.html#visible">the "visible" parameter</A>
+below and
+<A HREF="cmdargs.html#soption">the -s command line argument).</A>
+Changing the number
+of staffs causes all parameters that had been
+set in staff and voice context to be set back to their default values.
+It is usually preferable to only set the staff parameter once at the beginning
+of a song, and use
+<A HREF="param.html#visible">the "visible" parameter</A>
+when you want to change which staffs are actually printed,
+rather than changing the number of staffs.
+</P>
+<P><B>Value: </B>
+a number between 1 and 40 inclusive.
+</P>
+<P><B>Default value: </B>
+1
+</P>
+<P><B>Context: </B>
+score
+</P>
+<P><B>Example:</B><BR>
+staffs = 12
+</P>
+<P><B>Related parameters: </B>
+<A HREF="param.html#visible">visible</A>
+
+
+</P>
+<HR>
+<H2>
+<A NAME="stscale">staffscale</A>
+</H2><P>
+Specifies how to scale the size of a staff relative to the size of other
+staffs. A value of 1.0 yields the normal size, whereas 0.5 yields a staff
+that is half as high, and 2.0 one that is twice as high as normal,
+and so forth. This might be used, for example, for a piece written for
+two instruments, say piano and violin, where you want the piano part to
+be written in normal size, but want to show the violin part in smaller
+size, such that while the pianist will have the violin part available
+for reference, it won't take up a lot of space.
+Another possible use is to set staffscale in score context, to make
+all staff-related things a different size, but leave other things, like
+<A HREF="headfoot.html">headers and footers,</A>
+unaffected.
+</P>
+<P><B>Value: </B>
+0.1 to 10.0
+</P>
+<P><B>Default value: </B>
+1.0
+</P>
+<P><B>Context: </B>
+score, staff
+</P>
+<P><B>Example:</B><BR>
+staffscale=0.75
+</P>
+<P><B>Related parameters: </B>
+<A HREF="param.html#scale">scale</A>
+</P>
+<HR>
+<H2>
+<A NAME="staffsep">staffsep</A>
+</H2><P>
+specifies the minimum amount of space to leave between
+any two adjacent staffs within the same score. It is specified in stepsizes,
+and is measured from the bottom line of the staff above to the top line
+of the staff below. Staffs will be spread
+wider than this minimum if necessary to prevent things from colliding.
+If this parameter is set in staff context for staff N, it affects
+the distance from staff N to staff N+1.
+</P>
+<P><B>Value: </B>
+a number from 6 to the height of the page in stepsizes
+</P>
+<P><B>Default value: </B>
+10
+</P>
+<P><B>Context: </B>
+score, staff
+</P>
+<P><B>Example:</B><BR>
+staffsep = 14
+</P>
+<P><B>Related parameters: </B>
+<A HREF="param.html#scorepad">scorepad,</A>
+<A HREF="param.html#scoresep">scoresep,</A>
+<A HREF="param.html#staffpad">staffpad</A>
+
+
+
+
+</P>
+<HR>
+<H2>
+<A NAME="stemlen">stemlen</A>
+</H2><P>
+Specifies how long stems should be, in stepsizes.
+This is for normal-sized chords; grace or cue size chords
+will gets stems that are 5/7 of this length.
+This length can be overridden on specific chords using
+<A HREF="chrdattr.html#stemlen">the len attribute in backets before the chord.</A>
+Stem lengths can also be affected by the
+<A HREF="param.html#sshorten">stemshorten parameter.</A>
+</P>
+<P><B>Value: </B>
+0.0 to 100.0
+</P>
+<P><B>Default value: </B>
+7.0
+</P>
+<P><B>Context: </B>
+score, staff, voice
+</P>
+<P><B>Example:</B><BR>
+stemlen = 0	// to make all notes stemless
+</P>
+<P><B>Related parameters: </B>
+<A HREF="param.html#sshorten">stemshorten</A>
+
+</P>
+<HR>
+<H2>
+<A NAME="sshorten">stemshorten</A>
+</H2><P>
+There are several circumstances in which Mup normally shortens stems
+slightly in an attempt to improve appearance. This parameter will accept
+one, two, or four values to control how stems are affected in those cases.
+On beamed chords, Mup will sometimes shorten stems slightly.
+This first value of this parameter lets you control
+the maximum amount of shortening that will ever be done on beamed notes.
+It is specified in stepsizes.
+The remaining three (optional) values control how Mup shortens stems that
+protrude from the staff. Most publishers of music shorten such stems somewhat,
+but there is some inconsistency in exactly how much. The second value to
+this parameter specifies the maximum amount to shorten any protruding stem,
+in stepsizes. The third and fourth specific at what point
+to begin shortening and at what point to reach the maximum shortening.
+These are specified in number of stepsizes from the middle line of the staff.
+Note that Mup will still lengthen stems from this value if necessary to
+accomodate things like dots or flags.
+By default, Mup will use full length stems (normally 7.0 stepsizes)
+for any stem-up note at or below the middle line of the staff,
+and for any stem-down note at or above the middle line of the staff.
+Beyond there, it will gradually shorten stems
+until they get down to 5.0 stepsizes in length
+(2.0 stepsizes worth of shortening) for notes 6 stepsizes or more
+away from the middle line.
+So using a treble clef staff as an example,
+stem-up notes b or lower will normally get stems 7.0 stepsizes long (or even
+longer if necessary), but the c right above there will be a little shorter,
+and so on until the a on the first ledger line above the staff is 
+the maximum shortening of 2.0 stepsizes.
+You can always override on individual chords using
+<A HREF="chrdattr.html#stemlen">[len=N]</A>
+to force a particular length.
+</P>
+<P><B>Value: </B>
+0.0 to 2.0 for maximum beam shortening, 0.0 to 7.0 for maximum shortening
+of stems that protrude from the staff, and -4 to 50 for where to begin and end
+shortening of protruding stems.
+</P>
+<P><B>Default value: </B>
+1.0, 2.0, 1, 6
+</P>
+<P><B>Context: </B>
+score, staff, voice
+</P>
+<P><B>Examples:</B><BR>
+stemshorten = 0	     // never shorten any beamed stems
+<BR>
+stemshorten = 0, 0	// never shorten any stems
+<BR>
+// For beams, allow shortening up to 1.5 stepsizes.
+<BR>
+// For protruding, start shortening 4 stepsizes from the
+<BR>
+// middle line (i.e., f+ assuming treble clef),
+<BR>
+// and reach maximum shortening of 3.5 stepsizes
+<BR>
+// at 12 stepsizes from the middle line (g++).
+<BR>
+stemshorten = 1.5, 3.5, 4, 12
+</P>
+<P><B>Related parameters: </B>
+<A HREF="param.html#stemlen">stemlen</A>
+</P>
+<HR>
+<H2>
+<A NAME="swing">swingunit</A>
+</H2><P>
+This parameter only affects
+<A HREF="midi.html">MIDI output.</A>
+Some styles of music are often
+written in &quot;swing time,&quot; meaning the
+players are expected to play pairs of notes with the first twice
+as long as the second, even though they are written as if they were the
+same duration, or as if the first was three times as long as the second.
+The most common example would be where the written notation shows
+two eighth notes like 8;; or a dotted rhythm like 8.;16;
+but the musician &quot;knows&quot; that the composer really intended it
+to be played as if it were a triplet {4;8;}3;
+This parameter adjusts the Mup MIDI output
+to follow this performance convention.
+If this parameter is set,
+each measure is divided into segments of durations of &quot;swingunit,&quot; starting
+at the beginning. (Usually the
+<A HREF="param.html#time">time signature</A>
+divided by swingunit
+will be an integer, but if not, the last piece will be shorter.)
+Then within each segment, the time where one group ends
+and the next group starts will be
+altered in either of these two circumstances:
+(1) The current boundary time is halfway into a swingunit, and
+each group is at least half a swingunit long, or
+(2) The current boundary time is 3/4 of the way into a swingunit,
+and the first group is at least 3/4 of a swingunit long, and
+the second group is at least 1/4 of a swingunit long.   
+In both of these cases, the durations are altered so that the  
+meeting point is 2/3 of the way into the swingunit.
+</P>
+<P><B>Value: </B>
+A time value, like 2, 4, or 8, or not set to anything.
+It can be a dotted value like 2. or 16.. although dotted values
+are rarely likely to be useful.
+It can even be a time expression like 2.-32 although that is even
+less likely to be useful.
+</P>
+<P><B>Default value: </B>
+not set
+</P>
+<P><B>Context: </B>
+score, staff, voice
+</P>
+<P><B>Examples:</B><BR>
+swingunit = 4
+<BR>
+swingunit =     // turn off swing
+</P>
+<P><B>Related parameters: </B>
+<A HREF="param.html#timeunit">timeunit</A>
+
+</P>
+<HR>
+<H2>
+<A NAME="sylpos">sylposition</A>
+</H2><P>
+A | can be used in lyrics at the beginning of a syllable (after
+anything in angle brackets) to indicate syllable alignment.
+This will override the
+<A HREF="param.html#lyralign">lyricsalign parameter,</A>
+and may be useful for aligning verse numbers or to make syllables at
+the beginning of poetic lines line up.
+If the | is not preceded by a number, the sylposition parameter specifies the
+default alignment value to use. It is the number of points (1 point
+is 1/72 of an inch) from the horizontal &quot;middle&quot; of the chord to place the
+left edge of the syllable. Negative values are to the left of the middle,
+positive to the right, so this value is usually negative.
+</P>
+<P><B>Value: </B>
+-100 to 100
+</P>
+<P><B>Default value: </B>
+-5
+</P>
+<P><B>Context: </B>
+score, staff
+</P>
+<P><B>Example:</B><BR>
+sylposition = -4
+</P>
+<P><B>Related parameters: </B>
+<A HREF="param.html#lyralign">lyricsalign</A>
+
+</P>
+<HR>
+<H2>
+<A NAME="tabwhite">tabwhitebox</A>
+</H2><P>
+says whether or not to put a small white box behind each fret number on
+<A HREF="tabstaff.html">tablature staffs.</A>
+This may make the music a little easier to read, since the staff lines
+won't be going through the middle of the fret numbers.
+</P>
+<P><B>Value: </B>
+<B>y</B> or <B>n</B>
+</P>
+<P><B>Default value: </B>
+n
+</P>
+<P><B>Context: </B>
+score, staff, voice
+</P>
+<P><B>Examples:</B><BR>
+tabwhitebox = y
+</P>
+<P><B>Related parameters: </B>
+<A HREF="param.html#stlines">stafflines</A>
+</P>
+<HR>
+<H2>
+<A NAME="time">time</A>
+</H2><P>
+sets the time signature. Music data for each measure is checked to ensure
+that the total time in the measure for each voice and verse
+adds up to exactly the time signature. Setting the time parameter will
+also reinitialize
+<A HREF="param.html#timeunit">the timeunit parameter</A>
+and
+<A HREF="param.html#beamstyl">the beamstyle parameter</A>
+to their most recent values for the same time signature
+(which would be their default values if they had never been explicitly
+set for this time signature).
+</P>
+<P><B>Value: </B>
+either a ratio of the form <I>N/D</I> or the word &quot;cut&quot; or &quot;common.&quot; If the ratio
+form is used, <I>N</I> must be between 1 and 99 inclusive,
+and <I>D</I> must be 1, 2, 4, 8, 16, 32, or 64.
+The numerator of the time signature can be the sum of several numbers,
+as in 3+4/4 or 2+3+2/2. You can also have several fractions added
+together, as in 3/4 + 4/4. It is also possible to provide &quot;alternating&quot;
+time signatures, where you list two (or more, although two is typical)
+time signatures separated by white space. Each measure then uses
+the next time signature in the list. For example, for
+3/4 4/4, the first measure would be in 3/4 time, the second measure in 4/4,
+the third back in 3/4, the fourth in 4/4, and so forth.
+It is possible to combine all the various complexities,
+with things like 3+4/8 + 2+3/4 4+3/4 although that would be very uncommon.
+The time signature can optionally be followed by the
+letter n to specify that the time signature is not to be printed.
+Or it can be followed by the letter y, which causes
+alternating time signatures to be treated differently.
+By default, the alternating signature are printed just once, as a list,
+and the performer has to remember
+that each subsequent measure has a different time signature.
+Using y forces Mup to print the appropriate time signature on each measure.
+</P>
+<P><B>Default value: </B>
+4/4
+</P>
+<P><B>Context: </B>
+score
+</P>
+<P><B>Examples:</B><BR>
+time = 6/8
+<BR>
+time = cut
+<BR>
+time = 13/16n
+<BR>
+time = 2+3+4 / 8    // additive numerator
+<BR>
+time = 3/4 + 4/4    // fractions added together
+<BR>
+time = 4/4 3/4      // alternating 
+<BR>
+time = 3/4 6/8 y    // alternating, printing time sig on every measure
+</P>
+<P><B>Related parameters: </B>
+<A HREF="param.html#timeunit">timeunit</A>
+
+
+
+
+</P>
+<HR>
+<H2>
+<A NAME="timeunit">timeunit</A>
+</H2><P>
+sets the default time unit. If the first note of a measure has no time
+value specified, the value of the timeunit parameter will be used.
+If the
+<A HREF="param.html#time">time signature</A>
+is changed, the timeunit parameter reverts back
+to its previous value for that time signature, which defaults to the
+value of the denominator (bottom number) of the new time signature.
+</P>
+<P><B>Value: </B>
+1/4, 1/2, 1, 2, 4, 8, 16, 32, 64, 128, or 256
+representing quadruple whole, double whole, whole, half,
+quarter, eighth, sixteenth, thirty-second,
+sixty-fourth, 128th, or 256th,
+followed by zero or more dots. Each dot adds 50% of the previous note or dot
+to the time.
+It can also be a time expression, like 2+8 or 1-4+16.
+The time value must be less than or equal to
+the time signature.
+The timeunit value can be reinitialized indirectly by setting
+<A HREF="param.html#time">the time parameter.</A>
+Setting the time parameter will set the timeunit to the value
+used most recently for that time signature.
+</P>
+<P><B>Default value: </B>
+The denominator (bottom number) of the time signature
+</P>
+<P><B>Context: </B>
+score, staff, voice
+</P>
+<P><B>Examples:</B><BR>
+timeunit = 2
+<BR>
+timeunit = 4.
+<BR>
+timeunit = 2 + 8
+</P>
+<P><B>Related parameters: </B>
+<A HREF="param.html#swing">swingunit,</A>
+<A HREF="param.html#time">time</A>
+
+
+
+</P>
+<HR>
+<H2>
+<A NAME="topmar">topmargin</A>
+</H2><P>
+sets the amount of white space margin to put at the top of each page.
+It is specified in inches if the
+<A HREF="param.html#units">units parameter</A>
+is set to inches, or in centimeters if the units parameter is set to cm.
+This parameter can only be specified before any music or block input.
+Margins are unaffected by
+<A HREF="param.html#scale">the "scale" parameter.</A>
+</P>
+<P><B>Value: </B>
+0.0 to pageheight minus 0.5 inches
+</P>
+<P><B>Default value: </B>
+0.5 inches
+</P>
+<P><B>Context: </B>
+score
+</P>
+<P><B>Example:</B><BR>
+topmargin = 0.8
+</P>
+<P><B>Related parameters: </B>
+<A HREF="param.html#botmar">bottommargin,</A>
+<A HREF="param.html#leftmar">leftmargin,</A>
+<A HREF="param.html#rightmar">rightmargin,</A>
+<A HREF="param.html#pgheight">pageheight,</A>
+<A HREF="param.html#units">units</A>
+
+
+
+</P>
+<HR>
+<H2>
+<A NAME="xpose">transpose</A>
+</H2><P>
+specify by what interval to transpose the music data.  The interval can be
+larger than an octave, but must be a valid interval (e.g., there is no
+such thing as a perfect 6th). It is an error to specify a transposition value
+which would result in a key signature with more than 7 flats or sharps.
+
+It is also an error if transposition would result in a note requiring a
+triple sharp or triple flat.
+</P>
+<P><B>Value: </B>
+the word &quot;up&quot; or &quot;down,&quot; followed by an interval and a whole number greater than 0.
+The interval is one of major, minor, augmented, diminished, or perfect.
+
+The intervals can be abbreviated to their first 3 letters (maj,
+min, aug, dim, or per).
+The
+<A HREF="trnspose.html">section on transposition</A>
+lists transposition intervals and gives further details.
+Depending on which key signature you are
+transposing from, some transposition intervals may not work because they
+result in more than 7 flats or sharps.
+There is also another parameter called
+<A HREF="param.html#addxpose">addtranspose.</A>
+Typically you would use the transpose parameter to change the key of
+individual staffs (for transposing instruments), and then use the
+addtranspose parameter if you want to change the key of the entire score.
+But either of these parameters can be used either way.
+In any case, for each staff, and for the score, the values of
+transpose and addtranspose are &quot;added&quot; to find the transposition
+for that staff or score.
+</P>
+<P><B>Default value: </B>
+up perfect 1 (i.e., no transposition)
+</P>
+<P><B>Context: </B>
+score, staff
+</P>
+<P><B>Examples:</B><BR>
+transpose = up minor 3
+<BR>
+transpose = down perfect 4
+</P>
+<P><B>Related parameters: </B>
+<A HREF="param.html#addxpose">addtranspose,</A>
+<A HREF="param.html#key">key,</A>
+<A HREF="param.html#useaccs">useaccs</A>
+
+
+
+
+
+</P>
+<HR>
+<H2>
+<A NAME="units">units</A>
+</H2><P>
+Specifies whether margin and page size parameters are specified
+in inches or in centimeters.
+</P>
+<P><B>Value: </B>
+inches or cm
+</P>
+<P><B>Default value: </B>
+inches
+</P>
+<P><B>Context: </B>
+score
+</P>
+<P><B>Example:</B><BR>
+units = cm
+</P>
+<P><B>Related parameters: </B>
+<A HREF="param.html#topmar">topmargin,</A>
+<A HREF="param.html#botmar">bottommargin</A>
+<A HREF="param.html#leftmar">leftmargin,</A>
+<A HREF="param.html#rightmar">rightmargin,</A>
+<A HREF="param.html#pgheight">pageheight,</A>
+<A HREF="param.html#pgwidth">pagewidth</A>
+
+</P>
+<HR>
+<H2>
+<A NAME="useaccs">useaccs</A>
+</H2><P>
+specifies whether to use accidentals throughout rather than a normal
+<A HREF="param.html#key">key signature.</A>
+A value of &quot;n&quot; means to use a key signature, and only use accidentals
+where specified by the user. A value of &quot;y none&quot; means to not use a key
+signature, but instead add accidentals everywhere as would be required
+by the key signature, using the standard practice that an accidental
+remains in effect for the remainder of the current measure.
+A value of &quot;y all&quot; causes accidentals to be placed on every single note.
+A value of &quot;y nonnat&quot; causes accidentals to be placed on every
+single note except when the accidental would be a natural, with
+naturals only printed when they would be required when using none.
+A &quot;y&quot; by itself
+without a qualifier is an abbreviation for the &quot;y none&quot; value.
+When using this parameter, you may sometimes want to use the
+<A HREF="param.html#carryacc">carryaccs parameter</A>
+as well.
+</P>
+<P><B>Value: </B>
+n, y none, y all, y nonnat
+</P>
+<P><B>Default value: </B>
+n
+</P>
+<P><B>Context: </B>
+score, staff
+</P>
+<P><B>Example:</B><BR>
+useaccs = y all
+</P>
+<P><B>Related parameters: </B>
+<A HREF="param.html#addxpose">addtranspose,</A>
+<A HREF="param.html#carryacc">carryaccs,</A>
+<A HREF="param.html#key">key,</A>
+<A HREF="param.html#canclkey">cancelkey,</A>
+<A HREF="param.html#xpose">transpose</A>
+</P>
+<HR>
+<H2>
+<A NAME="vcombine">vcombine</A>
+</H2><P>
+This parameter tells Mup to combine the specified
+voices onto a single stem whenever possible.
+One common use would be if you want multiple voices for
+<A HREF="midi.html">MIDI</A>
+purposes, but want them printed on the same stems.
+Another typical use would be to obtain a printing style common for hymns
+and certain other styles of music, where the two voices on each staff are
+printed on one common stem whenever possible, but when a note
+is shared between two voices, two opposing stems are used to make it clear the
+note is indeed shared.
+The value of this parameter is a list of voices plus an optional qualifier.
+The list format is like elsewhere for voices; common examples would be
+<TT>1,2</TT> or <TT>1-3</TT> or <TT>2-3</TT>.
+Order of voices is significant: sometimes Mup may have to choose between
+two possible combinations, so voices listed first get priority.
+The list of voices can be followed by a qualifier to specify what
+happens when voices overlap. If the qualifier is &quot;nooverlap,&quot;
+voices will only be combined if the bottom note of the higher voice
+is higher than the top note of the lower voice.
+(That is the typical value for getting the hymn style described above.)
+If the qualifier is &quot;shareone&quot; the bottom note of the top voice must be
+no lower than than top note of the lower voice for combining to occur.
+If the qualifier is &quot;overlap,&quot; combining will occur without regard for
+how the voices overlap. For the purpose of the qualifier, voice 1 is assumed
+to be the highest voice, voice 3 the middle voice, and voice 2 the lowest.
+If the qualifier is &quot;restsonly&quot;, notes will never be combined, but rests
+will be combined whenever possible.
+If no qualifier is specified, the default is nooverlap. While the vcombine
+parameter is allowed to be used with any
+<A HREF="param.html#vscheme">vscheme parameter</A>
+value, using it with vscheme=1 is pointless, and only
+vscheme values of 2f and 3f are really appropriate.
+This parameters can be used with both voice-at-a-time and chord-at-a-time
+input styles. It has no effect on tablature or 1-line staffs.
+Note that there are various cases where combining will not be done, such
+as when time values or beamings are different in different voices, and cases
+where combining would cause information loss, such as when a shared note is
+tied in one voice but not another. In such cases,
+the usual non-combined format will be used.
+</P>
+<P><B>Value: </B>
+comma-separated list of voices or voice ranges, or nothing,
+optionally followed by nooverlap, shareone, overlap, or restsonly.
+</P>
+<P><B>Default value: </B>
+not set
+</P>
+<P><B>Context: </B>
+score, staff
+</P>
+<P><B>Examples:</B><BR>
+vcombine=3,1-2 shareone
+<BR>
+vcombine=   // turn off combining
+</P>
+<P><B>Related parameters: </B>
+<A HREF="param.html#vscheme">vscheme</A>
+</P>
+<HR>
+<H2>
+<A NAME="visible">visible</A>
+</H2><P>
+specifies whether a staff or voice is actually to be printed.
+This can be useful for
+printing a subset of a full score. The value is either y or n, for yes or no,
+or whereused. When whereused is specified,
+if a staff has no notes or lyrics or other associated things on an entire score,
+that staff is not printed. This might be used, for example,
+to save paper on an orchestral score by only printing staffs for
+instruments when they are actually playing.
+At least one staff must be visible at all times.
+When an individual voice is made invisible, but the other voice(s) on that staff
+remain visible, all the 
+<A HREF="stuff.html">tempo, dynamics, and similar marks</A>
+associated with the staff will still be printed, since Mup cannot know for sure
+whether you meant them to be associated with
+a particular voice or with the staff as a whole.
+When
+<A HREF="midi.html">MIDI output</A>
+is generated, this parameter controls whether the staff or voice
+is audible, so you can control which voices are played.
+<A HREF="cmdargs.html#soption">The -s command line argument can also be used</A>
+to control which staffs are printed or played.
+</P>
+<P><B>Value: </B>
+y, n, or whereused
+</P>
+<P><B>Default value: </B>
+y
+</P>
+<P><B>Context: </B>
+score, staff, voice
+</P>
+<P><B>Example:</B><BR>
+visible = n
+</P>
+<P><B>Related parameters: </B>
+<A HREF="param.html#brace">brace,</A>
+<A HREF="param.html#bracket">bracket,</A>
+<A HREF="param.html#endingst">endingstyle,</A>
+<A HREF="param.html#staffs">staffs</A>
+
+
+
+
+</P>
+<HR>
+<H2>
+<A NAME="vscheme">vscheme</A>
+</H2><P>
+sets voice scheme. A value of 1 means there is only a single voice on a
+staff. The direction of note stems will be determined based on how high
+or low the notes are on the staff. A value of 2o means there are two voices
+with &quot;opposing&quot; stems. In other words, the stems of voice 1 will always
+point upward, and the stems of voice 2 will always point downward,
+unless they are
+<A HREF="chrdattr.html#stemdir">explicitly forced</A>
+the other way. A
+value of 2f means there are two voices with &quot;free&quot; or &quot;floating&quot; stems.
+That means in places where there are notes or rests in both
+
+voices, stem directions will be as if 2o were set. However, if one of the
+voices has &quot;space&quot; where there are no notes or rests, the stem directions of the
+other voice will be determined as if there were only a single voice.
+2o is useful if you want to force stem directions a certain way. 2f is
+generally preferable when there are two voices only part of the time.
+The values 3o and 3f are like 2o and 2f except that a third voice is
+allowed. The third voice's stem defaults to up,
+but the direction can be changed at any chord. The
+<A HREF="chrdattr.html#stemdir">stem direction</A>
+remains in effect on subsequent chords of voice 3 until explicitly changed.
+While there can be voice crossings, in general voice 1 should be the &quot;top&quot;
+voice, voice 2 the &quot;bottom&quot; voice, and voice 3 the &quot;middle&quot; or &quot;extra&quot; voice.
+Mup does not use voice 3 when associating things like phrase marks and
+lyrics with chords.
+Setting vscheme to a different number of voices
+will reinitialize all voice level parameters for the
+affected staffs.
+</P>
+<P><B>Value: </B>
+1, 2o, 2f, 3o, or 3f
+</P>
+<P><B>Default value: </B>
+1
+</P>
+<P><B>Context: </B>
+score, staff
+</P>
+<P><B>Example:</B><BR>
+vscheme = 2f
+</P>
+<P><B>Related parameters: </B>
+<A HREF="param.html#vcombine">vcombine</A>
+
+
+
+
+
+
+
+</P>
+<HR>
+<H2>
+<A NAME="warn">warn</A>
+</H2><P>
+specifies whether to print warning messages or not.
+Normally, Mup will print warnings when it encounters input that
+it considers somewhat dubious. Sometimes, however, that input will really
+be what you want, so this parameter allows you to turn off warning messages.
+</P>
+<P><B>Value: </B>
+y or n
+</P>
+<P><B>Default value: </B>
+y
+</P>
+<P><B>Context: </B>
+score
+</P>
+<P><B>Example:</B><BR>
+warn = n
+</P>
+<HR>
+<H2>
+<A NAME="withfont">withfont</A>
+</H2><P>
+This specifies which font type to use for text strings printed with chords
+using [with &quot;string&quot;]
+</P>
+<P><B>Value: </B>
+rom, ital, bold, or boldital
+</P>
+<P><B>Default value: </B>
+rom
+</P>
+<P><B>Context: </B>
+score, staff, voice
+</P>
+<P><B>Example:</B><BR>
+withfont=boldital
+</P>
+<P><B>Related parameters: </B>
+<A HREF="param.html#font">font,</A>
+<A HREF="param.html#fontfam">fontfamily,</A>
+<A HREF="param.html#size">size,</A>
+<A HREF="param.html#withfam">withfontfamily,</A>
+<A HREF="param.html#withsize">withsize</A>
+</P>
+<HR>
+<H2>
+<A NAME="withfam">withfamily</A>
+</H2><P>
+This specifies which font family to use for text strings printed with chords
+using [with &quot;string&quot;]
+</P>
+<P><B>Value: </B>
+avantegarde, bookman, courier, helvetica, newcentry, palatino, or times
+</P>
+<P><B>Default value: </B>
+times
+</P>
+<P><B>Context: </B>
+score, staff, voice
+</P>
+<P><B>Example:</B><BR>
+withfontfamily=helvetica
+</P>
+<P><B>Related parameters: </B>
+<A HREF="param.html#font">font,</A>
+<A HREF="param.html#fontfam">fontfamily,</A>
+<A HREF="param.html#size">size,</A>
+<A HREF="param.html#withfont">withfont,</A>
+<A HREF="param.html#withsize">withsize</A>
+</P>
+<HR>
+<H2>
+<A NAME="withsize">withsize</A>
+</H2><P>
+This specifies which size to use for text strings printed with chords
+using [with &quot;string&quot;], specified in points.
+</P>
+<P><B>Value: </B>
+1 to 100
+</P>
+<P><B>Default value: </B>
+12
+</P>
+<P><B>Context: </B>
+score, staff, voice
+</P>
+<P><B>Example:</B><BR>
+withsize=15
+</P>
+<P><B>Related parameters: </B>
+<A HREF="param.html#font">font,</A>
+<A HREF="param.html#fontfam">fontfamily,</A>
+<A HREF="param.html#size">size,</A>
+<A HREF="param.html#withfont">withfont,</A>
+<A HREF="param.html#withfam">withfontfamily</A>
+</P>
+<HR><P>
+&nbsp;&nbsp;&nbsp;<A HREF="fontfile.html">&lt;-- previous page</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="index.html">Table of Contents</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="mupindex.html">Index</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="debug.html">next page --&gt;</A>
+</P>
+</BODY></HTML>

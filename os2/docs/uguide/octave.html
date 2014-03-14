@@ -1,0 +1,65 @@
+<HTML>
+<HEAD><TITLE>
+Octave marks
+</TITLE></HEAD>
+<BODY>
+<P>
+&nbsp;&nbsp;&nbsp;<A HREF="cres.html">&lt;-- previous page</A>
+
+&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="index.html">Table of Contents</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="mupindex.html">Index</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="pedal.html">next page --&gt;</A>
+</P>
+            
+<H2>
+Octave marks
+</H2>
+
+<P>
+Octave statements are used to mark notes that are to be played one or more
+
+octaves higher or lower than written.  An &quot;octave above&quot; statement is
+
+used to specify playing higher than written, or &quot;octave below&quot; for playing
+lower than written. Each item must include a begintime
+
+
+
+and a text string. The text string is most typically &quot;8va&quot; although Mup
+will print whatever you say. For
+<A HREF="midi.html">MIDI</A>
+purposes, up to two digits at the beginning of the string are examined,
+and a string starting with 8 will be treated as one octave,
+15 or 16 will be treated as two octaves
+(15 is really &quot;correct,&quot; but a few publishers may use 16), 22 or 24 as three
+octaves, etc.  It will always default to be printed in 12-point
+times ital font, although you can override that using the usual \f
+and \s conventions.  If the octave
+
+shifting applies to more than a single chord, there should also be a
+duration specified, reaching to include the last affected note.  In this
+case, Mup will draw a dashed line to mark the span affected. Note that
+
+
+
+specifying the exact beat of a chord indicates the horizontal center of the
+chord, so if you want the dashed line to reach a bit past the note, it
+will be necessary to specify a duration slightly beyond the point of
+the last chord to be included. Examples:
+<BR><PRE>
+1: 2f;g;
+2: 2d+;g;
+3: 2g;ce;
+octave above 1: 2 &quot;8va&quot; til 1m + 1.3;
+bar
+1: 2a;c;
+2: 2f;e;
+3: 4f;;c;;
+octave below 2: 1 &quot;8va&quot;;
+octave below 3: 1 &quot;8va&quot; til 2.5; 3 &quot;15&quot; til 4.5;
+bar
+</PRE><BR>
+<IMG SRC="mugex77.gif" ALT="Picture of Mup output"><BR>
+</P>
+<HR><P>
+&nbsp;&nbsp;&nbsp;<A HREF="cres.html">&lt;-- previous page</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="index.html">Table of Contents</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="mupindex.html">Index</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="pedal.html">next page --&gt;</A>
+</P>
+</BODY></HTML>

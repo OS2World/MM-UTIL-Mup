@@ -1,0 +1,185 @@
+
+       
+
+                          Compiling Mup for UNIX
+
+       1.  Compiling Mup for UNIX
+
+       Mup  has  been  compiled  successfully  on a wide variety of
+       UNIX-type systems, including Linux, UNIX SV_R4, and Solaris.
+       We cannot guarantee that it will work on your system, but it
+       generally ports with no more than minimal changes.
+
+       Download the mup58src.tar.gz Mup  source  package  file  and
+       unpack it:
+       gunzip mup58src.tar.gz
+       tar xf mup58src.tar
+
+       Alternately,  you  can  download  the  RPM format Mup source
+       package and install it as you would any RPM package:
+       rpm -i  mup-5.8-0.src.rpm  Note  that  in  addition  to  the
+       package  dependencies that rpm will check for, you will also
+       need an X library development package, if you want to  build
+       Mupdisp  and/or  Mupmate.  Usually the package you will want
+       for this will  be  either  XFree86-devel,  libX11-devel,  or
+       xdevel.   We  choose  not to explicitly declare a dependency
+       for this, since no matter which one we picked,  many  people
+       would  not have that particular one, but would have one that
+       works.
+
+       Installing  the  source  package  will  create   a   mup-5.8
+       directory.  Go to that directory.
+       cd mup-5.8
+       There  is  a  simple makefile provided, which should work on
+       most systems, so all you need to do is: make install
+       You can edit the makefile if necessary for your environment.
+       Comments  at  the  top  of  the  makefile describe suggested
+       modifications if it doesn't work for you as is.   Note  that
+       if  you  want  to  install  in  a system directory (like the
+       default location /usr/bin) you will need to be root for  the
+       installation   step.  Otherwise  building  Mup  requires  no
+       special privileges.
+
+       If for some  reason  the  makefile  doesn't  work,  you  can
+       compile  Mup  and  any  of  the  optional  utility  programs
+       (mupdisp, mkmupfnt, and mupmate) manually.  For compling Mup
+       itself, generally, something like the following will work:
+       cd mup
+       cc -o mup *.c -lm
+       For  most  UNIX-like  compilers, the "-o mup" will cause the
+       program to be put into a file called "mup,"  and  the  "-lm"
+       will  cause the math library to be included (That's a lower-
+       case letter "el" not a one).  You may also want to use other
+       options.  For  example,  for  many  compilers "-O" (that's a
+       capital letter "oh" not a zero) will run the optimizer,  and
+       "-s" will strip the resulting program to save disk space.
+
+       Copy  mup into your $HOME/bin or a similar directory in your
+       $PATH.
+       cp mup $HOME/bin/mup
+
+       If you already have a means of displaying PostScript  files,
+       such  as gv, ghostview, or pageview, you can simply pipe the
+       output of Mup into your display program.  Or you can use the
+       mupdisp  program  in  connection  with Ghostscript, which is
+       free.     You     can     download     Ghostscript      from
+       http://www.cs.wisc.edu/~ghost,                            or
+       http://www.ghostscript.com/.   We've  found  that  on   some
+       systems,  Ghostscript compiles with lots of warnings, but it
+       works okay anyway.
+
+       Once you have installed  Ghostscript,  compile  the  mupdisp
+       program for displaying Mup output on screen. See the comment
+       at the top of mupdisp.c for suggestions on compiler  options
+       to try.
+
+       Copy mupdisp into your $HOME/bin or similar directory.
+       cp mupdisp $HOME/bin/mupdisp
+
+       The mupdisp program works on the AT386 $TERM type under UNIX
+       x86 or under X-windows. If  you  have  a  different  display
+       type,  you  may need to write your own display functions. In
+       most cases, you'll only need to write 6 short functions, and
+       you can use the examples in at386.c, dos.c, or xterm.c for a
+       general template of the functions. You  will  also  need  to
+       update dispttyp.h and init.c appropriately.
+
+       If  you  want  to  supply  your  own  fonts  to override the
+       standard Mup fonts, you can compile the mkmupfnt program: cd
+       mkmupfnt cc -o mkmupfnt mkmupfnt.c
+
+       The  Mupmate  program provide a menu-driven interface on top
+       of Mup.  It is built on top of the FLTK library, so you will
+       need  to have the FLTK development package. You can get this
+       from http://www.fltk.org Get the latest version in the 1.1.x
+       series (we built with 1.1.7); don't get from the 2.x series.
+       Mupmate is written in C++, so you will need a C++  compiler,
+       such  as  g++.   See  the  top  level  makefile  for typical
+       compilation options. FLTK normally comes with its own copies
+       of  libjpg, libpng, and libz (compression) libraries, but it
+       will  usually  work  with  the  generic  versions  of  those
+       libraries  as  well.   You will also need standard X-windows
+       libraries: libX11, libXext, and libXpm.
+
+       A shell script called "mupprnt" is included for printing Mup
+       files  using Ghostscript.  Copy mupprnt to your $HOME/bin or
+       other appropriate directory.
+       cp mupprnt  $HOME/bin/mupprnt  You  will  need  to  set  the
+       GS_DEVICE  shell  variable  to  the  proper  value  for your
+       printer. If you don't know what to set it to, the comment at
+       the  top  of  mupprnt  may  help,  or check your Ghostscript
+       documentation.  You could also just use the print option  on
+       your PostScript viewer such as gv.
+
+       Once  you have everything installed, you can remove the .tar
+       file if you wish, to free up disk space.
+       rm mup58src.tar
+
+       Please let us know if you need any workarounds for compiling
+       on  your  system.  We want to try to make Mup as portable as
+       possible.
+
+       2.  Getting Mup running for the first time
+
+       Once you get Mup to compile successfully,  try  running  it.
+       The  first  time  you  run Mup, it should give you a message
+       indicating Mup is shareware, and asking you to read the  Mup
+       license  agreement.  It  will  then  tell  you  to  create a
+       particular file.  By creating this file, you agree to  abide
+       by  the  Mup  license,  and Mup will be turned on for normal
+       operation.
+
+       Try running Mup on the sample input  files  (sample.mup  and
+       star.mup  ).   Verify  that  the  output you get matches the
+       corresponding sample output files (sample.ps and star.ps  ).
+       You  will find differences in some of the numbers, comments,
+       timestamp, filenames, etc, but  otherwise,  in  general  the
+       PostScript  output  you  get should be similar to the sample
+       output files provided, and if you display them, the  results
+       should look pretty much identical.
+
+       If Mup fails to run properly on the sample files, first make
+       sure you are not in a write-protected folder.  If  you  are,
+       try copying the file to a folder that isn't write protected,
+       and run it from there. If it still fails to run properly  on
+       the sample files, perhaps either your system has uncovered a
+       bug that we haven't  seen  yet  or  your  machine  has  some
+       incompatibility.  You can turn on debugging, by running with
+       the -dN option, where N is a bitmap of debugging  flags,  to
+       help  pinpoint  where  bugs  may  be.  The  Mup User's Guide
+       explains the bits of the debugging flags. If you get  stuck,
+       you  may contact us at support@arkkra.com and we will try to
+       help.
+
+       If you need to make any changes  in  order  to  get  Mup  to
+       compile  and  run  successfully, please let us know.  If you
+       find anything confusing, we'd like to  know  that  too.   We
+       want  Mup  to be as solid, portable, useful, and easy to use
+       as possible.
+
+       Also, please let us know if there are ways  we  can  improve
+       the Mup documentation.
+
+       If you receive messages beginning with "internal error" this
+       usually indicates a program bug, so we'd like to know  about
+       them.  An  exception  is  when you get a message about being
+       unable to allocate memory when there really isn't any memory
+       left.  If  you  get  other internal errors, please send us a
+       copy of an input file and any  other  information  that  may
+       help  us  reproduce  the problem, so we can try to fix it in
+       the next Mup release.
+
+       Mup is shareware. Once you get Mup up and running,  you  can
+       try  it out for free to decide whether you want to use it or
+       not. If you like it, execute
+       mup -r
+       to get a copy  of  the  shareware  registration  form.   The
+       registration  fee  is $29.  See the license file for license
+       details.
+
+       Provide  feedback  (bugs  reports,  comments,   suggestions,
+       questions) to: support@arkkra.com
+
+       --------------------------------------------------
+
+       Arkkra Enterprises

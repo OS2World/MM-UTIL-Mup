@@ -1,0 +1,252 @@
+<HTML>
+<HEAD><TITLE>
+Generalized conditionals
+</TITLE></HEAD>
+<BODY>
+<P>
+&nbsp;&nbsp;&nbsp;<A HREF="macros.html">&lt;-- previous page</A>
+
+&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="index.html">Table of Contents</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="mupindex.html">Index</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="include.html">next page --&gt;</A>
+</P>
+          
+<H3>
+Generalized conditionals
+</H3>
+<P>
+Mup also supports more general &quot;if&quot; clauses. If you happen to be
+familiar with the preprocessors for the C and C++ programming
+languages, Mup &quot;if&quot; clauses are very similar.
+If you're not, that's okay, since things are explained below.
+Also, some of the operations are really very rarely needed, so if
+you find some of them confusing, you just can skip past this section;
+you'll likely never have a need for the complicated operations anyway.
+</P>
+<P>
+The general form is
+<BR><PRE>
+<B>if</B> <I>condition</I> <B>then</B> <I>Mup statements</I> <B>else</B> <I>Mup statements</I> <B>endif</B>
+</PRE><BR>
+As with the &quot;ifdef,&quot; the &quot;else&quot; and second set of Mup statements is optional.
+</P>
+<P>
+One form of &quot;if&quot; is really just a variation of ifdef. It uses the
+keyword &quot;defined&quot; followed by a macro name. So
+<BR><PRE>
+  ifdef DUET
+</PRE><BR>
+could also be written
+<BR><PRE>
+  if defined DUET then
+</PRE><BR>
+You may put a set of parentheses around the macro name for clarity
+if you wish:
+<BR><PRE>
+  if defined(DUET) then
+</PRE><BR>
+</P>
+<P>
+The ! is used to mean &quot;not,&quot; so
+<BR><PRE>
+  ifndef TRIO
+</PRE><BR>
+could also be written as
+<BR><PRE>
+  if ! defined(TRIO) then
+</PRE><BR>
+</P>
+<P>
+So far, this just looks longer, so what's the advantage?
+The difference is that ifdef and ifndef can only be used to check if a single
+macro is defined or not, whereas the &quot;if&quot; condition is much more general,
+and therefore much more powerful.
+Decisions can be based on the values of macros, not just whether they are
+defined or not, and can also be based on more than one macro at a time,
+Here is an example of a condition based on several macros at once:
+<BR><PRE>
+ if defined(FULL_SCORE) &amp;&amp; defined(TRANSPOSE_UP) &amp;&amp; ! defined(MIDI) then
+</PRE><BR>
+would be true only if both FULL_SCORE and TRANSPOSE_UP were defined,
+but MIDI was not defined. The &amp;&amp; means &quot;and.&quot;
+There is also || which means &quot;or,&quot; so
+<BR><PRE>
+ if defined(CELLO) || defined(STRINGBASS)
+</PRE><BR>
+would be true as long as at least one of the macros was defined.
+</P>
+<P>
+The condition can also include numbers and macros used as numeric values
+in arithmetic and comparisons.  For example,
+<BR><PRE>
+  define STAFFS 3 @
+  define S 5 @
+  if STAFFS &gt; 5 then
+     // ... this would not be executed, since 3 is not greater than 5
+  endif
+  if 2 &lt;= STAFFS then
+     // ... This would be executed, since 2 is less than or equal to 3
+  endif
+  if STAFFS + 1 == S - 1 then
+     // ... This would be executed, since 3+1 equals 5-1
+  endif
+</PRE><BR>
+Note that the symbol to test for &quot;equals&quot; is two equals signs, not just
+one. This is to be consistent with what is used in the C and C++ languages.
+The operators for comparisons are:
+<TABLE BORDER=4>
+<TR>
+<TD>&lt;</TD>	<TD>less than</TD>
+</TR>
+<TR>
+<TD>&gt;</TD>	<TD>greater than</TD>
+</TR>
+<TR>
+<TD>&lt;=</TD>	<TD>less than or equal</TD>
+</TR>
+<TR>
+<TD>&gt;=</TD>	<TD>greater than or equal</TD>
+</TR>
+<TR>
+<TD>==</TD>	<TD>equal</TD>
+</TR>
+<TR>
+<TD>!=</TD>	<TD>not equal</TD>
+</TR>
+</TABLE>
+
+</P>
+<P>
+Note that the values in the conditions can only be either literal numbers
+or macros whose values evaluate to a number. They cannot be things like
+<A HREF="param.html">Mup parameters.</A>
+A macro which is not defined is treated as having a value of zero.
+Macro values are substituted for macro names just as elsewhere in Mup,
+so if you use a macro whose resulting value does not evaulate to a number,
+you may get an error or other unexpected result.
+</P>
+<P>
+If you are familiar with &quot;octal&quot; and &quot;hexadecimal&quot; numbers, they can be
+used, following the C language convention of a leading zero for octal
+or a leading 0x for hexadecimal. (If you're not familiar with these
+numbers or conventions, don't worry about it; it's never really necessary
+to use them. Just make sure you don't accidentally start a number other
+than a zero with a zero).
+</P>
+<P>
+Values are limited to 32-bit signed whole numbers. (If you don't know
+what that means, what you need to know is that you
+can only use numbers between -2147483648 and 2147483647, and cannot
+use fractions.) Results of arithmetic on values will also be whole
+numbers, so division will result in either rounding or truncation to integer,
+and the exact characteristics may be system dependent.
+</P>
+<P>
+Before we introduce the remaining operators, it would be good to discuss
+two concepts, called precedence and associativity. These determine the
+order in which operations are done. Consider the following expression:
+<BR><PRE>
+   5 + 3 * 8
+</PRE><BR>
+What is its value? If we just went left to right, we would add 5 and 3,
+getting 8, then multiple by 8, for a final value of 64. However,
+multiplication is generally considered to have higher &quot;precedence&quot;
+than addition, meaning that multiplications should be done before additions.
+In other words, the expression should actually be treated as
+<BR><PRE>
+   5 + (3 * 8)
+</PRE><BR>
+so we would first multiply 3 by 8, getting 24, and then add 5 and 24,
+obtaining a final answer of 29.
+</P>
+<P>
+If you really intended the 64 meaning, that could be shown by parentheses,
+indicating you want the addition to be done first:
+<BR><PRE>
+   (5 + 3) * 8
+</PRE><BR>
+</P>
+<P>
+Associativity determines whether operators of equal precedence are done
+left to right or right to left. Parentheses and
+all of the operators that have two
+operands associate left to right, while all the others
+associate right to left. For example, since addition and subtraction
+associate left to right, the expression
+<BR><PRE>
+  10 - 6 - 1
+</PRE><BR>
+would be evaluated by first subtracting 6 from 10 to get 4,
+then subtracting 1, yielding 3.
+If they associated right to left, first 1 would be subtracted from 6
+to get 5, which would then be subtracted from 10, yielding 5.
+So using different associativity can lead to different answers!
+</P>
+<P>
+Since the &quot;not&quot; operator and unary minus associate right to left,
+in the expression
+<BR><PRE>
+  ! - (5)
+</PRE><BR>
+the unary minus would be applied first to get -5, then the &quot;not&quot; would be
+applied. But what does &quot;not -5&quot; mean? The &quot;not&quot; operator will treat its
+operand as a boolean value, with a value of zero meaning false, and
+any non-zero value being true. Since -5 is not zero, it represents &quot;true,&quot;
+and &quot;not true&quot; would be &quot;false,&quot; or zero.  By the way,
+any operator that yields a boolean result
+(not, logical and, logical or, less than, greater than,
+less than or equal, greater than or equal, equal, or not equal) will
+always yield 1 for true, even though any non-zero value could mean true.
+</P>
+<P>
+The operators are listed below. Those on the same line have the same
+precedence, with those on each line having higher precedence than the
+lines below.
+<TABLE BORDER=4>
+<TR>
+<TD><B>operators</B></TD>	<TD><B>operations</B></TD>	<TD><B>associativity</B></TD>
+</TR>
+<TR>
+<TD><TT>( )</TT></TD>	<TD>grouping</TD>	<TD>left to right</TD>
+</TR>
+<TR>
+<TD><TT>! ~ - +</TT></TD>	<TD>not, one's complement, unary minus, unary plus</TD>	<TD>right to left</TD>
+</TR>
+<TR>
+<TD><TT>* / %</TT></TD>	<TD>multiply, divide, modulo</TD>	<TD>left to right</TD>
+</TR>
+<TR>
+<TD><TT>+ -</TT></TD>	<TD>add, subtract</TD>	<TD>left to right</TD>
+</TR>
+<TR>
+<TD><TT>&lt;&lt; &gt;&gt;</TT></TD>	<TD>left shift, right shift</TD>	<TD>left to right</TD>
+</TR>
+<TR>
+<TD><TT>&lt; &lt;= &gt; &gt;=</TT></TD>	<TD>less than, less or equal, greater than, greater or equal</TD>	<TD>left to right</TD>
+</TR>
+<TR>
+<TD><TT>== !=</TT></TD>	<TD>equal, not equal</TD>	<TD>left to right</TD>
+</TR>
+<TR>
+<TD><TT>&amp;</TT></TD>	<TD>bitwise AND</TD>	<TD>left to right</TD>
+</TR>
+<TR>
+<TD><TT>^</TT></TD>	<TD>bitwise XOR</TD>	<TD>left to right</TD>
+</TR>
+<TR>
+<TD><TT>|</TT></TD>	<TD>bitwise OR</TD>	<TD>left to right</TD>
+</TR>
+<TR>
+<TD><TT>&amp;&amp;</TT></TD>	<TD>logical AND</TD>	<TD>left to right</TD>
+</TR>
+<TR>
+<TD><TT>||</TT></TD>	<TD>logical OR</TD>	<TD>left to right</TD>
+</TR>
+<TR>
+<TD><TT>? :</TT></TD>	<TD>interrogation</TD>	<TD>right to left</TD>
+</TR>
+</TABLE>
+
+</P>
+<HR><P>
+&nbsp;&nbsp;&nbsp;<A HREF="macros.html">&lt;-- previous page</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="index.html">Table of Contents</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="mupindex.html">Index</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="include.html">next page --&gt;</A>
+</P>
+</BODY></HTML>

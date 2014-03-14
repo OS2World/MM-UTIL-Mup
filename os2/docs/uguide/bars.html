@@ -1,0 +1,392 @@
+<HTML>
+<HEAD><TITLE>
+Bar Lines
+</TITLE></HEAD>
+<BODY>
+<P>
+&nbsp;&nbsp;&nbsp;<A HREF="altinp.html">&lt;-- previous page</A>
+
+&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="index.html">Table of Contents</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="mupindex.html">Index</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="multirst.html">next page --&gt;</A>
+</P>
+         
+<H2>
+Bar lines
+</H2>
+<P>
+
+Each measure must be ended with a &quot;bar&quot; of some kind. There are several kinds:
+
+<TABLE BORDER=4>
+<TR>
+<TD><B>Keyword</B></TD>	<TD><B>Meaning</B></TD>
+</TR>
+<TR>
+<TD>bar</TD>	<TD>ordinary bar line</TD>
+</TR>
+<TR>
+<TD>dblbar</TD>	<TD>double bar</TD>
+</TR>
+<TR>
+<TD>repeatstart</TD>	<TD>beginning of repeated section</TD>
+</TR>
+<TR>
+<TD>repeatboth</TD>	<TD>end of one repeated section and beginning of another</TD>
+</TR>
+<TR>
+<TD>repeatend</TD>	<TD>end of repeated section</TD>
+</TR>
+<TR>
+<TD>endbar</TD>	<TD>heavy double bar line used at end of song</TD>
+</TR>
+<TR>
+<TD>invisbar</TD>	<TD>no bar line printed</TD>
+</TR>
+<TR>
+<TD>restart</TD>	<TD>end staffs and begin anew</TD>
+</TR>
+</TABLE>
+
+</P>
+<P>
+In addition, the bar and dblbar types can be preceded
+
+
+by the word &quot;dashed&quot; or &quot;dotted&quot; to produce dashed or dotted bar lines.
+</P>
+<P>
+<BR><PRE>
+1: mr;
+bar
+1: mr;
+dblbar
+1: mr;
+dashed bar
+1: mr;
+dotted dblbar
+1: mr;
+repeatstart
+1: mr;
+repeatboth
+1: mr;
+repeatend
+1: mr;
+endbar
+</PRE><BR>
+<IMG SRC="mugex36.gif" ALT="Picture of Mup output"><BR>
+</P>
+<P>
+When a repeatstart would end up at the end of a score,
+it will automatically get moved to the beginning of the following score.
+In that case, it isn't clear what kind of bar line you would like to
+have put at the end of the original score. By default, Mup will use
+an ordinary bar, but in some cases--like if the repeatstart begins
+a new section, or there is also a key change--you might want to have
+a dblbar instead. You can get a dblbar there by specifying dblbar in
+parentheses before the repeatstart:
+<BR><PRE>
+(dblbar) repeatstart
+</PRE><BR>
+Actually, you are allowed to specify any bar type in the parentheses,
+including dashed or dotted types,
+but dblbar or possibly invisbar are probably the only ones likely to be useful.
+If the repeatstart ends up in the middle of a score, so that it doesn't
+need to get moved to the beginning of the next score, the parenthesized
+bar type is not needed, so it is just ignored.
+</P>
+<P>
+Sometimes music is printed without bar lines. The &quot;invisbar&quot; can be used in
+this case, to fulfill Mup's requirement to specify some sort of bar after
+every measure without actually printing bar lines.
+</P>
+<P>
+<A NAME="restart">The restart is a special kind of bar.</A>
+
+It follows immediately after another
+bar line without any intervening music data. (That is, you can't have
+any notes. You can use score or staff context things, like changing time or
+key signature.) It would be most commonly used for something like a short coda.
+<BR><PRE>
+score
+	staffs=2
+	brace=1-2
+staff 2
+	clef=bass
+music
+
+1-2: c;d;e;f;
+rom above 1: 3 &quot;D.C. al Coda&quot;;
+dblbar
+
+// The restart follows a bar
+// without any music data in between.
+restart
+
+rom above 1: 1 &quot;Coda&quot;;
+1-2: f;e;d;c;
+endbar
+</PRE><BR>
+<IMG SRC="mugex37.gif" ALT="Picture of Mup output"><BR>
+</P>
+<P>
+There are several optional directives that can follow the bar line keyword.
+They can be specified in any order and are described below.
+</P>
+<H3>
+Bar line padding
+</H3>
+<P>
+<A NAME="bpad">One optional directive is padding.</A>
+
+It can be used to force Mup to place extra white space to
+
+the left of the bar line. It is specified by the keyword &quot;pad&quot; followed
+
+by a number of stepsizes of padding to add. For example:
+<BR><PRE>
+dblbar pad 3
+</PRE><BR>
+would add 3 stepsizes of padding.
+</P>
+<H3>
+Bar line location tag
+</H3>
+<P>
+<A NAME="btag">It is also possible to associate a</A>
+<A HREF="tags.html">location tag</A>
+
+with a bar line.
+For example:
+<BR><PRE>
+// Associate tag &quot;_bar6&quot; with bar line
+bar =_bar6
+
+// Do double bar with an extra stepsize of
+// padding, and associate tag &quot;q&quot;
+// with the bar line
+dblbar pad 1 =q
+</PRE><BR>
+</P>
+<P>
+The y coordinate of a bar line is not very useful. Special rules apply if
+a bar line happens to be placed at the end of a score. Any locations taken
+
+relative to the bar that would be to the right of the bar are treated as
+if the bar line were at the beginning of the following score,
+just beyond the clef and time and key signatures, if any.
+
+
+
+</P>
+<H3>
+Endings
+</H3>
+<P>
+<A NAME="endings">First and second endings, etc. can be designated at bar lines.</A>
+
+This is done with the keyword &quot;ending,&quot; followed by a
+quoted string to use as the label for the ending that should begin at the
+
+
+bar line. An ending will span bars until either another ending is specified,
+the piece ends, or the
+special keyword &quot;endending&quot; is used. Examples:
+<BR><PRE>
+bar ending &quot;1.&quot;
+repeatend ending &quot;2-3&quot;
+endbar endending
+</PRE><BR>
+</P>
+<P>
+The ending label will always be
+forced into 12 point times roman font. If you change font or size or include
+
+
+
+special characters in the ending label,
+the output is not likely to be aligned properly.
+</P>
+<P>
+<A HREF="param.html#endingst">The "endingstyle" parameter</A>
+
+controls where endings are placed.
+Endings cannot start at or cross over a restart bar.
+</P>
+<H3>
+Rehearsal marks
+</H3>
+<P>
+<A NAME="reh">Rehearsal letters or numbers</A>
+
+can be specified on any bar line. There are four formats:
+<BR>
+<B>rehearsal let</B>
+<BR>
+<B>rehearsal num</B>
+<BR>
+<B>rehearsal mnum</B>
+<BR>
+<B>rehearsal &quot;</B><I>label</I><B>&quot;</B>
+
+</P>
+<P>
+In the first example, a rehearsal letter will be placed on the bar. The
+first occurrence of this will become rehearsal &quot;A&quot;, the next &quot;B&quot;, and so
+forth. The second format works in a similar fashion except that numbers are
+used rather than letters. With the third format, the current measure
+
+number is used. With the last format, any arbitrary string
+
+within the quotes will be used. The keyword &quot;rehearsal&quot; can be
+abbreviated to &quot;reh&quot; if you wish. Only one rehearsal mark is allowed on
+any one bar, but the types can be mixed throughout the composition.
+Note, however, that mixing &quot;num&quot; with &quot;mnum&quot; is likely to be very confusing,
+as would using &quot;num&quot; while the
+<A HREF="param.html#measnum">measnum parameter</A>
+is set to &quot;every <I>N</I>.&quot;
+The rehearsal marks can be intermixed with other bar options:
+<BR><PRE>
+1: 1c;
+dblbar reh num ending &quot;1&quot;
+1: 1e;
+repeatend pad 1 =_xyz reh let ending &quot;2.&quot;
+1: 1g;
+bar rehearsal &quot;Duet&quot;
+1: 1ce;
+endbar endending
+</PRE><BR>
+<IMG SRC="mugex38.gif" ALT="Picture of Mup output"><BR>
+</P>
+<P>
+The rehearsal marks are normally put directly above the bar
+line. However, if the bar line falls at the end of a score, the rehearsal
+
+mark will be placed at the beginning of the following score, after the
+<A HREF="param.html#clef">clef,</A>
+
+
+<A HREF="param.html#key">key signature,</A>
+and
+<A HREF="param.html#time">time signature.</A>
+<A HREF="param.html#endingst">The "endingstyle" parameter</A>
+
+is used to determine which staffs get rehearsal marks.
+<A HREF="param.html#rehstyle">The "rehstyle" parameter</A>
+specifies whether to put rehearsal marks inside a box or a circle
+or leave them plain.
+</P>
+<P>
+The rehearsal keyword may be followed by a specification for <I>fontfamily</I>,
+<I>font</I>, and/or <B>(</B><I>size</I><B>)</B>.
+Once specified, these remain in effect
+for any future rehearsal marks, until explictly changed. Some examples:
+<BR><PRE>
+bar rehearsal helvetica bold (14) let
+repeatend reh newcentury num
+invisbar reh rom (10) mnum
+</PRE><BR>
+</P>
+<P>
+After all the options listed above, you may specify &quot;dist <I>N</I>&quot; where
+<I>N</I> is some number of stepsizes. This will override the
+<A HREF="param.html#dist">dist parameter</A>
+for determining how close to the staff to place the rehearsal mark.
+If the number is followed by a &quot;!&quot; Mup will place the mark exactly
+that far from the top of the staff, even if it overwrites other things;
+otherwise the value specifies a minimum distance.
+<BR><PRE>
+rehearsal num dist 5     // at least 5 stepsizes away
+reh bold &quot;A1&quot; dist 2 !   // exactly 2 stepsizes away
+</PRE><BR>
+</P>
+<H3>
+Setting the measure number
+</H3>
+<P>
+<A NAME="setmnum">Mup keeps track of</A>
+<A HREF="param.html#measnum">measure numbers</A>
+
+automatically, but sometimes you may want
+to override this to set the current measure number to some specific value.
+This is done by adding mnum=<I>number</I> on a bar line,
+which will set the current measure number to the given <I>number</I>.
+<BR><PRE>
+// Set the current measure number to 50
+dblbar mnum=50
+</PRE><BR>
+</P>
+<H3>
+Setting rehearsal letter or number
+</H3>
+<P>
+<A NAME="setreh">If you are using the "rehearsal let" or "rehearsal num" styles,</A>
+you can set those to specific values too, similarly to how mnum can be set.
+This might be useful, for example, if you have a single input file that
+contains multiple songs or movements, and you want the rehearsal marks
+to start over at the beginning of each song or movement.
+</P>
+<P>
+The rehearsal number can be set on any bar line using num=<I>N</I>, where
+<I>N</I> is a number, typically 1.
+<BR><PRE>
+bar num=1
+</PRE><BR>
+The rehearsal letter can be set in a similar way, using let=&quot;<I>X</I>&quot; where
+<I>X</I> is either a single upper case letter, A to Z, or two upper case
+letters, AA to ZZ.
+<BR><PRE>
+dblbar let=&quot;A&quot; reh let
+</PRE><BR>
+</P>
+<H3>
+Hiding time/key signature and clef changes
+</H3>
+<P>
+<A NAME="hide">Generally in printed music, when a</A>
+<A HREF="param.html#time">time signature</A>
+
+<A HREF="param.html#key">or key signature</A>
+
+change occurs at the beginning of a score, these changes are also printed at
+the very end of the previous score,
+to make it clear there is a change coming up.
+Mup normally does this, but occasionally you may not want that behavior.
+Sometimes you may want to make a new score appear like the beginning
+of a new piece. If you wish to suppress the printing of time signature,
+key signature, and clef
+changes at the end of the preceding score,
+you can use the &quot;hidechanges&quot;
+
+keyword on the bar line at which the changes occur.
+Hidechanges cannot be used on a restart bar.
+<BR><PRE>
+1: c;d;e;f;
+bar
+// change time/key with normal treatment
+
+newscore
+score time=5/4 ; key = 1&amp;
+music
+1: d;e;f;2g;
+// don't show changes at end of previous score
+bar hidechanges	
+
+newscore
+
+score time=6/4 ; key = 2#
+music
+1: d;e;f;2.g;
+bar
+</PRE><BR>
+<IMG SRC="mugex39.gif" ALT="Picture of Mup output"><BR>
+</P>
+<P>
+There is a
+<A HREF="param.html#brktrpts">bracketrepeats parameter</A>
+that can be set that will cause Mup to draw brackets around repeated sections,
+to make them more obvious to the performer, which may be helpful when
+playing in dimly lit areas.
+</P>
+<HR><P>
+&nbsp;&nbsp;&nbsp;<A HREF="altinp.html">&lt;-- previous page</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="index.html">Table of Contents</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="mupindex.html">Index</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="multirst.html">next page --&gt;</A>
+</P>
+</BODY></HTML>

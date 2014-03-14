@@ -1,0 +1,391 @@
+<HTML>
+<HEAD><TITLE>
+Shaped notes
+</TITLE></HEAD>
+<BODY>
+<P>
+&nbsp;&nbsp;&nbsp;<A HREF="tabstaff.html">&lt;-- previous page</A>
+
+&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="index.html">Table of Contents</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="mupindex.html">Index</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="textstr.html">next page --&gt;</A>
+</P>
+          
+<H1>
+SHAPED NOTES
+</H1>
+<P>
+If you intend to only use the usual system of note heads,
+you can skip over this section on shaped notes.
+
+If you wish to use less common note head shapes, like X-shaped notes,
+rather than normal note heads, or want &quot;shaped note&quot; music that is often used
+for &quot;Sacred Harp&quot; style music, sometimes also called &quot;fasola notation,&quot;
+then this section will explain how you can do that.
+</P>
+<H2>
+Headshapes context
+</H2>
+<P>
+<A NAME="hdshape">The headshapes context</A>
+is used in conjuction with the
+<A HREF="param.html#notehead">noteheads parameter</A>
+to determine what characters will be used when printing note heads.
+It is rarely necessary to include a headshapes context in your music,
+since Mup already has the most common values built in,
+so generally you just need to use the
+<A HREF="param.html#notehead">noteheads parameter</A>
+to access them. However, it is still important to understand
+what the headshapes context can contain,
+to understand how the builtin values work.
+</P>
+<P>
+The headshapes context defines, for
+a given head shape name, what specific note head characters
+to use for the notes of various durations.
+It contains one or more pairs of strings.
+The first string in the pair gives a name for a set of note head shapes.
+The second string contains a space-separated list of the names
+of 4 note head characters to use for that head shape name.
+The first shape in the list is used for quarter notes and shorter,
+the second for half notes,
+the third for whole notes, and the fourth for double whole notes.
+</P>
+<P>
+If an upside down version of the character is to be used for stem down notes,
+the name is prefixed by &quot;u?&quot; (The &quot;u&quot; stands for &quot;upside-down&quot; and the
+question mark is intended to be mnemonic for the fact
+that the upside down version
+will only be used part of the time, namely for stem-down notes.)
+</P>
+<P>
+As was mentioned above, the most common mappings are already built into Mup.
+Here is the list of the pre-defined values.
+Pay particular attention to the first string on each line,
+since those are the names you will use in the
+<A HREF="param.html#notehead">notehead parameter</A>
+and for
+<A HREF="shaped.html#chord">overriding chord</A>
+and
+<A HREF="shaped.html#note">note shapes.</A>
+<BR>
+<TABLE BORDER=4>
+<TR>
+<TD>&quot;norm&quot;</TD>	<TD>&quot;4n 2n 1n dblwhole&quot;</TD>
+</TR>
+<TR>
+<TD>&quot;x&quot;</TD>	<TD>&quot;xnote diamond diamond dwhdiamond&quot;</TD>
+</TR>
+<TR>
+<TD>&quot;allx&quot;</TD>	<TD>&quot;xnote xnote xnote xnote&quot;</TD>
+</TR>
+<TR>
+<TD>&quot;diam&quot;</TD>	<TD>&quot;filldiamond diamond diamond dwhdiamond&quot;</TD>
+</TR>
+<TR>
+<TD>&quot;blank&quot;</TD>	<TD>&quot;blankhead blankhead blankhead blankhead&quot;</TD>
+</TR>
+<TR>
+<TD>&quot;righttri&quot;</TD>	<TD>&quot;u?fillrighttriangle u?righttriangle u?righttriangle u?dwhrighttriangle&quot;</TD>
+</TR>
+<TR>
+<TD>&quot;isostri&quot;</TD>	<TD>&quot;fillisostriangle isostriangle isostriangle dwhisostriangle&quot;</TD>
+</TR>
+<TR>
+<TD>&quot;rect&quot;</TD>	<TD>&quot;fillrectangle rectangle rectangle dwhrectangle&quot;</TD>
+</TR>
+<TR>
+<TD>&quot;pie&quot;</TD>	<TD>&quot;fillpiewedge piewedge piewedge dwhpiewedge&quot;</TD>
+</TR>
+<TR>
+<TD>&quot;semicirc&quot;</TD>	<TD>&quot;fillsemicircle semicircle semicircle dwhsemicircle&quot;</TD>
+</TR>
+<TR>
+<TD>&quot;slash&quot;</TD>	<TD>&quot;fillslashhead slashhead slashhead dwhslashhead&quot;</TD>
+</TR>
+<TR>
+<TD>&quot;allslash&quot;</TD>	<TD>&quot;fillslashhead fillslashhead fillslashhead fillslashhead&quot;</TD>
+</TR>
+</TABLE>
+
+</P>
+<P>
+You can redefine these or define new ones if you wish.
+The name (the first of the two strings in the pair)
+can be almost anything you want.
+The four names in the second string must be taken from the list of
+valid note head characters given below:
+<BR>
+<PRE>
+4n	             2n         1n      dblwhole
+filldiamond          diamond            dwhdiamond
+fillisostriangle     isostriangle       dwhisostriangle
+fillpiewedge         piewedge           dwhpiewedge
+fillrectangle        rectangle          dwhrectangle
+fillrighttriangle    righttriangle      dwhrighttriangle
+ufillrighttriangle   urighttriangle     udwhrighttriangle
+fillsemicircle       semicircle         dwhsemicircle
+fillslashhead        slashhead          dwhslashhead
+xnote
+blankhead
+</PRE>
+The righttriangle shape names can be prefixed by u? when
+used in the headshapes context, to indicate the upside down version of them should
+be used when the stem is down. Note that u? cannot be used on any other
+note head characters, since none of the others have a corresponding
+upside down version.
+</P>
+<P>
+As an example of how you could use the headshapes context,
+suppose you wished to use xnote for half notes and shorter,
+and diamond for longer notes.
+That is different than either of the builtin values &quot;x&quot; or &quot;allx&quot;
+but you could override one of them:
+<BR><PRE>
+headshapes
+	&quot;x&quot; &quot;xnote xnote diamond diamond&quot;
+</PRE><BR>
+</P>
+<P>
+The blankhead does not print any head at all, it just leaves space as if
+there were a note head. It might be used if for some reason you just want
+stems.
+</P>
+<H2>
+Noteheads parameter
+</H2>
+<P>
+<A HREF="param.html#notehead">The noteheads parameter</A>
+describes which note head shape to use for each pitch
+in the scale. It can be specified in score, staff, or voice contexts.
+If you want to use the same shape for all pitches,
+(as is the case with standard notation), only one shape name is specified.
+Thus the default value for this parameter is
+<BR><PRE>
+noteheads = &quot;norm&quot;
+</PRE><BR>
+</P>
+<P>
+If you want to use different shapes for different pitches,
+the noteheads value needs to be a string containing a list of 7 shape names.
+They are listed from the &quot;tonic&quot; of the major key up the scale,
+with the key based on the number of sharps or flats in the
+<A HREF="param.html#key">key signature.</A>
+The shape names must be from the list of pre-defined head shapes (norm,
+xnote, diam, blank, righttri, isostri, rect, pie, semicirc, slash),
+or names that you have given as the first in a pair of strings
+in the headshapes context.
+</P>
+<P>
+You can get the most common shaped note system using 4 shapes using:
+<BR><PRE>
+noteheads = &quot;righttri norm rect righttri norm rect diam&quot;
+</PRE><BR>
+There are several shaped notes systems using 7 different shapes.
+One such system is specified by:
+<BR><PRE>
+noteheads = &quot;isostri semicirc diam righttri norm rect pie&quot;
+</PRE><BR>
+</P>
+<P>
+Once the noteheads parameter is set,
+you specify your music just like you would for standard notation,
+but Mup will use the appropriate note heads based on your specifications.
+</P>
+<P>
+<BR><PRE>
+score
+   // Use a 7-shaped system.
+   noteheads = &quot;isostri semicirc diam righttri norm rect pie&quot;
+
+   // Noteheads are given in order for the major key,
+   // so we'll start out with an example in major.
+   key = d major
+
+music
+
+// Do a descending scale in D major
+1: d+;c+;b;a;
+bar
+
+1: g;f;e;d;
+dblbar
+
+score
+   // Now we switch to D minor, where the &quot;tonic&quot;
+   // will start at the rect and then wrap around.
+   key = d minor
+
+music
+
+// Do a descending scale in D minor
+1: d+;c+;b;a;
+bar
+
+1: g;f;e;d;
+bar
+</PRE><BR>
+<IMG SRC="mugex60.gif" ALT="Picture of Mup output"><BR>
+</P>
+<H2>
+Overriding chord note heads
+</H2>
+<P>
+<A NAME="chord">It is possible to override what note shape to use for a chord,</A>
+by giving &quot;hs&quot; followed by a head shape name from the headshapes context,
+inside square brackets.
+Thus
+<BR><PRE>
+	[hs &quot;righttri&quot;]
+</PRE><BR>
+would use the &quot;righttri&quot; headshape. The specific character to use would be
+based on the group's duration. In other words, if the chord was a
+quarter note or shorter, the &quot;fillrighttriangle&quot; note head would be used,
+but if the chord was a half or whole note, a &quot;righttriangle&quot; note head would be
+used, and a &quot;dwhrighttriangle&quot; would be used for a double whole note.
+</P>
+<P>
+The hs specification can be used along with other things that can go in the
+square brackets. For example,
+<BR><PRE>
+	[hs &quot;blank&quot;; len 0]
+</PRE><BR>
+would use blankheads and no stem, resulting in no chord being printed at all!
+</P>
+<H2>
+Overriding individual note heads
+</H2>
+<P>
+<A NAME="note">If you want to override the note head shape to be used for one specific</A>
+note in a chord, you use hs followed by the head shape name
+as a string after the note.
+<BR><PRE>
+1: cg e+ hs &quot;diam&quot;; f a hs &quot;x&quot; c+; 2ge+;
+bar
+</PRE><BR>
+<IMG SRC="mugex61.gif" ALT="Picture of Mup output"><BR>
+</P>
+<H2>
+Putting it all together to use shaped notes
+</H2>
+<P>
+In summary,
+note head shapes can be specified in five different places: per note,
+per chord, in voice context, in staff context, and in score context.
+When deciding what note head shape to use, Mup checks for specifications
+in that order, using the first it finds.
+</P>
+<P>
+Since fret numbers are used rather than note heads on
+<A HREF="tabstaff.html">tablature staffs,</A>
+the only head shape name that is allowed is &quot;allx.&quot;
+which is used for &quot;muffled&quot; notes.
+</P>
+<P>
+Here is a simple example of shaped notes, using the common 4-shape system.
+<BR><PRE>
+score
+	noteheads = &quot;righttri norm rect righttri norm rect diam&quot;
+	staffs=4
+	key=2#
+	bracket=1-4
+
+staff 3
+	clef=treble8
+staff 4
+	clef=bass
+music
+
+1: 2c+;4d+;e+;
+2: 2e;4a;f;
+3: 2e;4f;c;
+4: 2a-;4f-;a-;
+bar
+
+1: 1d+;
+2: 1f;
+3: 1d;
+4: 1d;
+endbar
+</PRE><BR>
+<IMG SRC="mugex62.gif" ALT="Picture of Mup output"><BR>
+</P>
+<P>
+Here is an example of using the same note head shape for all pitches,
+illustrating how the proper version--filled or open--of the note head
+is used, based on the note's duration.
+<BR><PRE>
+score
+	time=8/4
+	beamstyle=2,2,2,2
+
+music
+1: 8cf;;4;2;1;
+bar
+
+score noteheads=&quot;isostri&quot;
+music
+1: 4ec+;8;;2;1;
+bar
+
+score noteheads=&quot;rect&quot;
+music
+1: 1gc+;4;2;8;;
+bar
+
+score noteheads=&quot;pie&quot;
+music
+1: 8cf;;4;2;1;
+bar
+
+score noteheads=&quot;x&quot;
+music
+1: 4ec+;8;;2;1;
+bar
+
+score noteheads=&quot;slash&quot;
+music
+1: 1gc+;4;2;8;;
+bar
+</PRE><BR>
+<IMG SRC="mugex63.gif" ALT="Picture of Mup output"><BR>
+</P>
+<P>
+And finally, here is a somewhat silly example that demonstrates how
+you can use the various shaped notes features to get any kind of
+note head that Mup supports anywhere you want.
+<BR><PRE>
+headshapes
+	// Make some user-defined head shapes.
+	// These combinations don't really make sense;
+	// they are just to demonstrate what you can do.
+	&quot;reg&quot; &quot;4n 2n 2n 2n&quot;
+	&quot;other&quot; &quot;fillrectangle diamond isostriangle dblwhole&quot;
+
+score
+	// Set notesheads, using an arbitrary mixture of builtin
+	// and user-defined head shapes.
+	noteheads=&quot;norm reg other reg reg other righttri&quot;
+
+music
+
+1: c;d;2e;
+bar
+
+1: 2g;f;
+bar
+
+1: {b;a;g;}3;2c+;
+bar
+
+1: 1d;
+bar
+
+// do some shape overrides, both on group and note
+1: [ hs &quot;pie&quot; ]2ce; [hs &quot;isostri&quot;] c e g hs &quot;righttri&quot;; 
+endbar
+</PRE><BR>
+<IMG SRC="mugex64.gif" ALT="Picture of Mup output"><BR>
+</P>
+<HR><P>
+&nbsp;&nbsp;&nbsp;<A HREF="tabstaff.html">&lt;-- previous page</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="index.html">Table of Contents</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="mupindex.html">Index</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="textstr.html">next page --&gt;</A>
+</P>
+</BODY></HTML>

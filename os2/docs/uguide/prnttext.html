@@ -1,0 +1,300 @@
+<HTML>
+<HEAD><TITLE>
+Mup commands for printing text
+</TITLE></HEAD>
+<BODY>
+<P>
+&nbsp;&nbsp;&nbsp;<A HREF="tags.html">&lt;-- previous page</A>
+
+&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="index.html">Table of Contents</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="mupindex.html">Index</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="linecurv.html">next page --&gt;</A>
+</P>
+         
+<H2>
+Printing commands
+</H2>
+
+<P>
+There are several commands for printing text.
+There are four commands that have similar formats,
+differing only in how they justify text.
+<BR><PRE>
+<B>print</B> <I>location</I> &quot;<I>text</I>&quot;
+<B>left</B> <I>location</I> &quot;<I>text</I>&quot;
+<B>right</B> <I>location</I> &quot;<I>text</I>&quot;
+<B>center</B> <I>location</I> &quot;<I>text</I>&quot;
+</PRE><BR>
+
+
+
+
+</P>
+<P>
+The <I>location</I> is optional. If the <I>location</I> is omitted, the &quot;print&quot;
+command will cause the <I>text</I> to be printed beginning at the current
+horizontal and vertical location. The other commands will cause the text to
+be placed vertically at the current vertical position, but left justified,
+right justified, or centered within the current margins of the page.
+
+</P>
+<P>
+The <I>location</I> can be specified using the special keyword of &quot;nl&quot;
+which means &quot;next line.&quot; This moves the current location to the beginning
+of the following line before placing the text. In other words, the current
+vertical position is moved downward by the height of the current text
+
+point size (or by as much as necessary
+if the string is taller than that). Then
+the <I>text</I> is printed on that line with the given justification style.
+</P>
+<P>
+The other way to specify a <I>location</I> is by using coordinates.
+The justification then takes place relative to the referenced location.
+For example, consider the following &quot;right&quot; command containing a reference
+to an absolute location:
+<BR><PRE>
+right (25, 4) &quot;something&quot;
+</PRE><BR>
+The y location given is 4. Since this is an absolute location with no location
+tags being referenced, this means the vertical position will be 4 stepsizes from
+the bottom of the page. The x location given is 25. Again, this is an
+absolute location, so the current horizontal position will be 25 stepsizes from
+the left edge of the page. Since right justification is indicated,
+the word &quot;something&quot; will be placed such that the right edge of the final &quot;g&quot;
+will be 25 stepsizes from the left edge of the page. If &quot;center&quot; had been
+specified, the middle of the word &quot;something&quot; would be at the 25 stepsize point.
+</P>
+<P>
+Here are some other examples:
+<BR><PRE>
+print &quot;Author unknown&quot;
+center nl &quot;subtitle&quot;
+left (h.x - 1.5, h.n + 2.3) &quot;Ad lib&quot;
+right (_fine.e + time 3, _note.n + 5) &quot;Duet&quot;
+</PRE><BR>
+</P>
+<P>
+Another type of print command
+is &quot;title.&quot; The full format of this command is:
+
+<BR><PRE>
+<B>title</B> <I>fontfamily font size  &quot;text1&quot;  &quot;text2&quot;  &quot;text3&quot;</I>
+</PRE><BR>
+However, only the word &quot;title&quot; and one quoted text string are required.
+
+The <I>fontfamily</I>, if specified, has one of the values valid for
+<A HREF="param.html#fontfam">the "fontfamily" parameter</A>
+(avantgarde, bookman, courier, helvetica,
+newcentury, palatino, or times). The default is the value of the &quot;fontfamily&quot;
+parameter.
+
+The <I>font</I>, if specified, has one of the values valid for the &quot;font&quot;
+parameter (rom, bold, ital, or boldital). If no <I>font</I> is specified
+
+
+
+
+the default is the value of
+<A HREF="param.html#font">the "font" parameter.</A>
+The optional <I>size</I> is a point size within parentheses.
+
+If not specified, the default is the value of
+<A HREF="param.html#size">the "size" parameter.</A>
+</P>
+<P>
+In all cases, the location will be like that obtained via the &quot;nl&quot;
+location to a print command. In other words, the title text string(s)
+will be printed on the line below the location that was current when the
+title command was encountered. If there is only one string given, it will
+be centered between the margins. If two strings are given, both will be
+printed on the same line, but the first will be left justified and the
+second will be right justified. If three strings are given, they will all
+be printed on the same line, with the first left justified, the second
+centered, and the last right justified.
+</P>
+<P>
+Some samples:
+<BR><PRE>
+title bold (12) &quot;Sonata 12&quot;
+title (18) &quot;Song Without Words&quot;
+title ital (12) &quot;Text: John Doe&quot; &quot;Tune: Jane Doe&quot;
+title &quot;Suite in C&quot; &quot;Trumpet I&quot; &quot;Waltz&quot;
+title    &quot;&quot;    &quot;A. Composer&quot;
+</PRE><BR>
+</P>
+<P>
+<A NAME="paragrph">The final command for printing text is</A>
+
+the &quot;paragraph&quot; command.
+This is used when you have a long section of text,
+and you would like it to automatically wrap around onto as many
+lines as necessary.
+You can specify whether you want the right margin to be &quot;justified&quot; or &quot;ragged.&quot;
+If you don't specify, the type of the previous paragraph is used.
+The default for the very first paragraph is to be justified.
+By default, the values of the
+<A HREF="param.html#fontfam">fontfamily,</A>
+<A HREF="param.html#font">font,</A>
+and
+<A HREF="param.html#size">size</A>
+parameters are used to determine the text style, but any or all of those
+parameters can be overridden on the paragraph command. The complete syntax is:
+<BR>
+ <I>justify_type</I> <B>paragraph</B> <I>fontfamily font</I> <B>(</B><I>size</I><B>) &quot;</B><I>string</I><B>&quot;</B>
+<BR>
+Only the keyword &quot;paragraph&quot; and the string are required.
+Here are some example paragraphs:
+<BR><PRE>
+paragraph &quot;This is an example of a paragraph. Since no justification
+type was specified, and this is the very first paragraph, the default
+(justified) is used. A paragraph will wrap around
+to as many lines as needed.
+An explicit newline is given at the end of this paragraph,
+to force a blank line between it and the following paragraph.\n&quot;
+
+ragged paragraph avantgarde ital (15) &quot;This paragraph
+is ragged rather than flush right. It is in a different font and size.
+Ragged paragraphs are split onto multiple lines if necessary,
+but they are not spread out to make lines go all the way to
+the right margin.&quot;
+
+justified paragraph (14) &quot;     Here is another paragraph.
+This one is justified.
+Only the size was specified for this paragraph; the font was not,
+so the current default will be used.
+Some spaces are included at the beginning of the paragraph text,
+to create an indented first line for the paragraph.&quot;
+
+paragraph &quot;Here is the final paragraph.
+Since no justification type was given,
+that of the previous paragraph (justified in this case) was used.
+A paragraph may be used for many things,
+such as describing how you want a piece to be performed,
+or a biography of the composer.&quot;
+</PRE><BR>
+<IMG SRC="mugex83.gif" ALT="Picture of Mup output"><BR>
+</P>
+<P>
+<A NAME="block">Sometimes you may want to mix</A>
+blocks of text with music.
+
+This can be done by specifying a &quot;block&quot; context. The block context
+will typically contain one or more &quot;paragraph&quot; commands, although any
+of the printing commands (paragraph, print, left, center, right, or title)
+can be used. The block can also contain changes in certain parameters, namely
+<A HREF="param.html#font">font,</A>
+<A HREF="param.html#size">size,</A>
+and
+<A HREF="param.html#fontfam">fontfamily,</A>
+which will affect the appearance of
+the following text. A block can also contain
+<A HREF="newscore.html">"newscore" or "newpage" commands.</A>
+Using &quot;newscore&quot; will cause vertical space to be added,
+as would be used to separate scores. The amount of space is affected
+by the
+<A HREF="param.html#scoresep">scoresep</A>
+and
+<A HREF="param.html#scorepad">scorepad</A>
+parameters. Using &quot;newpage&quot; will cause a new page to be started.
+If a newscore or newpage includes a &quot;leftmargin&quot; specification,
+that will alter the left margin on the block text that follows.
+A &quot;rightmargin&quot; specification will alter the right margin
+of the block text that precedes it.
+</P>
+<P>
+Here is an example of a block.
+<BR><PRE>
+block
+title bold &quot;Notation in Simple and Compound Meters&quot;
+title &quot;&quot;
+paragraph &quot;It is common for a person familiar
+with mathematics but not with music to assume
+that 3/4 and 6/8 time are equivalent,
+but that is not the case.
+In 3/4 time (which is known as simple triple meter),
+a measure containing 3 quarter notes
+would be notated like this:&quot;
+score time=3/4
+music
+1: c;;;
+bar hidechanges
+block
+paragraph &quot;whereas in 6/8 time
+(which is compound duple meter),
+a measure with 3 quarter notes should be notated thus:&quot;
+score time=6/8
+music
+1: 4c;8~;;4;
+bar
+</PRE><BR>
+<IMG SRC="mugex84.gif" ALT="Picture of Mup output"><BR>
+</P>
+<P>
+The printing commands may occur in the
+<A HREF="headfoot.html">header, footer, header2, footer2, top, bottom, top2, bottom2,</A>
+
+
+
+
+<A HREF="prnttext.html#block">block,</A>
+and
+<A HREF="music.html">music</A>
+contexts.
+
+
+After each printing command,
+the current location is set to the right edge of the last character printed
+horizontally and at the baseline of the current line vertically.
+</P>
+<H2>
+Including raw PostScript
+</H2>
+<P>
+<A NAME="postscript">There is another command that looks a lot like the printing commands,</A>
+but gives you a way to insert raw PostScript into the Mup output.
+This might be used, for example,
+to include a picture or logo along with your music.
+The syntax is
+<BR><PRE>
+<B>postscript</B> <I>optional_location</I> <B>&quot;</B><I>raw PostScript</I><B>&quot;</B>
+</PRE><BR>
+As with the other print commands, if the location is omitted,
+the current location is used.
+</P>
+<P>
+The string is copied directly to the Mup output.
+You can use the usual \&quot; to embed a double quote in the string,
+but otherwise the string is copied exactly as it is,
+enclosed inside a PostScript save/restore.
+After the restore, the current location is reset back to where it
+was originally.
+</P>
+<P>
+Since the string is copied without any interpretation,
+Mup does not reserve any space on the page for the PostScript,
+and it is your responsibility to provide valid PostScript.
+The PostScript language is beyond the scope of this User's Guide;
+consult a book on PostScript if you need more information.
+</P>
+<P>
+As a simple example, you might include an Encapsulated PostScript file
+near the lower left corner of the current page using
+<BR><PRE>
+postscript &quot;50 50 translate (file.eps) run&quot;
+</PRE><BR>
+</P>
+<P>
+Or you could print a message in red italics
+near the bottom of the page like this:
+<BR><PRE>
+postscript (70, 20) &quot;
+              1 0 0 setrgbcolor
+              /NewCenturySchlbk-Italic findfont
+              16 scalefont setfont
+              (Photocopying prohibited) show
+              &quot;
+</PRE><BR>
+</P>
+<HR><P>
+&nbsp;&nbsp;&nbsp;<A HREF="tags.html">&lt;-- previous page</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="index.html">Table of Contents</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="mupindex.html">Index</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="linecurv.html">next page --&gt;</A>
+</P>
+</BODY></HTML>

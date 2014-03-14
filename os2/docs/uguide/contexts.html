@@ -1,0 +1,148 @@
+<HTML>
+<HEAD><TITLE>
+Mup Contexts
+</TITLE></HEAD>
+<BODY>
+<P>
+&nbsp;&nbsp;&nbsp;<A HREF="gensyn.html">&lt;-- previous page</A>
+
+&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="index.html">Table of Contents</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="mupindex.html">Index</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="music.html">next page --&gt;</A>
+</P>
+            
+<H2>
+Contexts
+</H2>
+
+<P>
+There is always a current Mup &quot;context&quot; that is in effect.
+When Mup begins reading input, it is operating in &quot;music&quot; context, which
+is where music, lyrics, barlines, and other related things
+
+are described. You can change to another
+context by entering its name. A context remains in effect until
+another context is named.
+The contexts are:
+<DL>
+<DT>
+<A HREF="headfoot.html">header</A>
+<DD>
+to define what goes at the top of the first page, typically
+the title, composer, etc.
+<DT>
+<A HREF="headfoot.html">footer</A>
+<DD>
+to define what goes at the bottom of the first page,
+typically a copyright notice, performance notes, etc.
+<DT>
+<A HREF="headfoot.html">header2</A>
+<DD>
+to define what is to be printed on the top of pages after the first page.
+<DT>
+<A HREF="headfoot.html">footer2</A>
+<DD>
+to define what is to be printed on the bottom of pages after the first page.
+<DT>
+<A HREF="headfoot.html">top</A>
+<DD>
+to define what is to be printed on the top of page.
+This gets printed below the header (or header2), if any.
+If the output is not already at the beginning of a new page,
+a new page is started.
+Unlike header, which can only be used once, and is used only on the very
+first page, top can be used multiple times. In a song with multiple movements,
+you might use top to put a title at the beginning of each movement.
+<DT>
+<A HREF="headfoot.html">bottom</A>
+<DD>
+to define what is to be printed on the bottom of page.
+This gets printed above the footer (or footer2), if any.
+If the output is not already at the beginning of a new page,
+a new page is started.
+Unlike footer, which can only be used once, and is used only on the very
+first page, bottom can be used multiple times.
+<DT>
+<A HREF="headfoot.html">top2</A>
+<DD>
+to define what is to be printed on the top of pages
+after the page that uses &quot;top.&quot;
+If the output is not already at the beginning of a new page,
+a new page is started.
+<DT>
+<A HREF="headfoot.html">bottom2</A>
+<DD>
+to define what is to be printed on the bottom of pages
+after the page that uses &quot;bottom.&quot;
+If the output is not already at the beginning of a new page,
+a new page is started.
+<DT>
+<A HREF="prnttext.html#block">block</A>
+<DD>
+to define a block that contains text rather than music.
+<DT>
+score
+<DD>
+to define
+<A HREF="param.html">parameters</A>
+that apply to the entire score.
+<DT>
+staff <I>S</I>
+<DD>
+to define
+<A HREF="param.html">parameters</A>
+to be used for staff <I>S</I>,
+where <I>S</I> is a number from 1 to 40.
+You can also specify a comma-separated list of staffs or staff ranges:
+<PRE>
+   staff 3,7	// staffs 3 and 7
+   staff 1-2, 5-8, 10	// staffs 1, 2, 5, 6, 7, 8, and 10
+</PRE>
+<DT>
+voice <I>S V</I>
+<DD>
+to define
+<A HREF="param.html">parameters</A>
+for a particular voice <I>V</I> on staff <I>S</I>.
+The voice <I>V</I> can be either 1, 2, or 3.
+<I>S</I> is a staff number from 1 to 40.
+Multiple staffs and/or voices can be specified:
+<PRE>
+  voice 1-4 1	// voice 1 on staffs 1 through 4
+  voice 1-2 2 &amp; 3 1	// voice 2 on staffs 1 and 2 and voice 1 on staff 3
+</PRE>
+<DT>
+<A HREF="textmark.html#grids">grids</A>
+<DD>
+to define grids (typically for guitar)
+<DT>
+<A HREF="shaped.html">headshapes</A>
+<DD>
+to define what note head shapes to use for notes of various durations.
+This context is rarely used, and is described in the chapter on
+<A HREF="shaped.html">shaped notes.</A>
+<DT>
+<A HREF="music.html">music</A>
+<DD>
+to define everything else. This includes
+<A HREF="chordinp.html">notes,</A>
+<A HREF="lyrics.html">lyrics,</A>
+<A HREF="bars.html">bar lines,</A>
+<A HREF="phrase.html">phrase marks,</A>
+<A HREF="textmark.html">tempo and dynamic marks, etc.</A>
+</DL>
+</P>
+<P>
+Most contexts are optional. An input file
+just needs to contain either at least one measure of music
+or at least one
+
+<A HREF="prnttext.html#block">block.</A>
+<A HREF="headfoot.html">The header, footer, header2, and footer2</A>
+contexts may be placed anywhere in the file, but each can be used only once.
+The other contexts may appear any number of times
+in any order, and the order in which they occur is significant in
+determining the output produced.
+</P>
+<HR><P>
+&nbsp;&nbsp;&nbsp;<A HREF="gensyn.html">&lt;-- previous page</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="index.html">Table of Contents</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="mupindex.html">Index</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="music.html">next page --&gt;</A>
+</P>
+</BODY></HTML>

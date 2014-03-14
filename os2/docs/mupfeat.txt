@@ -1,0 +1,114 @@
+
+       
+
+                Mup - Music Publication Program Highlights
+
+       1.  The Mup Music Publication program
+
+       Mup  is  a shareware music publication program.  Mup Version
+       5.8 is now available in source form as well as  ready-to-run
+       for MS-DOS/Windows, Mac OS X, and Linux x86.
+
+       Music  is described by a text file that you can create using
+       your favorite editor or the included Mupmate  program.   Mup
+       then  determines  how  to  lay  out the music, and generates
+       PostScript output for displaying or printing it.   It  is  a
+       powerful  and  flexible  program,  which  has  been  used on
+       thousands of  songs  in  a  wide  variety  of  styles,  both
+       instrumental and vocal.
+
+       Mup's features include:
+
+         -- Up  to 40 staffs, which can include 1-line, 5-line, and
+            tablature staffs.  Output  can  be  restricted  to  any
+            subset   of   the  staffs.   Different  staffs  can  be
+            different sizes.
+
+         -- Up  to  3  independent  voices  per  staff,  up  to  70
+            simultaneous notes per voice.
+
+         -- Double  whole  to 256th notes, with any number of dots.
+            Tuplets.
+
+         -- Note styles of normal, grace,  cue,  X,  diamond,  plus
+            shaped notes.  Optional parentheses around notes and/or
+            accidentals.
+
+         -- Cross-staff stems.
+
+         -- Time signatures of cut, common, or numerators from 1 to
+            99  and  denominators  from  1 to 64.  Complicated time
+            signatures,  including  numerators  with  two  or  more
+            numbers  added together, or two or more fractions added
+            together, or alternating time signatures.
+
+         -- All standard clefs, including treble, treble8, 8treble,
+            French  violin,  soprano,  mezzosoprano,  alto,  tenor,
+            baritone, and bass, as well as the drum (neutral) clef.
+            Clefs can be changed in the middle of measures.
+
+         -- Barline  styles of single, double, dashed, dotted, end,
+            repeats, or none.
+
+         -- 8th note and shorter notes can  have  either  flags  or
+            beams; beams can be cross-staff.
+
+         -- Guitar grids
+
+         -- Lyrics  can  be placed above, below, or between staffs.
+            Unlimited number of verses, with control  of  font  and
+            size.
+
+         -- Headers and footers.
+
+         -- Staffs can be grouped with braces or brackets.
+
+         -- Automatic  transposition  of  music and chord marks per
+            staff.
+
+         -- First and subsequent endings.
+
+         -- Optional  rehearsal  marks  and/or  automatic   measure
+            numbering.   Rehearsal  marks can be boxed, circled, or
+            plain.
+
+         -- Crescendo/decrescendo marks.
+
+         -- Rolls, ornaments, fermatas, accents.
+
+         -- Measure repeats.
+
+         -- Ties, slurs, phrase marks, octave  marks,  piano  pedal
+            marks,  etc.   Ties,  slurs,  and  phrase  marks can be
+            solid, dotted, or dashed.
+
+         -- Suport for figured bass, analysis, and chords.
+
+         -- Optional MIDI file output.  (Very  useful  for  "proof-
+            listening" to your songs to check for input mistakes!)
+
+         -- PostScript   output  for  printing  on  any  PostScript
+            compatible   output   device.    Can   be   used   with
+            Ghostscript.
+
+         -- All symbols in all standard PostScript fonts supported,
+            in 1 to 100 point size.
+
+         -- Input is a text  file,  for  easy  portability  between
+            computer systems.
+
+         -- Macros and 'include' files.
+
+         -- General  'if'  clauses  that  can  be  used to generate
+            different outputs based on values of parameters.
+
+         -- Mup will determine how to lay out the music, but  there
+            are  numerous  user controls available to fine-tune the
+            output to meet your specific needs.
+
+         -- Comprehensive User's Guide provided in both  PostScript
+            and HTML formats, including many examples.
+
+         -- Mup  is  available to try out for free.  If you like it
+            and want to keep it, the registration fee is far  lower
+            than the cost of most music publication software.

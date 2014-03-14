@@ -1,0 +1,57 @@
+# UNIX shell script for printing Mup output
+
+# **** NOTE: The GS_DEVICE shell variable needs to be set to the
+#		proper value for your printer type.
+#	Different versions of ghostscript may support different
+#	printer types, so execute ghostscript with the -h option
+#	to see what your version supports.
+#
+#	PRINTERTYPE		printer
+#	------------------------------------------------------------------
+#	bj10e	  Canon BubbleJet BJ10e
+# 	cdeskjet  H-P DeskJet 500C with 1 bit/pixel color
+# 	cdjcolor  H-P DeskJet 500C with 24 bit/pixel color and
+#		     high-quality color (Floyd-Steinberg) dithering
+# 	cdjmono   H-P DeskJet 500C printing black only
+# 	deskjet   H-P DeskJet and DeskJet Plus
+# 	dfaxhigh  DigiBoard, Inc.'s DigiFAX software format (high resolution)
+# 	dfaxlow   DigiFAX low (normal) resolution
+#	djet500   H-P DeskJet 500
+# 	djet500c  H-P DeskJet 500C
+#	epson	  Epson-compatible dot matrix printers (9- or 24-pin)
+# 	eps9high  Epson-compatible 9-pin, interleaved lines
+#		     (triple resolution)
+# 	epsonc	  Epson LQ-2550 and Fujitsu 3400/2400/1200 color printers
+# 	laserjet  H-P LaserJet
+# 	la50	  DEC LA50 printer
+# 	la75	  DEC LA75 printer
+# 	lbp8	  Canon LBP-8II laser printer
+# 	ln03	  DEC LN03 printer
+# 	lj250	  DEC LJ250 Companion color printer
+# 	ljet2p	  H-P LaserJet IId/IIp/III* with TIFF compression
+# 	ljet3	  H-P LaserJet III* with Delta Row compression
+# 	ljetplus  H-P LaserJet Plus
+# 	necp6	  NEC P6/P6+/P60 printers at 360 x 360 DPI resolution
+#	paintjet  H-P PaintJet color printer
+# 	pjetxl	  H-P PaintJet XL color printer
+# 	r4081	  Ricoh 4081 laser printer
+# 	tek4696   Tektronix 4695/4696 inkjet plotter
+
+echo "Mupprnt - Version 5.8" >&2
+
+# if environment variable COPIES is set, use that as number of copies to print
+if [ "$COPIES" != "" ]
+then
+	_Mup_copies=-n$COPIES
+fi
+
+muptmp=/usr/tmp/mtmp$$
+trap 'rm -f $muptmp' 0 1 2 15
+mup $* | gs -dNOPAUSE -sOutputFile=$muptmp -
+
+
+if [ $? -eq 0 -a -s "$muptmp" ]
+then
+	# use -c option to copy file to spool area, so we can remove tmp file
+	lp -c $_Mup_copies $muptmp
+fi

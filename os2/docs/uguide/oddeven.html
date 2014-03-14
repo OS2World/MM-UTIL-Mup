@@ -1,0 +1,66 @@
+<HTML>
+<HEAD><TITLE>
+Different margins for odd/even pages
+</TITLE></HEAD>
+<BODY>
+<P>
+&nbsp;&nbsp;&nbsp;<A HREF="mixtsig.html">&lt;-- previous page</A>
+
+&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="index.html">Table of Contents</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="mupindex.html">Index</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="tempochg.html">next page --&gt;</A>
+</P>
+         
+<H2>
+Different margins for odd/even pages
+</H2>
+<P>
+Sometimes you may want to make margins different for odd and even pages,
+
+
+
+
+for example, if you want to put music in a ringed binder, and thus want to
+offset the printing on the pages to avoid the holes in the paper.
+While you can't do this directly, you can get the desired effect by using
+appropriate macros, and then printing the odd and even pages in two passes.
+</P>
+<P>
+In the Mup input file, put something like this:
+<BR><PRE>
+score
+	// if the WIDELEFT macro is set,
+	// make the left margin extra wide,
+	// otherwise if WIDERIGHT is set,
+	// make the right margin extra wide,
+	// otherwise make them equal.
+	ifdef WIDELEFT
+		leftmargin=1
+		rightmargin=0.5
+	else ifdef WIDERIGHT
+		leftmargin=0.5
+		rightmargin=1
+	else
+		leftmargin=0.75
+		rightmargin=0.75
+	endif endif
+</PRE><BR>
+</P>
+<P>
+Then when printing, print in two passes. First print the odd pages:
+<BR><PRE>
+mupprnt -oodd -DWIDELEFT file.mup
+</PRE><BR>
+Then turn the paper over and print the even pages:
+<BR><PRE>
+mupprnt -oeven -DWIDERIGHT file.mup
+</PRE><BR>
+</P>
+<P>
+This idea should work as long as the sum of the left and right margins are
+equal between the WIDELEFT and WIDERIGHT parts. Otherwise you may get
+different numbers of measures on each page in the two runs, and you'll
+end up missing or repeating measures.
+</P>
+<HR><P>
+&nbsp;&nbsp;&nbsp;<A HREF="mixtsig.html">&lt;-- previous page</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="index.html">Table of Contents</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="mupindex.html">Index</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="tempochg.html">next page --&gt;</A>
+</P>
+</BODY></HTML>

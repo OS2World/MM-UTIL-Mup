@@ -1,0 +1,64 @@
+<HTML>
+<HEAD><TITLE>
+Cross-staff stems
+</TITLE></HEAD>
+<BODY>
+<P>
+&nbsp;&nbsp;&nbsp;<A HREF="midmeas.html">&lt;-- previous page</A>
+
+&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="index.html">Table of Contents</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="mupindex.html">Index</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="ichdattr.html">next page --&gt;</A>
+</P>
+         
+<H3>
+Cross-staff stems
+</H3>
+<P>
+Sometimes, on music for instruments that use more than one staff,
+
+you may want some of the notes of a chord to be printed on
+the staff above or below, rather than using a lot of ledger lines.
+You can specify this by putting the word &quot;with&quot; before the notes that
+are to go on the other staff, and following those notes with &quot;above&quot; or &quot;below&quot;
+to specify which is the other staff.
+For example:
+<BR><PRE>
+score
+	staffs=2
+staff 2
+	clef=bass
+music
+
+1: 1e+g+c++;
+2: cc+; ee+; g with g+ above; with c+c++ above;
+bar
+
+1: cc+; g with g- below; e with e- below; with cc- below;
+2: 1c-e-g-;
+bar
+</PRE><BR>
+<IMG SRC="mugex21.gif" ALT="Picture of Mup output"><BR>
+</P>
+<P>
+The notes for the other staff have to follow the notes on the normal staff in
+the input.  As is shown in the example,
+it is possible to have <I>all</I> the notes on the &quot;other&quot; staff, if you wish.
+The octave is specified as if the note were on the normal staff;
+Mup will automatically adjust appropriately for the other staff's clef.
+Once in a while, Mup may not be able to figure out how to completely
+avoid colliding with other notes; in that case you can use the
+<A HREF="chrdattr.html#hoffset">horizontal offset</A>
+that was described earlier.
+</P>
+<P>
+For
+<A HREF="midi.html">MIDI</A>
+purposes, only the normal staff's key signature and accidentals are
+considered, so if the other staff has a different
+<A HREF="param.html#key">key signature</A>
+or accidentals that should really apply to these notes, you will have
+to supply accidentals explicitly.
+</P>
+<HR><P>
+&nbsp;&nbsp;&nbsp;<A HREF="midmeas.html">&lt;-- previous page</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="index.html">Table of Contents</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="mupindex.html">Index</A>&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="ichdattr.html">next page --&gt;</A>
+</P>
+</BODY></HTML>
